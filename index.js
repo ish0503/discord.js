@@ -16,7 +16,7 @@ app.listen(port, () => {
 
 const { Client, Collection, REST, Routes } = require("discord.js");
 const client = (module.exports = new Client({ intents: [131071] }));
-client.login(process.env.TOKEN);
+client.login($TOKEN);
 
 const fs = require("fs");
 
@@ -54,9 +54,9 @@ for (const category of commandsCategoryFiles) {
   }
 }
 
-const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
+const rest = new REST({ version: "10" }).setToken($TOKEN);
 
 rest
-  .put(Routes.applicationCommands(process.env.ID), { body: commands_json })
+  .put(Routes.applicationCommands($ID), { body: commands_json })
   .then((command) => console.log(`${command.length}개의 커맨드를 푸쉬했습니다`))
   .catch(console.error);
