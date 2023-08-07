@@ -16,7 +16,7 @@ app.listen(port, () => {
 
 const { Client, Collection, REST, Routes } = require("discord.js");
 const client = (module.exports = new Client({ intents: [131071] }));
-client.login("MTEzNzAwMjczNzI2ODE2MjU3MA.Gk-b8c.snMOw-2dPBjWcB-nr-QeYAl9uUEmxe_bX6Q5lU");
+client.login(process.env.TOKEN);
 
 const fs = require("fs");
 
@@ -54,7 +54,7 @@ for (const category of commandsCategoryFiles) {
   }
 }
 
-const rest = new REST({ version: "10" }).setToken("MTEzNzAwMjczNzI2ODE2MjU3MA.Gk-b8c.snMOw-2dPBjWcB-nr-QeYAl9uUEmxe_bX6Q5lU");
+const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
 rest
   .put(Routes.applicationCommands(process.env.ID), { body: commands_json })
