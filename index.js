@@ -1,6 +1,9 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
+const TOKENB = "MTEzNzAwMjczNzI2ODE2MjU3MA.GelQAg.MhRKbwPe"
+const TOKENA = "-xpa3YGtPAjbB1dKOJHZzfaBP1gt1k"
+
 console.log($TOKEN)
 
 /*const express = require("express")
