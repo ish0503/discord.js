@@ -19,7 +19,7 @@ module.exports = {
         .setDescription("메시지를 입력해 주세요")
         .setMaxLength(1000)
       )
-      .setDefaultMemberPermissions(true),
+      .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
