@@ -19,7 +19,7 @@ module.exports = {
         .setDescription("메시지를 입력해 주세요")
         .setMaxLength(1000)
       )
-      .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
+      .setDefaultMemberPermissions(true),
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
@@ -31,16 +31,17 @@ module.exports = {
       interaction.reply("잠시만 기다려주세요..")
       //interaction.channel.startTyping();
       console.log(reason_option)
-        const { prompt } = req.body;
+        //const { prompt } = req.body;
 
-  // Generate image from prompt
-  const response = await openai.createImage({
-    prompt: response_option,
-    n: 1,
-    size: "1024x1024",
-  });
-  // Send back image url
-  interaction.channel.send(response.data.data[0].url);
+      // Generate image from prompt
+      const response = await openai.createImage({
+        prompt: response_option,
+        n: 1,
+        size: "1024x1024",
+      });
+      // Send back image url
+      interaction.channel.send(response.data.data[0].url);
+      cooldown = false
     } catch (error) {
       //cooldown = false
       return interaction.reply({
