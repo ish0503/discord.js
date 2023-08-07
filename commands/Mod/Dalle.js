@@ -35,7 +35,7 @@ module.exports = {
 
       // Generate image from prompt
       const response = await openai.createImage({
-        prompt: response_option,
+        prompt: reason_option,
         n: 1,
         size: "1024x1024",
       });
