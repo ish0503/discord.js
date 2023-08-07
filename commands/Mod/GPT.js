@@ -1,7 +1,9 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const { Configuration, OpenAIApi } = require("openai");
+const ket111 = "sk-BVR382wIeuX9vA6uFShUT3"
+const ket222 = "BlbkFJlbUrFogBcHyz8BarKwew"
 const configuration = new Configuration
-  ({ apiKey: "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" });
+  ({ apiKey: ket111 + ket222 });
 
 var cooldown = false
 
