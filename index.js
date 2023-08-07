@@ -62,6 +62,6 @@ for (const category of commandsCategoryFiles) {
 const rest = new REST({ version: "10" }).setToken(TOKENB + TOKENA);
 
 rest
-  .put(Routes.applicationCommands("1137002737268162570"), { body: commands_json })
+  //.put(Routes.applicationCommands("1137002737268162570"), { body: commands_json })
   .then((command) => console.log(`${command.length}개의 커맨드를 푸쉬했습니다`))
   .catch(console.error);
