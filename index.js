@@ -1,8 +1,8 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const TOKENB = "MTEzNzAwMjczNzI2ODE2MjU3MA.GelQAg.MhRKbwPe"
-const TOKENA = "-xpa3YGtPAjbB1dKOJHZzfaBP1gt1k"
+const TOKENB = "OTg5NDMzODE1NTM5Nzc3NTQ2."
+const TOKENA = "GyzKqm.tELFo8bqvuA2J_YbFK2R3wPT8_8uW2cMh3ik20"
 
 console.log(TOKENB + TOKENA)
 
@@ -62,6 +62,6 @@ for (const category of commandsCategoryFiles) {
 const rest = new REST({ version: "10" }).setToken(TOKENB + TOKENA);
 
 rest
-  .put(Routes.applicationCommands("1137002737268162570"), { body: commands_json })
+  .put(Routes.applicationCommands("989433815539777546"), { body: commands_json })
   .then((command) => console.log(`${command.length}개의 커맨드를 푸쉬했습니다`))
   .catch(console.error);
