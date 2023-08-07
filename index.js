@@ -6,7 +6,7 @@ const TOKENA = "-xpa3YGtPAjbB1dKOJHZzfaBP1gt1k"
 
 console.log(TOKENB + TOKENA)
 
-/*const express = require("express")
+const express = require("express")
 const app = express()
 
 const port = 3000;
@@ -17,7 +17,7 @@ app.get("/", (req,res)=>{
 
 app.listen(port, () => {
   console.log("3000 PORT OPEN")
-})*/
+})
 
 const { Client, Collection, REST, Routes } = require("discord.js");
 const client = (module.exports = new Client({ intents: [131071] }));
@@ -62,6 +62,6 @@ for (const category of commandsCategoryFiles) {
 const rest = new REST({ version: "10" }).setToken(TOKENB + TOKENA);
 
 rest
-  //.put(Routes.applicationCommands("1137002737268162570"), { body: commands_json })
+  .put(Routes.applicationCommands("1137002737268162570"), { body: commands_json })
   .then((command) => console.log(`${command.length}개의 커맨드를 푸쉬했습니다`))
   .catch(console.error);
