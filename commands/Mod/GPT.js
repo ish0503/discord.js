@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration
-  ({ apiKey: "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" });
+  ({ apiKey: "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" });
 
 var cooldown = false
 
