@@ -15,15 +15,16 @@ module.exports = {
 
         google({ 'query': args }).then(rufrhk => {
             rufrhk.forEach(function (item, index) {
-                const Embed = new EmbedBuilder()
-                .setTitle(`${args}에 대한 검색결과`)
-                .addFields(
-                    { name: "제목", value: `${item.title}, [바로가기](${item.link})`, inline: true },
-                )
-                //.setColor("PURPLE")
-                .setTimestamp()
+                interaction.channel.send(item)
+                // const Embed = new EmbedBuilder()
+                // .setTitle(`${args}에 대한 검색결과`)
+                // .addFields(
+                //     { name: "제목", value: `${item.title}, [바로가기](${item.link})`, inline: true },
+                // )
+                // //.setColor("PURPLE")
+                // .setTimestamp()
 
-                interaction.reply({ embeds: [Embed] })
+                // interaction.reply({ embeds: [Embed] })
             })
         }).catch(e => {
             return interaction.reply(`오류가 발생했습니다 ${e}`)
