@@ -1,6 +1,6 @@
 const ytsearch = require('yt-search')
 const comma = require('comma-number') 
-const { MessageEmbed } = require('discord.js') 
+const { EmbedBuilder } = require('discord.js') 
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
