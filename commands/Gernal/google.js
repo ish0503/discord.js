@@ -22,8 +22,8 @@ module.exports = {
 
         google({ 'query': args }).then(rufrhk => {
             rufrhk.forEach(function (item, index) {
-                //@param fields
-                Embed.addFields(`${index + 1}. ${item.title} `, `[바로가기](${item.link})`, inline = true)
+                Embed.addFields({ name: 'Title', value: `${index + 1}. ${item.title} ` },  { name: 'link', value: `[바로가기](${item.link})`},)
+                //Embed.addFields(`${index + 1}. ${item.title} `, `[바로가기](${item.link})`, inline = true)
             })
             interaction.channel.send({ embeds: [Embed] })
         }).catch(e => {
