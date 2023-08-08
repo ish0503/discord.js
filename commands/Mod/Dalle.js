@@ -41,11 +41,12 @@ module.exports = {
         size: "1024x1024",
       });
       interaction.channel.send(response.data.data[0].url);
-      }catch (error) {
+      cooldown = false
+      } catch (error) {
         content: `**부적절한 단어가 포함되있습니다.**`,
+        cooldown = false
       }
       // Send back image url
-      cooldown = false
     } catch (error) {
       //cooldown = false
       return interaction.reply({
