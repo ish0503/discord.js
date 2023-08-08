@@ -1,5 +1,5 @@
 const google = require('google-it')
-const { EmbedBuilder } = require('discord.js')
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js')
 
 module.exports = {
     data: new SlashCommandBuilder()
