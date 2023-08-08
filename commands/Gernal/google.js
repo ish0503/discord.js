@@ -18,7 +18,7 @@ module.exports = {
                 const Embed = new EmbedBuilder()
                 .setTitle(`${args}에 대한 검색결과`)
                 .addFields(
-                    `${index + 1}. ${item.title} `, `[바로가기](${item.link})`
+                    { name: "제목", value: `${item.title}, [바로가기](${item.link})`, inline: true },
                 )
                 //.setColor("PURPLE")
                 .setTimestamp()
