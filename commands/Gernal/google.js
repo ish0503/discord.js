@@ -15,26 +15,16 @@ module.exports = {
 
         interaction.reply("검색중입니다..")
 
+        const Embed = new EmbedBuilder()
+            .setTitle(`${args}에 대한 검색결과`)
+            //.setColor("PURPLE")
+            .setTimestamp()
+
         google({ 'query': args }).then(rufrhk => {
             rufrhk.forEach(function (item, index) {
-                const embed = new EmbedBuilder()
-                    .setTitle(`${args}에 대한 검색결과입니다`)
-                    .addFields(
-                        { name: "제목", value: `${item.title}`, inline: true },
-                        { name: "링크", value: `[바로가기](${item.link})`, inline: true },
-                    )
-                //interaction.channel.send(item.title + " " + item.link)
-                // const Embed = new EmbedBuilder()
-                // .setTitle(`${args}에 대한 검색결과`)
-                // .addFields(
-                //     { name: "제목", value: `${item.title}, [바로가기](${item.link})`, inline: true },
-                // )
-                // //.setColor("PURPLE")
-                // .setTimestamp()
-
-                // interaction.reply({ embeds: [Embed] })
-                interaction.channel.send({ embeds: [embed], content: " " })
+                Embed.addField(`${index + 1}. ${item.title} `, `[바로가기](${item.link})`, inline = true)
             })
+            interaction.reply({ embeds: [Embed] })
         }).catch(e => {
             return interaction.reply(`오류가 발생했습니다 ${e}`)
         })
