@@ -21,7 +21,7 @@ module.exports = {
         if (!video) return interaction.reply("검색 결과가 없습니다.")
 
         const { views, title, timestamp, url, author, ago, image } = video
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`${argsjoin}에 대한 검색결과입니다`) 
             .setImage(image) 
             .addFields(
