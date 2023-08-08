@@ -22,8 +22,9 @@ module.exports = {
                 )
                 //.setColor("PURPLE")
                 .setTimestamp()
+
+                interaction.reply({ embeds: [Embed] })
             })
-            interaction.reply({ embeds: [Embed] })
         }).catch(e => {
             return interaction.reply(`오류가 발생했습니다 ${e}`)
         })
