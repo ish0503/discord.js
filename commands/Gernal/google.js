@@ -15,7 +15,7 @@ module.exports = {
 
         google({ 'query': args }).then(rufrhk => {
             rufrhk.forEach(function (item, index) {
-                interaction.channel.send(item)
+                interaction.channel.send(item.title + " " + iten.link)
                 // const Embed = new EmbedBuilder()
                 // .setTitle(`${args}에 대한 검색결과`)
                 // .addFields(
