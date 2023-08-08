@@ -8,6 +8,10 @@ const configuration = new Configuration
 var cooldown = false
 const openai = new OpenAIApi(configuration);
 
+process.on('uncaughtException', function (err) {
+    console.log("에러무시");
+});
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("draw")
