@@ -32,7 +32,7 @@ module.exports = {
                 { name: "영상길이", value: `${timestamp}`, inline: true },
                 { name: "조회수", value: `${comma(views)}회`, inline: true }
             )
-            .setColor("RANDOM") 
+            .setColor("0x0099ff") 
             .setFooter(`${interaction.user.tag}`, interaction.user.displayAvatarURL()) 
 
         await interaction.reply({ embeds: [embed], content: " " }) 
