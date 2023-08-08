@@ -13,6 +13,8 @@ module.exports = {
     async execute(interaction) {
       const args = interaction.options.getString("검색어")
 
+        interaction.reply("검색중입니다..")
+
         google({ 'query': args }).then(rufrhk => {
             rufrhk.forEach(function (item, index) {
                 interaction.channel.send(item.title + " " + item.link)
