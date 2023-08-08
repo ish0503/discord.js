@@ -1,44 +1,63 @@
-const { SlashCommandBuilder} = require("discord.js");
+const {
+  SlashCommandBuilder,
+  PermissionFlagsBits,
+  ChannelType,
+  EmbedBuilder,
+} = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("타임아웃")
-    .setDescription("시끄러운 사람들을 조용히 시키자 ㅋㅋ")
-    .setDefaultPermission(true) // 기본 권한을 true로 설정
-    .addUserOption((option) =>
-      option
-        .setName("유저")
-        .setDescription("조용히 시킬 사람을 골라주세요")
+    .setName("공지")
+    .setDescription("공지를 전송합니다")
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+    .addChannelOption((f) =>
+      f
+        .setName("채널")
+        .setDescription("공지를 전송할 채널을 선택해 주세요")
         .setRequired(true)
+        .addChannelTypes(ChannelType.GuildText)
     )
-    .addIntegerOption((option) =>
-      option
-        .setName("시간")
-        .setDescription("시간을 지정해주세요 | 단위:초 ")
+    .addStringOption((f) =>
+      f
+        .setName("공지사항")
+        .setDescription("공지사항을 입력해 주세요")
         .setRequired(true)
-    )
-    .addStringOption((option) =>
-      option
-        .setName("사유")
-        .setDescription("타임아웃 시키려면 조용히 시키는 이유를 대십시오")
-        .setRequired(true)
+        .setMaxLength(4000)
     ),
+  /**
+   *
+   * @param {import("discord.js").ChatInputCommandInteraction} interaction
+   */
   async execute(interaction) {
-    await interaction.deferReply();
+    const option_channel = interaction.options.getChannel("채널");
+    const option_content = interaction.options
+      .getString("공지사항")
+      .replace(/\\n/g, "\n");
 
-    const member = interaction.options.getMember("유저");
-    const reason = interaction.options.getString("사유");
-    const time = interaction.options.getInteger("시간");
+    const nowTimeStamp = Math.round(Date.now() / 1000);
+
+    const embed = new EmbedBuilder()
+      .setTitle("공지사항")
+      .setColor("Purple")
+      .setFooter({
+        text: `작성자 : ${
+          interaction.user.discriminator == 0
+            ? `@${interaction.user.username}`
+            : interaction.user.tag
+        }`,
+        iconURL: interaction.user.displayAvatarURL(),
+      })
+      .setDescription(option_content)
+      .addFields({
+        name: "작성 시간",
+        value: `**<t:${nowTimeStamp}> (<t:${nowTimeStamp}:R>)**`,
+      });
 
     try {
-      await member.timeout(time * 1000, reason); // * 0 제거
-      await interaction.editReply({
-        content: `시간이 ${time}초동안 지정됬습니다 **<@!${member.id}>** **( ${member.user.tag} )**`,
-      });
-    } catch {
-      await interaction.editReply({
-        content: "권한이 부족합니다 어딜 감히..",
-      });
+      await option_channel.send({ embeds: [embed] });
+      interaction.reply({ content: "공지 전송이 완료되었습니다" });
+    } catch (error) {
+      interaction.reply({ content: "공지를 전송하지 못했습니다" });
     }
   },
 };
