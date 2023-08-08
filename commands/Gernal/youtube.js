@@ -35,6 +35,6 @@ module.exports = {
             //.setColor(0x0099ff) 
             //.setFooter(`${interaction.user.tag}`, interaction.user.displayAvatarURL()) 
 
-        await interaction.reply({ embeds: [embed], content: " " }) 
+        await interaction.channel.send({ embeds: [embed], content: " " }) 
     }
 }
