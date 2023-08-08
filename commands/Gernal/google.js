@@ -33,6 +33,7 @@ module.exports = {
                 // .setTimestamp()
 
                 // interaction.reply({ embeds: [Embed] })
+                await interaction.channel.send({ embeds: [embed], content: " " })
             })
         }).catch(e => {
             return interaction.reply(`오류가 발생했습니다 ${e}`)
