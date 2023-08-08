@@ -8,10 +8,6 @@ const configuration = new Configuration
 var cooldown = false
 const openai = new OpenAIApi(configuration);
 
-process.on('uncaughtException', function (err) {
-    console.log("에러무시");
-});
-
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("draw")
@@ -32,19 +28,23 @@ module.exports = {
 
     try {
       cooldown = true
-      interaction.reply("잠시만 기다려주세요..")
+      interaction.reply(reason_option + "을(를) 그리는중입니다..")
       //interaction.channel.startTyping();
       console.log(reason_option)
         //const { prompt } = req.body;
 
       // Generate image from prompt
-      const response = await openai.createImage({
+      try {
+        const response = await openai.createImage({
         prompt: reason_option,
         n: 1,
         size: "1024x1024",
       });
-      // Send back image url
       interaction.channel.send(response.data.data[0].url);
+      }catch (error) {
+        content: `**부적절한 단어가 포함되있습니다.**`,
+      }
+      // Send back image url
       cooldown = false
     } catch (error) {
       //cooldown = false
