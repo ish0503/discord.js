@@ -12,13 +12,14 @@ module.exports = {
     ),
     async execute(interaction) {
       const args = interaction.options.getString("검색어")
-        const Embed = new EmbedBuilder()
-            .setTitle(`${args}에 대한 검색결과`)
-            //.setColor("PURPLE")
-            .setTimestamp()
 
         google({ 'query': args }).then(rufrhk => {
             rufrhk.forEach(function (item, index) {
+                const Embed = new EmbedBuilder()
+                .setTitle(`${args}에 대한 검색결과`)
+                
+                //.setColor("PURPLE")
+                .setTimestamp()
                 Embed.addField(`${index + 1}. ${item.title} `, `[바로가기](${item.link})`)
             })
             interaction.reply({ embeds: [Embed] })
