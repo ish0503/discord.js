@@ -24,9 +24,9 @@ module.exports = {
             rufrhk.forEach(function (item, index) {
                 Embed.addField(`${index + 1}. ${item.title} `, `[바로가기](${item.link})`, inline = true)
             })
-            interaction.reply({ embeds: [Embed] })
+            interaction.channel.send({ embeds: [Embed] })
         }).catch(e => {
-            return interaction.reply(`오류가 발생했습니다 ${e}`)
+            return interaction.channel.send(`오류가 발생했습니다 ${e}`)
         })
     }
 }
