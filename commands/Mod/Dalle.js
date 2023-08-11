@@ -50,7 +50,7 @@ module.exports = {
       // .setColor("Blue")
       //.setDescription(res["data"]["choices"][0]["text"])
       for (var i=0; response.data.data[i]; i++) {
-        if i == 0 {
+        if (i == 0) {
       await interaction.editReply(response.data.data[i].url);
       } else {
           await interaction.channel.send(response.data.data[i].url);
