@@ -26,6 +26,10 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     try {
+      const response = await openai.createChatCompletion({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
+      });
       const res = await openai.createCompletion({
           model: "text-davinci-003",
           max_tokens: 2048,
@@ -33,7 +37,8 @@ module.exports = {
           prompt: reason_option
       })
 
-      console.log(res)
+      console.log(res["data"]["choices"][0]["text"])
+      console.log(response["data"]["choices"][0]["message"]["content"])
 
       const embed = new EmbedBuilder()
       .setTitle(reason_option) 
