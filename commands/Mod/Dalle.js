@@ -20,7 +20,7 @@ module.exports = {
     .addNumberOption((f) =>
       f
         .setName("반복횟수")
-        .setRequired(true)
+        .setRequired(false)
         .setDescription("이미지 생성 횟수")
         .setMinValue(1)
         .setMaxValue(4)
@@ -34,7 +34,7 @@ module.exports = {
     const reason_option2 = interaction.options.getNumber("반복횟수");
 
     try {
-      for (var i=1, i < reason_option2, i++) {
+      for (var i=1; i < reason_option2 || 1; i++) {
      const response = await openai.createImage({
         prompt: reason_option,
         n: 1,
