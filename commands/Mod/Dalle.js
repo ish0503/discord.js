@@ -28,7 +28,7 @@ module.exports = {
     try {
      const response = await openai.createImage({
         prompt: reason_option,
-        n: 1,
+        n: 4,
         size: "1024x1024",
       });
 
