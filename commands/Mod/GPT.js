@@ -65,7 +65,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
       .setColor("Blue")
-      .setDescription(`\`\`\`${res.data.choice[0].text}\`\`\``)
+      .setDescription(`\`\`\`${res["data"]["choices"][0]["message"]["content"]}\`\`\``)
 
       await interaction.editReply({ embeds: [embed] });
       
