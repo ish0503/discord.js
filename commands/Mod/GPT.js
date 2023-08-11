@@ -55,10 +55,6 @@ module.exports = {
     //if (cooldown) return
     const reason_option = interaction.options.getString("메시지");
 
-    const embed = new EmbedBuilder()
-    .setColor("Blue")
-    .setDescription(`\`\`\`${res.data.choice[0].text}\`\`\``)
-
     try {
       const res = await openai.createCompletion({
           model: "gpt-3.5-turbo",
@@ -66,6 +62,10 @@ module.exports = {
           temperature: 0.5,
           prompt: reason_option
       })
+
+      const embed = new EmbedBuilder()
+      .setColor("Blue")
+      .setDescription(`\`\`\`${res.data.choice[0].text}\`\`\``)
 
       await interaction.editReply({ embeds: [embed] });
       
