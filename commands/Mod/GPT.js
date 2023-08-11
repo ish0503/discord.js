@@ -10,7 +10,7 @@ openai = new OpenAIApi(configuration)
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("chat")
-    .setDescription("챗 gpt 3.5와 채팅해봐요")
+    .setDescription("챗 봇과 채팅해봐요")
     .addStringOption((f) =>
       f
         .setName("메시지")
