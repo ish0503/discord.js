@@ -56,7 +56,7 @@ for (const category of commandsCategoryFiles) {
   }
 }
 
-const rest = new REST({ version: "10" }).setToken(TOKENB + TOKENA);
+const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
 rest
   .put(Routes.applicationCommands(process.env.ID), { body: commands_json })
