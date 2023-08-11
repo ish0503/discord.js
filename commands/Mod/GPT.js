@@ -20,7 +20,7 @@ openai = new OpenAIApi(configuration)
 //     cooldown = false
 // }
 
-const chapGPT = async function* (prompt, prompt2) => {
+const chapGPT = async (prompt, prompt2) => {
     const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
