@@ -52,6 +52,7 @@ module.exports = {
       await interaction.editReply({ embeds: [embed] });
       
     } catch (error) {
+      console.log(error.response)
       return await interaction.editReply({content: `오류 발생 **${error.response.status}**`, ephemeral: true})
     }
   },
