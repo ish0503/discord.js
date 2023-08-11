@@ -66,7 +66,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
       .setColor("Blue")
-      .setDescription({res["data"]["choices"][0]["message"]["content"]})
+      .setDescription(res["data"]["choices"][0]["message"]["content"])
 
       //await interaction.reply({ embeds: [embed] });
       //await interaction.channel.send({ embeds: [embed] });
