@@ -51,18 +51,19 @@ module.exports = {
 
   // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
-    console.log(interaction)
     await interaction.deferReply( {ephemeral: true} );
     //if (cooldown) return
     const reason_option = interaction.options.getString("메시지");
 
     try {
       const res = await openai.createCompletion({
-          model: "gpt-3.5-turbo",
+          model: "text-davinci-003",
           max_tokens: 2048,
           temperature: 0.5,
           prompt: reason_option
       })
+
+      console.log(res)
 
       const embed = new EmbedBuilder()
       .setColor("Blue")
