@@ -9,7 +9,7 @@ const openai = new OpenAIApi(configuration);
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("draw two")
+    .setName("drawtwo")
     .setDescription("Dall-e 2를 부려먹어봐요 (하루 50개 제한)")
     .addStringOption((f) =>
       f
