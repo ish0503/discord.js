@@ -56,8 +56,8 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     const embed = new EmbedBuilder()
-    .serColor("Blue")
-    .serDescription(`\`\`\`${res.data.choice[0].text}\`\`\``)
+    .setColor("Blue")
+    .setDescription(`\`\`\`${res.data.choice[0].text}\`\`\``)
 
     try {
       const res = await openai.createCompletion({
