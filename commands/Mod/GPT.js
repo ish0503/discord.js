@@ -51,7 +51,7 @@ module.exports = {
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
-    await interaction.deferReply();
+    //await interaction.deferReply();
     //if (cooldown) return
     const reason_option = interaction.options.getString("메시지");
 
@@ -67,8 +67,8 @@ module.exports = {
       .setColor("Blue")
       .setDescription(`\`\`\`${res["data"]["choices"][0]["message"]["content"]}\`\`\``)
 
-      await interaction.channel.send({ embeds: [embed] });
-      //await interaction.editReply({ embeds: [embed] });
+      //await interaction.channel.send({ embeds: [embed] });
+      await interaction.editReply({ embeds: [embed] });
       
      // cooldown = true
       // interaction.reply("잠시만 기다려주세요..")
