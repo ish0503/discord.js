@@ -26,7 +26,7 @@ module.exports = {
 
     try {
      const response = await openai.Moderation.create({
-          input: reason_option,
+          input: "죽어라",
         //  model: 'text-moderation-latest'
       });
 
