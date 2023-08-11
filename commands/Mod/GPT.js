@@ -36,6 +36,7 @@ module.exports = {
       console.log(res)
 
       const embed = new EmbedBuilder()
+      .setTitle(reason_option) 
       .setColor("Blue")
       .setDescription(res["data"]["choices"][0]["text"])
 
