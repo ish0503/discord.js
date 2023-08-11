@@ -42,7 +42,7 @@ module.exports = {
       const embed = new EmbedBuilder()
       .addFields(
               { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
-              { name: "text-davinci-003", value: `${res["data"]["choices"][0]["text"]}`, inline: true },
+              { name: "text-davinci-003", value: `${reason_option + res["data"]["choices"][0]["text"]}`, inline: true },
       )
       .setTitle(reason_option) 
       .setColor("Blue")
