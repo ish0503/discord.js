@@ -49,7 +49,7 @@ module.exports = {
       // .setTitle(reason_option) 
       // .setColor("Blue")
       //.setDescription(res["data"]["choices"][0]["text"])
-      for (var i=0; !response.data.data[i]; i++) {
+      for (var i=0; response.data.data[i]; i++) {
       await interaction.editReply(response.data.data[i].url);
       }
       
