@@ -1,10 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const TOKENB = "OTg5NDMzODE1NTM5Nzc3NTQ2."
-const TOKENA = "GyzKqm.tELFo8bqvuA2J_YbFK2R3wPT8_8uW2cMh3ik20"
-
-console.log(TOKENB + TOKENA)
 console.log(process.env.TOKEN)
 
 const express = require("express")
@@ -22,7 +18,7 @@ app.listen(port, () => {
 
 const { Client, Collection, REST, Routes } = require("discord.js");
 const client = (module.exports = new Client({ intents: [131071] }));
-client.login(TOKENB + TOKENA);
+client.login(process.env.TOKEN);
 
 const fs = require("fs");
 
@@ -63,6 +59,6 @@ for (const category of commandsCategoryFiles) {
 const rest = new REST({ version: "10" }).setToken(TOKENB + TOKENA);
 
 rest
-  .put(Routes.applicationCommands("989433815539777546"), { body: commands_json })
+  .put(Routes.applicationCommands(process.env.ID), { body: commands_json })
   .then((command) => console.log(`${command.length}개의 커맨드를 푸쉬했습니다`))
   .catch(console.error);
