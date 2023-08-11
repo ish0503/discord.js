@@ -75,7 +75,7 @@ module.exports = {
       // console.log(reason_option)
       // chapGPT(interaction, reason_option);
     } catch (error) {
-      return await interaction.editReply({conteent: `오류 발생 **${e.response.status}**`, ephemeral: true})
+      return await interaction.editReply({conteent: `오류 발생 **${error.response.status}**`, ephemeral: true})
       // cooldown = false
       // return interaction.reply({
       //   content: `**메시지전송에 실패했습니다**`,
