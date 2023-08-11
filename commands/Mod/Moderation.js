@@ -25,10 +25,11 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     try {
-     const response = await openai.createCompletion("text-moderation-latest", {
+     const response = await openai.Moderation.create({
           input: reason_option,
       });
 
+      console.log(response)
       console.log(response.data.results[0]?.flagged)
 
        const embed = new EmbedBuilder()
