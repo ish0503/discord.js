@@ -9,7 +9,7 @@ const openai = new OpenAIApi(configuration);
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("draw")
+    .setName("moderation")
     .setDescription("콘텐츠가 OpenAI의 사용 정책을 준수하는지 확인해봐요")
     .addStringOption((f) =>
       f
