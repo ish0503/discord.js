@@ -21,6 +21,13 @@ module.exports = {
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
+    import os
+
+    response = openai.Moderation.create(
+        input="Sample text goes here"
+    )
+    output = response["results"][0]
+    print (output)
     await interaction.deferReply(); //{ephemeral: true}
     const reason_option = interaction.options.getString("메시지");
 
