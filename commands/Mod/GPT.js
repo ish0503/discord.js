@@ -46,7 +46,7 @@ module.exports = {
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
-    if (cooldown) interaction.reply("**chatgpt가 이미 다른 질문에 생각중입니다**") return
+    if (cooldown) {interaction.reply("**chatgpt가 이미 다른 질문에 생각중입니다**") return}
     const reason_option = interaction.options.getString("메시지");
 
     try {
