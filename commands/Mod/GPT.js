@@ -52,7 +52,7 @@ module.exports = {
   // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
     console.log(interaction)
-    await interaction.deferReply();
+    await interaction.deferReply( {ephemeral: true} );
     //if (cooldown) return
     const reason_option = interaction.options.getString("메시지");
 
