@@ -33,13 +33,13 @@ module.exports = {
     try {
       const response = await openai.createChatCompletion({
           model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: reason_option }],
+          messages: [{ role: "user", content: history }],
       });
       const res = await openai.createCompletion({
           model: "text-davinci-003",
           max_tokens: 2048,
           temperature: 0.5,
-          prompt: reason_option
+          prompt: history
       })
 
       console.log(res["data"]["choices"][0]["text"])
