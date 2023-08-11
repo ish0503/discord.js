@@ -21,6 +21,7 @@ module.exports = {
       .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
+  async execute(interaction) {
     await interaction.deferReply(); //{ephemeral: true}
     const reason_option = interaction.options.getString("메시지");
 
