@@ -35,21 +35,12 @@ module.exports = {
           model: "gpt-3.5-turbo",
           messages: [{ role: "user", content: history }],
       });
-      const res = await openai.createCompletion({
-          model: "text-davinci-003",
-          max_tokens: 2048,
-          temperature: 0.5,
-          prompt: history
-      })
 
-      console.log(res["data"]["choices"][0]["text"])
       console.log(response["data"]["choices"][0]["message"]["content"])
 
       const embed = new EmbedBuilder()
       .addFields(
               { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
-              { name: "text-davinci-003", value: `${reason_option + res["data"]["choices"][0]["text"]}`, inline: true },
-      )
       .setTitle(reason_option) 
       .setColor("Blue")
       //.setDescription(res["data"]["choices"][0]["text"])
