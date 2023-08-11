@@ -66,7 +66,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
       .setColor("Blue")
-      .setDescription(`${res["data"]["choices"][0]["message"]["content"]}`)
+      .setDescription({res["data"]["choices"][0]["message"]["content"]})
 
       //await interaction.reply({ embeds: [embed] });
       //await interaction.channel.send({ embeds: [embed] });
@@ -78,7 +78,7 @@ module.exports = {
       // console.log(reason_option)
       // chapGPT(interaction, reason_option);
     } catch (error) {
-      return await interaction.editReply({conteent: `오류 발생 **${error.response.status}**`, ephemeral: true})
+      return await interaction.editReply({content: `오류 발생 **${error.response.status}**`, ephemeral: true})
       // cooldown = false
       // return interaction.reply({
       //   content: `**메시지전송에 실패했습니다**`,
