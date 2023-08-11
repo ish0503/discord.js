@@ -29,21 +29,21 @@ module.exports = {
           input: reason_option,
       });
 
-      console.log(response.data.results)
+      console.log(response.data.results[0]?.flagged)
 
        const embed = new EmbedBuilder()
        .addFields(
-         { name: "sexual", value: `**${response.data.results.category_scores["sexual"]}**`, inline: true },
-         { name: "hate", value: `**${response.data.results.category_scores["hate"]}**`, inline: true },
-         { name: "harassment", value: `**${response.data.results.category_scores["harassment"]}**`, inline: true },
-         { name: "self-harm", value: `**${response.data.results.category_scores["self-harm"]}**`, inline: true },
-         { name: "sexual/minors", value: `**${response.data.results.category_scores["sexual/minors"]}**`, inline: true },
-         { name: "hate/threatening", value: `**${response.data.results.category_scores["hate/threatening"]}**`, inline: true },
-         { name: "violence/graphic", value: `**${response.data.results.category_scores["violence/graphic"]}**`, inline: true },
-         { name: "self-harm/intent", value: `**${response.data.results.category_scores["self-harm/intent"]}**`, inline: true },
-         { name: "self-harm/instructions", value: `**${response.data.results.category_scores["self-harm/instructions"]}**`, inline: true },
-         { name: "harassment/threatening", value: `**${response.data.results.category_scores["harassment/threatening"]}**`, inline: true },
-         { name: "violence", value: `**${response.data.results.category_scores["violence"]}**`, inline: true },
+         { name: "sexual", value: `**${response.data.results[0]?.flagged_scores["sexual"]}**`, inline: true },
+         { name: "hate", value: `**${response.data.results[0]?.flagged_scores["hate"]}**`, inline: true },
+         { name: "harassment", value: `**${response.data.results[0]?.flagged_scores["harassment"]}**`, inline: true },
+         { name: "self-harm", value: `**${response.data.results[0]?.flagged_scores["self-harm"]}**`, inline: true },
+         { name: "sexual/minors", value: `**${response.data.results[0]?.flagged_scores["sexual/minors"]}**`, inline: true },
+         { name: "hate/threatening", value: `**${response.data.results[0]?.flagged_scores["hate/threatening"]}**`, inline: true },
+         { name: "violence/graphic", value: `**${response.data.results[0]?.flagged_scores["violence/graphic"]}**`, inline: true },
+         { name: "self-harm/intent", value: `**${response.data.results[0]?.flagged_scores["self-harm/intent"]}**`, inline: true },
+         { name: "self-harm/instructions", value: `**${response.data.results[0]?.flagged_scores["self-harm/instructions"]}**`, inline: true },
+         { name: "harassment/threatening", value: `**${response.data.results[0]?.flagged_scores["harassment/threatening"]}**`, inline: true },
+         { name: "violence", value: `**${response.data.results[0]?.flagged_scores["violence"]}**`, inline: true },
        )
        .setTitle(reason_option) 
        .setColor("Red")
