@@ -21,20 +21,15 @@ module.exports = {
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
-
-    response = openai.Moderation.create(
-        input="Sample text goes here"
-    )
-    output = response["results"][0]
-    print (output)
+    
     await interaction.deferReply(); //{ephemeral: true}
     const reason_option = interaction.options.getString("메시지");
 
     try {
-     const response = await openai.Moderation.create({
-          input: "죽어라",
+     const response = await openai.Moderation.create(
+          input= "죽어라",
         //  model: 'text-moderation-latest'
-      });
+      );
 
       //["results"][0]["flagged"]
       console.log(response["results"][0])
