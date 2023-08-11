@@ -17,14 +17,24 @@ module.exports = {
         .setDescription("메시지를 입력해 주세요 (영어 입력)")
         .setMaxLength(1000)
       )
+    .addNumberOption((f) =>
+      f
+        .setName("반복횟수")
+        .setRequired(false)
+        .setDescription("이미지 생성 횟수")
+        .setMinValue(1)
+        .setMaxValue(4)
+      )
       .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
     await interaction.deferReply(); //{ephemeral: true}
     const reason_option = interaction.options.getString("메시지");
+    const reason_option2 = interaction.options.getNumber("반복횟수");
 
     try {
+      for var i=1, i>reason_option2 || 1, i++{
      const response = await openai.createImage({
         prompt: reason_option,
         n: 1,
@@ -40,6 +50,7 @@ module.exports = {
       //.setDescription(res["data"]["choices"][0]["text"])
 
       await interaction.editReply(response.data.data[0].url);
+      }
       
     } catch (error) {
       console.log(error.response)
