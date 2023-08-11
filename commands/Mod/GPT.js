@@ -28,7 +28,7 @@ module.exports = {
     try {
       const response = await openai.createChatCompletion({
           model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
+          messages: [{ role: "user", content: reason_option }],
       });
       const res = await openai.createCompletion({
           model: "text-davinci-003",
