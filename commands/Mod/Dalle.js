@@ -34,10 +34,9 @@ module.exports = {
     const reason_option2 = interaction.options.getNumber("반복횟수");
 
     try {
-      for (var i=1; i < reason_option2 || 1; i++) {
      const response = await openai.createImage({
         prompt: reason_option,
-        n: 1,
+        n: reason_option || 1,
         size: "1024x1024",
       });
 
@@ -48,8 +47,8 @@ module.exports = {
       // .setTitle(reason_option) 
       // .setColor("Blue")
       //.setDescription(res["data"]["choices"][0]["text"])
-
-      await interaction.editReply(response.data.data[0].url);
+      for (var i=0; !response.data.data[i]; i++) {
+      await interaction.editReply(response.data.data[i].url);
       }
       
     } catch (error) {
