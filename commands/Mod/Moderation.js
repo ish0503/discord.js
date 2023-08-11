@@ -27,12 +27,11 @@ module.exports = {
     try {
      const response = await openai.Moderation.create({
           input: reason_option,
-          model: 'text-moderation-latest'
+        //  model: 'text-moderation-latest'
       });
 
       //["results"][0]["flagged"]
-      console.log(response)
-      console.log(response["results"][0]["flagged"])
+      console.log(response["results"][0])
 
        const embed = new EmbedBuilder()
        .addFields(
