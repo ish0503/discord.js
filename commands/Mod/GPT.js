@@ -12,7 +12,7 @@ openai = new OpenAIApi(configuration)
 // function chapGPT(prompt, prompt2) {
 //    const response = await openai.createChatCompletion({
 //     model: "gpt-3.5-turbo",
-//     messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
+//     messages: [{ role: "user", content: prompt2 + " (Reply in 2000 words or less)" }],
 //     });
 //     //if (response["data"]["choices"][0]["message"]["content"] != "Promise { <pending> }")  {
 //     console.log(response["data"]["choices"][0]["message"]["content"])
