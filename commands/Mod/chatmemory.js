@@ -1,33 +1,26 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
-const { Configuration, OpenAIApi } = require("openai");
-
-const configuration = new Configuration
-  ({ apiKey: process.env.CHATGPTKEY });
-
-openai = new OpenAIApi(configuration)
+var bot = new require("discord.js").Client();
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("chat")
-    .setDescription("챗 봇과 채팅해봐요")
-    .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
+    .setName("randomplayer")
+    .setDescription("서버에 있는 아무 플레이어나 핑합니다.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
   // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
     await interaction.deferReply(); //{ephemeral: true}
-    const reason_option = interaction.options.getString("메시지");
 
     try {
-      const player = await ol
 
-      const embed = new EmbedBuilder()
-      .addFields(
-              { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
-              { name: "text-davinci-003", value: `${reason_option + res["data"]["choices"][0]["text"]}`, inline: true },
-      )
-      .setTitle(reason_option) 
-      .setColor("Blue")
-      //.setDescription(res["data"]["choices"][0]["text"])
+      for (let i = 0; i < guilds.length; i++) {
+    bot.guilds.get(guilds[i].id).fetchMembers().then(r => {
+      r.members.array().forEach(r => {
+        let username = `${r.user.username}#${r.user.discriminator}`;
+        console.log(`${username}`);
+      });
+    });
+      }
 
       await interaction.editReply({ embeds: [embed] });
       
