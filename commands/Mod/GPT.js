@@ -53,7 +53,7 @@ module.exports = {
       
     } catch (error) {
       console.log(error.response)
-      return await interaction.editReply({content: `오류 발생 **${error.response.status}**`, ephemeral: true})
+      return await interaction.editReply({content: `오류 발생 **${error.response.status}**, **${error.response.statusText} 이같은 오류가 계속 발생한다면, 문의 넣어주세요.**`, ephemeral: true})
     }
   },
 };
