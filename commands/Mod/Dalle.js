@@ -5,7 +5,6 @@ const ket222 = "BlbkFJlbUrFogBcHyz8BarKwew"
 const configuration = new Configuration
   ({ apiKey: ket111 + ket222 });
 
-var cooldown = false
 const openai = new OpenAIApi(configuration);
 
 module.exports = {
@@ -22,36 +21,29 @@ module.exports = {
       .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
-  async execute(interaction) {
-    if (cooldown) return
+    await interaction.deferReply(); //{ephemeral: true}
     const reason_option = interaction.options.getString("메시지");
 
     try {
-      cooldown = true
-      interaction.reply(reason_option + "을(를) 그리는중입니다..")
-      //interaction.channel.startTyping();
-      console.log(reason_option)
-        //const { prompt } = req.body;
-
-      // Generate image from prompt
-      try {
-        const response = await openai.createImage({
+     const response = await openai.createImage({
         prompt: reason_option,
         n: 1,
         size: "1024x1024",
       });
-      interaction.channel.send(response.data.data[0].url);
-      cooldown = false
-      } catch (error) {
-        content: `**부적절한 단어가 포함되있습니다.**`,
-        cooldown = false
-      }
-      // Send back image url
+
+      // const embed = new EmbedBuilder()
+      // .addFields(
+      //         { name: "Dalle 1", value: `**${response.data.data[0].url}**`, inline: true },
+      // )
+      // .setTitle(reason_option) 
+      // .setColor("Blue")
+      //.setDescription(res["data"]["choices"][0]["text"])
+
+      await interaction.editReply(response.data.data[0].url);
+      
     } catch (error) {
-      //cooldown = false
-      return interaction.reply({
-        content: `**메시지전송에 실패했습니다**`,
-      });
+      console.log(error.response)
+      return await interaction.editReply({content: `오류 발생 **${error.response.status}**, **${error.response.statusText} 이같은 오류가 계속 발생한다면, 문의 넣어주세요.**`, ephemeral: true})
     }
   },
 };
