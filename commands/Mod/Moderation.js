@@ -21,7 +21,6 @@ module.exports = {
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
-    import os
 
     response = openai.Moderation.create(
         input="Sample text goes here"
