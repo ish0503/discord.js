@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
-var bot = new require("discord.js").Client();
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,7 +13,7 @@ module.exports = {
     try {
 
       for (let i = 0; i < guilds.length; i++) {
-    bot.guilds.get(guilds[i].id).fetchMembers().then(r => {
+    interaction.guilds.get(guilds[i].id).fetchMembers().then(r => {
       r.members.array().forEach(r => {
         let username = `${r.user.username}#${r.user.discriminator}`;
         console.log(`${username}`);
