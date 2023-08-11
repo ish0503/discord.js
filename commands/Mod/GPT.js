@@ -18,12 +18,13 @@ const chapGPT = async (prompt, prompt2) => {
     //if (response["data"]["choices"][0]["message"]["content"] != "Promise { <pending> }")  {
     console.log(response["data"]["choices"][0]["message"]["content"])
     prompt.channel.send(prompt2 + "(이)라는 질문에 답변: " + "**" + response["data"]["choices"][0]["message"]["content"] + "**")
+    cooldown = false
   } catch (error) {
     return interaction.reply({
         content: `**chatgpt가 이미 다른 질문에 생각중입니다**`,
     });
+    cooldown = false
   }
-  cooldown = false
   //prompt.reply(response["data"]["choices"][0]["message"]["content"]);
   //prompt.channel.stopTyping();
   // return response["data"]["choices"][0]["message"]["content"];
