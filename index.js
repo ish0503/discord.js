@@ -5,6 +5,7 @@ const TOKENB = "OTg5NDMzODE1NTM5Nzc3NTQ2."
 const TOKENA = "GyzKqm.tELFo8bqvuA2J_YbFK2R3wPT8_8uW2cMh3ik20"
 
 console.log(TOKENB + TOKENA)
+console.log(process.env.TOKEN)
 
 const express = require("express")
 const app = express()
