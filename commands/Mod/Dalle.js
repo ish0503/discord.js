@@ -36,9 +36,11 @@ module.exports = {
     try {
      const response = await openai.createImage({
         prompt: reason_option,
-        n: reason_option || 1,
+        n: reason_option2 || 1,
         size: "1024x1024",
       });
+
+      console.log(1)
 
       // const embed = new EmbedBuilder()
       // .addFields(
