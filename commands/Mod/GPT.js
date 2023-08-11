@@ -52,7 +52,7 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     try {
-      //cooldown = true
+      cooldown = true
       interaction.reply("잠시만 기다려주세요..")
       //interaction.channel.startTyping();
       console.log(reason_option)
