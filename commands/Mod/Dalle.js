@@ -1,9 +1,8 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const { Configuration, OpenAIApi } = require("openai");
-const ket111 = "sk-BVR382wIeuX9vA6uFShUT3"
-const ket222 = "BlbkFJlbUrFogBcHyz8BarKwew"
+
 const configuration = new Configuration
-  ({ apiKey: ket111 + ket222 });
+  ({ apiKey: process.env.CHATGPTKEY });
 
 const openai = new OpenAIApi(configuration);
 
