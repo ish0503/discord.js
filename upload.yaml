@@ -7,4 +7,6 @@ jobs:
         run: |
           echo "MAP_API_KEY=$MAP_API_KEY" >> .env
         env:
-          MAP_API_KEY: ${{secrets.MAP_API_KEY}}
+          TOKEN: ${{secrets.TOKEN}}
+          ID: ${{secrets.ID}}
+          CHATGPTKEY: ${{secrets.CHATGPTKEY}}
