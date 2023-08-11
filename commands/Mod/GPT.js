@@ -67,7 +67,8 @@ module.exports = {
       .setColor("Blue")
       .setDescription(`\`\`\`${res["data"]["choices"][0]["message"]["content"]}\`\`\``)
 
-      await interaction.channel.send({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed] });
+      //await interaction.channel.send({ embeds: [embed] });
       //await interaction.editReply({ embeds: [embed] });
       
      // cooldown = true
