@@ -9,20 +9,8 @@ var cooldown = false
 
 openai = new OpenAIApi(configuration)
 
-function chapGPT(prompt, prompt2) {
-   const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
-    });
-    //if (response["data"]["choices"][0]["message"]["content"] != "Promise { <pending> }")  {
-    console.log(response["data"]["choices"][0]["message"]["content"])
-    prompt.channel.send(prompt2 + "(이)라는 질문에 답변: " + "**" + response["data"]["choices"][0]["message"]["content"] + "**")
-    cooldown = false
-}
-
-// const chapGPT = async (prompt, prompt2) => {
-//   try {
-//     const response = await openai.createChatCompletion({
+// function chapGPT(prompt, prompt2) {
+//    const response = await openai.createChatCompletion({
 //     model: "gpt-3.5-turbo",
 //     messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
 //     });
@@ -30,17 +18,26 @@ function chapGPT(prompt, prompt2) {
 //     console.log(response["data"]["choices"][0]["message"]["content"])
 //     prompt.channel.send(prompt2 + "(이)라는 질문에 답변: " + "**" + response["data"]["choices"][0]["message"]["content"] + "**")
 //     cooldown = false
-//   } catch (error) {
-//     return interaction.reply({
-//         content: `**chatgpt가 이미 다른 질문에 생각중입니다**`,
-//     });
-//   }
-//   //prompt.reply(response["data"]["choices"][0]["message"]["content"]);
-//   //prompt.channel.stopTyping();
-//   // return response["data"]["choices"][0]["message"]["content"];
-//   // };
-//   //return response["data"]["choices"][0]["message"]["content"];
-// };
+// }
+
+const chapGPT = async function* (prompt, prompt2) => {
+    const response = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
+    });
+    //if (response["data"]["choices"][0]["message"]["content"] != "Promise { <pending> }")  {
+    console.log(response["data"]["choices"][0]["message"]["content"])
+    prompt.channel.send(prompt2 + "(이)라는 질문에 답변: " + "**" + response["data"]["choices"][0]["message"]["content"] + "**")
+    cooldown = false
+    return interaction.reply({
+        content: `**chatgpt가 이미 다른 질문에 생각중입니다**`,
+    });
+  //prompt.reply(response["data"]["choices"][0]["message"]["content"]);
+  //prompt.channel.stopTyping();
+  // return response["data"]["choices"][0]["message"]["content"];
+  // };
+  //return response["data"]["choices"][0]["message"]["content"];
+};
 
 module.exports = {
   data: new SlashCommandBuilder()
