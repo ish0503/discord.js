@@ -30,6 +30,7 @@ module.exports = {
           model: 'text-moderation-latest'
       });
 
+      //["results"][0]["flagged"]
       console.log(response)
       console.log(response.data.results[0]?.flagged)
 
