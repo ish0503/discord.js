@@ -25,7 +25,7 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     try {
-     const response = await openai.createModeration({
+     const response = await openai.createCompletion("text-moderation-latest", {
           input: reason_option,
       });
 
