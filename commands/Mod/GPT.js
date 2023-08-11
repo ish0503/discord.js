@@ -22,8 +22,8 @@ openai = new OpenAIApi(configuration)
 
 const chapGPT = async (prompt, prompt2) => {
     const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: prompt2 + " (Reply in 1000 words or less)" }],
     });
     //if (response["data"]["choices"][0]["message"]["content"] != "Promise { <pending> }")  {
     console.log(response["data"]["choices"][0]["message"]["content"])
@@ -66,7 +66,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
       .setColor("Blue")
-      .setDescription(res["data"]["choices"][0]["message"]["content"])
+      .setDescription(res["data"]["choices"][0]["text"])
 
       //await interaction.reply({ embeds: [embed] });
       //await interaction.channel.send({ embeds: [embed] });
