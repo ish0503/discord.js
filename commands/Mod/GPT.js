@@ -49,7 +49,7 @@ module.exports = {
       )
       .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
 
-   // @param {import("discord.js").ChatInputCommandInteraction} interaction
+  // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
     console.log(interaction)
     await interaction.deferReply();
