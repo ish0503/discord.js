@@ -23,7 +23,6 @@ const chapGPT = async (prompt, prompt2) => {
     return interaction.reply({
         content: `**chatgpt가 이미 다른 질문에 생각중입니다**`,
     });
-    cooldown = false
   }
   //prompt.reply(response["data"]["choices"][0]["message"]["content"]);
   //prompt.channel.stopTyping();
