@@ -34,7 +34,7 @@ module.exports = {
     const reason_option2 = interaction.options.getNumber("반복횟수");
 
     try {
-      for var i=1, i>reason_option2 || 1, i++{
+      for (var i=1, i>reason_option2 || 1, i++) {
      const response = await openai.createImage({
         prompt: reason_option,
         n: 1,
