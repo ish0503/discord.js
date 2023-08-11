@@ -31,7 +31,7 @@ module.exports = {
     	    input: reason_option
       });
 
-      console.log(response["data"])
+      console.log(response)
 
       const embed = new EmbedBuilder()
       .addFields(
