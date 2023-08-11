@@ -5,7 +5,7 @@ const ket222 = "BlbkFJlbUrFogBcHyz8BarKwew"
 const configuration = new Configuration
   ({ apiKey: ket111 + ket222 });
 
-var cooldown = false
+//var cooldown = false
 
 openai = new OpenAIApi(configuration)
 
@@ -17,7 +17,7 @@ const chapGPT = async (prompt, prompt2) => {
   //if (response["data"]["choices"][0]["message"]["content"] != "Promise { <pending> }")  {
   console.log(response["data"]["choices"][0]["message"]["content"])
   prompt.channel.send(prompt2 + "(이)라는 질문에 답변: " + "**" + response["data"]["choices"][0]["message"]["content"] + "**")
-  cooldown = false
+  //cooldown = false
   //prompt.reply(response["data"]["choices"][0]["message"]["content"]);
   //prompt.channel.stopTyping();
   // return response["data"]["choices"][0]["message"]["content"];
@@ -40,11 +40,11 @@ module.exports = {
 
    // @param {import("discord.js").ChatInputCommandInteraction} interaction
   async execute(interaction) {
-    if (cooldown) return
+    //if (cooldown) return
     const reason_option = interaction.options.getString("메시지");
 
     try {
-      cooldown = true
+      //cooldown = true
       interaction.reply("잠시만 기다려주세요..")
       //interaction.channel.startTyping();
       console.log(reason_option)
