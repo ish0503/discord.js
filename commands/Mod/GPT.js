@@ -39,7 +39,7 @@ module.exports = {
       console.log(res["data"]["choices"][0]["text"])
       console.log(response["data"]["choices"][0]["message"]["content"])
 
-      if (response["data"]["choices"][0]["message"]["content"].length + res["data"]["choices"][0]["text"].length < 1900) {
+      if (response["data"]["choices"][0]["message"]["content"].length + res["data"]["choices"][0]["text"].length + reason_option.length < 1970) {
         const embed = new EmbedBuilder()
       .addFields(
               { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
@@ -51,7 +51,7 @@ module.exports = {
 
       await interaction.editReply({ embeds: [embed] });
       } else {
-         await interaction.editReply({ content: "**ai의 답변이 너무 길어 답변을 할수가 없습니다. 아쉽네요 :<**"});
+         await interaction.editReply({ content: "**ai의 답변 또는 질문이 너무 길어 답변을 할수가 없습니다. 아쉽네요 :<**"});
         }
       
   
