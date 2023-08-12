@@ -39,7 +39,8 @@ module.exports = {
       console.log(res["data"]["choices"][0]["text"])
       console.log(response["data"]["choices"][0]["message"]["content"])
 
-      const embed = new EmbedBuilder()
+      if (response["data"]["choices"][0]["message"]["content"].length + res["data"]["choices"][0]["text"].length < 1900) {
+        const embed = new EmbedBuilder()
       .addFields(
               { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
               { name: "text-davinci-003", value: `${reason_option + res["data"]["choices"][0]["text"]}`, inline: true },
@@ -49,6 +50,11 @@ module.exports = {
       //.setDescription(res["data"]["choices"][0]["text"])
 
       await interaction.editReply({ embeds: [embed] });
+      } else {
+         await interaction.editReply({ content: "**ai의 답변이 너무 길어 답변을 할수가 없습니다. 아쉽네요 :<**"});
+        }
+      }
+  
       
     } catch (error) {
       console.log(error.response)
