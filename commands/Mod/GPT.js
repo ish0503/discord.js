@@ -53,7 +53,7 @@ module.exports = {
       } else {
          await interaction.editReply({ content: "**ai의 답변이 너무 길어 답변을 할수가 없습니다. 아쉽네요 :<**"});
         }
-      }
+      
   
       
     } catch (error) {
