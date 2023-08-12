@@ -50,7 +50,7 @@ module.exports = {
       //.setDescription(res["data"]["choices"][0]["text"])
 
       await interaction.editReply({ embeds: [embed] });
-      await interaction.author.sendMessage({ embeds: [embed] });
+      
       } else {
          await interaction.editReply({ content: "**ai의 답변 또는 질문이 너무 길어 답변을 할수가 없습니다. 아쉽네요 :<**"});
         }
