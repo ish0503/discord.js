@@ -31,7 +31,7 @@ module.exports = {
             history2 = [{"role": "system", "content": "넌 반말로 말하는 까칠한 중학생 남자 lk야."}];
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "gpt-3.5-turbo", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제됨. 다시 질문해라.**`, inline: true },
+                    { name: "lk", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제됨. 다시 질문해라.**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
@@ -40,7 +40,7 @@ module.exports = {
       } else {
         history2.push({"role": "user", "content": reason_option})
             const response = await openai.createChatCompletion({
-                model: "lk",
+                model: "gpt-3.5-turbo",
                 messages: history2,
             });
       
