@@ -27,9 +27,9 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     try {
-      if (reason_option == "exitMessage"){
+      if (reason_option == "exitMessage" || history.length > 50){
             history = [];
-            await interaction.editReply("대화를 종료하였습니다. 다시 다른 질문을 해주세요.")
+            await interaction.editReply("대화가 너무 길어져 기억이 삭제되었습니다. 다시 질문해주세요.")
       } else {
         history.push({"role": "user", "content": reason_option})
             const response = await openai.createChatCompletion({
