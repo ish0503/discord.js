@@ -28,7 +28,7 @@ module.exports = {
 
     try {
       if (reason_option == "exitMessage" || history3.length > 50){
-            history3 = [{"role": "system", "content": "넌 예쁜 미소녀 gumddakji1128이야. 수학을 잘 못하지만 사람을 잘 유혹해."}];
+            history3 = [{"role": "system", "content": "넌 예쁜 미소녀, 반말로 대화하고 수학을 잘 못하지만 애교를 잘 부리는 gumddakji1128이야."}];
             const embed = new EmbedBuilder()
             .addFields(
                     { name: "gumddakji1128", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
