@@ -29,24 +29,42 @@ module.exports = {
     history.push({"role": "user", "content": reason_option})
 
     try {
-      const response = await openai.createChatCompletion({
-          model: "gpt-3.5-turbo",
-          messages: history,
-      });
+      for (var entry in history){
+        if not (entry["role"] == "assistant"){
+            const response = await openai.createChatCompletion({
+                model: "gpt-3.5-turbo",
+                messages: history,
+            });
+      
+            output = response["data"]["choices"][0]["message"]["content"]
+        
+            history.push({"role": "assistant", "content": output})
+            console.log(output)
+      
+            const embed = new EmbedBuilder()
+            .addFields(
+                    { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
+            )
+            .setTitle(reason_option) 
+            .setColor("Blue")
+      
+            await interaction.editReply({ embeds: [embed] });
+        }else if (history[-1]["role"] == "assistant"){
+                history.push({"role": "user", "content": reason_option})
 
-      output = response["data"]["choices"][0]["message"]["content"]
-  
-      history.push({"role": "assistant", "content": output})
-      console.log(output)
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages= history,
+                )
 
-      const embed = new EmbedBuilder()
-      .addFields(
-              { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
-      )
-      .setTitle(reason_option) 
-      .setColor("Blue")
+                output = response["data"]["choices"][0]["message"]["content"]
 
-      await interaction.editReply({ embeds: [embed] });
+                history.push({"role": "assistant", "content": output})
+
+                console.log(output)
+                await interaction.editReply({ embeds: [embed] });
+        }
+      }
       
       
     } catch (error) {
