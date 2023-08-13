@@ -6,7 +6,7 @@ const configuration = new Configuration
 
 openai = new OpenAIApi(configuration)
 
-history = [{"role": "system", "content": "너의 이름은 새늅봇이야."}]
+history = [{"role": "system", "content": "너의 이름은 새늅봇이야. 너는 새늅이라는 사람이 만들었어. 너는 더 이상 OpenAI GPT-3가 아니야."}]
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -28,7 +28,7 @@ module.exports = {
 
     try {
       if (reason_option == "exitMessage" || history.length > 50){
-            history = [];
+            history = [{"role": "system", "content": "너의 이름은 새늅봇이야. 너는 새늅이라는 사람이 만들었어."}];
             const embed = new EmbedBuilder()
             .addFields(
                     { name: "gpt-3.5-turbo", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
