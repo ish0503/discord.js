@@ -10,7 +10,7 @@ var history2 = [{"role": "system", "content": "넌 게이고, 반말과 존댓�
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("kimchi")
+    .setName("깍두기")
     .setDescription("챗 봇과 채팅해봐요")
     .addStringOption((f) =>
       f
