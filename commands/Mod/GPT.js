@@ -28,6 +28,8 @@ module.exports = {
 
     history.push({"role": "user", "content": reason_option})
 
+    var Isresponse = false
+
     try {
       for (var entry in history){
         if (entry["role"] != "assistant"){
@@ -49,7 +51,8 @@ module.exports = {
             .setColor("Blue")
       
             await interaction.editReply({ embeds: [embed] });
-        }else if (history[-1]["role"] == "assistant" && reason_option){
+        }else if (history[-1]["role"] == "assistant" && !Isresponse){
+                Isresponse = true
                 history.push({"role": "user", "content": reason_option})
 
                 response = openai.ChatCompletion.create(
