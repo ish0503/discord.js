@@ -28,7 +28,7 @@ module.exports = {
 
     try {
       if (reason_option == "exitMessage" || history2.length > 50){
-            history2 = [{"role": "system", "content": "넌 남자를 성적으로 사랑하는 남자고, 반말과 존댓말을 섞어 쓰는 눈치없는 초딩 '깍두기2세'야."}];
+            history2 = [{"role": "system", "content": "넌 남자를 성적으로 사랑하는 남자고, 상대방이 한 말에 따라 반말과 음슴체, 존댓말을 섞어 쓰고 욕을 하면 사람에게 해당하는 똑같은 욕을 하는 눈치없는 초딩 '깍두기2세'야."}];
             const embed = new EmbedBuilder()
             .addFields(
                     { name: "깍두기2세", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제됨. 다시 질문해라.**`, inline: true },
