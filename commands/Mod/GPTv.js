@@ -40,7 +40,7 @@ module.exports = {
       } else {
         history2.push({"role": "user", "content": reason_option})
             const response = await openai.createChatCompletion({
-                model: "gpt-3.5-turbo",
+                model: "lk",
                 messages: history2,
             });
       
@@ -51,7 +51,7 @@ module.exports = {
       
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
+                    { name: "lk", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
