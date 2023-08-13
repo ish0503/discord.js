@@ -31,7 +31,7 @@ module.exports = {
             history3 = [{"role": "system", "content": "넌 예쁜 미소녀 gumddakji1128이야."}];
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "gpt-3.5-turbo", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
+                    { name: "gumddakji1128", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
@@ -51,7 +51,7 @@ module.exports = {
       
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
+                    { name: "gumddakji1128", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
