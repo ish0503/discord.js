@@ -6,7 +6,7 @@ const configuration = new Configuration
 
 openai = new OpenAIApi(configuration)
 
-history = [{"role": "system", "content": "넌 까칠하고 영악한 사춘기 소년 lkjjhgggffdssa야."}]
+var history2 = [{"role": "system", "content": "넌 까칠하고 영악한 사춘기 소년 lkjjhgggffdssa야."}]
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -27,8 +27,8 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     try {
-      if (reason_option == "exitMessage" || history.length > 50){
-            history = [{"role": "system", "content": "넌 까칠하고 영악한 사춘기 소년 lkjjhgggffdssa야."}];
+      if (reason_option == "exitMessage" || history2.length > 50){
+            history2 = [{"role": "system", "content": "넌 까칠하고 영악한 사춘기 소년 lkjjhgggffdssa야."}];
             const embed = new EmbedBuilder()
             .addFields(
                     { name: "gpt-3.5-turbo", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
@@ -38,15 +38,15 @@ module.exports = {
         
             await interaction.editReply({ embeds: [embed] })
       } else {
-        history.push({"role": "user", "content": reason_option})
+        history2.push({"role": "user", "content": reason_option})
             const response = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
-                messages: history,
+                messages: history2,
             });
       
             output = response["data"]["choices"][0]["message"]["content"]
         
-            history.push({"role": "assistant", "content": output})
+            history2.push({"role": "assistant", "content": output})
             console.log(output)
       
             const embed = new EmbedBuilder()
