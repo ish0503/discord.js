@@ -26,14 +26,14 @@ module.exports = {
     await interaction.deferReply(); //{ephemeral: true}
     const reason_option = interaction.options.getString("메시지");
 
-    history.push({"role": "user", "content": reason_option})
-
     var Isresponse = false
 
     try {
       for (var entry in history){
-        if (entry["role"] != "assistant" && reason_option ){
-            //Isresponse = true
+        if (!Isresponse && reason_option){
+            Isresponse = true
+
+            history.push({"role": "user", "content": reason_option})
             const response = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
                 messages: history,
@@ -52,21 +52,6 @@ module.exports = {
             .setColor("Blue")
       
             await interaction.editReply({ embeds: [embed] });
-        }else if (history[-1]["role"] == "assistant" && reason_option){
-                //Isresponse = true
-                history.push({"role": "user", "content": reason_option})
-
-                response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages= history,
-                )
-
-                output = response["data"]["choices"][0]["message"]["content"]
-
-                history.push({"role": "assistant", "content": output})
-
-                console.log(output)
-                await interaction.editReply({ embeds: [embed] });
         }
       }
       
