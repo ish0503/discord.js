@@ -30,7 +30,7 @@ module.exports = {
 
     try {
       for (var entry in history){
-        if (!Isresponse && reason_option){
+        if (!Isresponse){
             Isresponse = true
 
             history.push({"role": "user", "content": reason_option})
