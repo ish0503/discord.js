@@ -29,7 +29,14 @@ module.exports = {
     try {
       if (reason_option == "exitMessage" || history.length > 50){
             history = [];
-            await interaction.editReply("대화가 너무 길어져 기억이 삭제되었습니다. 다시 질문해주세요.")
+            const embed = new EmbedBuilder()
+            .addFields(
+                    { name: "gpt-3.5-turbo", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
+            )
+            .setTitle(reason_option) 
+            .setColor("Blue")
+        
+            await interaction.editReply({ embeds: [embed] })
       } else {
         history.push({"role": "user", "content": reason_option})
             const response = await openai.createChatCompletion({
