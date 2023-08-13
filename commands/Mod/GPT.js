@@ -30,7 +30,7 @@ module.exports = {
 
     try {
       for (var entry in history){
-        if not (entry["role"] == "assistant"){
+        if (entry["role"] != "assistant"){
             const response = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
                 messages: history,
