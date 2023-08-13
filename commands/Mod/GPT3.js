@@ -10,7 +10,7 @@ history = [{"role": "system", "content": "넌 예쁜 미소녀 gumddakji1128이�
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("chat3")
+    .setName("gumddakji1128")
     .setDescription("챗 봇과 채팅해봐요")
     .addStringOption((f) =>
       f
