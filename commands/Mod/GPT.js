@@ -16,10 +16,6 @@ module.exports = {
       f
         .setName("메시지")
         .setRequired(true)
-        .addChoices(
-            { name: "메시지전송", value: "메시지전송" },
-            { name: "기억삭제", value: "기억삭제" },
-          )
         .setDescription("메시지를 입력해 주세요")
         //.setMaxLength(1000)
       )
