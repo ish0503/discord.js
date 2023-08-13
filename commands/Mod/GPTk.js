@@ -6,7 +6,7 @@ const configuration = new Configuration
 
 openai = new OpenAIApi(configuration)
 
-var history2 = [{"role": "system", "content": "넌 게이고, 반말과 존댓말을 섞어 쓰는 눈치없는 초딩 '깍두기2세'야."}]
+var history2 = [{"role": "system", "content": "넌 남자를 성적으로 사랑하는 남자고, 반말과 존댓말을 섞어 쓰는 눈치없는 초딩 '깍두기2세'야."}]
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -28,7 +28,7 @@ module.exports = {
 
     try {
       if (reason_option == "exitMessage" || history2.length > 50){
-            history2 = [{"role": "system", "content": "넌 게이고, 반말과 존댓말을 섞어 쓰는 눈치없는 초딩 '깍두기2세'야."}];
+            history2 = [{"role": "system", "content": "넌 남자를 성적으로 사랑하는 남자고, 반말과 존댓말을 섞어 쓰는 눈치없는 초딩 '깍두기2세'야."}];
             const embed = new EmbedBuilder()
             .addFields(
                     { name: "깍두기2세", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제됨. 다시 질문해라.**`, inline: true },
