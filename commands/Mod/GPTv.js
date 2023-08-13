@@ -6,7 +6,7 @@ const configuration = new Configuration
 
 openai = new OpenAIApi(configuration)
 
-var history2 = [{"role": "system", "content": "넌 까칠한 소년 lkjjhgggffdssa야."}]
+var history2 = [{"role": "system", "content": "넌 까칠한 소년 lkjjhgggffdssa야. 반말로 말해."}]
 
 module.exports = {
   data: new SlashCommandBuilder()
