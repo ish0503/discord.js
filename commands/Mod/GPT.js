@@ -6,6 +6,8 @@ const configuration = new Configuration
 
 openai = new OpenAIApi(configuration)
 
+history = []
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("chat")
@@ -24,38 +26,28 @@ module.exports = {
     await interaction.deferReply(); //{ephemeral: true}
     const reason_option = interaction.options.getString("메시지");
 
+    history.push({"role": "user", "content": reason_option})
+
     try {
       const response = await openai.createChatCompletion({
           model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: reason_option }],
+          messages: history,
       });
-      const res = await openai.createCompletion({
-          model: "text-davinci-003",
-          max_tokens: 2048,
-          temperature: 0.5,
-          prompt: reason_option
-      })
 
-      console.log(res["data"]["choices"][0]["text"])
-      console.log(response["data"]["choices"][0]["message"]["content"])
+      output = response["data"]["choices"][0]["message"]["content"]
+  
+      history.push({"role": "assistant", "content": output})
+      console.log(output)
 
-      if (response["data"]["choices"][0]["message"]["content"].length + res["data"]["choices"][0]["text"].length + reason_option.length < 1970) {
-        const embed = new EmbedBuilder()
+      const embed = new EmbedBuilder()
       .addFields(
               { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
-              { name: "text-davinci-003", value: `${reason_option + res["data"]["choices"][0]["text"]}`, inline: true },
       )
       .setTitle(reason_option) 
       .setColor("Blue")
-      //.setDescription(res["data"]["choices"][0]["text"])
 
       await interaction.editReply({ embeds: [embed] });
       
-      } else {
-         await interaction.editReply({ content: "**ai의 답변 또는 질문이 너무 길어 답변을 할수가 없습니다. 아쉽네요 :<**"});
-        }
-      
-  
       
     } catch (error) {
       console.log(error.response)
