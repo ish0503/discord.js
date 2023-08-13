@@ -28,7 +28,7 @@ module.exports = {
 
     try {
       if (reason_option == "exitMessage" || history.length > 50){
-            history = [{"role": "system", "content": "넌 까칠한 사춘기 소년 lk야."}];
+            history = [{"role": "system", "content": "넌 까칠하고 영악한 사춘기 소년 lkjjhgggffdssa야."}];
             const embed = new EmbedBuilder()
             .addFields(
                     { name: "gpt-3.5-turbo", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
