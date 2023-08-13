@@ -32,7 +32,8 @@ module.exports = {
 
     try {
       for (var entry in history){
-        if (entry["role"] != "assistant"){
+        if (entry["role"] != "assistant" && reason_option ){
+            //Isresponse = true
             const response = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
                 messages: history,
@@ -51,8 +52,8 @@ module.exports = {
             .setColor("Blue")
       
             await interaction.editReply({ embeds: [embed] });
-        }else if (history[-1]["role"] == "assistant" && !Isresponse){
-                Isresponse = true
+        }else if (history[-1]["role"] == "assistant" && reason_option){
+                //Isresponse = true
                 history.push({"role": "user", "content": reason_option})
 
                 response = openai.ChatCompletion.create(
