@@ -49,7 +49,7 @@ module.exports = {
             .setColor("Blue")
       
             await interaction.editReply({ embeds: [embed] });
-        }else if (history[-1]["role"] == "assistant"){
+        }else if (history[-1]["role"] == "assistant" && reason_option){
                 history.push({"role": "user", "content": reason_option})
 
                 response = openai.ChatCompletion.create(
