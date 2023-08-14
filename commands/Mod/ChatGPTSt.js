@@ -10,7 +10,7 @@ var history = [{"role": "system", "content": "You're Joseph Vissarionovich Stali
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("lenin")
+    .setName("stalin")
     .setDescription("챗 봇과 채팅해봐요")
     .addStringOption((f) =>
       f
