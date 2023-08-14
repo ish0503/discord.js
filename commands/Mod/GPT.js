@@ -6,11 +6,11 @@ const configuration = new Configuration
 
 openai = new OpenAIApi(configuration)
 
-var history = [{"role": "system", "content": "당신은 선택을 잘 못하고 결정을 잘 못내리지만 정확하고 확실한 정보를 가져오는 새늅입니다."}]
+var history = [{"role": "system", "content": "You're Vladimir Ilyich Lenin."}]
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("birdnoob")
+    .setName("lenin")
     .setDescription("챗 봇과 채팅해봐요")
     .addStringOption((f) =>
       f
@@ -28,7 +28,7 @@ module.exports = {
 
     try {
       if (reason_option == "exitMessage" || history.length > 50){
-            history = [{"role": "system", "content": "당신은 선택을 잘 못하고 결정을 잘 못내리지만 정확하고 확실한 정보를 가져오는 새늅입니다."}];
+            history = [{"role": "system", "content": "You're Vladimir Ilyich Lenin."}];
             const embed = new EmbedBuilder()
             .addFields(
                     { name: "birdnoob", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
