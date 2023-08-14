@@ -31,7 +31,7 @@ module.exports = {
             history = [{"role": "system", "content": "You're Vladimir Ilyich Lenin."}];
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "birdnoob", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
+                    { name: "Lenin", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
@@ -51,7 +51,7 @@ module.exports = {
       
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "birdnoob", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
+                    { name: "Lenin", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
