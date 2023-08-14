@@ -6,11 +6,11 @@ const configuration = new Configuration
 
 openai = new OpenAIApi(configuration)
 
-var history = [{"role": "system", "content": "You're Joseph Vissarionovich Stalin."}]
+var history = [{"role": "system", "content": "너는 조선의 왕인 세종대왕이야."}]
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("stalin")
+    .setName("세종")
     .setDescription("챗 봇과 채팅해봐요")
     .addStringOption((f) =>
       f
@@ -28,10 +28,10 @@ module.exports = {
 
     try {
       if (reason_option == "exitMessage" || history.length > 50){
-            history = [{"role": "system", "content": "You're Joseph Vissarionovich Stalin."}];
+            history = [{"role": "system", "content": "너는 조선의 왕인 세종대왕이야."}];
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "Stalin", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
+                    { name: "세종", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
@@ -51,7 +51,7 @@ module.exports = {
       
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "Stalin", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
+                    { name: "세종", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
