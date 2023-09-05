@@ -27,37 +27,32 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     try {
-      if (reason_option == "exitMessage" || history1.length > 50){
-            history1 = [];
-            const embed = new EmbedBuilder()
-            .addFields(
-                    { name: "gpt-3.5-turbo", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
-            )
-            .setTitle(reason_option) 
-            .setColor("Blue")
-        
-            await interaction.editReply({ embeds: [embed] })
-      } else {
         history1.push({"role": "user", "content": reason_option})
             const response = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
                 messages: history1,
             });
       
-            output = response["data"]["choices"][0]["message"]["content"]
+            const api = new BingChat({
+                cookie: process.env.BING_COOKIE
+            })
+         
+            const res = await api.sendMessage(reason_option)
+            console.log(res.text)
+      
+            output = res.text
         
             history1.push({"role": "assistant", "content": output})
             console.log(output)
       
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "gpt-3.5-turbo", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
+                    { name: "Ai", value: `**${res.text}**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
       
             await interaction.editReply({ embeds: [embed] });
-      }
     } catch (error) {
       console.log(error.response)
       return await interaction.editReply({content: `오류 발생 **${error.response.status}**, **${error.response.statusText} 이같은 오류가 계속 발생한다면, 문의 넣어주세요.**`, ephemeral: true})
