@@ -1,10 +1,10 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
-const { Configuration, OpenAIApi } = require("openai");
+//const { Configuration, OpenAIApi } = require("openai");
 
-const configuration = new Configuration
-  ({ apiKey: process.env.CHATGPTKEY });
+//const configuration = new Configuration
+  //({ apiKey: process.env.CHATGPTKEY });
 
-openai = new OpenAIApi(configuration)
+//openai = new OpenAIApi(configuration)
 
 var history1 = []
 
@@ -28,10 +28,10 @@ module.exports = {
 
     try {
         history1.push({"role": "user", "content": reason_option})
-            const response = await openai.createChatCompletion({
-                model: "gpt-3.5-turbo",
-                messages: history1,
-            });
+            //const response = await openai.createChatCompletion({
+              //  model: "gpt-3.5-turbo",
+              //  messages: history1,
+            //});
       
             const api = new BingChat({
                 cookie: process.env.BING_COOKIE
