@@ -9,3 +9,4 @@ module.exports = {
             interaction.reply("새늅교는 9월 5일 창설되었다.")
   interaction.channel.send("사이트는 https://birdnoob.netlify.app/ 이며, 앞으로 더 내용이 추기될것이다.")
               }
+}
