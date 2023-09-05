@@ -3,6 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("disc
 
 //const configuration = new Configuration
   //({ apiKey: process.env.CHATGPTKEY });
+import { BingChat } from 'bing-chat'
 
 //openai = new OpenAIApi(configuration)
 
