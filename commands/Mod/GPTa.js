@@ -1,12 +1,13 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
-const { Configuration, OpenAIApi } = require("openai");
+//const { Configuration, OpenAIApi } = require("openai");
+const { BardAPI } = require('bard-api-node');
 
-const configuration = new Configuration
-  ({ apiKey: process.env.CHATGPTKEY });
+// const configuration = new Configuration
+//   ({ apiKey: process.env.CHATGPTKEY });
 
-openai = new OpenAIApi(configuration)
+//openai = new OpenAIApi(configuration)
 
-var history = []
+//var history = []
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -27,37 +28,27 @@ module.exports = {
     const reason_option = interaction.options.getString("메시지");
 
     try {
-      if (reason_option == "exitMessage" || history.length > 50){
-            history = [];
-            const embed = new EmbedBuilder()
-            .addFields(
-                    { name: "Lenin", value: `**대화가 길어지거나 다른 요인때문에 기억이 삭제되었습니다. 다시 질문해주세요.**`, inline: true },
-            )
-            .setTitle(reason_option) 
-            .setColor("Blue")
+        // history.push({"role": "user", "content": reason_option})
+        //     const response = await openai.createChatCompletion({
+        //         model: "gpt-3.5-turbo",
+        //         messages: history,
+        //     });
+          const assistant = new BardAPI();
+          await assistant.setSession('__Secure-1PSID', process.env.BardKey); // or '__Secure-3PSID'
+          const response = await assistant.getBardResponse(reason_option);
+            //output = response["data"]["choices"][0]["message"]["content"]
         
-            await interaction.editReply({ embeds: [embed] })
-      } else {
-        history.push({"role": "user", "content": reason_option})
-            const response = await openai.createChatCompletion({
-                model: "gpt-3.5-turbo",
-                messages: history,
-            });
-      
-            output = response["data"]["choices"][0]["message"]["content"]
-        
-            history.push({"role": "assistant", "content": output})
-            console.log(output)
+            //history.push({"role": "assistant", "content": output})
+            //console.log(output)
       
             const embed = new EmbedBuilder()
             .addFields(
-                    { name: "Ai", value: `**${response["data"]["choices"][0]["message"]["content"]}**`, inline: true },
+                    { name: "Ai", value: `**${response.content}**`, inline: true },
             )
             .setTitle(reason_option) 
             .setColor("Blue")
       
             await interaction.editReply({ embeds: [embed] });
-      }
     } catch (error) {
       console.log(error.response)
       return await interaction.editReply({content: `오류 발생 **${error.response.status}**, **${error.response.statusText} 이같은 오류가 계속 발생한다면, 문의 넣어주세요.**`, ephemeral: true})
