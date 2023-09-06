@@ -26,7 +26,11 @@ module.exports = {
 
         const result = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
-        messages: args,
+          messages: [
+	  {
+	    role: "user",
+	    content: args,
+	  }],
         // max_tokens: 256, // limit token usage
       })
       console.log(result.data.choices[0].message)
