@@ -7,6 +7,7 @@ module.exports = {
     .addStringOption(options => options
         .setName("aa")
         .setDescription("aa")
+    )
     async execute(interaction) {
         await interaction.deferReply();
         interaction.channel.send("**https://birdmeow.netlify.app/**")
