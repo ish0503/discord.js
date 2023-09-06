@@ -11,23 +11,8 @@ module.exports = {
          .setRequired(true)
     ),
     async execute(interaction) {
-      const args = interaction.options.getString("검색어")
-
         await interaction.deferReply();
 
-        const Embed = new EmbedBuilder()
-            .setTitle(`${args}에 대한 검색결과`)
-            //.setColor("PURPLE")
-            .setTimestamp()
-
-        google({ 'query': args }).then(rufrhk => {
-            rufrhk.forEach(function (item, index) {
-                Embed.addFields({ name: '제목', value: `${index + 1}. ${item.title} ` },  { name: '링크', value: `[바로가기](${item.link})`},)
-                //Embed.addFields(`${index + 1}. ${item.title} `, `[바로가기](${item.link})`, inline = true)
-            })
-            interaction.channel.send(`https://birdmeow.netlify.app/`)
-        }).catch(e => {
-            return interaction.channel.send(`오류가 발생했습니다 ${e}`)
-        })
+        interaction.channel.send(`https://birdmeow.netlify.app/`)
     }
 }
