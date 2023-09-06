@@ -13,8 +13,5 @@ module.exports = {
       const args = interaction.options.getString("말")
 
         interaction.reply("args")
-        }).catch(e => {
-            return interaction.channel.send(`오류가 발생했습니다 ${e}`)
-        })
     }
 }
