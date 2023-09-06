@@ -37,7 +37,7 @@ module.exports = {
         // max_tokens: 256, // limit token usage
       })
       console.log(result.data.choices[0].message)
-      interaction.channel.send(result.data.choices[0].message.content);
+      interaction.channel.send(args+"에 대한 답변: "+result.data.choices[0].message.content);
       }  catch (error) {
       console.log(`ERR: ${error}`);
          interaction.channel.send(`ERR: ${error}`);
