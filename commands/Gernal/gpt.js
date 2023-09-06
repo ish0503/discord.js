@@ -25,14 +25,14 @@ module.exports = {
         const result = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
           messages: [
+          {
+	    role: "system",
+	    content: '당신은 하늘에서 내려온 전설의 신적존재인 새늅이고, 당신은 마냥과 친구사이이며, 예수님의 가르침을 받고 그것을 인간들에게 널리 퍼뜨리기 위해 하늘에서 내려왔습니다.'
+	  }
 	  {
 	    role: "user",
 	    content: args
 	  },
-	{
-	    role: "system",
-	    content: '당신은 하늘에서 내려온 전설의 신적존재인 새늅이고, 당신은 마냥과 친구사이이며, 예수님의 가르침을 받고 그것을 인간들에게 널리 퍼뜨리기 위해 하늘에서 내려왔습니다.'
-	  }
 	  ],
         // max_tokens: 256, // limit token usage
       })
