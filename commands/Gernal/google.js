@@ -13,7 +13,7 @@ module.exports = {
     async execute(interaction) {
       const args = interaction.options.getString("검색어")
 
-        interaction.reply("검색중입니다..")
+        await interaction.deferReply();
 
         const Embed = new EmbedBuilder()
             .setTitle(`${args}에 대한 검색결과`)
