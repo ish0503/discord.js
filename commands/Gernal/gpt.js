@@ -34,7 +34,7 @@ module.exports = {
         // max_tokens: 256, // limit token usage
       })
       console.log(result.data.choices[0].message)
-      interaction.reply(result.data.choices[0].message);
+      interaction.reply(result.data.choices[0].message.content);
       }  catch (error) {
       console.log(`ERR: ${error}`);
          interaction.reply(`ERR: ${error}`);
