@@ -5,8 +5,8 @@ module.exports = {
         .setName("talk")
         .setDescription("말합니다.") 
     .addStringOption(options => options
-        .setName("?")
-        .setDescription("?")
+        .setName("aa")
+        .setDescription("aa")
         .setRequired(false)
     async execute(interaction) {
         await interaction.deferReply();
