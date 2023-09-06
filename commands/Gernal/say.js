@@ -2,7 +2,7 @@ const { EmbedBuilder, SlashCommandBuilder } = require('discord.js')
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("Say")
+    .setName("say")
     .setDescription("말합니다")
     .addStringOption(options => options
         .setName("말")
