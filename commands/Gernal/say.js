@@ -12,6 +12,6 @@ module.exports = {
     async execute(interaction) {
       const args = interaction.options.getString("말")
 
-        interaction.reply("args")
+        interaction.reply(args)
     }
 }
