@@ -7,7 +7,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const setting = [role: 'system', content: '너는 예수님의 가르침을 받은 새늅과 마냥신이야.']
+const setting = {role: 'system', content: '너는 예수님의 가르침을 받은 새늅과 마냥신이야.'}
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -32,7 +32,7 @@ module.exports = {
           messages: [
 	  {
 	    role: "user",
-	    content: setting + [role: 'user', content: args],
+	    content: setting + {role: 'user', content: args},
 	  }],
         // max_tokens: 256, // limit token usage
       })
