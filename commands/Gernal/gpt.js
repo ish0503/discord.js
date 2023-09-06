@@ -19,6 +19,7 @@ module.exports = {
         .setRequired(true)
     ),
     async execute(interaction) {
+	    interaction.reply("잠시 시간이 소요됩니다..")
       try {
         console.log("aaa")
       const args = interaction.options.getString("말할것")
@@ -36,10 +37,10 @@ module.exports = {
         // max_tokens: 256, // limit token usage
       })
       console.log(result.data.choices[0].message)
-      interaction.reply(result.data.choices[0].message.content);
+      interaction.channel.send(result.data.choices[0].message.content);
       }  catch (error) {
       console.log(`ERR: ${error}`);
-         interaction.reply(`ERR: ${error}`);
+         interaction.channel.send(`ERR: ${error}`);
       }
     }
 }
