@@ -12,13 +12,15 @@ module.exports = {
     .setName("gpt")
     .setDescription("ai와 대화하세요")
     .addStringOption(options => options
-        .setName("검색어")
-        .setDescription("검색어를 입력해주세요.")
+        .setName("말할것")
+        .setDescription("말할것 입력해주세요.")
         .setRequired(true)
     ),
     async execute(interaction) {
       try {
-      const args = interaction.options.getString("검색어")
+        console.log("aaa")
+      const args = interaction.options.getString("말할것")
+        console.log(args)
 
         //await interaction.deferReply();
 
