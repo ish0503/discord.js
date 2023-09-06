@@ -16,7 +16,7 @@ module.exports = {
         const args = interaction.options.getString("검색내용")
         const argsjoin = args
         if (!argsjoin) return interaction.reply("검색하실 내용을 입력해주세요") 
-        interaction.reply("검색 중..")
+        await interaction.deferReply();
         let search = await ytsearch(argsjoin) 
         let video = search.videos[0] 
         if (!video) return interaction.reply("검색 결과가 없습니다.")
