@@ -2,7 +2,7 @@ const { EmbedBuilder, SlashCommandBuilder } = require('discord.js')
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("말한다.")
+    .setName("말한다")
     .setDescription("말합니다.")
     async execute(interaction) {
         await interaction.deferReply();
