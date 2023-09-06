@@ -21,9 +21,8 @@ module.exports = {
     async execute(interaction) {
 	    interaction.reply("잠시 시간이 소요됩니다..")
       try {
-        console.log("aaa")
       const args = interaction.options.getString("말할것")
-        console.log(args)
+        console.log(Object.assign({}, setting, {role: 'user', content: args}))
 
         //await interaction.deferReply();
 
@@ -32,7 +31,7 @@ module.exports = {
           messages: [
 	  {
 	    role: "user",
-	    content: setting + {role: 'user', content: args},
+	    content: Object.assign({}, setting, {role: 'user', content: args});
 	  }],
         // max_tokens: 256, // limit token usage
       })
