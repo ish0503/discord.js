@@ -31,7 +31,7 @@ module.exports = {
           messages: [
 	  {
 	    role: "user",
-	    content: Object.assign({}, setting, {role: 'user', content: args});
+	    content: Object.assign({}, setting, {role: 'user', content: args})
 	  }],
         // max_tokens: 256, // limit token usage
       })
