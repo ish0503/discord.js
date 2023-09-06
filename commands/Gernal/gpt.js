@@ -22,8 +22,7 @@ module.exports = {
 
         //await interaction.deferReply();
 
-        const result = await openai
-        .createChatCompletion({
+        const result = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
         messages: args,
         // max_tokens: 256, // limit token usage
