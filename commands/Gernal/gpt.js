@@ -20,7 +20,7 @@ module.exports = {
       try {
       const args = interaction.options.getString("검색어")
 
-        await interaction.deferReply();
+        //await interaction.deferReply();
 
         const result = await openai
         .createChatCompletion({
