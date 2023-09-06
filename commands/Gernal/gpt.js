@@ -28,9 +28,6 @@ module.exports = {
         messages: conversationLog,
         // max_tokens: 256, // limit token usage
       })
-      .catch((error) => {
-        console.log(`OPENAI ERR: ${error}`);
-      });
       interaction.reply(result.data.choices[0].message);
       }  catch (error) {
       console.log(`ERR: ${error}`);
