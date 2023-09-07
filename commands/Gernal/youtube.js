@@ -14,12 +14,12 @@ module.exports = {
     ),
     async execute(interaction) {
         const args = interaction.options.getString("검색내용")
-        const argsjoin = args
-        if (!argsjoin) return interaction.reply("검색하실 내용을 입력해주세요") 
         await interaction.deferReply();
+        const argsjoin = args
+        if (!argsjoin) return interaction.editReply("검색하실 내용을 입력해주세요") 
         let search = await ytsearch(argsjoin) 
         let video = search.videos[0] 
-        if (!video) return interaction.reply("검색 결과가 없습니다.")
+        if (!video) return interaction.editReply("검색 결과가 없습니다.")
 
         //interaction.reply("검색 중..")
         const { views, title, timestamp, url, author, ago, image } = video
@@ -37,6 +37,6 @@ module.exports = {
             //.setColor(0x0099ff) 
             //.setFooter(`${interaction.user.tag}`, interaction.user.displayAvatarURL()) 
 
-        await interaction.channel.send({ embeds: [embed], content: " " }) 
+        await interaction.editReply({ embeds: [embed], content: " " }) 
     }
 }
