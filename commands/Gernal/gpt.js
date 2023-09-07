@@ -32,7 +32,7 @@ module.exports = {
 	  },
 	  {
 	    role: "user",
-	    content: args
+	    content: args+"300자 이내로 대답해줘."
 	  }
 	  ],
         // max_tokens: 256, // limit token usage
