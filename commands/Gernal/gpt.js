@@ -36,10 +36,7 @@ module.exports = {
 	  ],
         // max_tokens: 256, // limit token usage
       })
-      console.log(result.data.choices[0].message)
-	 console.log(result.data.choices[0])
-	console.log(result.data)
-	      console.log(result)
+	console.log(result.data.usage.total_tokens + "토큰 사용")
 	const embed = new EmbedBuilder()
         .setTitle(`${args}에 대한 답변`)
         .setDescription(`**${result.data.choices[0].message.content}**`)
