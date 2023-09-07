@@ -17,7 +17,7 @@ module.exports = {
         .setRequired(true)
     ),
     async execute(interaction) {
-	    interaction.reply("잠시 시간이 소요됩니다..")
+	await interaction.deferReply();
       try {
       const args = interaction.options.getString("말할것")
         //await interaction.deferReply();
