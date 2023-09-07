@@ -45,11 +45,11 @@ module.exports = {
         .setColor(0xFFFF00)
         .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }));
 
-      interaction.channel.send({ embeds: [embed] });
+      interaction.editReply({ embeds: [embed] });
       //interaction.channel.send(args+"에 대한 답변: "+result.data.choices[0].message.content);
       }  catch (error) {
       console.log(`ERR: ${error}`);
-         interaction.channel.send(`ERR: ${error}`);
+         interaction.editReply(`ERR: ${error}`);
       }
     }
 }
