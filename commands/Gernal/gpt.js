@@ -37,7 +37,16 @@ module.exports = {
         // max_tokens: 256, // limit token usage
       })
       console.log(result.data.choices[0].message)
-      interaction.channel.send(args+"에 대한 답변: "+result.data.choices[0].message.content);
+	console.log(interaction.user)
+	const embed = new EmbedBuilder()
+        .setTitle(`${args}에 대한 답변`)
+        .setDescription(`**${result.data.choices[0].message.content}**`)
+        .setFooter({ text: `유저 이름 : ${interaction.user.username}` })
+        .setColor(0xFFFF00)
+        .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }));
+
+      interaction.channel.send({ embeds: [embed] });
+      //interaction.channel.send(args+"에 대한 답변: "+result.data.choices[0].message.content);
       }  catch (error) {
       console.log(`ERR: ${error}`);
          interaction.channel.send(`ERR: ${error}`);
