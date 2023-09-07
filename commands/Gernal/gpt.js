@@ -1,5 +1,6 @@
 const { Configuration, OpenAIApi } = require('openai');
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js')
+const translate = require('google-translate-api')
 
 const configuration = new Configuration({
   apiKey: process.env.CHATGPTKEY,
