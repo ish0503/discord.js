@@ -36,16 +36,13 @@ module.exports = {
 	  ],
         // max_tokens: 256, // limit token usage
       })
-	var randomColor = Math.floor(Math.random()*16777215).toString(16);
-	var color = "0x"+randomColor
       console.log(result.data.choices[0].message)
 	console.log(interaction.user)
 	const embed = new EmbedBuilder()
         .setTitle(`${args}에 대한 답변`)
         .setDescription(`**${result.data.choices[0].message.content}**`)
         .setFooter({ text: `유저 이름 : ${interaction.user.username}(${interaction.user.globalName}), ID: ${interaction.user.id}` })
-	.setColor(color)
-        //.setColor(0xFFFF00)
+        .setColor(0xFFFF00)
         .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }));
 
       interaction.editReply({ embeds: [embed] });
