@@ -37,15 +37,20 @@ module.exports = {
         // max_tokens: 256, // limit token usage
       })
 	console.log(result.data.usage.total_tokens + "토큰 사용")
-	const embed = new EmbedBuilder()
-        .setTitle(`${args}에 대한 답변`)
-        .setDescription(`**${result.data.choices[0].message.content}**`)
-        .setFooter({ text: `유저 이름 : ${interaction.user.username}(${interaction.user.globalName}), ID: ${interaction.user.id}` })
-        .setColor(0xFFFF00)
-        //.setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
-	.setImage('https://cdn.discordapp.com/avatars/989433815539777546/5da15b220fdc3e27072e4c4a9ffa4987.webp?size=256');
+	translate(result.data.choices[0].message.content, {from:'en', to:'ko'}).then(res => {
+    const embed = new EmbedBuilder()
+    .setTitle(`${args}에 대한 답변`)
+    .setDescription(`**${result.data.choices[0].message.content}**`)
+    .setFooter({ text: `유저 이름 : ${interaction.user.username}(${interaction.user.globalName}), ID: ${interaction.user.id}` })
+    .setColor(0xFFFF00)
+    .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
+    .setImage('https://cdn.discordapp.com/avatars/989433815539777546/5da15b220fdc3e27072e4c4a9ffa4987.webp?size=512');
 
-      interaction.editReply({ embeds: [embed] });
+  interaction.editReply({ embeds: [embed] });
+  }).catch(err => {
+    console.log(`ERR: ${err}`);
+    interaction.editReply(`ERR: ${err}`);
+  })
       //interaction.channel.send(args+"에 대한 답변: "+result.data.choices[0].message.content);
       }  catch (error) {
       console.log(`ERR: ${error}`);
