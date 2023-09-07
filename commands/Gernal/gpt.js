@@ -41,7 +41,7 @@ module.exports = {
 	const embed = new EmbedBuilder()
         .setTitle(`${args}에 대한 답변`)
         .setDescription(`**${result.data.choices[0].message.content}**`)
-        .setFooter({ text: `유저 이름 : ${interaction.user.username}` })
+        .setFooter({ text: `유저 이름 : ${interaction.user.username}(${interaction.user.globalName}), ID: ${interaction.user.id}` })
         .setColor(0xFFFF00)
         .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }));
 
