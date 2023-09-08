@@ -31,7 +31,7 @@ module.exports = {
         console.log(gambling_find.hashtags)
         console.log(gambling_find.hashtags[Object.keys(gambling_find.hashtags)[0]])
         let count = 0
-        for (i in gambling_find.hashtags){
+        for (let i = 0; i > Object.keys(gambling_find.hashtags).length; i++){
             console.log("반복"+count)
             console.log(gambling_find.hashtags[count])
             if (!gambling_find.hashtags[count]) { 
