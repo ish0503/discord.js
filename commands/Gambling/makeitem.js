@@ -37,12 +37,12 @@ module.exports = {
 
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
-            //{
-            //    hashtags : [
-            //        { "name": args, "value": 1 },
-            //   ],
+            {
+                hashtags : [
+                    { "name": args, "value": 1 },
+               ],
             //},
-            { cooltime: Date.now()},
+             cooltime: Date.now()},
             {upsert:true}
         );
 
