@@ -4,7 +4,7 @@ const gambling_Schema = require("../../models/upgrade")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("아이템확인")
-    .setDescription("자기가 직접 만들도 강화한 아이템들을 확인할 수 있습니다."),
+    .setDescription("자기가 직접 만들고 강화한 아이템들을 확인할 수 있습니다."),
 
     /**
      * 
@@ -29,7 +29,7 @@ module.exports = {
         ).setColor("Green")
 
         console.log(gambling_find.hashtags)
-        console.log(gambling_find.hashtags[])
+        console.log(gambling_find)
         let count = 0
         for (let i = 0; i > Object.keys(gambling_find.hashtags).length; i++){
             console.log("반복"+count)
