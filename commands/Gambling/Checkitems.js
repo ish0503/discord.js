@@ -32,7 +32,7 @@ module.exports = {
         console.log(gambling_find.hashtags.length)
         for (i in gambling_find.hashtags){
             console.log("반복")
-            if (!gambling_find.hashtags[i - 1].name) {
+            if (!gambling_find.hashtags[i - 1]) {
                 console.log(gambling_find.hashtags[i - 1]) 
                 continue
             }
