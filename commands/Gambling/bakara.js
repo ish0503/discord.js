@@ -9,7 +9,7 @@ module.exports = {
         .addSubcommand(subcommand =>
           subcommand
             .setName("뱅커")
-            .setDescription("뱅커 배팅 [ 배당 1.96배 ]")
+            .setDescription("뱅커 배팅 (1,3,5,7,9,11,13,15,17 일때 돈 획득) [ 배당 1.96배 ]")
             .addIntegerOption(f => 
               f.setName("배팅액")
               .setDescription("배팅하실 금액을 입력해 주세요")
@@ -19,7 +19,7 @@ module.exports = {
         .addSubcommand(subcommand =>
               subcommand
                 .setName("플레이어")
-                .setDescription("플레이어 배팅 [ 배당 1.96배 ]")
+                .setDescription("플레이어 배팅 (2,4,6,8,10,12,14,16,18,20 일때 돈 획득) [ 배당 1.96배 ]")
                 .addIntegerOption(f => 
                   f.setName("배팅액")
                   .setDescription("배팅하실 금액을 입력해 주세요")
@@ -29,7 +29,7 @@ module.exports = {
         .addSubcommand(subcommand =>
               subcommand
                 .setName("타이")
-                .setDescription("타이 배팅 [ 배당 11배 ]")
+                .setDescription("타이 배팅 (21 일때 돈 획득) [ 배당 11배 ]")
                 .addIntegerOption(f => 
                   f.setName("배팅액")
                   .setDescription("배팅하실 금액을 입력해 주세요")
@@ -64,7 +64,7 @@ module.exports = {
               embeds: [
                 new (require("discord.js")).EmbedBuilder()
                 .setTitle('SYSTEM API ERROR')
-                .setDescription(`등록 되지 않은 사용자입니다.`)
+                .setDescription(`돈이 등록되있지 않은 사용자입니다.`)
                 .setColor('#2F3136')
               ],
               ephemeral: true
@@ -110,7 +110,7 @@ module.exports = {
                 embeds: [
                   new (require("discord.js")).EmbedBuilder()
                   .setTitle('SYSTEM API ERROR')
-                  .setDescription(`등록 되지 않은 사용자입니다. [ /가입 ]`)
+                  .setDescription(`등록 되지 않은 사용자입니다. [ /돈 ]`)
                   .setColor('#2F3136')
                 ],
                 ephemeral: true
@@ -176,7 +176,7 @@ module.exports = {
                 embeds: [
                   new (require("discord.js")).EmbedBuilder()
                   .setTitle('SYSTEM API ERROR')
-                  .setDescription(`등록 되지 않은 사용자입니다. [ /가입 ]`)
+                  .setDescription(`등록 되지 않은 사용자입니다. [ /돈 ]`)
                   .setColor('#2F3136')
                 ],
                 ephemeral: true
@@ -213,9 +213,9 @@ module.exports = {
                     const f = ehqkrduqn.money + moneya
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 타이 ]`)
-                    .setDescription(`**\`\`\`ansi
-[0;31m금액지급 완료 : [0;37m+${comma(moneya)}원\n[0;31m현재잔액 : [0;37m${comma(f)}원\`\`\`**`)
-                    .setColor("#2F3136")
+                    .setDescription(`**
+금액지급 완료 : ${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+                    .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
                     await interaction.reply({ embeds: [embed] })
@@ -228,9 +228,9 @@ module.exports = {
                 const f = ehqkrduqn.money - money
                 const embed = new (require("discord.js")).EmbedBuilder()
                 .setTitle(`바카라 미적중 [ 배팅 : 타이 ]`)
-                .setDescription(`**\`\`\`ansi
-[0;31m금액회수 완료 : [0;37m-${comma(money)}원\n[0;31m현재잔액 : [0;37m${comma(f)}원\`\`\`**`)
-                .setColor("#2F3136")
+                .setDescription(`**
+금액회수 완료 : ${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+                .setColor("Red")
                 .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                 .setFooter({text: `${random} 숫자가 떴습니다.`})
                 await interaction.reply({ embeds: [embed] })
