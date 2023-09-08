@@ -44,7 +44,7 @@ module.exports = {
                 embeds: [
                   new (require("discord.js")).EmbedBuilder()
                   .setTitle('SYSTEM API ERROR')
-                  .setDescription(`등록 되지 않은 사용자입니다. [ /가입 ]`)
+                  .setDescription(`돈이 없습니다. /돈 으로 지원금을 받으세요.`)
                   .setColor('#2F3136')
                 ],
                 ephemeral: true
