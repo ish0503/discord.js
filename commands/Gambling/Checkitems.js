@@ -30,18 +30,21 @@ module.exports = {
 
         console.log(gambling_find.hashtags)
         console.log(gambling_find.hashtags.length)
+        let count = 0
         for (i in gambling_find.hashtags){
-            console.log("반복"+i)
-            if (!gambling_find.hashtags[i]) {
-                console.log(gambling_find.hashtags[i]) 
+            console.log("반복"+countp)
+            if (!gambling_find.hashtags[count]) {
+                console.log(gambling_find.hashtags[count]) 
+                count += 1
                 continue
             }
-            const item = gambling_find.hashtags[i]
+            const item = gambling_find.hashtags[count]
             console.log(item)
             embed.addFields({
                 name: `${i+1}. ${item.name}`,
                 value: `${item.value} 강화`
             })
+            count += 1
         }
 
         interaction.reply({embeds: [embed]})
