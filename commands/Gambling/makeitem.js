@@ -40,8 +40,8 @@ module.exports = {
             {$push: {
                 hashtags : 
                     { "name": args, "value": 1 },
-            }},
-             {cooltime: Date.now()},
+            },
+             cooltime: Date.now()},
             {upsert:true}
         );
 
