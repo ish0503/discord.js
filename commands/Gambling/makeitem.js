@@ -48,7 +48,7 @@ module.exports = {
             {upsert:true}
         );
 
-        console.log(gambling_find)
+        console.log(gambling_find?)
 
         const embed = new EmbedBuilder()
             .setDescription(
