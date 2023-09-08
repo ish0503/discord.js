@@ -28,6 +28,7 @@ module.exports = {
             }님의 아이템**`
         ).setColor("Green")
 
+        console.log(gambling_find.hashtags)
         console.log(gambling_find.hashtags.length)
         for (let i = 0; i > gambling_find.hashtags.length; i++){
             console.log("반복")
