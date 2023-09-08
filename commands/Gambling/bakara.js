@@ -5,7 +5,7 @@ const comma = require("comma-number")
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("바카라")
-        .setDescription("해당 명령어로는 바카라를 플레이 할 수 있어요!")
+        .setDescription("21번 (타이는 22번)까지 반호를 뽑아 바카라를 해보십시오.")
         .addSubcommand(subcommand =>
           subcommand
             .setName("뱅커")
