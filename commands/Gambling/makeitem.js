@@ -21,6 +21,8 @@ module.exports = {
             userid:interaction.user.id
         })
 
+        console.log(gambling_find)
+
         if (gambling_find){
             const canGiveTime = Number(gambling_find.cooltime) + (2 * 60 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
