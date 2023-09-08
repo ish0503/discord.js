@@ -4,12 +4,12 @@ const comma = require("comma-number")
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("바카라")
-        .setDescription("21번 (타이는 22번)까지 반호를 뽑아 바카라를 해보십시오.")
+        .setName("바카라변형")
+        .setDescription("번호를 뽑아서 하는 바카라를 해보십시오.")
         .addSubcommand(subcommand =>
           subcommand
             .setName("뱅커")
-            .setDescription("뱅커 배팅 (1,3,5,7,9,11,13,15,17 일때 돈 획득) [ 배당 1.96배 ]")
+            .setDescription("뱅커 배팅 (1부터 20까지 랜덤으로 뽑아 홀수일때 돈 획득) [ 배당 1.95배 ]")
             .addIntegerOption(f => 
               f.setName("배팅액")
               .setDescription("배팅하실 금액을 입력해 주세요")
@@ -19,7 +19,7 @@ module.exports = {
         .addSubcommand(subcommand =>
               subcommand
                 .setName("플레이어")
-                .setDescription("플레이어 배팅 (2,4,6,8,10,12,14,16,18,20 일때 돈 획득) [ 배당 1.96배 ]")
+                .setDescription("플레이어 배팅 (1에서 21까지 랜덤으로 뽑아 짝수일때 돈 획득) [ 배당 2배 ]")
                 .addIntegerOption(f => 
                   f.setName("배팅액")
                   .setDescription("배팅하실 금액을 입력해 주세요")
@@ -29,7 +29,7 @@ module.exports = {
         .addSubcommand(subcommand =>
               subcommand
                 .setName("타이")
-                .setDescription("타이 배팅 (21 일때 돈 획득) [ 배당 11배 ]")
+                .setDescription("타이 배팅 (1에서 22까지 뽑아 21일때 돈 획득) [ 배당 11배 ]")
                 .addIntegerOption(f => 
                   f.setName("배팅액")
                   .setDescription("배팅하실 금액을 입력해 주세요")
@@ -69,10 +69,10 @@ module.exports = {
               ],
               ephemeral: true
             })
-            const random = Math.floor(Math.random() * 21)
+            const random = Math.floor(Math.random() * 20)
 
             if (random == 1 || random == 3 || random == 5 || random == 7 || random == 9 || random == 11 || random == 13 || random == 15 || random == 17 || random == 19){
-                    var moneya = money * 1.96
+                    var moneya = money * 1.95
                     await Schema.findOneAndUpdate({ userid: user.id }, {
                         money: ehqkrduqn.money + moneya,
                         userid: user.id,
@@ -110,7 +110,7 @@ module.exports = {
                 embeds: [
                   new (require("discord.js")).EmbedBuilder()
                   .setTitle('SYSTEM API ERROR')
-                  .setDescription(`등록 되지 않은 사용자입니다. [ /돈 ]`)
+                  .setDescription(`돈이 없습니다. /돈 으로 지원금을 받으세요.`)
                   .setColor('Red')
                 ],
                 ephemeral: true
@@ -138,7 +138,7 @@ module.exports = {
             const random = Math.floor(Math.random() * 21)
 
             if (random == 2 || random == 4 || random == 6 || random == 8 || random == 10 || random == 12 || random == 14 || random == 16 || random == 18 || random == 20){
-                    var moneya = money * 1.96
+                    var moneya = money * 2
                     await Schema.findOneAndUpdate({ userid: user.id }, {
                         money: ehqkrduqn.money + moneya,
                         userid: user.id,
@@ -176,7 +176,7 @@ module.exports = {
                 embeds: [
                   new (require("discord.js")).EmbedBuilder()
                   .setTitle('SYSTEM API ERROR')
-                  .setDescription(`등록 되지 않은 사용자입니다. [ /돈 ]`)
+                  .setDescription(`돈이 없습니다. /돈 으로 지원금을 받으세요.`)
                   .setColor('Red')
                 ],
                 ephemeral: true
