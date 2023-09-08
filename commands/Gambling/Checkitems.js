@@ -31,7 +31,7 @@ module.exports = {
         console.log(gambling_find)
         console.log(gambling_find.hashtags)
         for (v in gambling_find.hashtags){
-          leconsole.log(v)
+          console.log(v)
         }
         let count = 0
         for (let i = 0; i > Object.keys(gambling_find.hashtags).length; i++){
