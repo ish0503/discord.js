@@ -38,9 +38,8 @@ module.exports = {
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
             {$push: {
-                hashtags : [
+                hashtags : 
                     { "name": args, "value": 1 },
-               ],
             }},
              {cooltime: Date.now()},
             {upsert:true}
