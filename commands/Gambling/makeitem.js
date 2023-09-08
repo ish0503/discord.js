@@ -39,7 +39,7 @@ module.exports = {
             {userid: interaction.user.id},
             {$push: {
                 hashtags : 
-                    { "name": args, "value": 1 },
+                    [{ "name": args, "value": 1 }],
             },
              cooltime: Date.now()},
             {upsert:true}
