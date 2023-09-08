@@ -1,5 +1,6 @@
 const { ChannelType } = require("discord.js");
 const client = require("../index");
+const heart_Sechma = require("../models/heart")
 
 module.exports = {
   name: "interactionCreate",
@@ -15,6 +16,12 @@ module.exports = {
     if (!command) return;
     try {
       await command.execute(interaction);
+
+      await heart_Sechma.updateOne(
+        {userid:interaction.user.id}, 
+        {$inc:{heart:1.5}}, 
+        {upsert:true}
+      )
     } catch (error) {
       console.log(error);
     }
