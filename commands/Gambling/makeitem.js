@@ -33,14 +33,14 @@ module.exports = {
             }
         }
 
-        await gambling_Schema.updateOne(
+        await gambling_Schema.update(
             {userid: interaction.user.id},
-            //{$set : {
+            {$push : {
                 hashtags : [
                     { "name": args, "value": 1 },
                ],
-            //}, //inserted data is the object to be inserted 
-        //},
+            }, //inserted data is the object to be inserted 
+             },
 
                 //{hashtags: [
           //  { name: args, value: 1 },
