@@ -29,7 +29,7 @@ module.exports = {
         ).setColor("Green")
         for (let i = 0; i < gambling_find.hashtags.length; i++){
             if (!gambling_find.hashtags.name) {continue}
-            const item = gambling_find.hashtags[i]
+            const item = gambling_find.hashtags[i - 1]
             embed.addFields({
                 name: `${i+1}. ${item.name}`,
                 value: `${item.value} 강화`
