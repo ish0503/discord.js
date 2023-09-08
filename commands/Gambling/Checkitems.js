@@ -29,7 +29,7 @@ module.exports = {
         ).setColor("Green")
 
         console.log(gambling_find.hashtags)
-        console.log(gambling_find.hashtags.length)
+        console.log(gambling_find.hashtags[Object.keys(gambling_find.hashtags)[0]])
         let count = 0
         for (i in gambling_find.hashtags){
             console.log("반복"+count)
@@ -38,7 +38,7 @@ module.exports = {
                 count += 1
                 continue
             }
-            const item = gambling_find.hashtags[count]
+            var item = gambling_find.hashtags[Object.keys(gambling_find.hashtags)[0]]
             console.log(item)
             embed.addFields({
                 name: `${i+1}. ${item.name}`,
