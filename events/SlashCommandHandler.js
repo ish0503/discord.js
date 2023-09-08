@@ -19,7 +19,7 @@ module.exports = {
 
       await heart_Sechma.updateOne(
         {userid:interaction.user.id}, 
-        {$inc:{heart:1.5}}, 
+        {$inc:{heart:0.1}}, 
         {upsert:true}
       )
     } catch (error) {
