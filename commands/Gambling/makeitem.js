@@ -35,12 +35,12 @@ module.exports = {
 
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
-            $push : [
-                hashtags :  {
-                   "name": args,
-                   "value": value
-                 } //inserted data is the object to be inserted 
-            ],
+            $push : {
+                hashtags : [
+                    { "name": args,
+                    "value": 1}
+                 ] //inserted data is the object to be inserted 
+        },
             //{hashtags: [
           //  { name: args, value: 1 },
          //   ]},
@@ -52,7 +52,7 @@ module.exports = {
             .setDescription(
                 `**아이템이 생성/바뀌게 되었습니다. 이름: ${
                     (gambling_find.hashtags[gambling_find.hashtags.length - 1].name)
-                }, 레벨: ${gambling_find.hashtags[1].value}**`
+                }, 레벨: ${gambling_find.hashtags[gambling_find.hashtags.length - 1].value}**`
             )
             .setColor("Green");
         
