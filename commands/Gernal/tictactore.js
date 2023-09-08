@@ -12,7 +12,7 @@ module.exports = {
      */
     async execute(interaction){
         await simplyDjs.tictactoe(interaction, {
-            strict: true, 
+            strict: false, 
             hard: true,
             buttons: {
                 X: { style: ButtonStyle.Danger },
