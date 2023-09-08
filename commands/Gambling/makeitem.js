@@ -48,7 +48,7 @@ module.exports = {
             {upsert:true}
         );
 
-        console.log("추가 완료")
+        console.log(gambling_find)
 
         const embed = new EmbedBuilder()
             .setDescription(
