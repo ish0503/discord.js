@@ -14,11 +14,6 @@ module.exports = {
         await simplyDjs.tictactoe(interaction, {
             strict: false, 
             hard: true,
-            buttons: {
-                X: { style: ButtonStyle.Danger },
-                O: { style: ButtonStyle.Success },
-                blank: { style: ButtonStyle.Secondary }
-            },
         })
     }
 }
