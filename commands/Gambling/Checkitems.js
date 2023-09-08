@@ -41,7 +41,7 @@ module.exports = {
                 count += 1
                 continue
             }
-            var item = gambling_find.hashtags[Object.keys(gambling_find.hashtags)[0]]
+            var item = gambling_find.hashtags[count]
             console.log(item)
             embed.addFields({
                 name: `${i+1}. ${item.name}`,
