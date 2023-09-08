@@ -29,7 +29,7 @@ module.exports = {
         .addSubcommand(subcommand =>
               subcommand
                 .setName("타이")
-                .setDescription("타이 배팅 (1에서 22까지 뽑아 21일때 돈 획득) [ 배당 10배 ]")
+                .setDescription("타이 배팅 (1에서 21까지 뽑아 21일때 돈 획득) [ 배당 10배 ]")
                 .addIntegerOption(f => 
                   f.setName("배팅액")
                   .setDescription("배팅하실 금액을 입력해 주세요")
@@ -201,7 +201,7 @@ module.exports = {
               ],
               ephemeral: true
             })
-            const random = Math.floor(Math.random() * 22)
+            const random = Math.floor(Math.random() * 21)
 
             if (random == 21){
                     var moneya = money * 10
