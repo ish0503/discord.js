@@ -82,7 +82,7 @@ module.exports = {
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 뱅커 ]`)
                     .setDescription(`**
-금액지급 완료 : ${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
                     .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
@@ -148,7 +148,7 @@ module.exports = {
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 플레이어 ]`)
                     .setDescription(`**
-금액지급 완료 : ${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
                     .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
