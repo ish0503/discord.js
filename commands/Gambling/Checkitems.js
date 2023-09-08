@@ -33,8 +33,8 @@ module.exports = {
         let count = 0
         for (i in gambling_find.hashtags){
             console.log("반복"+count)
-            if (!gambling_find.hashtags[count]) {
-                console.log(gambling_find.hashtags[count]) 
+            console.log(gambling_find.hashtags[count])
+            if (!gambling_find.hashtags[count]) { 
                 count += 1
                 continue
             }
