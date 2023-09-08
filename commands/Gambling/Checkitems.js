@@ -30,6 +30,7 @@ module.exports = {
 
         console.log(gambling_find.hashtags)
         console.log(gambling_find)
+        console.log(gambling_find.hashtags[1])
         let count = 0
         for (let i = 0; i > Object.keys(gambling_find.hashtags).length; i++){
             console.log("반복"+count)
