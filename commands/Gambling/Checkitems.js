@@ -27,10 +27,10 @@ module.exports = {
                 interaction.user
             }님의 아이템**`
         ).setColor("Green")
-        for (let i = 0; i < gambling_find.items.length; i++){
-            if (!gambling_find.items.name) {continue}
+        for (let i = 0; i < gambling_find.hashtags.length; i++){
+            if (!gambling_find.hashtags.name) {continue}
             const item = await interaction.client.users.fetch(
-                gambling_find.items[i]
+                gambling_find.hashtags[i]
             )
             embed.addFields({
                 name: `${i+1}. ${item.name}`,
