@@ -3,7 +3,7 @@ const gambling_Schema = require("../../models/Money")
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("돈줘")
+    .setName("돈")
     .setDescription("자비로운 새냥신께서는 당신께 돈을 주실 수 있습니다."),
 
     /**
