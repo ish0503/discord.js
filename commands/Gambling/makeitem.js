@@ -5,12 +5,18 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName("아이템")
     .setDescription("자신만의 아이템을 창작해보세요!"),
-
+.addStringOption(options => options
+        .setName("이름")
+        .setDescription("아이템의 이름 입력해주세요.")
+        .setRequired(true)
+    ),
+     
     /**
      * 
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
+        const args = interaction.options.getString("이름")
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
@@ -29,15 +35,18 @@ module.exports = {
 
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
-            {items: (gambling_find?.items || 0) + 5000, cooltime: Date.now()},
+            {hashtags: [
+            { name: args, value: 1 },
+            ]},
+            { cooltime: Date.now()},
             {upsert:true}
         );
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**💰 자비로운 새냥신이 당신께 드리는 선물입니다. (+ 5000재화.) ${
-                    (gambling_find?.money || 0) + 5000
-                }재화가 새냥신의 은총 덕분에 당신에게 있습니다.**`
+                `**아이템이 생성/바뀌게 되었습니다. 이름: ${
+                    (gambling_find.hashtags[1].name)
+                }, 레벨: ${gambling_find.hashtags[1].value}**`
             )
             .setColor("Green");
         
