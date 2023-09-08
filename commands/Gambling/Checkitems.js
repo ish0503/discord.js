@@ -31,12 +31,12 @@ module.exports = {
         console.log(gambling_find.hashtags)
         console.log(gambling_find.hashtags.length)
         for (i in gambling_find.hashtags){
-            console.log("반복")
-            if (!gambling_find.hashtags[i - 1]) {
-                console.log(gambling_find.hashtags[i - 1]) 
+            console.log("반복"+i)
+            if (!gambling_find.hashtags[i]) {
+                console.log(gambling_find.hashtags[i]) 
                 continue
             }
-            const item = gambling_find.hashtags[i - 1]
+            const item = gambling_find.hashtags[i]
             console.log(item)
             embed.addFields({
                 name: `${i+1}. ${item.name}`,
