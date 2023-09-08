@@ -17,7 +17,7 @@ module.exports = {
 
         if (!gambling_find){
             interaction.reply({
-                content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
+                content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
             })
             return
         }
@@ -25,8 +25,18 @@ module.exports = {
         const embed = new EmbedBuilder().setDescription(
             `**${
                 interaction.user
-            }님의 재화는 총 ${gambling_find.money.toLocaleString()}입니다.**`
+            }님의 아이템**`
         ).setColor("Green")
+        for (let i = 0; i < gambling_find.items.length; i++){
+            if (!gambling_find.items.name) {continue}
+            const item = await interaction.client.users.fetch(
+                gambling_find.items[i]
+            )
+            embed.addFields({
+                name: `${i+1}. ${item.name}`,
+                value: `${item.value} 강화`
+            })
+        }
 
         interaction.reply({embeds: [embed]})
     }
