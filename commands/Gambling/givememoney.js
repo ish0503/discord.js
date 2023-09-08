@@ -36,7 +36,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setDescription(
                 `**💰 자비로운 새냥신이 당신께 드리는 선물입니다. ${
-                    ((gambling_find?.money || 0) + 5000).toLocaleString()
+                    (gambling_find?.money || 0) + 5000
                 }재화가 새냥신의 은총 덕분에 당신에게 있습니다.**`
             )
             .setColor("Green");
