@@ -48,13 +48,11 @@ module.exports = {
             {upsert:true}
         );
 
-        console.log(gambling_find? || 0)
+        console.log("추가 완료")
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**아이템이 생성/바뀌게 되었습니다. 이름: ${
-                    (gambling_find.hashtags[gambling_find.hashtags.length - 1].name)
-                }, 레벨: ${gambling_find.hashtags[gambling_find.hashtags.length - 1].value}**`
+                `**아이템이 생성/바뀌게 되었습니다.**`
             )
             .setColor("Green");
         
