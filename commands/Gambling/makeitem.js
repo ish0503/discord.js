@@ -4,8 +4,8 @@ const gambling_Schema = require("../../models/upgrade")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("아이템")
-    .setDescription("자신만의 아이템을 창작해보세요!"),
-.addStringOption(options => options
+    .setDescription("자신만의 아이템을 창작해보세요!")
+    .addStringOption(options => options
         .setName("이름")
         .setDescription("아이템의 이름 입력해주세요.")
         .setRequired(true)
