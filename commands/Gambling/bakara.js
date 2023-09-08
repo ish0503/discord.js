@@ -9,7 +9,7 @@ module.exports = {
         .addSubcommand(subcommand =>
           subcommand
             .setName("뱅커")
-            .setDescription("뱅커 배팅 (1부터 20까지 랜덤으로 뽑아 홀수일때 돈 획득) [ 배당 1.95배 ]")
+            .setDescription("뱅커 배팅 (1부터 20까지 랜덤으로 뽑아 홀수일때 돈 획득) [ 배당 0.95배 ]")
             .addIntegerOption(f => 
               f.setName("배팅액")
               .setDescription("배팅하실 금액을 입력해 주세요")
@@ -19,7 +19,7 @@ module.exports = {
         .addSubcommand(subcommand =>
               subcommand
                 .setName("플레이어")
-                .setDescription("플레이어 배팅 (1에서 21까지 랜덤으로 뽑아 짝수일때 돈 획득) [ 배당 2배 ]")
+                .setDescription("플레이어 배팅 (1에서 21까지 랜덤으로 뽑아 짝수일때 돈 획득) [ 배당 1배 ]")
                 .addIntegerOption(f => 
                   f.setName("배팅액")
                   .setDescription("배팅하실 금액을 입력해 주세요")
@@ -29,7 +29,7 @@ module.exports = {
         .addSubcommand(subcommand =>
               subcommand
                 .setName("타이")
-                .setDescription("타이 배팅 (1에서 22까지 뽑아 21일때 돈 획득) [ 배당 11배 ]")
+                .setDescription("타이 배팅 (1에서 22까지 뽑아 21일때 돈 획득) [ 배당 10배 ]")
                 .addIntegerOption(f => 
                   f.setName("배팅액")
                   .setDescription("배팅하실 금액을 입력해 주세요")
@@ -72,7 +72,7 @@ module.exports = {
             const random = Math.floor(Math.random() * 20)
 
             if (random == 1 || random == 3 || random == 5 || random == 7 || random == 9 || random == 11 || random == 13 || random == 15 || random == 17 || random == 19){
-                    var moneya = money * 1.95
+                    var moneya = money * 0.95
                     await Schema.findOneAndUpdate({ userid: user.id }, {
                         money: ehqkrduqn.money + moneya,
                         userid: user.id,
@@ -138,7 +138,7 @@ module.exports = {
             const random = Math.floor(Math.random() * 21)
 
             if (random == 2 || random == 4 || random == 6 || random == 8 || random == 10 || random == 12 || random == 14 || random == 16 || random == 18 || random == 20){
-                    var moneya = money * 2
+                    var moneya = money * 1
                     await Schema.findOneAndUpdate({ userid: user.id }, {
                         money: ehqkrduqn.money + moneya,
                         userid: user.id,
@@ -204,7 +204,7 @@ module.exports = {
             const random = Math.floor(Math.random() * 22)
 
             if (random == 21){
-                    var moneya = money * 11
+                    var moneya = money * 10
                     await Schema.findOneAndUpdate({ userid: user.id }, {
                         money: ehqkrduqn.money + moneya,
                         userid: user.id,
