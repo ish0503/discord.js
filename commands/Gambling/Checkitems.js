@@ -38,6 +38,13 @@ module.exports = {
             })
         }
 
+        if (!embed)
+        {
+            interaction.reply({
+                content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
+            })
+            return
+        }
         interaction.reply({embeds: [embed]})
     }
 }
