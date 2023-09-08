@@ -45,7 +45,7 @@ module.exports = {
                   new (require("discord.js")).EmbedBuilder()
                   .setTitle('SYSTEM API ERROR')
                   .setDescription(`돈이 없습니다. /돈 으로 지원금을 받으세요.`)
-                  .setColor('#2F3136')
+                  .setColor('Red')
                 ],
                 ephemeral: true
               })
@@ -54,7 +54,7 @@ module.exports = {
               new (require("discord.js")).EmbedBuilder()
               .setTitle('SYSTEM API ERROR')
               .setDescription(`소유하고 있는 머니보다 더 큰 금액을 배팅할 수 없습니다.`)
-              .setColor('#2F3136')
+              .setColor('Red')
             ],
             ephemeral: true
           })
@@ -65,7 +65,7 @@ module.exports = {
                 new (require("discord.js")).EmbedBuilder()
                 .setTitle('SYSTEM API ERROR')
                 .setDescription(`돈이 등록되있지 않은 사용자입니다.`)
-                .setColor('#2F3136')
+                .setColor('Red')
               ],
               ephemeral: true
             })
@@ -81,9 +81,9 @@ module.exports = {
                     const f = ehqkrduqn.money + moneya
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 뱅커 ]`)
-                    .setDescription(`**\`\`\`ansi
-[0;31m금액지급 완료 : [0;37m+${comma(moneya)}원\n[0;31m현재잔액 : [0;37m${comma(f)}원\`\`\`**`)
-                    .setColor("#2F3136")
+                    .setDescription(`**
+금액지급 완료 : ${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+                    .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
                     await interaction.reply({ embeds: [embed] })
@@ -96,9 +96,9 @@ module.exports = {
                 const f = ehqkrduqn.money - money
                 const embed = new (require("discord.js")).EmbedBuilder()
                 .setTitle(`바카라 미적중 [ 배팅 : 뱅커 ]`)
-                .setDescription(`**\`\`\`ansi
-[0;31m금액회수 완료 : [0;37m-${comma(money)}원\n[0;31m현재잔액 : [0;37m${comma(f)}원\`\`\`**`)
-                .setColor("#2F3136")
+                .setDescription(`**
+금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
+                .setColor("Red")
                 .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                 .setFooter({text: `${random} 숫자가 떴습니다.`})
                 await interaction.reply({ embeds: [embed] })
@@ -111,7 +111,7 @@ module.exports = {
                   new (require("discord.js")).EmbedBuilder()
                   .setTitle('SYSTEM API ERROR')
                   .setDescription(`등록 되지 않은 사용자입니다. [ /돈 ]`)
-                  .setColor('#2F3136')
+                  .setColor('Red')
                 ],
                 ephemeral: true
               })
@@ -120,7 +120,7 @@ module.exports = {
               new (require("discord.js")).EmbedBuilder()
               .setTitle('SYSTEM API ERROR')
               .setDescription(`소유하고 있는 머니보다 더 큰 금액을 배팅할 수 없습니다.`)
-              .setColor('#2F3136')
+              .setColor('Red')
             ],
             ephemeral: true
           })
@@ -131,7 +131,7 @@ module.exports = {
                 new (require("discord.js")).EmbedBuilder()
                 .setTitle('SYSTEM API ERROR')
                 .setDescription(`등록 되지 않은 사용자입니다.`)
-                .setColor('#2F3136')
+                .setColor('Red')
               ],
               ephemeral: true
             })
@@ -147,9 +147,9 @@ module.exports = {
                     const f = ehqkrduqn.money + moneya
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 플레이어 ]`)
-                    .setDescription(`**\`\`\`ansi
-[0;31m금액지급 완료 : [0;37m+${comma(moneya)}원\n[0;31m현재잔액 : [0;37m${comma(f)}원\`\`\`**`)
-                    .setColor("#2F3136")
+                    .setDescription(`**
+금액지급 완료 : ${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+                    .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
                     await interaction.reply({ embeds: [embed] })
@@ -162,9 +162,9 @@ module.exports = {
                 const f = ehqkrduqn.money - money
                 const embed = new (require("discord.js")).EmbedBuilder()
                 .setTitle(`바카라 미적중 [ 배팅 : 플레이어 ]`)
-                .setDescription(`**\`\`\`ansi
-[0;31m금액회수 완료 : [0;37m-${comma(money)}원\n[0;31m현재잔액 : [0;37m${comma(f)}원\`\`\`**`)
-                .setColor("#2F3136")
+                .setDescription(`**
+금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
+                .setColor("Red")
                 .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                 .setFooter({text: `${random} 숫자가 떴습니다.`})
                 await interaction.reply({ embeds: [embed] })
@@ -177,7 +177,7 @@ module.exports = {
                   new (require("discord.js")).EmbedBuilder()
                   .setTitle('SYSTEM API ERROR')
                   .setDescription(`등록 되지 않은 사용자입니다. [ /돈 ]`)
-                  .setColor('#2F3136')
+                  .setColor('Red')
                 ],
                 ephemeral: true
               })
@@ -186,7 +186,7 @@ module.exports = {
               new (require("discord.js")).EmbedBuilder()
               .setTitle('SYSTEM API ERROR')
               .setDescription(`소유하고 있는 머니보다 더 큰 금액을 배팅할 수 없습니다.`)
-              .setColor('#2F3136')
+              .setColor('Red')
             ],
             ephemeral: true
           })
@@ -197,7 +197,7 @@ module.exports = {
                 new (require("discord.js")).EmbedBuilder()
                 .setTitle('SYSTEM API ERROR')
                 .setDescription(`등록 되지 않은 사용자입니다.`)
-                .setColor('#2F3136')
+                .setColor('Red')
               ],
               ephemeral: true
             })
@@ -214,7 +214,7 @@ module.exports = {
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 타이 ]`)
                     .setDescription(`**
-금액지급 완료 : ${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
                     .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
@@ -229,7 +229,7 @@ module.exports = {
                 const embed = new (require("discord.js")).EmbedBuilder()
                 .setTitle(`바카라 미적중 [ 배팅 : 타이 ]`)
                 .setDescription(`**
-금액회수 완료 : ${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
                 .setColor("Red")
                 .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                 .setFooter({text: `${random} 숫자가 떴습니다.`})
