@@ -3,7 +3,7 @@ const gambling_Schema = require("../../models/Money")
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("순위")
+    .setName("돈순위")
     .setDescription("새냥신께서 주신 돈이 누가 제일 많은지 봅니다."),
 
     /**
