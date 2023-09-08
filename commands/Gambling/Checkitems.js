@@ -27,8 +27,14 @@ module.exports = {
                 interaction.user
             }님의 아이템**`
         ).setColor("Green")
+
+        console.log(gambling_find.hashtags.length)
         for (let i = 0; i > gambling_find.hashtags.length; i++){
-            if (!gambling_find.hashtags.name) {continue}
+            console.log("반복")
+            if (!gambling_find.hashtags.name) {
+                console.log(gambling_find.hashtags) 
+                continue
+            }
             const item = gambling_find.hashtags[i - 1]
             console.log(item)
             embed.addFields({
