@@ -3,7 +3,7 @@ const gambling_Schema = require("../../models/Money")
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("돈확률")
+    .setName("돈베팅")
     .setDescription("대박 혹은 쪽박! 당신의 운을 시험해보세요.")
     .addIntegerOption((f) =>
         f
