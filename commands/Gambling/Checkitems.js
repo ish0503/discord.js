@@ -27,7 +27,7 @@ module.exports = {
                 interaction.user
             }님의 아이템**`
         ).setColor("Green")
-        for (let i = 0; i < gambling_find.hashtags.length; i++){
+        for (let i = 0; i > gambling_find.hashtags.length; i++){
             if (!gambling_find.hashtags.name) {continue}
             const item = gambling_find.hashtags[i - 1]
             console.log(item)
