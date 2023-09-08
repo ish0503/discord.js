@@ -29,19 +29,19 @@ module.exports = {
 
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
-            {money: (gambling_find?.money || 0) * 5000, cooltime: Date.now()},
+            {money: (gambling_find?.money || 0) + 5000, cooltime: Date.now()},
             {upsert:true}
         );
 
         const embed = new EmbedBuilder()
-        .setDescription(
-            `**💰 자비로운 새냥신이 당신께 드리는 선물입니다. ${
-                (gambling_find?.money || 0) * 5000
-            }재화가 새냥신의 은총 덕분에 당신에게 주어졌습니다.`
-        )
-        .setColor("Green");
+            .setDescription(
+                `**💰 자비로운 새냥신이 당신께 드리는 선물입니다. ${
+                    (gambling_find?.money || 0) + 5000
+                }재화가 새냥신의 은총 덕분에 당신에게 있습니다.**`
+            )
+            .setColor("Green");
         
-        interaction.reply({embed: [embed]});
+        interaction.reply({embeds: [embed]});
             
     }
 }
