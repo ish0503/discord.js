@@ -188,7 +188,7 @@ module.exports = {
     
             if (!gambling_find){
                 interaction.reply({
-                    content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
+                    content: `**아이템이 없으시군요.. \`/아이템 생성\` 명령어로 아이템을 생성하세요.**`
                 })
                 return
             }
@@ -254,7 +254,7 @@ module.exports = {
     
             if (!gambling_find){
                 interaction.reply({
-                    content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
+                    content: `**아이템이 없으시군요.. \`/아이템 생성\` 명령어로 아이템을 생성하세요.**`
                 })
                 return
             }
