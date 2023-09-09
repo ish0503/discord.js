@@ -141,23 +141,25 @@ module.exports = {
             }
         }
 
-        let length = gambling_find.hashtags.length
-        let isitem = -1
-        for (let i = 0; i < length; i++){
-            if (gambling_find.hashtags[i].name == args) {
-                isitem = i
+        if (gambling_find){
+            let length = gambling_find.hashtags.length
+            let isitem = -1
+            for (let i = 0; i < length; i++){
+                if (gambling_find.hashtags[i].name == args) {
+                    isitem = i
+                }
             }
-        }
-
-        if (isitem != -1){
-            const embed = new EmbedBuilder()
-                .setDescription(
-                    `**이미 당신에게 있는 아이템을 또 생성할 수 없습니다.**`
-                )
-                .setColor("Red");
-            
-                interaction.reply({embeds: [embed]});
-                return;
+    
+            if (isitem != -1){
+                const embed = new EmbedBuilder()
+                    .setDescription(
+                        `**이미 당신에게 있는 아이템을 또 생성할 수 없습니다.**`
+                    )
+                    .setColor("Red");
+                
+                    interaction.reply({embeds: [embed]});
+                    return;
+            }
         }
 
         await gambling_Schema.updateOne(
