@@ -30,11 +30,12 @@ module.exports = {
 
         console.log(gambling_find)
         console.log(gambling_find.hashtags)
+        let length = 0
         for (v in gambling_find.hashtags){
-          console.log(v)
+          length = v
         }
         let count = 0
-        for (let i = 0; i > gambling_find.hashtags.length; i++){
+        for (let i = 0; i > length; i++){
             console.log("반복"+count)
             console.log(gambling_find.hashtags[count])
             if (!gambling_find.hashtags[count]) { 
