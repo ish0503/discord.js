@@ -65,12 +65,16 @@ module.exports = {
         }
         let length = gambling_find.hashtags.length
         let isitem = -1
+        let hasitem = []
+        
         for (let i = 0; i < length; i++){
             if (gambling_find.hashtags[i].name == args) {
                 isitem = i
+            }else{
+                hasitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value})
             }
         }
-
+        
         if (isitem == -1){
             const embed = new EmbedBuilder()
                 .setDescription(
@@ -86,12 +90,12 @@ module.exports = {
         const random_upgrade = Math.round((Math.random() + 1) * 4.5) // 1에서 2사이
 
         if (random_number > gambling_find.hashtags[isitem].value ** 2){
+            hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
-                {
-                   hashtags : 
-                        [{ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade }],
-                cooltime: Date.now()},
+                {$set:{
+                   hashtags : hasitem,
+                cooltime: Date.now()}},
                 {upsert:true}
             );
     
@@ -106,12 +110,12 @@ module.exports = {
             
             interaction.reply({embeds: [embed]});
         }else{
+            hasitem.push({ "name": args, "value": 0})
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
-                {
-                   hashtags : 
-                        [{ "name": args, "value": 0 }],
-                cooltime: Date.now()},
+                {$set:{
+                   hashtags : hasitem,
+                cooltime: Date.now()}},
                 {upsert:true}
             );
     
@@ -127,7 +131,7 @@ module.exports = {
             interaction.reply({embeds: [embed]});
         }
         }else if (interaction.options.getSubcommand() === "생성") {
-            const args = interaction.options.getString("이름")
+        const args = interaction.options.getString("이름")
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
@@ -179,7 +183,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 0**`
+                `**아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 1**`
             )
             .setColor("Green");
         
@@ -195,7 +199,7 @@ module.exports = {
     
             if (!gambling_find){
                 interaction.reply({
-                    content: `**아이템이 없으시군요.. \`/아이템 생성\` 명령어로 아이템을 생성하세요.**`
+                    content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
                 })
                 return
             }
@@ -261,7 +265,7 @@ module.exports = {
     
             if (!gambling_find){
                 interaction.reply({
-                    content: `**아이템이 없으시군요.. \`/아이템 생성\` 명령어로 아이템을 생성하세요.**`
+                    content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
                 })
                 return
             }
@@ -289,6 +293,10 @@ module.exports = {
     
             interaction.reply({embeds: [embed]})
         }else if (interaction.options.getSubcommand() === "순위") {
+            // const gambling_find = await gambling_Schema.findOne({
+            //     userid:interaction.user.id
+            // })
+
             const gambling_find = await gambling_Schema
             .find()
             .sort([["value"]])
