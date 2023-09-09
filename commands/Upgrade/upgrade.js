@@ -39,6 +39,11 @@ module.exports = {
             subcommand
             .setName("확인")
             .setDescription("자기가 직접 만들고 강화한 아이템들을 확인할 수 있습니다."),
+            )
+        .addSubcommand(subcommand =>
+            subcommand
+            .setName("순위")
+            .setDescription("아이템 강화 횟수로 순위를 봅니다."),
             ),
     async execute(interaction) {
         if (interaction.options.getSubcommand() === "강화") {
