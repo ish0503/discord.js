@@ -289,39 +289,60 @@ module.exports = {
     
             interaction.reply({embeds: [embed]})
         }else if (interaction.options.getSubcommand() === "순위") {
-            const gambling_find = await gambling_Schema.findOne({
-                userid:interaction.user.id
-            })
-
-            let items = []
-    
-            let length = gambling_find.hashtags.length
-            for (let i = 0; i < length; i++){
-                items.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value})
-            }
-
-            items.sort(function (a, b) {
-                if (a.value > b.value) {
-                  return 1;
-                }
-                if (a.value < b.value) {
-                  return -1;
-                }
-                // a must be equal to b
-                return 0;
-              });
-
-            console.log(items)
+            const gambling_find = await gambling_Schema
+            .find()
+            .sort([["value"]])
+            .limit(10)
+            .exec();
     
             const embed = new EmbedBuilder()
             .setTitle(`${interaction.client.user.username} 강화 순위`)
             .setColor("Green")
             .setThumbnail(interaction.client.user.displayAvatarURL());
     
-            for (let i = 0; i < items.length; i++){
+            let save = []
+
+            for (let i = 0; i < Object.keys(gambling_find).length; i++){
+                //console.log(gambling_find[i].userid)
+                let json3  = JSON.parse(JSON.stringify(gambling_find[i].hashtags));
+                for (let v = 0; v < Object.keys(json3).length; v++){
+                    if (json3[v]){
+                        //console.log("ㅡㅡㅡㅡㅡㅡㅡㅡv있음")
+                        //console.log(json3[v])
+                        json3[v]["userid"] = gambling_find[i].userid
+                        //console.log(json3[v])
+                    }else if(json3){
+                        //console.log("ㅡㅡㅡㅡㅡㅡㅡㅡv없음")
+                        //console.log(json3)
+                        json3["userid"] = gambling_find[i].userid
+                        //console.log(json3)
+                    }
+                }
+                save.push(...json3)
+            }
+
+            //console.log(save)
+
+            save.sort(function (a, b) {
+                if (a.value > b.value) {
+                  return -1;
+                }
+                if (a.value < b.value) {
+                  return 1;
+                }
+                // a must be equal to b
+                return 0;
+              });
+             console.log(save)
+            // console.log(Object.keys(save).length)
+            // console.log(save[1])
+            for (let i = 0; i < Object.keys(save).length; i++){
+                const user = await interaction.client.users.fetch(
+                    save[i].userid
+                )
                 embed.addFields({
-                    name: `${i + 1}. ${interaction.client.user.username}`,
-                    value: `${items[i].name} : ${items[i].value}강화`
+                    name: `${i + 1}. ${user.username}`,
+                    value: `${save[i].name} : ${save[i].value}강화`
                 })
             }
     
