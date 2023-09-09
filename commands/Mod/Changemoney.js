@@ -17,7 +17,7 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
-      if (!interaction.member.roles.cache.has(1148592261341397083)){
+      if (!interaction.member.roles.cache.has('1148592261341397083')){
         interaction.reply({
                 content: `**어딜 이 명령어를 쓸려고.**`
             })
