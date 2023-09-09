@@ -183,7 +183,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 1**`
+                `**아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 0**`
             )
             .setColor("Green");
         
