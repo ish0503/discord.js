@@ -37,7 +37,7 @@ module.exports = {
 
             await gambling_Schema.updateOne(
                 {userid:interaction.user.id},
-                {money:gambling_find.money + bettingGold}
+                {money: bettingGold}
             )
 
             const embed = new EmbedBuilder()
