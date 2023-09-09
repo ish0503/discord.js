@@ -44,7 +44,7 @@ module.exports = {
             {
                hashtags : 
                    {$push: { "name": args, "value": 1 }},
-            },
+            
              cooltime: Date.now()},
             {upsert:true}
         );
