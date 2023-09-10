@@ -176,10 +176,10 @@ module.exports = {
             }
         }
 
-        if (!money_find || money_find.money < 5000){
+        if (!money_find || money_find.money < 25000){
             const embed = new EmbedBuilder()
                     .setDescription(
-                        `**아이템을 생성하려면 돈 5000재화가 필요합니다.**`
+                        `**아이템을 생성하려면 돈 25000재화가 필요합니다.**`
                     )
                     .setColor("Red");
                 
@@ -189,7 +189,7 @@ module.exports = {
 
         await money_Schema.updateOne(
             {userid:interaction.user.id},
-            {money:money_find.money - 5000}
+            {money:money_find.money - 25000}
         )
 
         await gambling_Schema.updateOne(
