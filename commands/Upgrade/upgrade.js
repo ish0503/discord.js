@@ -87,7 +87,7 @@ module.exports = {
         }
 
         const random_number = Math.round(Math.random() * 10000)
-        const random_upgrade = Math.round(Math.random() * 9) + 1 // 1에서 10사이
+        const random_upgrade = Math.round(Math.random() * 9) + 1 // 1에서 2사이
 
         if (random_number > gambling_find.hashtags[isitem].value ** 2){
             hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
@@ -110,7 +110,7 @@ module.exports = {
             
             interaction.reply({embeds: [embed]});
         }else{
-            hasitem.push({ "name": args, "value": 0})
+            hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value - random_upgrade})
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
                 {$set:{
@@ -118,13 +118,13 @@ module.exports = {
                 cooltime: Date.now()}},
                 {upsert:true}
             );
-    
+                    
             const embed = new EmbedBuilder()
                 .setTitle(
                     `**강화 확률: ${(10000 - (gambling_find.hashtags[isitem].value ** 2)) / 100}%**`
                 )
                 .setDescription(
-                    `**강화 실패.. 이름: ${args}, 강화 수: 0**`
+                    `**강화 실패.. 이름: ${args}, 강화 수: ${gambling_find.hashtags[isitem].value} -> ${gambling_find.hashtags[isitem].value - random_upgrade}**`
                 )
                 .setColor("Red");
             
@@ -183,7 +183,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 0**`
+                `**아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 1**`
             )
             .setColor("Green");
         
