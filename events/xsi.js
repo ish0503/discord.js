@@ -12,7 +12,7 @@ module.exports = {
       let user = interaction.member
       if (!user) user = "Unknown#0000"
       console.log(`${meaning} ${user.tag || user}님이 알려주셨어요!`)
-      interaction.channel.send(`${meaning} ${user.tag || user}님이 알려주셨어요!`)
+      interaction.channel.send(`**${meaning}** (${user.tag || user}님이 알려주셨어요!)`)
       //interaction.channel.recipientId(`\`${ff.meaning}``\n${user.tag || user}님이 알려주셨어요 !`)
       }
 }}
