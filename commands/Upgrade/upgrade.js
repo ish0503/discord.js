@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const gambling_Schema = require("../../models/upgrade")
+const money_Schema = require("../../models/Money")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -135,8 +136,12 @@ module.exports = {
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
+        const money_find = await money_Schema.findOne({
+            userid:interaction.user.id
+        })
 
         console.log(gambling_find)
+        console.log(money_find)
 
         if (gambling_find){
             const canGiveTime = Number(gambling_find.cooltime) + (2 * 60 * 1000)
@@ -171,6 +176,22 @@ module.exports = {
             }
         }
 
+        if (!money_find || money_find.money < 5000){
+            const embed = new EmbedBuilder()
+                    .setDescription(
+                        `**아이템을 생성하려면 돈 5000재화가 필요합니다.**`
+                    )
+                    .setColor("Red");
+                
+                    interaction.reply({embeds: [embed]});
+                    return;
+        }
+
+        await money_Schema.updateOne(
+            {userid:interaction.user.id},
+            {money:money_find.money - 5000}
+        )
+
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
             {$push: {
@@ -183,7 +204,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 1**`
+                `**5000재화를 주고 아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 1**`
             )
             .setColor("Green");
         
