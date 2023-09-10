@@ -20,14 +20,32 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction) {
+        function randomDigitCharactersSpecialCharacterslength(lenth){
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`{}[]:;<>?,./|";
+            for( var i=0; i < lenth; i++ )
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            return text;
+        }
         await interaction.deferReply();
         const text1 = interaction.options.getString("낱말")
         const text2 = interaction.options.getString("뜻")
-        const find = await Schema.findOne({ 단어: text1.trim() })
-        if (find) return interaction.editReply({ content: "이미 저장되어 있는 단어입니다", ephemeral: true })
+        console.log(text1)
+        const find = await Schema.findOne({ word: text1.trim() })
+        if (find) {
+            interaction.editReply({ content: "이미 저장되어 있는 단어입니다", ephemeral: true }) 
+            return
+        }
+        var datam = randomDigitCharactersSpecialCharacterslength(15)
+        const isfind = await Schema.findOne({ data: datam })
+        console.log(isfind)
+        while (isfind){
+            console.log(isfind)
+            datam = randomDigitCharactersSpecialCharacterslength(15)
+        }
         await Schema.updateOne(
-            {userid: interaction.member.id},
-            {word: text1.trim(), meaning: text2.trim()},
+            {data: datam},
+            {userid: interaction.member.id, word: text1.trim(), meaning: text2.trim()},
             {upsert:true},
         );
         const embed = new EmbedBuilder()
