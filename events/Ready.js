@@ -6,7 +6,7 @@ module.exports = {
   execute(client) {
     let number = 0
     setInterval(() => {
-        const list = [`현재 ${client.guilds.cache.size}개의 서버에서 게임` , "자는것", "대화"] 
+        const list = [`현재 ${client.guilds.cache.size}개의 서버에서 휴식`] 
         if(number == list.length) number = 0
         client.user.setActivity(list[number],{
             type: Client.Playing
