@@ -7,7 +7,7 @@ module.exports = {
     const argsjoin = args.join(" ")
     console.log(argsjoin)
     const ff = await Schema.findOne({ word: argsjoin })
-    if (ff) {
+    if (ff && interaction.content.substr(0, 1) == "야") {
       const meaning = ff.meaning
       //let user = userid//interaction.member
       if (!ff.userid) userid = "0"
