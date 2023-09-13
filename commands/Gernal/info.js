@@ -13,7 +13,8 @@ module.exports = {
     async execute(interaction){
         const embed = new EmbedBuilder()
         .setTitle("새냥신은 예수의 가르침을 받고 그것을 전파하기 위해 하늘에서 내려온 신적 존재입니다.")
-            .setDescription(`새냥신의 사이트: https://birdmeow.netlify.app/`)
+            .setDescription(`디스코드 새냥교 서버 사이트: https://discord.gg/VWKpCVzCTn\n새냥신의 사이트: https://birdmeow.netlify.app/`)
             .setColor("Green");
+        interaction.reply({embeds: [embed], ephemeral: true});
     }
 }
