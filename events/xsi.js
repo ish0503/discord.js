@@ -10,7 +10,7 @@ module.exports = {
       const meaning = ff.meaning
       //let user = userid//interaction.member
       if (!ff.userid) userid = "0"
-      interaction.channel.send(`**${meaning}** (<@${ff.userid}>님이 알려주셨어요!)`)
+      interaction.channel.send(`**${meaning}** (<@${ff.userid}>님이 알려주셨어요!<:Heart:1151445619215441980>)`)
       //interaction.channel.recipientId(`\`${ff.meaning}``\n${user.tag || user}님이 알려주셨어요 !`)
       }
 }}
