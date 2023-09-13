@@ -9,11 +9,13 @@ module.exports = {
         .setName("낱말")
         .setDescription("봇이 학습할 낱말을 입력해 주세요")
         .setRequired(true)
+        .setMaxLength(30)
     )
     .addStringOption(options => options
         .setName("뜻")
         .setDescription("봇이 학습할 낱말의 뜻을 입력해 주세요")
         .setRequired(true)
+        .setMaxLength(300)
     ),
     /**
      * 
