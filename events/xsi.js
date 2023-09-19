@@ -1,4 +1,5 @@
 const client = require("../index")
+import fetch from 'node-fetch'
 
 module.exports = {
   name: "messageCreate",
