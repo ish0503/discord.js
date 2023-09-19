@@ -29,5 +29,31 @@ module.exports = {
     const index = Math.floor(Math.random() * list.length);
 
     interaction.reply(`저의 선택은 \`${list[index]}\` 입니다`);
-  }
+  } else if (interaction.content === "!한강온도") {
+    const types = ["text", "time", "dgr"],
+      BASE_URL = "https://hangang.ivlis.kr/aapi.php?type=";
+
+    const fetchData = async (type) => {
+      const res = await fetch(BASE_URL + type);
+      const data = await res.text();
+      return data;
+    };
+
+    const [text, time, dgr] = await Promise.all(types.map(fetchData));
+
+    return interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("한강 온도")
+          .setDescription(`# ${dgr}\n### ${text}`)
+          .setAuthor({
+            name: time,
+            iconURL: client.user.avatarURL(),
+          })
+          .setFooter({
+            text: "생명은 소중하며, 당신은 사랑과 지지를 받을 **가치**가 있습니다. (데이터: hangang.ivlis.kr)",
+          }),
+      ],
+    });
+  }.
 }}
