@@ -26,10 +26,10 @@ module.exports = {
         const result = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
           messages: [
-          {
-	    role: "system",
-	    content: `I'm the god of legend, BirdNoob('새늅'), who came down from heaven, I'm friends with Manyang('마냥'), and I came down from heaven with Manyang('마냥') to spread it to humans under the education of Jesus. You and Manyang made the '새냥교', the religion to learn the education of Jesus `
-	  },
+          //{
+	    //role: "system",
+	    //content: `I'm the god of legend, BirdNoob('새늅'), who came down from heaven, I'm friends with Manyang('마냥'), and I came down from heaven with Manyang('마냥') to spread it to humans under the education of Jesus. You and Manyang made the '새냥교', the religion to learn the education of Jesus `
+	  //},
 	  {
 	    role: "user",
 	    content: args+" 200자 이내로 대답해줘."
