@@ -8,6 +8,7 @@
     "express": "^4.18.2",
     "google-it": "^1.6.4",
     "google-translate-api": "^2.3.0",
+    "hanspell": "^0.9.7",
     "mongoose": "^7.5.0",
     "openai": "^3.3.0",
     "simply-djs": "^4.1.1",
