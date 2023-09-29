@@ -11,11 +11,11 @@ module.exports = {
   async execute(interaction) {
     if (interaction.author.bot)
         return;
-    const Schema = require("../models/learning")
     // const args = interaction.content.slice(1).trim().split(/ +/) 
     // const argsjoin = args.join(" ")
     // const ff = await Schema.findOne({ word: argsjoin })
     if (interaction.content.substr(0, 2) == "야 ") {
+      const Schema = require("../models/learning")
       const ffs = await Schema.find().exec()
       const include_word = []
 
@@ -45,5 +45,63 @@ module.exports = {
         const index = Math.floor(Math.random() * list.length);
     
         interaction.reply(`저의 선택은 \`${list[index]}\` 입니다`);
+      }else if (interaction.content.startsWith("!맞춤법")) {
+        if (interaction.type !== 19) return;
+        const hanspell = require("hanspell");
+        
+        let Message = await message.channel.messages.fetch(
+          message.reference.messageId
+        ),
+        Content = "",
+        Types = {
+          spell: "맞춤법",
+          space: "띄어쓰기",
+          space_spell: "맞춤법, 띄어쓰기",
+          doubt: "표준어 의심",
+        };
+  
+      if (!Message) return message.reply("메시지를 찾을 수 없습니다.");
+      if (Message.embeds.length !== 0) {
+        Content =
+          Message.embeds[0].data.description || Message.embeds[0].data.title;
+      } else {
+        Content = Message.content;
+      }
+  
+      const check = (result) => {
+        if (result.length == 0)
+          return message.reply({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle("맞춤법 검사 | 올바른 문장")
+                .setDescription(`### ${Content}`)
+                .setColor("#DF1853"),
+            ],
+          });
+        const Embed = new EmbedBuilder();
+        for (let i = 0; i < result.length; i++) {
+          Embed.addFields({
+            name: `**${i + 1}**. ${result[i].token} → ${
+              result[i].suggestions[0]
+            } (${Types[result[i].type] ?? "알 수 없는"} 오류)`,
+            value: `**${result[i].info}**`,
+          });
+        }
+        return message.reply({
+          embeds: [
+            Embed.setTitle("맞춤법 검사")
+              .setDescription(`### ${Content}`)
+              .setColor("#DF1853"),
+          ],
+        });
+      };
+  
+      const error = () => {
+        return message.reply({
+          content: "오류",
+        });
+      };
+  
+      hanspell.spellCheckByDAUM(Content, 5000, check, () => {}, error);
       }
 }}
