@@ -4,7 +4,7 @@ const heart_Schema = require("../../models/heart");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("호감도")
-    .setDescription("호감도를 확인합니다 새늅봇과 호감도를 쌓으면..?")
+    .setDescription("호감도를 확인합니다 새늅봇과 호감도를 쌓으면 좋은일이 일어날지도..?")
     .addUserOption((f) =>
       f.setName("유저").setDescription("유저를 선택해주세요").setRequired(false)
     ),
