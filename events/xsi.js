@@ -36,7 +36,7 @@ module.exports = {
           interaction.channel.send(`**${meaning}** (<@${randomword.userid}>]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
         }
         }
-      }else if(interaction.content.startsWith("!골라")) {
+      }else if(interaction.content.startsWith("!고르기") || interaction.content.startsWith("!선택")) {
         const args = interaction.content.slice("!".length).trim().split(/ +/),
           list = args.slice(1);
     
