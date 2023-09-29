@@ -252,9 +252,9 @@ module.exports = {
                 })
                 return
             }
-
+            var value2 = args2
             if (stock_find.value - args2 < 0) {
-                args2 = stock_find.value
+                value2 = stock_find.value
             }
     
             let soondeleteitem = []
@@ -264,8 +264,8 @@ module.exports = {
             for (let i = 0; i < length; i++){
                 if (gambling_find.hashtags[i].name == args) {
                     isitem = i
-                    if (gambling_find.hashtags[i].value - args2 >= 0) {
-                        soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value - args2})
+                    if (gambling_find.hashtags[i].value - value2 >= 0) {
+                        soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value - value2})
                     }
                 }else{
                     soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value})
@@ -285,7 +285,7 @@ module.exports = {
 
             await money_Schema.updateOne(
                 {userid:interaction.user.id},
-                {money:money_find.money + stock_find.money * args2}
+                {money:money_find.money + stock_find.money * value2}
             )
     
             console.log(soondeleteitem)
