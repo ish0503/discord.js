@@ -48,9 +48,9 @@ module.exports = {
       }else if (interaction.content.startsWith("!맞춤법")) {
         if (interaction.type !== 19) return;
         const hanspell = require("hanspell");
-        
-        let Message = await message.channel.messages.fetch(
-          message.reference.messageId
+
+        let Message = await interaction.channel.messages.fetch(
+          interaction.reference.messageId
         ),
         Content = "",
         Types = {
@@ -60,7 +60,7 @@ module.exports = {
           doubt: "표준어 의심",
         };
   
-      if (!Message) return message.reply("메시지를 찾을 수 없습니다.");
+      if (!Message) return interaction.reply("메시지를 찾을 수 없습니다.");
       if (Message.embeds.length !== 0) {
         Content =
           Message.embeds[0].data.description || Message.embeds[0].data.title;
@@ -70,7 +70,7 @@ module.exports = {
   
       const check = (result) => {
         if (result.length == 0)
-          return message.reply({
+          return interaction.reply({
             embeds: [
               new EmbedBuilder()
                 .setTitle("맞춤법 검사 | 올바른 문장")
@@ -87,7 +87,7 @@ module.exports = {
             value: `**${result[i].info}**`,
           });
         }
-        return message.reply({
+        return interaction.reply({
           embeds: [
             Embed.setTitle("맞춤법 검사")
               .setDescription(`### ${Content}`)
@@ -97,7 +97,7 @@ module.exports = {
       };
   
       const error = () => {
-        return message.reply({
+        return interaction.reply({
           content: "오류",
         });
       };
