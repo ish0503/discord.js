@@ -12,7 +12,7 @@ module.exports = {
      * 
      */
     async execute(interaction) {
-        var channel = `1148907220889780225`
+        var channel = `1157256146227310632`
         if (interaction.channel.id == channel) {
             const embed = new EmbedBuilder()
             .setTitle('숫자맞추기')
@@ -67,7 +67,7 @@ module.exports = {
         }else{
             const embed = new EmbedBuilder()
             .setTitle('오류')
-            .setDescription('해당 명령어는 새냥교 서버의 봇 채널에서만 가능합니다.\n새냥교 서버에서 써주세요. (사이트 : /정보)')
+            .setDescription('해당 명령어는 새늅봇 서버의 봇 서버에서만 가능합니다.\n새늅봇 서버에서 써주세요.')
             .setColor('964242')
             interaction.reply({embeds: [embed], ephemeral: true});
         }
