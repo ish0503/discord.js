@@ -1,59 +1,49 @@
 const client = require("../index")
+const { Events } = require("discord.js");
 
 module.exports = {
-  name: "messageCreate",
+  name: Events.MessageCreate,
   once: false,
+  /**
+     * 
+     * @param {import("discord.js").Message} interaction
+     */
   async execute(interaction) {
+    if (interaction.author.bot)
+        return;
     const Schema = require("../models/learning")
-    const args = interaction.content.slice(1).trim().split(/ +/) 
-    const argsjoin = args.join(" ")
-    const ff = await Schema.findOne({ word: argsjoin })
-    if (ff && interaction.content.substr(0, 1) == "야") {
-      const meaning = ff.meaning
-      //let user = userid//interaction.member
-      if (!ff.userid) userid = "0"
-      const username = client.users.cache.get(ff.userid);
-      if (username){
-        interaction.channel.send(`**${meaning}** (${username.username}[${username.globalName}]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
-      }else{
-        interaction.channel.send(`**${meaning}** (<@${ff.userid}>]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
+    // const args = interaction.content.slice(1).trim().split(/ +/) 
+    // const argsjoin = args.join(" ")
+    // const ff = await Schema.findOne({ word: argsjoin })
+    if (interaction.content.substr(0, 1) == "야") {
+      const ffs = await Schema.find().exec()
+      const include_word = []
+
+      for (let i = 0; i < ffs.length; i++){
+        if (interaction.content.includes(ffs[i].word)){
+          include_word.push(ffs[i])
+        }
       }
-      
-      //interaction.channel.recipientId(`\`${ff.meaning}``\n${user.tag || user}님이 알려주셨어요 !`)
+
+      if (include_word.length > 0){
+        const randomword = include_word[Math.floor(Math.random() * include_word.length)]
+        const meaning = randomword.meaning
+        if (!meaning.userid) userid = "0"
+        const username = client.users.cache.get(ff.userid);
+        if (username){
+          interaction.channel.send(`**${meaning.meaning}** (${username.username}[${username.globalName}]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
+        }else{
+          interaction.channel.send(`**${meaning.meaning}** (<@${meaning.userid}>]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
+        }
+        }
       }else if(interaction.content.startsWith("!골라")) {
-    const args = interaction.content.slice("!".length).trim().split(/ +/),
-      list = args.slice(1);
-
-    if (!list.length) return interaction.reply("선택지를 입력해주세요!");
-
-    const index = Math.floor(Math.random() * list.length);
-
-    interaction.reply(`저의 선택은 \`${list[index]}\` 입니다`);
-  } else if (interaction.content === "!한강온도") {
-    const types = ["text", "time", "dgr"],
-      BASE_URL = "https://hangang.ivlis.kr/aapi.php?type=";
-
-    const fetchData = async (type) => {
-      const res = await fetch(BASE_URL + type);
-      const data = await res.text();
-      return data;
-    };
-
-    const [text, time, dgr] = await Promise.all(types.map(fetchData));
-
-    return interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("한강 온도")
-          .setDescription(`# ${dgr}\n### ${text}`)
-          .setAuthor({
-            name: time,
-            iconURL: client.user.avatarURL(),
-          })
-          .setFooter({
-            text: "생명은 소중하며, 당신은 사랑과 지지를 받을 **가치**가 있습니다. (데이터: hangang.ivlis.kr)",
-          }),
-      ],
-    });
-  }
+        const args = interaction.content.slice("!".length).trim().split(/ +/),
+          list = args.slice(1);
+    
+        if (!list.length) return interaction.reply("선택지를 입력해주세요!");
+    
+        const index = Math.floor(Math.random() * list.length);
+    
+        interaction.reply(`저의 선택은 \`${list[index]}\` 입니다`);
+      }
 }}
