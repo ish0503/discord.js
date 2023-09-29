@@ -4,7 +4,7 @@ const gambling_Schema = require("../../models/Money")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("돈확인")
-    .setDescription("자비로운 새냥신께서 주신 당신의 돈의 총액을 확인할 수 있습니다."),
+    .setDescription("당신의 돈의 총액을 확인할 수 있습니다."),
 
     /**
      * 
