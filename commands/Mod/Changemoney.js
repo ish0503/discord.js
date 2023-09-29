@@ -4,7 +4,7 @@ const gambling_Schema = require("../../models/Money")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("돈변경")
-    .setDescription("대교주면 자신의 돈을 변경할수 있습니다.")
+    .setDescription("봇 개발자면 자신의 돈을 변경할수 있습니다.")
     .addIntegerOption((f) =>
         f
         .setName("변경돈")
@@ -17,7 +17,7 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
-      if (!interaction.member.roles.cache.has('1148592261341397083')){
+      if (!interaction.member.roles.cache.has('1157261467746324480')){
         interaction.reply({
                 content: `**어딜 이 명령어를 쓸려고.**`
             })
