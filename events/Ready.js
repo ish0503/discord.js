@@ -43,7 +43,7 @@ module.exports = {
         {money: Math.round((stockone?.money || 10000) * num),
         desc: "껌을 만드는 회사",
         image: "",
-        percent: (num * 100).toFixed(1) - 100,
+        percent: ((num * 100) - 100).toFixed(2),
         },
         {upsert:true},
       );
@@ -53,7 +53,7 @@ module.exports = {
         {money: Math.round((stocktwo?.money || 20000) * num),
         desc: "멸종위기의 새를 보존하는 회사",
         image: "https://cdn.discordapp.com/avatars/929974091614670938/9a03f0b69e612fc46b08e7b06205c396.webp?size=80",
-        percent: (num * 100).toFixed(1) - 100,
+        percent: ((num * 100) - 100).toFixed(2),
         },
         {upsert:true},
       );
@@ -63,7 +63,7 @@ module.exports = {
         {money: Math.round((stockthree?.money || 7000) * num),
         desc: "장미를 유전자 조작하는 회사",
         image: "",
-        percent: (num * 100).toFixed(1) - 100,
+        percent: ((num * 100) - 100).toFixed(2),
         },
         {upsert:true},
       );
@@ -73,7 +73,7 @@ module.exports = {
         {money: Math.round((stockfour?.money || 15000) * num),
         desc: "도토리 따는 회사",
         image: "",
-        percent: (num * 100).toFixed(1) - 100,
+        percent: ((num * 100) - 100).toFixed(2),
         },
         {upsert:true},
       );
