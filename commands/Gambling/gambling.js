@@ -24,7 +24,7 @@ module.exports = {
 
         if (!gambling_find){
             interaction.reply({
-                content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
+                content: `**돈이 없으시군요.. \`/돈\` 명령어로 돈을 받으세요.**`
             })
             return
         }
@@ -45,7 +45,7 @@ module.exports = {
             )
 
             const embed = new EmbedBuilder()
-            .setTitle(`신의 가호에 힘입어 승리하였습니다!`)
+            .setTitle(`당신의 간절함에 힘입어 승리하였습니다!`)
             .setColor("Green")
             .setDescription(`**이길 확률 ${win_standard}% 에서 승리하셨습니다!\n+${bettingGold.toLocaleString()}**`)
 
