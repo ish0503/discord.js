@@ -253,9 +253,6 @@ module.exports = {
                 return
             }
             var value2 = args2
-            if (stock_find.value - args2 < 0) {
-                value2 = stock_find.value
-            }
     
             let soondeleteitem = []
     
@@ -266,6 +263,8 @@ module.exports = {
                     isitem = i
                     if (gambling_find.hashtags[i].value - value2 >= 0) {
                         soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value - value2})
+                    }else {
+                        value2 = gambling_find.hashtags[i].value
                     }
                 }else{
                     soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value})
