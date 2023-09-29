@@ -15,7 +15,7 @@ module.exports = {
     // const args = interaction.content.slice(1).trim().split(/ +/) 
     // const argsjoin = args.join(" ")
     // const ff = await Schema.findOne({ word: argsjoin })
-    if (interaction.content.substr(0, 1) == "야") {
+    if (interaction.content.substr(0, 2) == "야 ") {
       const ffs = await Schema.find().exec()
       const include_word = []
 
@@ -28,12 +28,12 @@ module.exports = {
       if (include_word.length > 0){
         const randomword = include_word[Math.floor(Math.random() * include_word.length)]
         const meaning = randomword.meaning
-        if (!meaning.userid) userid = "0"
-        const username = client.users.cache.get(ff.userid);
+        if (!randomword.userid) userid = "0"
+        const username = client.users.cache.get(randomword.userid);
         if (username){
-          interaction.channel.send(`**${meaning.meaning}** (${username.username}[${username.globalName}]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
+          interaction.channel.send(`**${meaning}** (${username.username}[${username.globalName}]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
         }else{
-          interaction.channel.send(`**${meaning.meaning}** (<@${meaning.userid}>]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
+          interaction.channel.send(`**${meaning}** (<@${randomword.userid}>]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
         }
         }
       }else if(interaction.content.startsWith("!골라")) {
