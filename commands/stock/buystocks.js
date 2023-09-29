@@ -135,7 +135,7 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                     .setDescription(
-                        `**재화를 주고 ${args}가 매수 되었습니다.**`
+                        `**재화를 주고 ${args}이(가) 매수 되었습니다.**`
                     )
                     .setColor("Green");
                 
