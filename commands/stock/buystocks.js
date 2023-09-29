@@ -261,7 +261,7 @@ module.exports = {
             for (let i = 0; i < length; i++){
                 if (gambling_find.hashtags[i].name == args) {
                     isitem = i
-                    if (gambling_find.hashtags[i].value - value2 >= 0) {
+                    if (gambling_find.hashtags[i].value - value2 > 0) {
                         soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value - value2})
                     }else {
                         value2 = gambling_find.hashtags[i].value
