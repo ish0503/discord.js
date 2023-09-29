@@ -14,9 +14,9 @@ module.exports = {
       if (!ff.userid) userid = "0"
       const username = client.users.cache.get(ff.userid);
       if (username){
-        interaction.channel.send(`**${meaning}** (${username.username}[${username.globalName}]님이 알려주셨어요!<:Heart:1151445619215441980>)`)
+        interaction.channel.send(`**${meaning}** (${username.username}[${username.globalName}]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
       }else{
-        interaction.channel.send(`**${meaning}** (<@${ff.userid}>]님이 알려주셨어요!<:Heart:1151445619215441980>)`)
+        interaction.channel.send(`**${meaning}** (<@${ff.userid}>]님이 알려주셨어요!<:Heart:1157259695329906758>)`)
       }
       
       //interaction.channel.recipientId(`\`${ff.meaning}``\n${user.tag || user}님이 알려주셨어요 !`)
