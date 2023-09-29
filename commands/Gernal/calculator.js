@@ -4,7 +4,7 @@ const simplyDjs = require("simply-djs")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("계산기")
-    .setDescription("신은 간단한 계산도 잘합니다."),
+    .setDescription("봇은 간단한 계산도 잘합니다."),
 
     /**
      * 
