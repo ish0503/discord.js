@@ -4,7 +4,7 @@ const gambling_Schema = require("../../models/Money")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("돈")
-    .setDescription("자비로운 새냥신께서는 당신께 돈을 주실 수 있습니다."),
+    .setDescription("이 봇은 공짜로! 당신께 돈을 줄 수 있습니다."),
 
     /**
      * 
@@ -19,7 +19,7 @@ module.exports = {
             const canGiveTime = Number(gambling_find.cooltime) + (5 * 60 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
-                    content: `**자비로운 신께서도 이렇게 빨리 돈을 줄 수는 없답니다.\n<t:${Math.round(
+                    content: `**자비로운 봇도 이렇게 빨리 돈을 줄 수는 없답니다.\n<t:${Math.round(
                         canGiveTime / 1000
                     )}> (<t:${Math.round(canGiveTime / 1000)}:R>)**`,
                 });
@@ -35,9 +35,9 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**💰 자비로운 새냥신이 당신께 드리는 선물입니다. (+ 5000재화.) ${
+                `**💰 봇이 당신께 드리는 선물입니다. (+ 5000재화.) ${
                     (gambling_find?.money || 0) + 5000
-                }재화가 새냥신의 은총 덕분에 당신에게 있습니다.**`
+                }재화가 당신에게 있습니다.**`
             )
             .setColor("Green");
         
