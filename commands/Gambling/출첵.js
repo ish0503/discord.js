@@ -1,5 +1,5 @@
 const { SlashCommandBuilder , EmbedBuilder } = require('discord.js');
-const 도박_Schema = require("../models/출석체크")
+const 도박_Schema = require("../../models/출석체크")
 const gambling_Schema = require("../../models/Money")
 
 module.exports = {
