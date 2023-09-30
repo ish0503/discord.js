@@ -25,9 +25,9 @@ module.exports = {
       if (random <= 59){
         return getRandomArbitrary(90, 115) / 100
       }else if (random >= 60 && random <= 79){
-        return getRandomArbitrary(80, 125) / 100
+        return getRandomArbitrary(80, 120) / 100
       }else if (random >= 80 && random <= 94){
-        return getRandomArbitrary(70, 135) / 100
+        return getRandomArbitrary(70, 130) / 100
       }else if (random >= 95 && random <= 100){
         return getRandomArbitrary(60, 140) / 100
       }
