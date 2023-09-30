@@ -11,6 +11,9 @@ module.exports = {
   async execute(interaction) {
     if (interaction.author.bot)
         return;
+    if(message.channel.id == 1157578614259339264){ 
+        message.react(`:thumbsup:`)
+    }
     // const args = interaction.content.slice(1).trim().split(/ +/) 
     // const argsjoin = args.join(" ")
     // const ff = await Schema.findOne({ word: argsjoin })
