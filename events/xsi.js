@@ -12,6 +12,7 @@ module.exports = {
     if (interaction.author.bot){
       if(interaction.channel.id == 1157578614259339264){ 
         interaction.react(`👍`)
+        interaction.react(`👎`)
       }
       return;
     }
