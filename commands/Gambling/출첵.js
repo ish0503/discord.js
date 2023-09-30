@@ -17,7 +17,6 @@ module.exports = {
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
-        const user = await 도박_Schema.findOne({ userid: interaction.user.id })
         const t = new Date()
         const random = Math.round(Math.random() * (100 * user.count || 0)) + 10000
         const date = "" + t.getFullYear() + (t.getMonth() + 1) + t.getDate()
@@ -29,7 +28,7 @@ module.exports = {
                     })
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
-                        {money: (gambling_find?.money || 0) + random, cooltime: gambling_find?.cooltime || 0},
+                        {money: (gambling_find?.money || 0) + 10000, cooltime: gambling_find?.cooltime || 0},
                         {upsert:true}
                     );
                     const embeds = new EmbedBuilder()
@@ -40,6 +39,7 @@ module.exports = {
                     .setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
                     interaction.editReply({embeds: [embeds]})
                 } else {
+                    const user = await 도박_Schema.findOne({ userid: interaction.user.id })
                     const embedss = new EmbedBuilder()
                     .setTitle("출석 체크 이미 완료. 내일 또 와요 !")
                     .setDescription(`<@${interaction.member.user.id}>님은 이미 출석을 한 상태입니다.`)
