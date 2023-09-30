@@ -10,8 +10,8 @@ module.exports = {
      */
   async execute(interaction) {
     if (interaction.author.bot){
-      if(message.channel.id == 1157578614259339264){ 
-        message.react(`:thumbsup:`)
+      if(interaction.channel.id == 1157578614259339264){ 
+        interaction.react(`:thumbsup:`)
       }
       return;
     }
