@@ -351,11 +351,11 @@ module.exports = {
             .setTitle("주식 정보")
             .setColor("Green")
             .addFields(
-                { name: stockone.name+ `\n` + `설명: ${stockone.desc}, value: start + `\n${(stockone.percent > 0 ? "+" : "-")}주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%)` + end , inline: true },
+                { name: stockone.name+ `\n` + `설명: ${stockone.desc}`, value: start + `\n${(stockone.percent > 0 ? "+" : "-")}주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%)` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stocktwo.name+ `\n` + `설명: ${stocktwo.desc}, value: start + `\n${(stocktwo.percent > 0 ? "+" : "-")}주가: ${stocktwo.money.toLocaleString()} (${(stocktwo.percent > 0 ? "+" : "-")}${Math.abs(stocktwo.percent)}%)` + end , inline: true },
+                { name: stocktwo.name+ `\n` + `설명: ${stocktwo.desc}`, value: start + `\n${(stocktwo.percent > 0 ? "+" : "-")}주가: ${stocktwo.money.toLocaleString()} (${(stocktwo.percent > 0 ? "+" : "-")}${Math.abs(stocktwo.percent)}%)` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stockthree.name+ `\n` + `설명: ${stockthree.desc}, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%)` + end , inline: true },
+                { name: stockthree.name+ `\n` + `설명: ${stockthree.desc}`, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%)` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
                 { name: stockfour.name+ `\n` + `설명: ${stockfour.desc}`, value: start + `\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%)` + end , inline: true },
             )
