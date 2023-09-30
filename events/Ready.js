@@ -39,6 +39,7 @@ module.exports = {
     let lastupdate = Date.now()
     
     setInterval(async() => {
+      console.log("주식 업데이트 됨")
       lastupdate = Date.now()
       num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
