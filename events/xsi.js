@@ -76,7 +76,7 @@ module.exports = {
               new EmbedBuilder()
                 .setTitle("맞춤법 검사 | 올바른 문장")
                 .setDescription(`### ${Content}`)
-                .setColor("#DF1853"),
+                .setColor("#18df8c"),
             ],
           });
         const Embed = new EmbedBuilder();
