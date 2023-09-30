@@ -313,7 +313,7 @@ module.exports = {
     
             const embed = new EmbedBuilder()
                 .setDescription(
-                    `**${args} ${args2.toLocaleString()}주가 성공적으로 매도되었습니다.\n예상되는 받는돈: ${(stock_find.money * value2).toLocaleString()}\n남은재화: ${(money_find.money + stock_find.money * value2).toLocaleString()}**`
+                    `**${args} ${value2.toLocaleString()}주가 성공적으로 매도되었습니다.\n예상되는 받는돈: ${(stock_find.money * value2).toLocaleString()}\n남은재화: ${(money_find.money + stock_find.money * value2).toLocaleString()}**`
                 )
                 .setColor("Green");
             
