@@ -1,10 +1,10 @@
-const { Client, Collection } = require("discord.js");
+const { Client, Collection, EmbedBuilder } = require("discord.js");
 const stock_Schema = require("../models/stock");
 
 module.exports = {
   name: "ready",
   once: true,
-  execute(client) {
+  async execute(client) {
     let number = 0
     setInterval(() => {
         const list = [`현재 ${client.guilds.cache.size}개의 서버에서 게임`] 
@@ -20,25 +20,25 @@ module.exports = {
       return Math.random() * (max - min) + min;
     }
 
+    var stockone = await stock_Schema.findOne({
+      name: "껌딱지 주식회사"
+    })
+    
+    var stocktwo = await stock_Schema.findOne({
+      name: "새늅 주식회사"
+    })
+    
+    var stockthree= await stock_Schema.findOne({
+      name: "로즈 주식회사"
+    })
+    
+    var stockfour = await stock_Schema.findOne({
+      name: "토리 코퍼레이션"
+    })
+
     let lastupdate = Date.now()
     
     setInterval(async() => {
-          const stockone = await stock_Schema.findOne({
-          name: "껌딱지 주식회사"
-        })
-        
-        const stocktwo = await stock_Schema.findOne({
-          name: "새늅 주식회사"
-        })
-        
-        const stockthree= await stock_Schema.findOne({
-          name: "로즈 주식회사"
-        })
-        
-        const stockfour = await stock_Schema.findOne({
-          name: "토리 코퍼레이션"
-        })
-      console.log("주식 업데이트 됨")
       lastupdate = Date.now()
       num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
@@ -76,6 +76,44 @@ module.exports = {
         },
         {upsert:true},
       );
+
+      stockone = await stock_Schema.findOne({
+        name: "껌딱지 주식회사"
+      })
+      
+      stocktwo = await stock_Schema.findOne({
+        name: "새늅 주식회사"
+      })
+      
+      stockthree= await stock_Schema.findOne({
+        name: "로즈 주식회사"
+      })
+      
+      stockfour = await stock_Schema.findOne({
+        name: "토리 코퍼레이션"
+      })
+
+    var start = "```diff"
+    var end = "```"
+
+    console.log(start + `\n` + `설명: ${stockone.desc}\n주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%)` + end)
+    const embed = new EmbedBuilder()
+    .setTitle("주식 정보")
+    .setColor("Green")
+    .addFields(
+        { name: stockone.name+ `\n` + `설명: ${stockone.desc}`, value: start + `\n${(stockone.percent > 0 ? "+" : "-")}주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%)` + end , inline: true },
+        { name: '\u200B', value: '\u200B' },
+        { name: stocktwo.name+ `\n` + `설명: ${stocktwo.desc}`, value: start + `\n${(stocktwo.percent > 0 ? "+" : "-")}주가: ${stocktwo.money.toLocaleString()} (${(stocktwo.percent > 0 ? "+" : "-")}${Math.abs(stocktwo.percent)}%)` + end , inline: true },
+        { name: '\u200B', value: '\u200B' },
+        { name: stockthree.name+ `\n` + `설명: ${stockthree.desc}`, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%)` + end , inline: true },
+        { name: '\u200B', value: '\u200B' },
+        { name: stockfour.name+ `\n` + `설명: ${stockfour.desc}`, value: start + `\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%)` + end , inline: true },
+    )
+
+    //const chan = client.channels.cache.get("1157578614259339264");
+    const channel = client.channels.fetch("1157578614259339264").then(res => {
+        res.send({embeds: [embed]})
+    });
     }, 300000);
   },
 };
