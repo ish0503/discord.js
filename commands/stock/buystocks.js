@@ -318,6 +318,10 @@ module.exports = {
                 .setColor("Green");
             
             interaction.reply({embeds: [embed]});
+
+            if (soondeleteitem.length <= 0){
+                gambling_Schema2.findOneAndRemove({userid : gambling_find.userid})
+            }
         }else if (interaction.options.getSubcommand() === "확인") {
             const stockone = await gambling_Schema.findOne({
                 name: "껌딱지 주식회사"
