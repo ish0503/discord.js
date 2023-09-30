@@ -107,8 +107,8 @@ module.exports = {
     
             if (isitem != -1){
                 console.log("아이템 있음")
-                list.push({ "name": args, "value": gambling_find.hashtags[isitem].value + args2 })
-                if (!money_find || money_find.money < stock_find.money * args2){
+                list.push({ "name": args, "value": gambling_find.hashtags[isitem].value + args2, "lastvalue": gambling_find.hashtags[isitem].lastvalue + stock_find.money * args2 })
+                if (money_find.money < stock_find.money * args2){
                     const embed = new EmbedBuilder()
                             .setDescription(
                                 `**돈이 부족합니다.**`
@@ -129,7 +129,8 @@ module.exports = {
                     {$set: {
                        hashtags : list,
                     },
-                     cooltime: Date.now()},
+                     cooltime: Date.now(),
+                    },
                     {upsert:true}
                 );
 
@@ -163,9 +164,10 @@ module.exports = {
                     {userid: interaction.user.id},
                     {$push: {
                        hashtags : 
-                            [{ "name": args, "value": args2 }],
+                            [{ "name": args, "value": args2, "lastvalue": stock_find.money * args2 }],
                     },
-                     cooltime: Date.now()},
+                     cooltime: Date.now(),
+                     },
                     {upsert:true}
                 );
 
@@ -201,15 +203,16 @@ module.exports = {
             {userid: interaction.user.id},
             {$push: {
                hashtags : 
-                    [{ "name": args, "value": args2 }],
+                    [{ "name": args, "value": args2, "lastvalue": stock_find.money * args2 }],
             },
-             cooltime: Date.now()},
+             cooltime: Date.now(),
+            },
             {upsert:true}
         );
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(money_find.money - stock_find.money * args2).toLocaleString()}**`
+                `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(money_find.money - stock_find.money * args2).toLocaleString()}\n마지막 매도 전 이 주식에 투자한 수: ${gambling_find.lastvalue + stock_find.money * args2}**`
             )
             .setColor("Green");
         
@@ -262,12 +265,12 @@ module.exports = {
                 if (gambling_find.hashtags[i].name == args) {
                     isitem = i
                     if (gambling_find.hashtags[i].value - value2 > 0) {
-                        soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value - value2})
+                        soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value - value2, "lastvalue": gambling_find.hashtags[i].lastvalue - gambling_find.hashtags[i].lastvalue * (value2 / gambling_find.hashtags[i].lastvalue)})
                     }else {
                         value2 = gambling_find.hashtags[i].value
                     }
                 }else{
-                    soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value})
+                    soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value, "lastvalue": gambling_find.hashtags[i].lastvalue - gambling_find.hashtags[i].lastvalue * (value2 / gambling_find.hashtags[i].lastvalue)})
                 }
             }
     
@@ -295,7 +298,8 @@ module.exports = {
                     hashtags: soondeleteitem//[{"name": null}]
                         //{ "name": args, "value": 0 },
                 },
-                 cooltime: Date.now()},
+                 cooltime: Date.now(),
+                },
                 {upsert:true}
             );
     
@@ -389,7 +393,7 @@ module.exports = {
                 console.log(item)
                 embed.addFields({
                     name: `${i+1}. ${item.name}`,
-                    value: `**${item.value}주 (${(gambling_find2.money * item.value).toLocaleString()}재화)**`
+                    value: `**${item.value}주 (${(gambling_find2.money * item.value).toLocaleString()}재화)\n(${(((gambling_find2.money * item.value) / (item.lastvalue)) * 100 - 100).toFixed(2)}%)**`
                 })
             }
     
