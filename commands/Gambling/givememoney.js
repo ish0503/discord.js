@@ -35,8 +35,8 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**💰 봇이 당신께 드리는 선물입니다. (+ 5000재화.) ${
-                    (gambling_find?.money || 0) + 5000
+                `**💰 봇이 당신께 드리는 선물입니다. (+ 5,000재화.) ${
+                    ((gambling_find?.money || 0) + 5000).toLocaleString()
                 }재화가 당신에게 있습니다.**`
             )
             .setColor("Green");
