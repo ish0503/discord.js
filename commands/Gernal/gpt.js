@@ -45,7 +45,7 @@ module.exports = {
     .setFooter({ text: `유저 이름 : ${interaction.user.username}(${interaction.user.globalName}), ID: ${interaction.user.id}` })
     .setColor(0xFFFF00)
     .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
-    .setImage('https://cdn.discordapp.com/avatars/989433815539777546/5da15b220fdc3e27072e4c4a9ffa4987.webp?size=256');
+    .setImage('https://cdn.discordapp.com/app-icons/989433815539777546/d7264e8807aa2a210de63aee34365b5a.png?size=256');
 
   interaction.editReply({ embeds: [embed] });
   // }).catch(err => {
