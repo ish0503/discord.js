@@ -9,10 +9,11 @@ module.exports = {
      * @param {import("discord.js").Message} interaction
      */
   async execute(interaction) {
-    if (interaction.author.bot)
-        return;
-    if(message.channel.id == 1157578614259339264){ 
+    if (interaction.author.bot){
+      if(message.channel.id == 1157578614259339264){ 
         message.react(`:thumbsup:`)
+      }
+      return;
     }
     // const args = interaction.content.slice(1).trim().split(/ +/) 
     // const argsjoin = args.join(" ")
