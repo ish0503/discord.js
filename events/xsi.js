@@ -10,10 +10,6 @@ module.exports = {
      */
   async execute(interaction) {
     if (interaction.author.bot){
-      if(interaction.channel.id == 1157578614259339264){ 
-        interaction.react(`👍`)
-        interaction.react(`👎`)
-      }
       return;
     }
     // const args = interaction.content.slice(1).trim().split(/ +/) 
