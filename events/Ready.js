@@ -4,7 +4,7 @@ const stock_Schema = require("../models/stock");
 module.exports = {
   name: "ready",
   once: true,
-  async execute(client) {
+  execute(client) {
     let number = 0
     setInterval(() => {
         const list = [`현재 ${client.guilds.cache.size}개의 서버에서 게임`] 
@@ -20,25 +20,24 @@ module.exports = {
       return Math.random() * (max - min) + min;
     }
 
-    const stockone = await stock_Schema.findOne({
-      name: "껌딱지 주식회사"
-    })
-    
-    const stocktwo = await stock_Schema.findOne({
-      name: "새늅 주식회사"
-    })
-    
-    const stockthree= await stock_Schema.findOne({
-      name: "로즈 주식회사"
-    })
-    
-    const stockfour = await stock_Schema.findOne({
-      name: "토리 코퍼레이션"
-    })
-
     let lastupdate = Date.now()
     
     setInterval(async() => {
+          const stockone = await stock_Schema.findOne({
+          name: "껌딱지 주식회사"
+        })
+        
+        const stocktwo = await stock_Schema.findOne({
+          name: "새늅 주식회사"
+        })
+        
+        const stockthree= await stock_Schema.findOne({
+          name: "로즈 주식회사"
+        })
+        
+        const stockfour = await stock_Schema.findOne({
+          name: "토리 코퍼레이션"
+        })
       console.log("주식 업데이트 됨")
       lastupdate = Date.now()
       num = getRandomArbitrary(50,150) / 100;
