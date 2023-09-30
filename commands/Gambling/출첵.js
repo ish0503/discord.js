@@ -36,8 +36,8 @@ module.exports = {
                     .setDescription(`1번째 <@${interaction.member.user.id}> 출석체크 완료! (+ 10000 재화)`)      
                     .setColor(`#113131`)
                     .setTimestamp()
-                    .setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
-                    interaction.editReply({embeds: [embeds]})
+                    //.setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
+                    interaction.reply({embeds: [embeds]})
                 } else {
                     const random = Math.round(Math.random() * (100 * user.count || 0)) + 10000
                     const embedss = new EmbedBuilder()
@@ -45,8 +45,8 @@ module.exports = {
                     .setDescription(`<@${interaction.member.user.id}>님은 이미 출석을 한 상태입니다.`)
                     .setColor(`#2424242`)
                     .setTimestamp()
-                    .setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
-                    if (user.date == date) return interaction.editReply({embeds: [embedss]})
+                    //.setFooter(`${interaction.member.user}`, interaction.member.user.displayAvatarURL()) 
+                    if (user.date == date) return interaction.reply({embeds: [embedss]})
                     await Schema.findOneAndRemove({ userid: interaction.user.id })
                     await 도박_Schema.updateOne({ 
                         count: parseInt(user.count) + 1, 
@@ -64,7 +64,7 @@ module.exports = {
                     .setColor(`#242422`)
                     .setTimestamp()
                     .setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
-                    interaction.editReply({embeds: [embedsss]})
+                    interaction.reply({embeds: [embedsss]})
                 }
         }
     }
