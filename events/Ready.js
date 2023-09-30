@@ -113,6 +113,12 @@ module.exports = {
     //const chan = client.channels.cache.get("1157578614259339264");
     const channel = client.channels.fetch("1157578614259339264").then(res => {
         res.send({embeds: [embed]})
+        .then(function (message) {
+              message.react("👍")
+              message.react("👎")
+             // message.pin()
+             // message.delete()
+            })
     });
     }, 300000);
   },
