@@ -49,23 +49,6 @@ module.exports = {
       name: "토리 코퍼레이션"
     })
 
-      stock_Schema.updateOne(
-        {name: "새늅 주식회사"},
-        {money: 20000,
-        desc: `멸종위기의 새를 보존하는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
-        percent: 0.00,
-        },
-        {upsert:true},
-      );
-    stock_Schema.updateOne(
-        {name: "껌딱지 주식회사"},
-        {money: 10000,
-        desc: `껌을 만드는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
-        percent: 0.00,
-        },
-        {upsert:true},
-      );
-
     let lastupdate = Date.now()
     
     setInterval(async() => {
