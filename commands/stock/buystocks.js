@@ -135,7 +135,7 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                     .setDescription(
-                        `**재화를 주고 ${args}이(가) 매수 되었습니다.**`
+                        `**${stock_find.money * args2}재화를 주고 ${args} ${args2}주가 매수 되었습니다.\n남은재화: ${money_find.money - stock_find.money * args2}**`
                     )
                     .setColor("Green");
                 
@@ -171,7 +171,7 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                     .setDescription(
-                        `**재화를 주고 ${args}가 매수 되었습니다.**`
+                        `**${stock_find.money * args2}재화를 주고 ${args} ${args2}주가 매수 되었습니다.\n남은재화: ${money_find.money - stock_find.money * args2}**`
                     )
                     .setColor("Green");
                 
@@ -209,7 +209,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**재화를 주고 ${args}가 매수 되었습니다.**`
+                `**${stock_find.money * args2}재화를 주고 ${args} ${args2}주가 매수 되었습니다.\n남은재화: ${money_find.money - stock_find.money * args2}**`
             )
             .setColor("Green");
         
@@ -313,7 +313,7 @@ module.exports = {
     
             const embed = new EmbedBuilder()
                 .setDescription(
-                    `**${args}이(가) 성공적으로 매도되었습니다.**`
+                    `**${args} ${args2}주가 성공적으로 매도되었습니다.\n예상되는 받는돈: ${stock_find.money * value2}\n남은재화: ${money_find.money + stock_find.money * value2}**`
                 )
                 .setColor("Green");
             
