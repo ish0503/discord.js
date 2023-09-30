@@ -33,7 +33,7 @@ module.exports = {
                     );
                     const embeds = new EmbedBuilder()
                     .setTitle("출석체크를 완료했어요.")
-                    .setDescription(`1번째 <@${interaction.member.user.id}> 출석체크 완료! (+ ${random} 재화)`)      
+                    .setDescription(`1번째 <@${interaction.member.user.id}> 출석체크 완료! (+ 10000 재화)`)      
                     .setColor(`#113131`)
                     .setTimestamp()
                     .setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
