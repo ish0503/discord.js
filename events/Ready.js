@@ -50,7 +50,7 @@ module.exports = {
       num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "새늅 주식회사"},
-        {money: Math.round((stocktwo?.money || 20000) * num),
+        {money: Math.round((stocktwo?.money) * num),
         desc: "멸종위기의 새를 보존하는 회사",
         image: "https://cdn.discordapp.com/avatars/929974091614670938/9a03f0b69e612fc46b08e7b06205c396.webp?size=80",
         percent: ((num * 100) - 100).toFixed(2),
@@ -60,7 +60,7 @@ module.exports = {
       num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "로즈 주식회사"},
-        {money: Math.round((stockthree?.money || 7000) * num),
+        {money: Math.round((stockthree?.money) * num),
         desc: "장미를 유전자 조작하는 회사",
         image: "",
         percent: ((num * 100) - 100).toFixed(2),
@@ -70,7 +70,7 @@ module.exports = {
       num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "토리 코퍼레이션"},
-        {money: Math.round((stockfour?.money || 15000) * num),
+        {money: Math.round((stockfour?.money) * num),
         desc: "도토리 따는 회사",
         image: "",
         percent: ((num * 100) - 100).toFixed(2),
