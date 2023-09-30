@@ -343,13 +343,13 @@ module.exports = {
             .setTitle("주식 정보")
             .setColor("Green")
             .addFields(
-                { name: stockone.name, value: `설명: ${stockone.desc}\n주가: ${stockone.money.toLocaleString()} (${stockone.percent}%) \n이미지: ${stockone.image}` , inline: true },
+                { name: stockone.name, value: ```diff\n설명: ${stockone.desc}\n주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0) ? "+"}${stockone.percent}%) \n이미지: ${stockone.image}``` , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stocktwo.name, value: `설명: ${stocktwo.desc}\n주가: ${stocktwo.money.toLocaleString()} (${stocktwo.percent}%) \n이미지: ${stocktwo.image}` , inline: true },
+                { name: stocktwo.name, value: ```diff\n설명: ${stocktwo.desc}\n주가: ${stocktwo.money.toLocaleString()} (${(stockone.percent > 0) ? "+"}${stocktwo.percent}%) \n이미지: ${stocktwo.image}``` , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stockthree.name, value: `설명: ${stockthree.desc}\n주가: ${stockthree.money.toLocaleString()} (${stockthree.percent}%) \n이미지: ${stockthree.image}` , inline: true },
+                { name: stockthree.name, value: ```diff\n설명: ${stockthree.desc}\n주가: ${stockthree.money.toLocaleString()} (${(stockone.percent > 0) ? "+"}${stockthree.percent}%) \n이미지: ${stockthree.image}``` , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stockfour.name, value: `설명: ${stockfour.desc}\n주가: ${stockfour.money.toLocaleString()} (${stockfour.percent}%) \n이미지: ${stockfour.image}` , inline: true },
+                { name: stockfour.name, value: ```diff\n설명: ${stockfour.desc}\n주가: ${stockfour.money.toLocaleString()} (${(stockone.percent > 0) ? "+"}${stockfour.percent}%) \n이미지: ${stockfour.image}``` , inline: true },
             )
     
             interaction.reply({embeds: [embed]})
