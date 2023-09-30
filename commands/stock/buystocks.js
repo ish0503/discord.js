@@ -338,18 +338,22 @@ module.exports = {
               const stockfour = await gambling_Schema.findOne({
                 name: "토리 코퍼레이션"
               })
+
+            var start = "```diff"
+            var end = "```"
     
+            console.log(start + `\n` + `설명: ${stockone.desc}\n주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%)` + end)
             const embed = new EmbedBuilder()
             .setTitle("주식 정보")
             .setColor("Green")
             .addFields(
-                { name: stockone.name, value: ```diff\n설명: ${stockone.desc}\n주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0) ? "+"}${stockone.percent}%) \n이미지: ${stockone.image}``` , inline: true },
+                { name: stockone.name, value: start + `\n` + `설명: ${stockone.desc}\n${(stockone.percent > 0 ? "+" : "-")}주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%)` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stocktwo.name, value: ```diff\n설명: ${stocktwo.desc}\n주가: ${stocktwo.money.toLocaleString()} (${(stockone.percent > 0) ? "+"}${stocktwo.percent}%) \n이미지: ${stocktwo.image}``` , inline: true },
+                { name: stocktwo.name, value: start + `\n` + `설명: ${stocktwo.desc}\n${(stocktwo.percent > 0 ? "+" : "-")}주가: ${stocktwo.money.toLocaleString()} (${(stocktwo.percent > 0 ? "+" : "-")}${Math.abs(stocktwo.percent)}%)` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stockthree.name, value: ```diff\n설명: ${stockthree.desc}\n주가: ${stockthree.money.toLocaleString()} (${(stockone.percent > 0) ? "+"}${stockthree.percent}%) \n이미지: ${stockthree.image}``` , inline: true },
+                { name: stockthree.name, value: start + `\n` + `설명: ${stockthree.desc}\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%)` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stockfour.name, value: ```diff\n설명: ${stockfour.desc}\n주가: ${stockfour.money.toLocaleString()} (${(stockone.percent > 0) ? "+"}${stockfour.percent}%) \n이미지: ${stockfour.image}``` , inline: true },
+                { name: stockfour.name, value: start + `\n` + `설명: ${stockfour.desc}\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%)` + end , inline: true },
             )
     
             interaction.reply({embeds: [embed]})
