@@ -121,7 +121,7 @@ module.exports = {
         
                 await money_Schema.updateOne(
                     {userid:interaction.user.id},
-                    {money:money_find.money - stock_find.money * args2}
+                    {money:Number(money_find.money) - Number(stock_find.money) * args2}
                 )
         
                 await gambling_Schema2.updateOne(
@@ -136,7 +136,7 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                     .setDescription(
-                       `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(money_find.money - stock_find.money * args2).toLocaleString()}**`
+                       `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(Number(money_find.money) - stock_find.money * args2).toLocaleString()}**`
                     )
                     .setColor("Green");
                 
@@ -157,7 +157,7 @@ module.exports = {
         
                 await money_Schema.updateOne(
                     {userid:interaction.user.id},
-                    {money:money_find.money - stock_find.money * args2}
+                    {money:Number(money_find.money) - Number(stock_find.money) * args2}
                 )
         
                 await gambling_Schema2.updateOne(
@@ -173,7 +173,7 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                     .setDescription(
-                        `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(money_find.money - stock_find.money * args2).toLocaleString()}**`
+                        `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(Number(money_find.money) - stock_find.money * args2).toLocaleString()}**`
                     )
                     .setColor("Green");
                 
@@ -196,7 +196,7 @@ module.exports = {
 
         await money_Schema.updateOne(
             {userid:interaction.user.id},
-            {money:money_find.money - stock_find.money * args2}
+            {money:Number(money_find.money) - Number(stock_find.money) * args2}
         )
 
         await gambling_Schema2.updateOne(
@@ -212,7 +212,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(money_find.money - stock_find.money * args2).toLocaleString()}\n마지막 매도 전 이 주식에 투자한 수: ${gambling_find.lastvalue + stock_find.money * args2}**`
+                `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(Number(money_find.money) - stock_find.money * args2).toLocaleString()}\n마지막 매도 전 이 주식에 투자한 수: ${gambling_find.lastvalue + stock_find.money * args2}**`
             )
             .setColor("Green");
         
@@ -286,9 +286,10 @@ module.exports = {
                     return;
             }
 
+            console.log(Number(money_find.money) + ((stock_find.money * value2) - (stock_find.money * value2) * (매도수수료 / 100)))
             await money_Schema.updateOne(
                 {userid:interaction.user.id},
-                {money:money_find.money + ((stock_find.money * value2) - (stock_find.money * value2) * (매도수수료 / 100))}
+                {money:Number(money_find.money) + ((stock_find.money * value2) - (stock_find.money * value2) * (매도수수료 / 100))}
             )
 
             const money_find2 = await money_Schema.findOne({
@@ -298,7 +299,7 @@ module.exports = {
             if (money_find2){
                 await money_Schema.updateOne(
                     {userid:stock_find.owner},
-                    {money:money_find2.money + (stock_find.money * value2) * (매도수수료 / 100)}
+                    {money:Number(money_find2.money) + (stock_find.money * value2) * (매도수수료 / 100)}
                 )
             }
     
@@ -329,7 +330,7 @@ module.exports = {
     
             const embed = new EmbedBuilder()
                 .setDescription(
-                    `**${args} ${value2.toLocaleString()}주가 성공적으로 매도되었습니다.\n예상되는 받는돈: ${(stock_find.money * value2 - (stock_find.money * value2) * (매도수수료 / 100)).toLocaleString()}\n남은재화: ${(money_find.money + stock_find.money * value2 - (stock_find.money * value2) * (매도수수료 / 100)).toLocaleString()}**`
+                    `**${args} ${value2.toLocaleString()}주가 성공적으로 매도되었습니다.\n예상되는 받는돈: ${(stock_find.money * value2 - (stock_find.money * value2) * (매도수수료 / 100)).toLocaleString()}\n남은재화: ${(Number(money_find.money) + stock_find.money * value2 - (stock_find.money * value2) * (매도수수료 / 100)).toLocaleString()}**`
                 )
                 .setColor("Green");
             
@@ -411,7 +412,7 @@ module.exports = {
                 console.log(item)
                 embed.addFields({
                     name: `${i+1}. ${item.name}`,
-                    value: `**${item.value}주 (${(gambling_find2.money * item.value).toLocaleString()}재화)\n(${(((gambling_find2.money * item.value) / (item.lastvalue)) * 100 - 100).toFixed(2)}%)**`
+                    value: `**${item.value}주 (${(gambling_find2.money * item.value).toLocaleString()}재화)\n(${(((Number(gambling_find2.money) * item.value) / (item.lastvalue)) * 100 - 100).toFixed(2)}%)**`
                 })
             }
     
