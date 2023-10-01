@@ -13,7 +13,7 @@ module.exports = {
     async execute(interaction){
         const gambling_find = await gambling_Schema
         .find()
-        .sort([["money","ascending"]])
+        .sort([["money","descending"]])
         .limit(10)
         .exec();
 
