@@ -80,7 +80,7 @@ module.exports = {
         {money: Math.round((stockfour?.money || 15000) * num),
         desc: `도토리 따는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
-        owner: "929974091614670938",
+        owner: "1033699842624589885",
         },
         {upsert:true},
       );
