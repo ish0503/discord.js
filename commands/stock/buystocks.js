@@ -219,6 +219,7 @@ module.exports = {
         interaction.reply({embeds: [embed]});
             
         }else if (interaction.options.getSubcommand() === "매도") {
+            const 매도수수료 = 10
             const args = interaction.options.getString("이름")
             const args2 = interaction.options.getInteger("주")
             const money_find = await money_Schema.findOne({
@@ -287,7 +288,12 @@ module.exports = {
 
             await money_Schema.updateOne(
                 {userid:interaction.user.id},
-                {money:money_find.money + stock_find.money * value2}
+                {money:money_find.money + ((stock_find.money * value2) - (stock_find.money * value2) * (매도수수료 / 100))}
+            )
+
+            await money_Schema.updateOne(
+                {userid:stock_find.owner},
+                {money:money_find.money + (stock_find.money * value2) * (매도수수료 / 100)}
             )
     
             console.log(soondeleteitem)
@@ -343,6 +349,10 @@ module.exports = {
                 name: "토리 코퍼레이션"
               })
 
+              const stockfive = await gambling_Schema.findOne({
+                name: "삼성 주식회사"
+              })
+
             var start = "```diff"
             var end = "```"
     
@@ -358,6 +368,8 @@ module.exports = {
                 { name: stockthree.name+ `\n` + `설명: ${stockthree.desc}`, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%)` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
                 { name: stockfour.name+ `\n` + `설명: ${stockfour.desc}`, value: start + `\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%)` + end , inline: true },
+                { name: '\u200B', value: '\u200B' },
+                { name: stockfive.name+ `\n` + `설명: ${stockfive.desc}`, value: start + `\n${(stockfive.percent > 0 ? "+" : "-")}주가: ${stockfive.money.toLocaleString()} (${(stockfive.percent > 0 ? "+" : "-")}${Math.abs(stockfive.percent)}%)` + end , inline: true },
             )
     
             interaction.reply({embeds: [embed]})
