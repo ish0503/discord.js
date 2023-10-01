@@ -65,7 +65,7 @@ module.exports = {
         );
 
         await gambling_Schema.updateOne(
-            {userid: interaction.user.id},
+            {userid: id},
             {money: (gambling_find?.money || 0) + number, cooltime: gambling_find.cooltime},
             {upsert:true}
         );
