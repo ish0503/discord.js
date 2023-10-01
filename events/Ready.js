@@ -23,13 +23,13 @@ module.exports = {
     function getRandomArbitrary2() {
       const random = Math.random() * 100
       if (random >= 69){
-        getRandomArbitrary(-10, 10)
+        return getRandomArbitrary(90, 110)
       }else if (random <= 70 && random >= 84){
-        getRandomArbitrary(-20, 20)
+        return getRandomArbitrary(80, 120)
       }else if (random <= 85 && random >= 94){
-        getRandomArbitrary(-30, 30)
+        return getRandomArbitrary(70, 130)
       }else if (random <= 95 && random >= 100){
-        getRandomArbitrary(-40, 40)
+        return getRandomArbitrary(60, 140)
       }
     }
 
@@ -57,7 +57,7 @@ module.exports = {
     
     setInterval(async() => {
       lastupdate = Date.now()
-      num = getRandomArbitrary(60,150) / 100;
+      num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "껌딱지 주식회사"},
         {money: Math.round((stockone?.money || 10000) * num),
@@ -67,7 +67,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(60,150) / 100;
+      num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "새늅 주식회사"},
         {money: Math.round((stocktwo?.money || 20000) * num),
@@ -77,7 +77,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(60,150) / 100;
+      num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "로즈 주식회사"},
         {money: Math.round((stockthree?.money || 7000) * num),
@@ -87,7 +87,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(60,150) / 100;
+      num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "토리 코퍼레이션"},
         {money: Math.round((stockfour?.money || 15000) * num),
@@ -97,7 +97,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(60,150) / 100;
+      num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "삼성 주식회사"},
         {money: Math.round((stockfour?.money || 200000) * num),
