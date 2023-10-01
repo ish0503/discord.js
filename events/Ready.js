@@ -24,11 +24,11 @@ module.exports = {
       const random = Math.random() * 100 // 0 ~ 100
       if (random <= 69){
         return getRandomArbitrary(90, 110)
-      }else if (random >= 70 && random <= 84){
+      }else if (random <= 84){
         return getRandomArbitrary(80, 120)
-      }else if (random >= 85 && random <= 94){
+      }else if (random <= 94){
         return getRandomArbitrary(70, 130)
-      }else if (random >= 95 && random <= 100){
+      }else if (random <= 100){
         return getRandomArbitrary(60, 140)
       }
     }
