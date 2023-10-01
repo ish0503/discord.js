@@ -44,7 +44,7 @@ module.exports = {
     
     setInterval(async() => {
       lastupdate = Date.now()
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(60,150) / 100;
       await stock_Schema.updateOne(
         {name: "껌딱지 주식회사"},
         {money: Math.round((stockone?.money || 10000) * num),
@@ -54,7 +54,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(60,150) / 100;
       await stock_Schema.updateOne(
         {name: "새늅 주식회사"},
         {money: Math.round((stocktwo?.money || 20000) * num),
@@ -64,7 +64,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(60,150) / 100;
       await stock_Schema.updateOne(
         {name: "로즈 주식회사"},
         {money: Math.round((stockthree?.money || 7000) * num),
@@ -74,7 +74,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(60,150) / 100;
       await stock_Schema.updateOne(
         {name: "토리 코퍼레이션"},
         {money: Math.round((stockfour?.money || 15000) * num),
@@ -84,7 +84,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(60,150) / 100;
       await stock_Schema.updateOne(
         {name: "삼성 주식회사"},
         {money: Math.round((stockfour?.money || 200000) * num),
