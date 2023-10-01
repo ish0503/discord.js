@@ -20,19 +20,6 @@ module.exports = {
       return Math.random() * (max - min) + min;
     }
 
-    function getRandomArbitrary2() {
-      const random = Math.random() * 100
-      if (random <= 59){
-        return getRandomArbitrary(90, 115) / 100
-      }else if (random >= 60 && random <= 79){
-        return getRandomArbitrary(80, 120) / 100
-      }else if (random >= 80 && random <= 94){
-        return getRandomArbitrary(70, 130) / 100
-      }else if (random >= 95 && random <= 100){
-        return getRandomArbitrary(60, 140) / 100
-      }
-    }
-
     var stockone = await stock_Schema.findOne({
       name: "껌딱지 주식회사"
     })
@@ -49,43 +36,61 @@ module.exports = {
       name: "토리 코퍼레이션"
     })
 
+    var stockfour = await stock_Schema.findOne({
+      name: "삼성 주식회사"
+    })
+
     let lastupdate = Date.now()
     
     setInterval(async() => {
       lastupdate = Date.now()
-      num = getRandomArbitrary2()
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "껌딱지 주식회사"},
         {money: Math.round((stockone?.money || 10000) * num),
         desc: `껌을 만드는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
+        owner: "717687620301357086",
         },
         {upsert:true},
       );
-      num = getRandomArbitrary2()
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "새늅 주식회사"},
         {money: Math.round((stocktwo?.money || 20000) * num),
         desc: `멸종위기의 새를 보존하는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
+        owner: "929974091614670938",
         },
         {upsert:true},
       );
-      num = getRandomArbitrary2()
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "로즈 주식회사"},
         {money: Math.round((stockthree?.money || 7000) * num),
         desc: `장미를 유전자 조작하는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
+        owner: "1038712896328314950",
         },
         {upsert:true},
       );
-      num = getRandomArbitrary2()
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "토리 코퍼레이션"},
         {money: Math.round((stockfour?.money || 15000) * num),
         desc: `도토리 따는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
+        owner: "929974091614670938",
+        },
+        {upsert:true},
+      );
+      num = getRandomArbitrary(50,150) / 100;
+      await stock_Schema.updateOne(
+        {name: "삼성 주식회사"},
+        {money: Math.round((stockfour?.money || 200000) * num),
+        desc: `삼성이지만 주식회사입니다 직원 모집함 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
+        percent: ((num * 100) - 100).toFixed(2),
+        owner: "988733246839853117",
         },
         {upsert:true},
       );
@@ -106,6 +111,10 @@ module.exports = {
         name: "토리 코퍼레이션"
       })
 
+      stockfive = await stock_Schema.findOne({
+        name: "삼성 주식회사"
+      })
+
     var start = "```diff"
     var end = "```"
 
@@ -121,17 +130,13 @@ module.exports = {
         { name: stockthree.name+ `\n` + `설명: ${stockthree.desc}`, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%)` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
         { name: stockfour.name+ `\n` + `설명: ${stockfour.desc}`, value: start + `\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%)` + end , inline: true },
+        { name: '\u200B', value: '\u200B' },
+        { name: stockfive.name+ `\n` + `설명: ${stockfive.desc}`, value: start + `\n${(stockfive.percent > 0 ? "+" : "-")}주가: ${stockfive.money.toLocaleString()} (${(stockfive.percent > 0 ? "+" : "-")}${Math.abs(stockfive.percent)}%)` + end , inline: true },
     )
 
     //const chan = client.channels.cache.get("1157578614259339264");
     const channel = client.channels.fetch("1157578614259339264").then(res => {
         res.send({embeds: [embed]})
-        .then(function (message) {
-              message.react("👍")
-              message.react("👎")
-             // message.pin()
-             // message.delete()
-            })
     });
     }, 300000);
   },
