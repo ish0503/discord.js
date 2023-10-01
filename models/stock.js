@@ -5,6 +5,7 @@ const SchemaG = new Schema({
   desc: String,
   money: Number,
   percent: Number,
+  owner: String,
 })
 
 module.exports = model("stock", SchemaG);
