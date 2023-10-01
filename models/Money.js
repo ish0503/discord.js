@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
-const BigNumberSchema = require('mongoose-bignumber');
+//const BigNumberSchema = require('mongoose-bignumber');
 
 const SchemaF = new Schema({
   userid: String,
-  money: BigNumberSchema,
+  money: Number,
   cooltime: String,
 })
 
