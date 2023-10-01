@@ -13,9 +13,15 @@ module.exports = {
     async execute(interaction){
         const gambling_find = await gambling_Schema
         .find()
-        .sort([["money","descending"]])
+        .sort([["money","ascending"]])
         .limit(10)
         .exec();
+
+        // for (let i = 0; i < gambling_find.length; i++){
+        //     gambling_find[i].money = Number(gambling_find[i].money)
+        // }
+        
+        console.log(gambling_find)
 
         const embed = new EmbedBuilder()
         .setTitle(`${interaction.client.user.username} 재화 순위 💰`)
