@@ -21,11 +21,10 @@ module.exports = {
         const user = await 도박_Schema.findOne({ userid: interaction.user.id })
         const date = "" + t.getFullYear() + (t.getMonth() + 1) + t.getDate()
                 if (!user) {
-                    await 도박_Schema.updateOne({   
-                        count: 1, 
-                        userid: interaction.user.id, 
-                        date: date 
-                    })
+                    await 도박_Schema.updateOne(
+                    {userid: interaction.user.id},
+                    { count: 1, date: date }
+                    )
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {money: (gambling_find?.money || 0) + 10000, cooltime: gambling_find?.cooltime || 0},
@@ -48,9 +47,10 @@ module.exports = {
                     //.setFooter(`${interaction.member.user}`, interaction.member.user.displayAvatarURL()) 
                     if (user.date == date) return interaction.reply({embeds: [embedss]})
                     await Schema.findOneAndRemove({ userid: interaction.user.id })
-                    await 도박_Schema.updateOne({ 
-                        count: parseInt(user.count) + 1, 
-                        userid: interaction.user.id, 
+                    await 도박_Schema.updateOne(
+                        {userid: interaction.user.id },
+                        { 
+                        count: parseInt(user.count) + 1,
                         date: date 
                     })
                     await gambling_Schema.updateOne(
