@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const gambling_Schema = require("../../models/Money")
+const comma = require("comma-number")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -29,14 +30,16 @@ module.exports = {
 
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
-            {money: (gambling_find?.money || 0) + 5000, cooltime: Date.now()},
+            {money: Number(gambling_find?.money || 0) + 5000, cooltime: Date.now()},
             {upsert:true}
         );
 
+        const moneyvalue = Number(gambling_find?.money || 0) + 5000
+
         const embed = new EmbedBuilder()
             .setDescription(
-                `**💰 봇이 당신께 드리는 선물입니다. (+ 5,000재화.) ${
-                    ((gambling_find?.money || 0) + 5000).toLocaleString()
+                `**💰 봇이 당신께 드리는 선물입니다. ${
+                    moneyvalue.toLocaleString()
                 }재화가 당신에게 있습니다.**`
             )
             .setColor("Green");

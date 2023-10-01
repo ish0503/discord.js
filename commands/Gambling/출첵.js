@@ -26,7 +26,7 @@ module.exports = {
                     )
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
-                        {money: (gambling_find?.money || 0) + 20000, cooltime: gambling_find?.cooltime || 0},
+                        {money: Number(gambling_find?.money || 0) + 20000, cooltime: gambling_find?.cooltime || 0},
                         {upsert:true}
                     );
                     const embeds = new EmbedBuilder()
@@ -54,7 +54,7 @@ module.exports = {
                     {upsert:true})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
-                        {money: (gambling_find?.money || 0) + random, cooltime: gambling_find?.cooltime || 0},
+                        {money: Number(gambling_find?.money || 0) + random, cooltime: gambling_find?.cooltime || 0},
                         {upsert:true}
                     );
                     const embedsss = new EmbedBuilder()

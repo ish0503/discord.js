@@ -9,7 +9,7 @@ module.exports = {
         .addSubcommand(subcommand =>
           subcommand
             .setName("뱅커")
-            .setDescription("뱅커 배팅 (1부터 20까지 랜덤으로 뽑아 홀수일때 돈 획득) [ 배당 0.95배 ]")
+            .setDescription("뱅커 배팅 (1부터 20까지 랜덤으로 뽑아 홀수일때 돈 획득) [ 배당 0.9배 ]")
             .addIntegerOption(f => 
               f.setName("배팅액")
               .setDescription("배팅하실 금액을 입력해 주세요")
@@ -72,32 +72,32 @@ module.exports = {
             const random = Math.floor(Math.random() * 20)
 
             if (random == 1 || random == 3 || random == 5 || random == 7 || random == 9 || random == 11 || random == 13 || random == 15 || random == 17 || random == 19){
-                    var moneya = money * 0.95
+                    var moneya = Math.round(money * 0.9)
                     await Schema.findOneAndUpdate({ userid: user.id }, {
-                        money: ehqkrduqn.money + moneya,
+                        money: Number(ehqkrduqn.money) + (moneya),
                         userid: user.id,
                         date: ehqkrduqn.date
                     })
-                    const f = ehqkrduqn.money + moneya
+                    const f = Number(ehqkrduqn.money) + (moneya)
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 뱅커 ]`)
                     .setDescription(`**
-금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
                     .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
                     await interaction.reply({ embeds: [embed] })
             }else{
                 await Schema.findOneAndUpdate({ userid: user.id }, {
-                    money: ehqkrduqn.money - money,
+                    money: Number(ehqkrduqn.money)+(- money),
                     userid: user.id,
                     date: ehqkrduqn.date
                 })
-                const f = ehqkrduqn.money - money
+                const f = Number(ehqkrduqn.money)+(- money)
                 const embed = new (require("discord.js")).EmbedBuilder()
                 .setTitle(`바카라 미적중 [ 배팅 : 뱅커 ]`)
                 .setDescription(`**
-금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
+금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
                 .setColor("Red")
                 .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                 .setFooter({text: `${random} 숫자가 떴습니다.`})
@@ -140,30 +140,30 @@ module.exports = {
             if (random == 2 || random == 4 || random == 6 || random == 8 || random == 10 || random == 12 || random == 14 || random == 16 || random == 18 || random == 20){
                     var moneya = money * 1
                     await Schema.findOneAndUpdate({ userid: user.id }, {
-                        money: ehqkrduqn.money + moneya,
+                        money: Number(ehqkrduqn.money)+(moneya),
                         userid: user.id,
                         date: ehqkrduqn.date
                     })
-                    const f = ehqkrduqn.money + moneya
+                    const f = Number(ehqkrduqn.money)+(moneya)
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 플레이어 ]`)
                     .setDescription(`**
-금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
                     .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
                     await interaction.reply({ embeds: [embed] })
             }else{
                 await Schema.findOneAndUpdate({ userid: user.id }, {
-                    money: ehqkrduqn.money - money,
+                    money: Number(ehqkrduqn.money)+(-money),
                     userid: user.id,
                     date: ehqkrduqn.date
                 })
-                const f = ehqkrduqn.money - money
+                const f = Number(ehqkrduqn.money)+(-money)
                 const embed = new (require("discord.js")).EmbedBuilder()
                 .setTitle(`바카라 미적중 [ 배팅 : 플레이어 ]`)
                 .setDescription(`**
-금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
+금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
                 .setColor("Red")
                 .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                 .setFooter({text: `${random} 숫자가 떴습니다.`})
@@ -206,30 +206,30 @@ module.exports = {
             if (random == 21){
                     var moneya = money * 10
                     await Schema.findOneAndUpdate({ userid: user.id }, {
-                        money: ehqkrduqn.money + moneya,
+                        money: Number(ehqkrduqn.money)+(moneya),
                         userid: user.id,
                         date: ehqkrduqn.date
                     })
-                    const f = ehqkrduqn.money + moneya
+                    const f = Number(ehqkrduqn.money)+(moneya)
                     const embed = new (require("discord.js")).EmbedBuilder()
                     .setTitle(`바카라 적중 [ 배팅 : 타이 ]`)
                     .setDescription(`**
-금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
+금액지급 완료 : +${comma(moneya)}원\n현재잔액 : ${comma(f)}원**`)
                     .setColor("Green")
                     .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                     .setFooter({text: `${random} 숫자가 떴습니다.`})
                     await interaction.reply({ embeds: [embed] })
             }else{
                 await Schema.findOneAndUpdate({ userid: user.id }, {
-                    money: ehqkrduqn.money - money,
+                    money: Number(ehqkrduqn.money)+(-money),
                     userid: user.id,
                     date: ehqkrduqn.date
                 })
-                const f = ehqkrduqn.money - money
+                const f = ehqkrduqn.money.add(-money)
                 const embed = new (require("discord.js")).EmbedBuilder()
                 .setTitle(`바카라 미적중 [ 배팅 : 타이 ]`)
                 .setDescription(`**
-금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
+금액회수 완료 : -${comma(money)}원\n현재잔액 : ${comma(f)}원**`)
                 .setColor("Red")
                 .setThumbnail(interaction.member.user.displayAvatarURL({ dynamic: true }))
                 .setFooter({text: `${random} 숫자가 떴습니다.`})

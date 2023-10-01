@@ -60,13 +60,13 @@ module.exports = {
 
         await gambling_Schema.updateOne(
             {userid: userID},
-            {money: gambling_find2.money - number, cooltime: gambling_find2.cooltime},
+            {money: Number(gambling_find2.money) - number, cooltime: gambling_find2.cooltime},
             {upsert:true}
         );
 
         await gambling_Schema.updateOne(
             {userid: id},
-            {money: (gambling_find?.money || 0) + number, cooltime: gambling_find.cooltime},
+            {money: Number(gambling_find?.money || 0) + number, cooltime: gambling_find.cooltime},
             {upsert:true}
         );
 
