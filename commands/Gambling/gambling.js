@@ -41,7 +41,7 @@ module.exports = {
             //이김
             await gambling_Schema.updateOne(
                 {userid:interaction.user.id},
-                {money:gambling_find.money + bettingGold}
+                {money:Number(gambling_find.money) + bettingGold}
             )
 
             const embed = new EmbedBuilder()
@@ -54,7 +54,7 @@ module.exports = {
             //짐
             await gambling_Schema.updateOne(
                 {userid:interaction.user.id},
-                {money:gambling_find.money - bettingGold}
+                {money:Number(gambling_find.money) - bettingGold}
             )
 
             const embed = new EmbedBuilder()
