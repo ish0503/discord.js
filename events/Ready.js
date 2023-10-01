@@ -44,7 +44,7 @@ module.exports = {
     
     setInterval(async() => {
       lastupdate = Date.now()
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "껌딱지 주식회사"},
         {money: Math.round((stockone?.money || 10000) * num),
@@ -54,7 +54,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "새늅 주식회사"},
         {money: Math.round((stocktwo?.money || 20000) * num),
@@ -64,7 +64,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "로즈 주식회사"},
         {money: Math.round((stockthree?.money || 7000) * num),
@@ -74,7 +74,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "토리 코퍼레이션"},
         {money: Math.round((stockfour?.money || 15000) * num),
@@ -84,7 +84,7 @@ module.exports = {
         },
         {upsert:true},
       );
-      num = getRandomArbitrary(40,150) / 100;
+      num = getRandomArbitrary(50,150) / 100;
       await stock_Schema.updateOne(
         {name: "삼성 주식회사"},
         {money: Math.round((stockfour?.money || 200000) * num),
@@ -123,15 +123,15 @@ module.exports = {
     .setTitle("주식 정보")
     .setColor("Green")
     .addFields(
-        { name: stockone.name+ `\n` + `설명: ${stockone.desc}`, value: start + `\n${(stockone.percent > 0 ? "+" : "-")}주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%)` + end , inline: true },
+        { name: stockone.name+ `(${client.users.fetch(stockone.owner).username})\n` + `설명: ${stockone.desc}`, value: start + `\n${(stockone.percent > 0 ? "+" : "-")}주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%)` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
-        { name: stocktwo.name+ `\n` + `설명: ${stocktwo.desc}`, value: start + `\n${(stocktwo.percent > 0 ? "+" : "-")}주가: ${stocktwo.money.toLocaleString()} (${(stocktwo.percent > 0 ? "+" : "-")}${Math.abs(stocktwo.percent)}%)` + end , inline: true },
+        { name: stocktwo.name+ `(${client.users.fetch(stocktwo.owner).username})\n` + `설명: ${stocktwo.desc}`, value: start + `\n${(stocktwo.percent > 0 ? "+" : "-")}주가: ${stocktwo.money.toLocaleString()} (${(stocktwo.percent > 0 ? "+" : "-")}${Math.abs(stocktwo.percent)}%)` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
-        { name: stockthree.name+ `\n` + `설명: ${stockthree.desc}`, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%)` + end , inline: true },
+        { name: stockthree.name+ `(${client.users.fetch(stockthree.owner).username})\n` + `설명: ${stockthree.desc}`, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%)` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
-        { name: stockfour.name+ `\n` + `설명: ${stockfour.desc}`, value: start + `\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%)` + end , inline: true },
+        { name: stockfour.name+ `(${client.users.fetch(stockfour.owner).username})\n` + `설명: ${stockfour.desc}`, value: start + `\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%)` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
-        { name: stockfive.name+ `\n` + `설명: ${stockfive.desc}`, value: start + `\n${(stockfive.percent > 0 ? "+" : "-")}주가: ${stockfive.money.toLocaleString()} (${(stockfive.percent > 0 ? "+" : "-")}${Math.abs(stockfive.percent)}%)` + end , inline: true },
+        { name: stockfive.name+ `(${client.users.fetch(stockfive.owner).username})\n` + `설명: ${stockfive.desc}`, value: start + `\n${(stockfive.percent > 0 ? "+" : "-")}주가: ${stockfive.money.toLocaleString()} (${(stockfive.percent > 0 ? "+" : "-")}${Math.abs(stockfive.percent)}%)` + end , inline: true },
     )
 
     //const chan = client.channels.cache.get("1157578614259339264");
