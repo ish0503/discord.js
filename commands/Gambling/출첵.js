@@ -23,7 +23,7 @@ module.exports = {
                 if (!user) {
                     await 도박_Schema.updateOne({   
                         count: 1, 
-                        userid: interaction.member.user.id, 
+                        userid: interaction.user.id, 
                         date: date 
                     })
                     await gambling_Schema.updateOne(
@@ -50,7 +50,7 @@ module.exports = {
                     await Schema.findOneAndRemove({ userid: interaction.user.id })
                     await 도박_Schema.updateOne({ 
                         count: parseInt(user.count) + 1, 
-                        userid: interaction.member.user.id, 
+                        userid: interaction.user.id, 
                         date: date 
                     })
                     await gambling_Schema.updateOne(
