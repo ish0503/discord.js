@@ -49,7 +49,7 @@ module.exports = {
       name: "토리 코퍼레이션"
     })
 
-    var stockfour = await stock_Schema.findOne({
+    var stockfive = await stock_Schema.findOne({
       name: "삼성 주식회사"
     })
 
@@ -100,7 +100,7 @@ module.exports = {
       num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "삼성 주식회사"},
-        {money: Math.round((stockfour?.money || 200000) * num),
+        {money: Math.round((stockfive?.money || 200000) * num),
         desc: `삼성이지만 주식회사입니다 직원 모집함 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
         owner: "988733246839853117",
