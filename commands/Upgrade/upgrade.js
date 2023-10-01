@@ -189,7 +189,7 @@ module.exports = {
 
         await money_Schema.updateOne(
             {userid:interaction.user.id},
-            {money:money_find.money - 25000}
+            {money:Number(money_find.money) - 25000}
         )
 
         await gambling_Schema.updateOne(
