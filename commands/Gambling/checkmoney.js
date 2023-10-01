@@ -25,7 +25,7 @@ module.exports = {
         const embed = new EmbedBuilder().setDescription(
             `**${
                 interaction.user
-            }님의 재화는 총 ${gambling_find.money.toLocaleString()}입니다.**`
+            }님의 재화는 총 ${Number(gambling_find.money).toLocaleString()}입니다.**`
         ).setColor("Green")
 
         interaction.reply({embeds: [embed]})
