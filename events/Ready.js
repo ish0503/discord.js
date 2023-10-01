@@ -20,6 +20,19 @@ module.exports = {
       return Math.random() * (max - min) + min;
     }
 
+    function getRandomArbitrary2() {
+      const random = Math.random() * 100
+      if (random >= 69){
+        getRandomArbitrary(-10, 10)
+      }else if (random <= 70 && random >= 84){
+        getRandomArbitrary(-20, 20)
+      }else if (random <= 85 && random >= 94){
+        getRandomArbitrary(-30, 30)
+      }else if (random <= 95 && random >= 100){
+        getRandomArbitrary(-40, 40)
+      }
+    }
+
     var stockone = await stock_Schema.findOne({
       name: "껌딱지 주식회사"
     })
