@@ -37,7 +37,7 @@ module.exports = {
                     //.setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
                     interaction.reply({embeds: [embeds]})
                 } else {
-                    const random = Math.round(Math.random() * (100 * user.count || 0)) + 10000
+                    const random = Math.round(Math.random() * (10000 * user.count || 0)) + 10000
                     //.setFooter(`${interaction.member.user}`, interaction.member.user.displayAvatarURL()) 
                     if (user.date == date){
                         const embedss = new EmbedBuilder()
