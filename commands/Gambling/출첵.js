@@ -38,13 +38,16 @@ module.exports = {
                     interaction.reply({embeds: [embeds]})
                 } else {
                     const random = Math.round(Math.random() * (100 * user.count || 0)) + 10000
-                    const embedss = new EmbedBuilder()
-                    .setTitle("출석 체크 이미 완료. 내일 또 와요 !")
-                    .setDescription(`<@${interaction.member.user.id}>님은 이미 출석을 한 상태입니다.`)
-                    .setColor(`Red`)
-                    .setTimestamp()
                     //.setFooter(`${interaction.member.user}`, interaction.member.user.displayAvatarURL()) 
-                    if (user.date == date) return interaction.reply({embeds: [embedss]})
+                    if (user.date == date){
+                        const embedss = new EmbedBuilder()
+                        .setTitle("출석 체크 이미 완료. 내일 또 와요 !")
+                        .setDescription(`<@${interaction.member.user.id}>님은 이미 출석을 한 상태입니다.`)
+                        .setColor(`Red`)
+                        .setTimestamp()
+                        interaction.reply({embeds: [embedss]})
+                        return
+                    }
                     await _Schema.updateOne(
                         {userid: interaction.user.id },
                         { 
@@ -62,7 +65,7 @@ module.exports = {
                     .setDescription(`${parseInt(user.count) + 1}번째 <@${interaction.member.user.id}> 출석체크 완료! (+ ${random} 재화)`)
                     .setColor(`Green`)
                     .setTimestamp()
-                    .setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
+                    //.setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
                     interaction.reply({embeds: [embedsss]})
                 }
         }
