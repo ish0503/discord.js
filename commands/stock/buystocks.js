@@ -134,6 +134,16 @@ module.exports = {
                     {upsert:true}
                 );
 
+                await gambling_Schema.updateOne(
+                    {name:args},
+                    {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 10000)),
+                    desc: stock_find.desc,
+                    percent: stock_find.percent,
+                    owner: stock_find.owner,
+                    },
+                    {upsert:true},
+                )
+
                 const embed = new EmbedBuilder()
                     .setDescription(
                        `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(Number(money_find.money) - stock_find.money * args2).toLocaleString()}**`
@@ -170,6 +180,16 @@ module.exports = {
                      },
                     {upsert:true}
                 );
+
+                await gambling_Schema.updateOne(
+                    {name:args},
+                    {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 10000)),
+                    desc: stock_find.desc,
+                    percent: stock_find.percent,
+                    owner: stock_find.owner,
+                    },
+                    {upsert:true},
+                )
 
                 const embed = new EmbedBuilder()
                     .setDescription(
@@ -209,6 +229,16 @@ module.exports = {
             },
             {upsert:true}
         );
+
+        await gambling_Schema.updateOne(
+            {name:args},
+            {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 10000)),
+            desc: stock_find.desc,
+            percent: stock_find.percent,
+            owner: stock_find.owner,
+            },
+            {upsert:true},
+        )
 
         const embed = new EmbedBuilder()
             .setDescription(
@@ -315,6 +345,16 @@ module.exports = {
                 },
                 {upsert:true}
             );
+
+            await gambling_Schema.updateOne(
+                {name:args},
+                {money: Math.round(stock_find?.money - stock_find?.money * (args2 / 100000)),
+                desc: stock_find.desc,
+                percent: stock_find.percent,
+                owner: stock_find.owner,
+                },
+                {upsert:true},
+            )
     
             // $push: {
             //     quizzes: {
