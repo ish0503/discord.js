@@ -56,6 +56,26 @@ module.exports = {
     var lastupdate = Date.now()
     
     setInterval(async() => {
+            stockone = await stock_Schema.findOne({
+        name: "껌딱지 주식회사"
+      })
+      
+      stocktwo = await stock_Schema.findOne({
+        name: "새늅 주식회사"
+      })
+      
+      stockthree= await stock_Schema.findOne({
+        name: "로즈 주식회사"
+      })
+      
+      stockfour = await stock_Schema.findOne({
+        name: "토리 코퍼레이션"
+      })
+
+      stockfive = await stock_Schema.findOne({
+        name: "삼성 주식회사"
+      })
+      
       lastupdate = Date.now()
       num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
