@@ -84,15 +84,6 @@ module.exports = {
 
         if (gambling_find){
             console.log("찾음")
-            const canGiveTime = Number(gambling_find.cooltime) + (0.5 * 60 * 1000)
-            if (canGiveTime && canGiveTime > Date.now()){
-                interaction.reply({
-                    content: `**주식 매수/매도 후에는 쿨타임이 있습니다.\n<t:${Math.round(
-                        canGiveTime / 1000
-                    )}> (<t:${Math.round(canGiveTime / 1000)}:R>)**`,
-                });
-                return;
-            }
 
             var list = []
             let length = gambling_find.hashtags.length
@@ -129,7 +120,6 @@ module.exports = {
                     {$set: {
                        hashtags : list,
                     },
-                     cooltime: Date.now(),
                     },
                     {upsert:true}
                 );
@@ -176,7 +166,6 @@ module.exports = {
                        hashtags : 
                             [{ "name": args, "value": args2, "lastvalue": stock_find.money * args2 }],
                     },
-                     cooltime: Date.now(),
                      },
                     {upsert:true}
                 );
@@ -225,7 +214,6 @@ module.exports = {
                hashtags : 
                     [{ "name": args, "value": args2, "lastvalue": stock_find.money * args2 }],
             },
-             cooltime: Date.now(),
             },
             {upsert:true}
         );
@@ -341,7 +329,6 @@ module.exports = {
                     hashtags: soondeleteitem//[{"name": null}]
                         //{ "name": args, "value": 0 },
                 },
-                 cooltime: Date.now(),
                 },
                 {upsert:true}
             );
