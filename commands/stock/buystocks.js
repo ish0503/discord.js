@@ -126,7 +126,7 @@ module.exports = {
 
                 await gambling_Schema.updateOne(
                     {name:args},
-                    {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 10000)),
+                    {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 100000)),
                     desc: stock_find.desc,
                     percent: stock_find.percent,
                     owner: stock_find.owner,
@@ -172,7 +172,7 @@ module.exports = {
 
                 await gambling_Schema.updateOne(
                     {name:args},
-                    {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 10000)),
+                    {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 100000)),
                     desc: stock_find.desc,
                     percent: stock_find.percent,
                     owner: stock_find.owner,
@@ -220,7 +220,7 @@ module.exports = {
 
         await gambling_Schema.updateOne(
             {name:args},
-            {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 10000)),
+            {money: Math.round(stock_find?.money + stock_find?.money * (args2 / 100000)),
             desc: stock_find.desc,
             percent: stock_find.percent,
             owner: stock_find.owner,
@@ -335,7 +335,7 @@ module.exports = {
 
             await gambling_Schema.updateOne(
                 {name:args},
-                {money: Math.round(stock_find?.money - stock_find?.money * (args2 / 100000)),
+                {money: Math.round(stock_find?.money - stock_find?.money * (args2 / 1000000)),
                 desc: stock_find.desc,
                 percent: stock_find.percent,
                 owner: stock_find.owner,
