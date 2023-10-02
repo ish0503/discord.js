@@ -109,6 +109,17 @@ module.exports = {
                             interaction.reply({embeds: [embed]});
                             return;
                 }
+
+                if (stock_find.maxbuy + args2 > stock_find.maxbuy) {
+            const embed = new EmbedBuilder()
+                    .setDescription(
+                        `**살 수 없습니다.**`
+                    )
+                    .setColor("Red");
+                
+                    interaction.reply({embeds: [embed]});
+                    return;
+                }
         
                 await money_Schema.updateOne(
                     {userid:interaction.user.id},
@@ -130,6 +141,7 @@ module.exports = {
                     desc: stock_find.desc,
                     percent: stock_find.percent,
                     owner: stock_find.owner,
+                     maxbuy: stock_find.maxbuy + args2
                     },
                     {upsert:true},
                 )
@@ -154,6 +166,17 @@ module.exports = {
                             interaction.reply({embeds: [embed]});
                             return;
                 }
+
+                if (stock_find.maxbuy + args2 > stock_find.maxbuy) {
+            const embed = new EmbedBuilder()
+                    .setDescription(
+                        `**살 수 없습니다.**`
+                    )
+                    .setColor("Red");
+                
+                    interaction.reply({embeds: [embed]});
+                    return;
+                }
         
                 await money_Schema.updateOne(
                     {userid:interaction.user.id},
@@ -176,6 +199,7 @@ module.exports = {
                     desc: stock_find.desc,
                     percent: stock_find.percent,
                     owner: stock_find.owner,
+                     maxbuy: stock_find.maxbuy + args2
                     },
                     {upsert:true},
                 )
@@ -196,6 +220,17 @@ module.exports = {
             const embed = new EmbedBuilder()
                     .setDescription(
                         `**돈이 부족합니다.**`
+                    )
+                    .setColor("Red");
+                
+                    interaction.reply({embeds: [embed]});
+                    return;
+        }
+
+        if (stock_find.maxbuy + args2 > stock_find.maxbuy) {
+            const embed = new EmbedBuilder()
+                    .setDescription(
+                        `**살 수 없습니다.**`
                     )
                     .setColor("Red");
                 
@@ -224,6 +259,7 @@ module.exports = {
             desc: stock_find.desc,
             percent: stock_find.percent,
             owner: stock_find.owner,
+             maxbuy: stock_find.maxbuy + args2
             },
             {upsert:true},
         )
