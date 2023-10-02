@@ -46,7 +46,7 @@ module.exports = {
     })
     
     var stockfour = await stock_Schema.findOne({
-      name: "토리 코퍼레이션"
+      name: "봇 코퍼레이션"
     })
 
     var stockfive = await stock_Schema.findOne({
@@ -56,7 +56,7 @@ module.exports = {
     var lastupdate = Date.now()
     
     setInterval(async() => {
-            stockone = await stock_Schema.findOne({
+      stockone = await stock_Schema.findOne({
         name: "껌딱지 주식회사"
       })
       
@@ -69,7 +69,7 @@ module.exports = {
       })
       
       stockfour = await stock_Schema.findOne({
-        name: "토리 코퍼레이션"
+        name: "봇 코퍼레이션"
       })
 
       stockfive = await stock_Schema.findOne({
@@ -84,6 +84,7 @@ module.exports = {
         desc: `껌을 만드는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
         owner: "717687620301357086",
+         maxbuy: stockone?.maxbuy,
         },
         {upsert:true},
       );
@@ -95,6 +96,7 @@ module.exports = {
         desc: `멸종위기의 새를 보존하는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
         owner: "929974091614670938",
+         maxbuy: stocktwo?.maxbuy,
         },
         {upsert:true},
       );
@@ -106,17 +108,19 @@ module.exports = {
         desc: `장미를 유전자 조작하는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
         owner: "1038712896328314950",
+         maxbuy: stockthree?.maxbuy,
         },
         {upsert:true},
       );
 
       num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
-        {name: "토리 코퍼레이션"},
+        {name: "봇 코퍼레이션"},
         {money: Math.round((stockfour?.money || 15000) * num),
         desc: `도토리 따는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
         owner: "1033699842624589885",
+         maxbuy: stockfour?.maxbuy,
         },
         {upsert:true},
       );
@@ -128,6 +132,7 @@ module.exports = {
         desc: `삼성이지만 주식회사입니다 직원 모집함 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
         owner: "988733246839853117",
+         maxbuy: stockfive?.maxbuy,
         },
         {upsert:true},
       );
@@ -145,7 +150,7 @@ module.exports = {
       })
       
       stockfour = await stock_Schema.findOne({
-        name: "토리 코퍼레이션"
+        name: "봇 코퍼레이션"
       })
 
       stockfive = await stock_Schema.findOne({
@@ -166,7 +171,7 @@ module.exports = {
         { name: '\u200B', value: '\u200B' },
         { name: stockthree?.name+ `(로즈)\n` + `설명: ${stockthree?.desc}`, value: start + `\n${(stockthree?.percent > 0 ? "+" : "-")}주가: ${stockthree?.money.toLocaleString()} (${(stockthree?.percent > 0 ? "+" : "-")}${Math.abs(stockthree?.percent)}%)` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
-        { name: stockfour?.name+ `(토리)\n` + `설명: ${stockfour?.desc}`, value: start + `\n${(stockfour?.percent > 0 ? "+" : "-")}주가: ${stockfour?.money.toLocaleString()} (${(stockfour?.percent > 0 ? "+" : "-")}${Math.abs(stockfour?.percent)}%)` + end , inline: true },
+        { name: stockfour?.name+ `(봇)\n` + `설명: ${stockfour?.desc}`, value: start + `\n${(stockfour?.percent > 0 ? "+" : "-")}주가: ${stockfour?.money.toLocaleString()} (${(stockfour?.percent > 0 ? "+" : "-")}${Math.abs(stockfour?.percent)}%)` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
         { name: stockfive?.name+ `(늘밤)\n` + `설명: ${stockfive?.desc}`, value: start + `\n${(stockfive?.percent > 0 ? "+" : "-")}주가: ${stockfive?.money.toLocaleString()} (${(stockfive?.percent > 0 ? "+" : "-")}${Math.abs(stockfive?.percent)}%)` + end , inline: true },
     )
