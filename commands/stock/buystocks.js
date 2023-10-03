@@ -48,6 +48,22 @@ module.exports = {
             subcommand
             .setName("보유확인")
             .setDescription("가상 주식 보유한것을 확인할 수 있습니다."),
+            )
+    .addSubcommand(subcommand =>
+            subcommand
+            .setName("발행")
+            .setDescription("주식을 발행할수 있습니다.(회사 소유자만 가능)")
+            .addStringOption(options => options
+                  .setName("이름")
+                  .setDescription("발행할 주식의 이름 입력해주세요.")
+                  .setRequired(true)
+              )
+            .addIntegerOption(options => options
+                .setName("주")
+                .setDescription("주식의 주를 입력해주세요.")
+                .setMinValue(1)
+                .setRequired(true)
+              ),
             ),
     async execute(interaction) {
         if (interaction.options.getSubcommand() === "매수") {
@@ -378,10 +394,11 @@ module.exports = {
 
             await gambling_Schema.updateOne(
                 {name:args},
-                {money: Math.round(stock_find?.money - stock_find?.money * (args2 / (stock_find?.money * 100000))),
+                {money: Math.round(stock_find?.money - stock_find?.money * (value2 / (stock_find?.money * 100000))),
                 desc: stock_find.desc,
                 percent: stock_find.percent,
                 owner: stock_find.owner,
+                 maxbuy: stock_find.maxbuy + value2,
                 },
                 {upsert:true},
             )
@@ -423,7 +440,7 @@ module.exports = {
               })
               
               const stockfour = await gambling_Schema.findOne({
-                name: "토리 코퍼레이션"
+                name: "봇 코퍼레이션"
               })
 
               const stockfive = await gambling_Schema.findOne({
@@ -486,6 +503,36 @@ module.exports = {
                 })
             }
     
+            interaction.reply({embeds: [embed]})
+        }else if (interaction.options.getSubcommand() === "발행") {
+            const args = interaction.options.getString("이름")
+            const args2 = interaction.options.getInteger("주")
+            const stockone = await gambling_Schema.findOne({
+                name: args
+              })
+            if (!stockone || stockone?.owner != interaction.user.id){
+                interaction.reply({
+                    content: `**회사를 찾을수 없습니다. 오타이거나 자신이 보유하지 않은 회사인지 확인하세요.**`
+                })
+                return
+            }
+
+            await gambling_Schema.updateOne(
+                {name:args},
+                {money: stockone.money,
+                desc: stockone.desc,
+                percent: stockone.percent,
+                owner: stockone.owner,
+                 maxbuy: stockone.maxbuy + 1
+                },
+                {upsert:true},
+            )
+
+            const embed = new EmbedBuilder()
+                .setDescription(
+                `**주식이 성공적으로 발행되었습니다. 남은 주식: ${stockone.maxbuy + 1}**`
+            ).setColor("Green")
+
             interaction.reply({embeds: [embed]})
         }
     }
