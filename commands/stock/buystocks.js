@@ -296,7 +296,7 @@ module.exports = {
         interaction.reply({embeds: [embed]});
             
         }else if (interaction.options.getSubcommand() === "매도") {
-            const 매도수수료 = 10
+            const 매도수수료 = 7
             const args = interaction.options.getString("이름")
             const args2 = interaction.options.getInteger("주")
             const money_find = await money_Schema.findOne({
