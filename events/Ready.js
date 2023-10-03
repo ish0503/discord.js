@@ -131,7 +131,7 @@ module.exports = {
         {money: Math.round((stockfive?.money || 200000) * num),
         desc: `삼성이지만 주식회사입니다 직원 모집함 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
         percent: ((num * 100) - 100).toFixed(2),
-        owner: "988733246839853117",
+        owner: "717687620301357086",
          maxbuy: stockfive?.maxbuy || 0,
         },
         {upsert:true},
