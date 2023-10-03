@@ -523,14 +523,14 @@ module.exports = {
                 desc: stockone.desc,
                 percent: stockone.percent,
                 owner: stockone.owner,
-                 maxbuy: stockone.maxbuy + 1
+                 maxbuy: stockone.maxbuy + args2
                 },
                 {upsert:true},
             )
 
             const embed = new EmbedBuilder()
                 .setDescription(
-                `**주식이 성공적으로 발행되었습니다. 남은 주식: ${stockone.maxbuy + 1}**`
+                `**주식이 성공적으로 발행되었습니다. 남은 주식: ${stockone.maxbuy + args2}**`
             ).setColor("Green")
 
             interaction.reply({embeds: [embed]})
