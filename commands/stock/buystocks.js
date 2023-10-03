@@ -133,7 +133,7 @@ module.exports = {
                             return;
                 }
 
-                if (stock_find.maxbuy + args2 > stock_find.maxbuy) {
+                if (args2 > stock_find.maxbuy) {
             const embed = new EmbedBuilder()
                     .setDescription(
                         `**살 수 없습니다.**`
@@ -164,7 +164,7 @@ module.exports = {
                     desc: stock_find.desc,
                     percent: stock_find.percent,
                     owner: stock_find.owner,
-                     maxbuy: stock_find.maxbuy + args2
+                     maxbuy: stock_find.maxbuy - args2
                     },
                     {upsert:true},
                 )
@@ -190,7 +190,7 @@ module.exports = {
                             return;
                 }
 
-                if (stock_find.maxbuy + args2 > stock_find.maxbuy) {
+                if (args2 > stock_find.maxbuy) {
             const embed = new EmbedBuilder()
                     .setDescription(
                         `**살 수 없습니다.**`
@@ -222,7 +222,7 @@ module.exports = {
                     desc: stock_find.desc,
                     percent: stock_find.percent,
                     owner: stock_find.owner,
-                     maxbuy: stock_find.maxbuy + args2
+                     maxbuy: stock_find.maxbuy - args2
                     },
                     {upsert:true},
                 )
@@ -250,7 +250,7 @@ module.exports = {
                     return;
         }
 
-        if (stock_find.maxbuy + args2 > stock_find.maxbuy) {
+        if (args2 > stock_find.maxbuy) {
             const embed = new EmbedBuilder()
                     .setDescription(
                         `**살 수 없습니다.**`
@@ -282,7 +282,7 @@ module.exports = {
             desc: stock_find.desc,
             percent: stock_find.percent,
             owner: stock_find.owner,
-             maxbuy: stock_find.maxbuy + args2
+             maxbuy: stock_find.maxbuy - args2
             },
             {upsert:true},
         )
