@@ -289,7 +289,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(Number(money_find.money) - stock_find.money * args2).toLocaleString()}\n마지막 매도 전 이 주식에 투자한 수: ${gambling_find.lastvalue + stock_find.money * args2}**`
+                `**${(stock_find.money * args2).toLocaleString()}재화를 주고 ${args} ${args2.toLocaleString()}주가 매수 되었습니다.\n남은재화: ${(Number(money_find.money) - stock_find.money * args2).toLocaleString()}**`
             )
             .setColor("Green");
         
