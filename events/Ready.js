@@ -173,7 +173,7 @@ module.exports = {
         { name: '\u200B', value: '\u200B' },
         { name: stockfour?.name+ `(봇)\n` + `설명: ${stockfour?.desc}`, value: start + `\n${(stockfour?.percent > 0 ? "+" : "-")}주가: ${stockfour?.money.toLocaleString()} (${(stockfour?.percent > 0 ? "+" : "-")}${Math.abs(stockfour?.percent)}%)\n 남은 주식: ${stockfour?.maxbuy}` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
-        { name: stockfive?.name+ `(늘밤)\n` + `설명: ${stockfive?.desc}`, value: start + `\n${(stockfive?.percent > 0 ? "+" : "-")}주가: ${stockfive?.money.toLocaleString()} (${(stockfive?.percent > 0 ? "+" : "-")}${Math.abs(stockfive?.percent)}%)\n 남은 주식: ${stockfive?.maxbuy}` + end , inline: true },
+        { name: stockfive?.name+ `(검딱지)\n` + `설명: ${stockfive?.desc}`, value: start + `\n${(stockfive?.percent > 0 ? "+" : "-")}주가: ${stockfive?.money.toLocaleString()} (${(stockfive?.percent > 0 ? "+" : "-")}${Math.abs(stockfive?.percent)}%)\n 남은 주식: ${stockfive?.maxbuy}` + end , inline: true },
     )
 
     //const chan = client.channels.cache.get("1157578614259339264");
