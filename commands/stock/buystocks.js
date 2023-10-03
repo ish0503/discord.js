@@ -455,15 +455,15 @@ module.exports = {
             .setTitle("주식 정보")
             .setColor("Green")
             .addFields(
-                { name: stockone.name+ `(${await interaction.client.users.fetch(stockone.owner).username})\n` + `설명: ${stockone.desc}`, value: start + `\n${(stockone.percent > 0 ? "+" : "-")}주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%) \n주식량: ${stockone.maxbuy}` + end , inline: true },
+                { name: stockone.name+ `(검딱지)\n` + `설명: ${stockone.desc}`, value: start + `\n${(stockone.percent > 0 ? "+" : "-")}주가: ${stockone.money.toLocaleString()} (${(stockone.percent > 0 ? "+" : "-")}${Math.abs(stockone.percent)}%) \n주식량: ${stockone.maxbuy}` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stocktwo.name+ `(${await interaction.client.users.fetch(stocktwo.owner).username})\n` + `설명: ${stocktwo.desc}`, value: start + `\n${(stocktwo.percent > 0 ? "+" : "-")}주가: ${stocktwo.money.toLocaleString()} (${(stocktwo.percent > 0 ? "+" : "-")}${Math.abs(stocktwo.percent)}%) \n주식량: ${stocktwo.maxbuy}` + end , inline: true },
+                { name: stocktwo.name+ `(새늅)\n` + `설명: ${stocktwo.desc}`, value: start + `\n${(stocktwo.percent > 0 ? "+" : "-")}주가: ${stocktwo.money.toLocaleString()} (${(stocktwo.percent > 0 ? "+" : "-")}${Math.abs(stocktwo.percent)}%) \n주식량: ${stocktwo.maxbuy}` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stockthree.name+ `(${await interaction.client.users.fetch(stockthree.owner).username})\n` + `설명: ${stockthree.desc}`, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%) \n주식량: ${stockthree.maxbuy}` + end , inline: true },
+                { name: stockthree.name+ `(로즈)\n` + `설명: ${stockthree.desc}`, value: start + `\n${(stockthree.percent > 0 ? "+" : "-")}주가: ${stockthree.money.toLocaleString()} (${(stockthree.percent > 0 ? "+" : "-")}${Math.abs(stockthree.percent)}%) \n주식량: ${stockthree.maxbuy}` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stockfour.name+ `(${await interaction.client.users.fetch(stockfour.owner).username})\n` + `설명: ${stockfour.desc}`, value: start + `\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%) \n주식량: ${stockfour.maxbuy}` + end , inline: true },
+                { name: stockfour.name+ `(봇)\n` + `설명: ${stockfour.desc}`, value: start + `\n${(stockfour.percent > 0 ? "+" : "-")}주가: ${stockfour.money.toLocaleString()} (${(stockfour.percent > 0 ? "+" : "-")}${Math.abs(stockfour.percent)}%) \n주식량: ${stockfour.maxbuy}` + end , inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: stockfive.name+ `(${await interaction.client.users.fetch(stockfive.owner).username})\n` + `설명: ${stockfive.desc}`, value: start + `\n${(stockfive.percent > 0 ? "+" : "-")}주가: ${stockfive.money.toLocaleString()} (${(stockfive.percent > 0 ? "+" : "-")}${Math.abs(stockfive.percent)}%) \n주식량: ${stockfive.maxbuy}` + end , inline: true },
+                { name: stockfive.name+ `(검딱지)\n` + `설명: ${stockfive.desc}`, value: start + `\n${(stockfive.percent > 0 ? "+" : "-")}주가: ${stockfive.money.toLocaleString()} (${(stockfive.percent > 0 ? "+" : "-")}${Math.abs(stockfive.percent)}%) \n주식량: ${stockfive.maxbuy}` + end , inline: true },
             )
     
             interaction.reply({embeds: [embed]})
