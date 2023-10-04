@@ -539,25 +539,6 @@ module.exports = {
             ).setColor("Green")
 
             interaction.reply({embeds: [embed]})
-        }else if (interaction.options.getSubcommand() === "비밀번호확인") {
-            const money_find = await money_Schema.findOne({
-                userid:interaction.user.id
-            })
-    
-            if (!money_find){
-                interaction.reply({
-                    content: `**돈 데이터이 없으시군요.. \`/돈 또는 /출석\` 명령어로 돈을 만드세요.**`
-                })
-                return
-            }
-    
-            const embed = new EmbedBuilder().setDescription(
-                `**${
-                    interaction.user
-                }님의 비밀번호: ${money_find._id}(남에게 절대 공개하지 마세요.)**`
-            ).setColor("Green")
-    
-            interaction.reply({embeds: [embed], ephemeral: true})
         }
     }
 }
