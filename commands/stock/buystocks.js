@@ -49,6 +49,11 @@ module.exports = {
             .setName("보유확인")
             .setDescription("가상 주식 보유한것을 확인할 수 있습니다."),
             )
+        .addSubcommand(subcommand =>
+            subcommand
+            .setName("비밀번호확인")
+            .setDescription("당신의 데이터의 비밀번호를 알려줍니다 (절대 공유 금지)."),
+            )
     .addSubcommand(subcommand =>
             subcommand
             .setName("발행")
@@ -534,6 +539,25 @@ module.exports = {
             ).setColor("Green")
 
             interaction.reply({embeds: [embed]})
+        }else if (interaction.options.getSubcommand() === "비밀번호확인") {
+            const money_find = await money_Schema.findOne({
+                userid:interaction.user.id
+            })
+    
+            if (!money_find){
+                interaction.reply({
+                    content: `**돈 데이터이 없으시군요.. \`/돈 또는 /출석\` 명령어로 돈을 만드세요.**`
+                })
+                return
+            }
+    
+            const embed = new EmbedBuilder().setDescription(
+                `**${
+                    interaction.user
+                }님의 비밀번호: ${money_find._id}(남에게 절대 공개하지 마세요.)**`
+            ).setColor("Green")
+    
+            interaction.reply({embeds: [embed], ephemeral: true})
         }
     }
 }
