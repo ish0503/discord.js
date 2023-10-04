@@ -394,7 +394,7 @@ module.exports = {
 
             await gambling_Schema.updateOne(
                 {name:args},
-                {money: Math.round(stock_find?.money - (stock_find?.money / 2) * (value2 / (stock_find.maxbuy * 10))),
+                {money: Math.round(stock_find?.money - (stock_find?.money / 2) * (value2 / (stock_find.maxbuy * 10 + value2))),
                 desc: stock_find.desc,
                 percent: stock_find.percent,
                 owner: stock_find.owner,
