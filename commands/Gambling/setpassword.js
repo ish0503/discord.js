@@ -33,7 +33,7 @@ const {
           new TextInputBuilder()
             .setCustomId("ds")
             .setLabel("비밀번호확인")
-            .setStyle(TextInputStyle.Paragraph),
+            .setStyle(TextInputStyle.Short),
         ],
       });
   
@@ -55,12 +55,14 @@ const {
 
         if (!gambling_find){
             interaction.reply({
+                ephemeral: true,
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 돈을 받으세요.**`
             })
             return
         }
   
         if (title_value == ds_value){
+            console.log(title_value)
             await gambling_Schema.updateOne(
                 {userid:interaction.user.id},
                 {password:title_value},
