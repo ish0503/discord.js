@@ -1,7 +1,7 @@
 const client = require("../index")
 const { Events, EmbedBuilder } = require("discord.js");
 
-var profanities = ["지랄", "ㅈㄹ", "ㅅㅂ", "시발", "씨발", "Tl발", "Tlqkf", "tl발", "tlqkf", "병신", "ㅄ", "ㅂㅅ", "쌍", "썅", "ㅅㄲ", "새끼", "toRl"];
+var profanities = ["지랄", "ㅈㄹ", "ㅅㅂ", "시발", "씨발", "Tl발", "Tlqkf", "tl발", "tlqkf", "병신", "ㅄ", "ㅂㅅ", "쌍", "썅", "ㅅㄲ", "새끼", "toRl", "sex", "섹스", "ㅅㅅ", "Sex", "SEx", "SEX"];
 
 module.exports = {
   name: Events.MessageCreate,
