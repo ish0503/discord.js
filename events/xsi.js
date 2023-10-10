@@ -1,6 +1,8 @@
 const client = require("../index")
 const { Events, EmbedBuilder } = require("discord.js");
 
+var profanities = ["지랄", "ㅅㅂ", "시발", "씨발", "Tl발", "Tlqkf", "tl발", "tlqkf", "병신", "ㅄ", "ㅂㅅ", "쌍", "썅", "ㅅㄲ", "새끼", "toRl"];
+
 module.exports = {
   name: Events.MessageCreate,
   once: false,
@@ -15,6 +17,17 @@ module.exports = {
     // const args = interaction.content.slice(1).trim().split(/ +/) 
     // const argsjoin = args.join(" ")
     // const ff = await Schema.findOne({ word: argsjoin })
+    let msg = interaction.content.toLowerCase();
+    for (x = 0; x < profanities.length; x++) {
+        if (msg.includes(profanities[x])){
+            let msg2 = await interaction.reply("여기서 이 단어를 말할 수 없습니다!") 
+              interaction.delete()
+              msg2.delete()
+            // Your code here
+            return;     
+        }
+    }
+    
     if (interaction.content.substr(0, 2) == "야 ") {
       const Schema = require("../models/learning")
       const ffs = await Schema.find().exec()
