@@ -23,13 +23,13 @@ module.exports = {
     function getRandomArbitrary2() {
       const random = Math.random() * 100 // 0 ~ 100
       if (random <= 69){
-        return getRandomArbitrary(90, 110)
+        return getRandomArbitrary(95, 105)
       }else if (random <= 84){
-        return getRandomArbitrary(80, 120)
+        return getRandomArbitrary(90, 110)
       }else if (random <= 94){
-        return getRandomArbitrary(70, 130)
+        return getRandomArbitrary(90, 115)
       }else if (random <= 100){
-        return getRandomArbitrary(60, 140)
+        return getRandomArbitrary(90, 120)
       }
     }
 
