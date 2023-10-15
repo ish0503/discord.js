@@ -21,10 +21,9 @@ module.exports = {
 	await interaction.deferReply();
       try {
         const args = interaction.options.getString("말할것")
-        let args2 = ""
-        translatte(args, {to: "en"}).then(res => {
-            args2 = res.text
-        })
+        const args2 = await translatte(args, {to: "en"})
+
+        console.log(args2)
         //await interaction.deferReply();
 
         const result = await openai.createChatCompletion({
@@ -37,20 +36,20 @@ module.exports = {
       
 	  {
 	    role: "user",
-	    content: args2+" Please answer within 200 characters."
+	    content: args2.text+" Please answer within 200 characters."
 	  }
 	  ],
         // max_tokens: 256, // limit token usage
       })
 	console.log(result.data.usage.total_tokens + "토큰 사용")
-    let result2 = translatte(result.data.choices[0].message.content, {to: "ko"}).then(res => {
-        result2 = res.text
-    })
+    const result2 = await translatte(result.data.choices[0].message.content, {to: "ko"})
+
+    console.log(result2)
 
 	//translate(result.data.choices[0].message.content, {from:'en', to:'ko'}).then(res => {
     const embed = new EmbedBuilder()
     .setTitle(`${args}에 대한 답변`)
-    .setDescription(`**${result2}**`)
+    .setDescription(`**${result2.text}**`)
     .setFooter({ text: `유저 이름 : ${interaction.user.username}(${interaction.user.globalName}), ID: ${interaction.user.id}` })
     .setColor(0xFFFF00)
     .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
