@@ -1,6 +1,6 @@
 const { Configuration, OpenAIApi } = require('openai');
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js')
-//const translate = require('google-translate-api')
+const translatte = require('translatte');
 
 const configuration = new Configuration({
   apiKey: process.env.CHATGPTKEY,
@@ -20,7 +20,11 @@ module.exports = {
     async execute(interaction) {
 	await interaction.deferReply();
       try {
-      const args = interaction.options.getString("말할것")
+        const args = interaction.options.getString("말할것")
+        let args2 = ""
+        translatte(args, {to: "en"}).then(res => {
+            args2 = res.text
+        })
         //await interaction.deferReply();
 
         const result = await openai.createChatCompletion({
@@ -30,18 +34,23 @@ module.exports = {
 	    //role: "system",
 	    //content: `I'm the god of legend, BirdNoob('새늅'), who came down from heaven, I'm friends with Manyang('마냥'), and I came down from heaven with Manyang('마냥') to spread it to humans under the education of Jesus. You and Manyang made the '새냥교', the religion to learn the education of Jesus `
 	  //},
+      
 	  {
 	    role: "user",
-	    content: args+" 200자 이내로 대답해줘."
+	    content: args2+" Please answer within 200 characters."
 	  }
 	  ],
         // max_tokens: 256, // limit token usage
       })
 	console.log(result.data.usage.total_tokens + "토큰 사용")
+    let result2 = translatte(result.data.choices[0].message.content, {to: "ko"}).then(res => {
+        result2 = res.text
+    })
+
 	//translate(result.data.choices[0].message.content, {from:'en', to:'ko'}).then(res => {
     const embed = new EmbedBuilder()
     .setTitle(`${args}에 대한 답변`)
-    .setDescription(`**${result.data.choices[0].message.content}**`)
+    .setDescription(`**${result2}**`)
     .setFooter({ text: `유저 이름 : ${interaction.user.username}(${interaction.user.globalName}), ID: ${interaction.user.id}` })
     .setColor(0xFFFF00)
     .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
