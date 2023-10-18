@@ -25,11 +25,11 @@ module.exports = {
       if (random <= 69){
         return getRandomArbitrary(95, 105)
       }else if (random <= 84){
-        return getRandomArbitrary(90, 110)
+        return getRandomArbitrary(94, 106)
       }else if (random <= 94){
-        return getRandomArbitrary(90, 115)
+        return getRandomArbitrary(93, 107)
       }else if (random <= 100){
-        return getRandomArbitrary(90, 120)
+        return getRandomArbitrary(92, 108)
       }
     }
 
