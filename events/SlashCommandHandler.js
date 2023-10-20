@@ -14,7 +14,7 @@ module.exports = {
     //if (interaction.channel.type == ChannelType.DM) return;
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
-    const gambling_find = await heart_Schema.findOne({
+    const gambling_find = await heart_Sechema.findOne({
             userid:interaction.user.id
         })
     try {
