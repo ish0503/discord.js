@@ -82,7 +82,11 @@ const {
         }
           
         const monster = getRandomMonster();
-        interaction.editReply(`야생의 ${monster.name}을(를) 만났다! (당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
+        if (save.length <= 0){
+            interaction.editReply(`야생의 ${monster.name}을(를) 만났다! (당신의 무기: 맨주먹`);
+        }else{
+            interaction.editReply(`야생의 ${monster.name}을(를) 만났다! (당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
+        }
 
         await wait(5000);
 
