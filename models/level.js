@@ -2,7 +2,8 @@ const { Schema, model } = require("mongoose");
 
 const SchemaF = new Schema({
   userid: String,
-  heart: Number,
+  level: Number,
+  exp: Number,
 })
 
-module.exports = model("Heart", SchemaF);
+module.exports = model("Level", SchemaF);
