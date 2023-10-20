@@ -19,6 +19,7 @@ module.exports = {
 
       await heart_Sechma.updateOne(
         {userid:interaction.user.id}, 
+        {level: }
         {$inc:{exp:1}}, 
         {upsert:true}
       )
