@@ -111,6 +111,9 @@ const { table } = require("node:console");
             if (Math.random() * 100 < 10){
                 interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (${monster.hp - damage * 2}HP)`);
                 monster.hp -= damage * 2;
+            }else if (Math.random() * 100 < 3){
+                interaction.editReply(`당신의 공격이 빗나갔다! 0대미지. (${monster.hp}HP)`);
+                monster.hp -= 0;
             }else{
                 interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. ${damage}대미지! (${monster.hp - damage}HP)`);
                 monster.hp -= damage;
@@ -126,7 +129,7 @@ const { table } = require("node:console");
 
         await wait(1000);
 
-        gambling_Schema.updateOne(
+        await gambling_Schema.updateOne(
             {userid: interaction.user.id},
             {money: Number(gambling_find.money || 0) + monster.reward, cooltime: gambling_find.cooltime},
             {upsert:true}
