@@ -14,7 +14,7 @@ module.exports = {
     }
     let msg = interaction.content.toLowerCase();
     //for (x = 0; x < profanities.length; x++) {
-        if ((msg.includes("ㅄ")) || (msg.includes("시") && msg.includes("발")) || (msg.includes("씨") && msg.includes("발")) || (msg.includes("병") && msg.includes("신")) || (msg.includes("ㅈ")) || (msg.includes("섹") && msg.includes("스")) || (msg.includes("ㅅ")) || (msg.includes("좆")) || (msg.includes("조") && msg.includes("까")) || (msg.includes("븅") && msg.includes("신")) ){
+        if ((msg.includes("ㅄ")) || (msg.includes("ㅗ")) || (msg.includes("시") && msg.includes("발")) || (msg.includes("씨") && msg.includes("발")) || (msg.includes("병") && msg.includes("신")) || (msg.includes("ㅈ")) || (msg.includes("섹") && msg.includes("스")) || (msg.includes("ㅅ")) || (msg.includes("좆")) || (msg.includes("조") && msg.includes("까")) || (msg.includes("븅") && msg.includes("신")) ){
             let msg2 = await interaction.reply("여기서 이 단어를 말할 수 없습니다!") 
               if (interaction && msg2){
                  interaction.delete()
