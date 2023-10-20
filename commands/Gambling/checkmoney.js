@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const gambling_Schema = require("../../models/Money")
+const heart_Sechma = require("../../models/level")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -15,6 +16,10 @@ module.exports = {
             userid:interaction.user.id
         })
 
+        const heart_find = await heart_Sechma({
+            userid:interaction.user.id
+        })
+
         if (!gambling_find){
             interaction.reply({
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 돈을 받으세요.**`
@@ -25,7 +30,8 @@ module.exports = {
         const embed = new EmbedBuilder().setDescription(
             `**${
                 interaction.user
-            }님의 재화는 총 ${Number(gambling_find.money).toLocaleString()}입니다.**`
+            }님의 재화는 총 ${Number(gambling_find.money).toLocaleString()}입니다.**\n
+            lv: ${Number(heart_find.level).toLocaleString()}, xp: ${Number(heart_find.exp).toLocaleString()}`
         ).setColor("Green")
 
         interaction.reply({embeds: [embed]})
