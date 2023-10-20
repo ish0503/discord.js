@@ -5,7 +5,7 @@ const SchemaF = new Schema({
   userid: String,
   money: Number,
   cooltime: String,
-  password: String,
+  //password: String,
 })
 
 module.exports = model("Gambling", SchemaF);
