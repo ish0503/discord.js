@@ -31,7 +31,7 @@ const {
         ];
           
         const monster = getRandomMonster();
-        while (monster.hp <= 0) {
+        while (monster.hp > 0) {
             interaction.channel.send(`당신은 ${monster.name}을(를) 공격합니다.`);
             monster.hp -= 1;
         }
@@ -42,7 +42,7 @@ const {
             {upsert:true}
         );
         
-        interaction.channel.reply(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
+        interaction.reply(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
