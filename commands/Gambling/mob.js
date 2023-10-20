@@ -4,6 +4,7 @@ const {
   } = require("discord.js");
   const gambling_Schema = require("../../models/Money")
   const comma = require("comma-number")
+  const wait = require('node:timers/promises').setTimeout;
   
   module.exports = {
     data: new SlashCommandBuilder()
