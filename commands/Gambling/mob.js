@@ -30,9 +30,11 @@ const {
         }
 
         const monsters = [
-            { name: '새뉴비', hp: 100, reward: 1000 },
-            { name: '껌', hp: 50, reward: 500 },
-            { name: 'ks', hp: 10, reward: 100 },
+            { name: '드래곤', hp: 300, reward: 50000 },
+            { name: '전설의 용사', hp: 200, reward: 10000 },
+            { name: '새뉴비', hp: 100, reward: 5000 },
+            { name: '껌', hp: 50, reward: 2500 },
+            { name: 'ks', hp: 10, reward: 500 },
             { name: '풀', hp: 5, reward: 0 },
         ];
 
