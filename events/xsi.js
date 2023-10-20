@@ -12,13 +12,7 @@ module.exports = {
     if (interaction.author.bot){
       return;
     }
-    // const args = interaction.content.slice(1).trim().split(/ +/) 
-    // const argsjoin = args.join(" ")
-    // const ff = await Schema.findOne({ word: argsjoin })
-    let msg
-    if (interaction){
-     msg = interaction.content.toLowerCase();
-    }
+    let msg = interaction.content.toLowerCase();
     //for (x = 0; x < profanities.length; x++) {
         if ((msg.includes("ㅅ") && msg.includes("ㅂ")) || (msg.includes("시") && msg.includes("발")) || (msg.includes("씨") && msg.includes("발")) || (msg.includes("병") && msg.includes("신")) || (msg.includes("ㅈ")) || (msg.includes("섹") && msg.includes("스")) || (msg.includes("ㅅ") && msg.includes("ㅅ"))){
             let msg2 = await interaction.reply("여기서 이 단어를 말할 수 없습니다!") 
@@ -26,7 +20,6 @@ module.exports = {
                  interaction.delete()
                 msg2.delete()
               }
-            // Your code here
             return;     
         }
    // }
