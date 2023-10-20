@@ -14,6 +14,7 @@ const {
      * @param {import("discord.js").ChatInputCommandInteraction} interaction
      */
     async execute(interaction) {
+        interaction.deferReply()
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
@@ -29,12 +30,17 @@ const {
             { name: '새뉴비', hp: 100, reward: 0 },
             { name: 'ks', hp: 1, reward: 0.1 },
         ];
+
+        const damage = 1
           
         const monster = getRandomMonster();
         while (monster.hp > 0) {
-            interaction.channel.send(`당신은 ${monster.name}을(를) 공격합니다.`);
-            monster.hp -= 1;
+            await wait(1000);
+            interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. ${damage}대미지!`);
+            monster.hp -= damage;
         }
+
+        await wait(1000);
 
         gambling_Schema.updateOne(
             {userid: interaction.user.id},
@@ -42,7 +48,7 @@ const {
             {upsert:true}
         );
         
-        interaction.reply(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
+        interaction.editReply(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
