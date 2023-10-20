@@ -22,7 +22,7 @@ module.exports = {
         {$inc:{exp:1}}, 
         {upsert:true}
       )
-      const gambling_find = await heart_Schema.findOne({
+      const gambling_find = await heart_Sechema.findOne({
             userid:interaction.user.id
         })
       if (gambling_find.exp >= gambling_find.level * 500) {
