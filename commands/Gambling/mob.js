@@ -139,12 +139,12 @@ const { table } = require("node:console");
         
         interaction.channel.send({embeds: [embed]});
 
-            for(var i = 0; i < arr.length; i++){ 
-                if (arr[i] === interaction.user.id) { 
-                  arr.splice(i, 1); 
-                  i--; 
-                }
-              } 
+        for(var i = 0; i < cooldown.length; i++){ 
+            if (cooldown[i] === interaction.user.id) { 
+                cooldown.splice(i, 1); 
+                i--; 
+            }
+        } 
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
