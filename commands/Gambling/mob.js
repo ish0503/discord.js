@@ -120,6 +120,7 @@ const { table } = require("node:console");
             }
             if (i >= 10){
                 interaction.editReply(`오히려 당신이 사냥당했다..`);
+                clear()
                 return
             }
             if (monster.hp <= 0){
@@ -131,7 +132,7 @@ const { table } = require("node:console");
 
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
-            {money: Number(gambling_find.money || 0) + monster.reward, cooltime: gambling_find.cooltime},
+            {money: gambling_find.money + monster.reward, cooltime: gambling_find.cooltime},
             {upsert:true}
         );
 
@@ -144,15 +145,19 @@ const { table } = require("node:console");
         
         interaction.channel.send({embeds: [embed]});
 
-        for(var i = 0; i < cooldown.length; i++){ 
-            if (cooldown[i] === interaction.user.id) { 
-                cooldown.splice(i, 1); 
-                i--; 
-            }
-        } 
+        clear()
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
+        }
+
+        function clear(){
+            for(var i = 0; i < cooldown.length; i++){ 
+                if (cooldown[i] === interaction.user.id) { 
+                    cooldown.splice(i, 1); 
+                    i--; 
+                }
+            } 
         }
     },
   };
