@@ -14,12 +14,15 @@ module.exports = {
     //if (interaction.channel.type == ChannelType.DM) return;
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
+    const gambling_find = await heart_Schema.findOne({
+            userid:interaction.user.id
+        })
     try {
       await command.execute(interaction);
 
       await heart_Sechma.updateOne(
         {userid:interaction.user.id}, 
-        {level: }
+        {level: gambling_find?.level || 1},
         {$inc:{exp:1}}, 
         {upsert:true}
       )
