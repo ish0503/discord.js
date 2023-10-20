@@ -4,8 +4,11 @@ const {
   } = require("discord.js");
   const gambling_Schema = require("../../models/Money")
   const gambling_Schema2 = require("../../models/upgrade")
-  const comma = require("comma-number")
+  const comma = require("comma-number");
+const { table } = require("node:console");
   const wait = require('node:timers/promises').setTimeout;
+
+  var cooldown = []
   
   module.exports = {
     data: new SlashCommandBuilder()
@@ -29,19 +32,14 @@ const {
             return
         }
 
-        const canGiveTime = Number(gambling_find.cooltime) + (20 * 1000)
-        if (canGiveTime && canGiveTime > Date.now()){
-            interaction.reply({
-                content: `**20초의 쿨타임이 있습니다.**`,
-            });
-            return;
+        if (cooldown.find((element) => element == interaction.user.id)){
+            interaction.editReply({
+                content: `**현재 이미 명령어를 실행하고 있습니다.**`
+            })
+            return
         }
 
-        await gambling_Schema.updateOne(
-            {userid: interaction.user.id},
-            {money: gambling_find.money, cooltime: Date.now()},
-            {upsert:true}
-        );
+        cooldown.push(interaction.user.id)
 
         const monsters = [
             { name: '봇', hp: 1000, reward: 100000 },
@@ -140,6 +138,13 @@ const {
             .setColor("Green");
         
         interaction.channel.send({embeds: [embed]});
+
+            for(var i = 0; i < arr.length; i++){ 
+                if (arr[i] === interaction.user.id) { 
+                  arr.splice(i, 1); 
+                  i--; 
+                }
+              } 
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
