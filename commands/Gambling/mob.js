@@ -111,8 +111,15 @@ const {
             {money: Number(gambling_find?.money || 0) + monster.reward, cooltime: gambling_find.cooltime},
             {upsert:true}
         );
+
+        const embed = new EmbedBuilder()
+            .setTitle("사냥 성공")
+            .setDescription(
+                `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`
+            )
+            .setColor("Green");
         
-        interaction.channel.send(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
+        interaction.channel.send({embeds: [embed]});
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
