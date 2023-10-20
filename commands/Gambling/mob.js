@@ -85,7 +85,6 @@ const { table } = require("node:console");
             // a must be equal to b
             return 0;
           });
-         console.log(save)
 
         var damage
 
