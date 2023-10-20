@@ -22,7 +22,18 @@ module.exports = {
         {$inc:{exp:1}}, 
         {upsert:true}
       )
-    } catch (error) {
+      const gambling_find = await heart_Schema.findOne({
+            userid:interaction.user.id
+        })
+      if (gambling_find.exp >= gambling_find.level * 500) {
+        await heart_Sechma.updateOne(
+        {userid:interaction.user.id}, 
+        {exp:gambling_find.exp - gambling_find.level * 500},
+        {$inc:{level:1}}, 
+        {upsert:true}
+      )
+      }
+      } catch (error) {
       console.log(error);
     }
   },
