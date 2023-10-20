@@ -35,9 +35,11 @@ const {
         const damage = 1
           
         const monster = getRandomMonster();
+        interaction.editReply(`야생의 ${monster.name}을(를) 만났다!`);
+
         while (monster.hp > 0) {
             await wait(1000);
-            interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. ${damage}대미지!`);
+            interaction.channel.send(`당신은 ${monster.name}을(를) 공격합니다. ${damage}대미지!`);
             monster.hp -= damage;
         }
 
@@ -49,7 +51,7 @@ const {
             {upsert:true}
         );
         
-        interaction.editReply(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
+        interaction.channel.send(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
