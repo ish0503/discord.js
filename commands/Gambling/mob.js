@@ -26,23 +26,23 @@ const {
         }
 
         const monsters = [
-            { name: '새뉴비', hp: Infinity, reward: 0 },
+            { name: '새뉴비', hp: 100, reward: 0 },
             { name: 'ks', hp: 1, reward: 0.1 },
         ];
           
         const monster = getRandomMonster();
         while (monster.hp <= 0) {
-        interaction.channel.send(`당신은 ${monster.name}을(를) 공격합니다.`);
-        monster.hp -= 1;
+            interaction.channel.send(`당신은 ${monster.name}을(를) 공격합니다.`);
+            monster.hp -= 1;
         }
 
-        await gambling_Schema.updateOne(
+        gambling_Schema.updateOne(
             {userid: interaction.user.id},
             {money: Number(gambling_find?.money || 0) + monster.reward, cooltime: gambling_find.cooltime},
             {upsert:true}
         );
         
-        interaction.channel.send(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
+        interaction.channel.reply(`${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`);
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
