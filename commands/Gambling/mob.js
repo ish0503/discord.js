@@ -29,6 +29,20 @@ const {
             return
         }
 
+        const canGiveTime = Number(gambling_find.cooltime) + (20 * 1000)
+        if (canGiveTime && canGiveTime > Date.now()){
+            interaction.reply({
+                content: `**20초의 쿨타임이 있습니다.**`,
+            });
+            return;
+        }
+
+        await gambling_Schema.updateOne(
+            {userid: interaction.user.id},
+            {money: gambling_find.money, cooltime: Date.now()},
+            {upsert:true}
+        );
+
         const monsters = [
             { name: '봇', hp: 1000, reward: 100000 },
             { name: '드래곤', hp: 500, reward: 50000 },
@@ -114,7 +128,7 @@ const {
 
         gambling_Schema.updateOne(
             {userid: interaction.user.id},
-            {money: Number(gambling_find?.money || 0) + monster.reward, cooltime: gambling_find.cooltime},
+            {money: Number(gambling_find.money || 0) + monster.reward, cooltime: gambling_find.cooltime},
             {upsert:true}
         );
 
