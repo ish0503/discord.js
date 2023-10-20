@@ -42,11 +42,14 @@ const { table } = require("node:console");
         cooldown.push(interaction.user.id)
 
         const monsters = [
+            { name: '죽음', hp: 100000, reward: 10000000 },
             { name: '봇', hp: 1000, reward: 100000 },
             { name: '드래곤', hp: 500, reward: 50000 },
             { name: '전설의 용사', hp: 200, reward: 10000 },
+            { name: '새늅봇', hp: 100, reward: 5000 },
             { name: '새뉴비', hp: 100, reward: 5000 },
             { name: '껌', hp: 50, reward: 2500 },
+            { name: 'lk', hp: 25, reward: 1250 },
             { name: '슬라임', hp: 10, reward: 500 },
             { name: 'ks', hp: 10, reward: 500 },
             { name: '풀', hp: 5, reward: 0 },
