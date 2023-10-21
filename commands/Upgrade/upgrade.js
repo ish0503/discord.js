@@ -413,8 +413,8 @@ module.exports = {
             }
 
             const confirm = new ButtonBuilder()
-			.setCustomId('방어권구매')
-			.setLabel('구매')
+			.setCustomId(`방어권구매${args}`)
+			.setLabel(`구매`)
 			.setStyle(ButtonStyle.Primary);
 
             const cancel = new ButtonBuilder()
