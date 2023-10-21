@@ -94,6 +94,30 @@ const { table } = require("node:console");
                 { name: '황천의 풀', hp: 50, reward: 0, XPreward:10 },
                 { name: '황천의 공기', hp: 10, reward: 0, XPreward:10 },
             ];
+        }else if(level_find?.level > 1000){
+            monsters = [
+                { name: '초월의 죽음', hp: 100000, reward: 10000000, XPreward:40 },
+                { name: '초월의 최강의 슬라임', hp: 5200, reward: 260000, XPreward:36 },
+                { name: '초월의 최강의 새늅봇', hp: 5200, reward: 260000, XPreward: 36 },
+                { name: '초월의 GPT', hp: 4800, reward: 240000, XPreward:32 },
+                { name: '초월의 사이보그', hp: 4000, reward: 200000, XPreward:28 },
+                { name: '초월의 봇', hp: 4000, reward: 200000, XPreward:28 },
+                { name: '초월의 ks', hp: 4000, reward: 100000, XPreward:28 },
+                { name: '초월의 파이어드래곤', hp: 2800, reward: 140000, XPreward:24 },
+                { name: '초월의 워터드래곤', hp: 2400, reward: 120000, XPreward:20 },
+                { name: '초월의 라이트닝드래곤', hp: 2400, reward: 120000, XPreward:20 },
+                { name: '초월의 드래곤', hp: 2000, reward: 100000, XPreward:20 },
+                { name: '초월의 로즈', hp: 1200, reward: 60000, XPreward:16 },
+                { name: '초월의 애기드래곤', hp: 1200, reward: 60000, XPreward:16 },
+                { name: '초월의 전설의 용사', hp: 1000, reward: 20000, XPreward:16 },
+                { name: '초월의 새늅봇', hp: 8000, reward: 10000, XPreward:12 },
+                { name: '초월의 새뉴비', hp: 800, reward: 10000, XPreward:12 },
+                { name: '초월의 껌', hp: 500, reward: 500, XPreward:8 },
+                { name: '초월의 lk', hp: 300, reward: 2500, XPreward:8 },
+                { name: '초월의 슬라임', hp: 200, reward: 1000, XPreward:8 },
+                { name: '초월의 풀', hp: 100, reward: 0, XPreward:4 },
+                { name: '초월의 공기', hp: 50, reward: 0, XPreward:4 },
+            ];
         }else if(level_find?.level > 300){
             monsters = [
                 { name: '초월의 죽음', hp: 100000, reward: 10000000, XPreward:20 },
@@ -212,6 +236,9 @@ const { table } = require("node:console");
             }else if (Math.random() * 100 < 3){
                 interaction.editReply(`당신의 공격이 빗나갔다! 0대미지. (${monster.hp}HP)`);
                 monster.hp -= 0;
+            }else if (Math.random() * 100 < 1){
+                interaction.editReply(`{회심의 일격!} 당신은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! (${monster.hp - damage * 10}HP)`);
+                monster.hp -= damage * 10;
             }else{
                 interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. ${damage}대미지! (${monster.hp - damage}HP)`);
                 monster.hp -= damage;
