@@ -1,6 +1,7 @@
 const { ButtonBuilder, ButtonStyle, ActionRowBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const gambling_Schema = require("../../models/upgrade")
 const money_Schema = require("../../models/Money")
+const level_Sechma = require("../../models/level")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -64,6 +65,9 @@ module.exports = {
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
+        const level_find = await level_Sechma.findOne({
+            userid:interaction.user.id
+        })
 
         if (gambling_find){
             const canGiveTime = Number(gambling_find.cooltime) + (1 * 60 * 1000)
@@ -102,7 +106,7 @@ module.exports = {
         const random_number = Math.round(Math.random() * 10000)
         const random_upgrade = Math.round(Math.random() * 9) + 1 // 1에서 2사이
 
-        if (random_number > gambling_find.hashtags[isitem].value ** 2){
+        if (random_number + level_find?.level || 1 > gambling_find.hashtags[isitem].value ** 2){
             hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
@@ -114,7 +118,7 @@ module.exports = {
     
             const embed = new EmbedBuilder()
                 .setTitle(
-                    `**강화 확률: ${(10000 - (gambling_find.hashtags[isitem].value ** 2)) / 100}%**`
+                    `**강화 확률: ${(10000 - (gambling_find.hashtags[isitem].value ** 2)) / 100 + level_find?.level || 1}%**`
                 )
                 .setDescription(
                     `**강화 성공! 이름: ${args}, 강화 수: ${gambling_find.hashtags[isitem].value} -> ${gambling_find.hashtags[isitem].value + random_upgrade}**`
