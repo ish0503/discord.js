@@ -115,12 +115,14 @@ const { table } = require("node:console");
 
         await wait(5000);
 
-        for (var i = 0; Math.random() * 5 + 5; ++i){
+        const random = Math.random() * 5 + 5
+
+        for (var i = 0; random; ++i){
             await wait(1000);
             if (monster.hp <= 0){
                 break
             }
-            if (i >= 10){
+            if (i >= random){
                 interaction.editReply(`오히려 당신이 사냥당했다..`);
                 clear()
                 return
