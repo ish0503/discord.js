@@ -48,16 +48,6 @@ module.exports = {
             )
         .addSubcommand(subcommand =>
             subcommand
-            .setName("강화")
-            .setDescription("자신만의 아이템을 강화해보세요!")
-            .addStringOption(options => options
-                .setName("이름")
-                .setDescription("아이템의 이름 입력해주세요.")
-                .setRequired(true)
-            ),
-        )
-        .addSubcommand(subcommand =>
-            subcommand
             .setName("방어권구매")
             .setDescription("한번 강화 실패를 막을수 있는 방어막을!")
             .addStringOption(options => options
