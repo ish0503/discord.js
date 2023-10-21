@@ -20,7 +20,7 @@ module.exports = {
         if (!button) return new Error("버튼 코드를 찾을수 없음")
   
         try{
-          if (interaction.customId == '레이드'){
+          if (interaction.customId == '참가'){
             await button.execute(interaction, thread);
           }else{
             await button.execute(interaction);
