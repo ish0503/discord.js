@@ -44,7 +44,12 @@ const { table } = require("node:console");
         const monsters = [
             { name: '죽음', hp: 100000, reward: 10000000 },
             { name: '봇', hp: 1000, reward: 100000 },
+            { name: '파이어드래곤', hp: 700, reward: 70000 },
+            { name: '워터드래곤', hp: 600, reward: 60000 },
+            { name: '라이트닝드래곤', hp: 600, reward: 60000 },
             { name: '드래곤', hp: 500, reward: 50000 },
+            { name: '로즈', hp: 300, reward: 30000 },
+            { name: '애기드래곤', hp: 300, reward: 30000 },
             { name: '전설의 용사', hp: 200, reward: 10000 },
             { name: '새늅봇', hp: 100, reward: 5000 },
             { name: '새뉴비', hp: 100, reward: 5000 },
