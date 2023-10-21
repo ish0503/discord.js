@@ -24,6 +24,7 @@ module.exports = {
             await button.execute(interaction, thread);
           }else{
             await button.execute(interaction);
+            await thread.delete();
           }
         }catch(error){
             console.error(error);
@@ -41,6 +42,7 @@ module.exports = {
       }catch(error){
           console.error(error);
           await interaction.reply({content : "There was an error while executing action"})
+          await thread.delete();
       }
       return;
 
