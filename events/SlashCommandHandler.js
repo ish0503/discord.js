@@ -21,7 +21,7 @@ module.exports = {
   
         try{
           if (interaction.customId == '참가'){
-            await button.execute(interaction, thread);
+            await button.execute(interaction);
           }else{
             await button.execute(interaction);
             await thread.delete();
