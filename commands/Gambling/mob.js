@@ -70,7 +70,7 @@ const { table } = require("node:console");
             { name: '공기', hp: 1, reward: 0, XPreward:1 },
         ];
 
-        if (level_find?.level || 1 > 2000){
+        if (level_find?.level > 2000){
             monsters = [
                 { name: '황천의 죽음', hp: 1000000, reward: 100000000, XPreward:100 },
                 { name: '황천의 최강의 슬라임', hp: 13000, reward: 1300000, XPreward:90 },
@@ -94,7 +94,7 @@ const { table } = require("node:console");
                 { name: '황천의 풀', hp: 50, reward: 0, XPreward:10 },
                 { name: '황천의 공기', hp: 10, reward: 0, XPreward:10 },
             ];
-        }else if(level_find?.level || 1 > 300){
+        }else if(level_find?.level > 300){
             monsters = [
                 { name: '초월의 죽음', hp: 100000, reward: 10000000, XPreward:20 },
                 { name: '초월의 최강의 슬라임', hp: 2600, reward: 260000, XPreward:18 },
@@ -118,7 +118,7 @@ const { table } = require("node:console");
                 { name: '초월의 풀', hp: 10, reward: 0, XPreward:2 },
                 { name: '초월의 공기', hp: 2, reward: 0, XPreward:2 },
             ];
-        }else if(level_find?.level || 1 > 150){
+        }else if(level_find?.level > 150){
             monsters = [
                 { name: '각성의 죽음', hp: 100000, reward: 10000000, XPreward:11 },
                 { name: '각성의 최강의 슬라임', hp: 1800, reward: 160000, XPreward:10 },
