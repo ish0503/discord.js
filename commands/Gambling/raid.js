@@ -59,14 +59,6 @@ const { table } = require("node:console");
 
         interaction.deleteReply()
 
-	
-        const webhooks = await interaction.channel.fetchWebhooks();
-        const webhook = webhooks.first();
-
-        await webhook.send({
-	       content: 'Look ma! I\'m in a thread!',
-	       threadId: thread.id,
-        });
-	
+	await thread.send("레이드가 시작됩니다.")
     },
   };
