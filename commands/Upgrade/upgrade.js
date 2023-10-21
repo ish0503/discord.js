@@ -118,7 +118,7 @@ module.exports = {
     
             const embed = new EmbedBuilder()
                 .setTitle(
-                    `**강화 확률: ${(10000 - (gambling_find.hashtags[isitem].value ** 2)) + (level_find?.level || 1) / 100}%**`
+                    `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100}%**`
                 )
                 .setDescription(
                     `**강화 성공! 이름: ${args}, 강화 수: ${gambling_find.hashtags[isitem].value} -> ${gambling_find.hashtags[isitem].value + random_upgrade}**`
@@ -139,7 +139,7 @@ module.exports = {
                     
             const embed = new EmbedBuilder()
                 .setTitle(
-                    `**강화 확률: ${(10000 - (gambling_find.hashtags[isitem].value ** 2)) / 100}%**`
+                    `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100}%**`
                 )
                 .setDescription(
                     `**강화 실패.. 이름: ${args}, 강화 수: ${gambling_find.hashtags[isitem].value} -> ${gambling_find.hashtags[isitem].value - random_upgrade}**`
