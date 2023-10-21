@@ -163,7 +163,7 @@ const { table } = require("node:console");
         })
         
 
-        if (level_find?.level || 1 * 1000 <= level_find?.exp){
+        if (level_find?.level || 1 * 1000 <= level_find?.exp || 0){
             level_Sechma.updateOne(
                 {userid: interaction.user.id},
                 {level: (level_find?.level || 1) + 1, exp: 0},
