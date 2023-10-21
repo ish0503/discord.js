@@ -39,7 +39,7 @@ const { table } = require("node:console");
             components: [row],
         });
 
-        await wait(1000)
+        await wait(60000)
 
         interaction.channel.send("이제 시작합니다.")
 
