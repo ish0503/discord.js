@@ -14,9 +14,8 @@ module.exports = {
      *
      * @param {import("discord.js").Interaction} interaction
      */
-    async execute(interaction, thread) {
+    async execute(interaction) {
         console.log(interaction.user.id)
-        console.log(thread)
         // if (participate.find(interaction.user.id)) {
         //     interaction.reply({content: '이미 레이드에 참가해있거나 쿨타임 시간입니다.', ephemeral: true}) 
         //     return;
