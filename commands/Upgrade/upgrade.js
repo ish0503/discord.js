@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { ButtonBuilder, ButtonStyle, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const gambling_Schema = require("../../models/upgrade")
 const money_Schema = require("../../models/Money")
 
@@ -45,7 +45,27 @@ module.exports = {
             subcommand
             .setName("순위")
             .setDescription("아이템 강화 횟수로 순위를 봅니다."),
+            )
+        .addSubcommand(subcommand =>
+            subcommand
+            .setName("강화")
+            .setDescription("자신만의 아이템을 강화해보세요!")
+            .addStringOption(options => options
+                .setName("이름")
+                .setDescription("아이템의 이름 입력해주세요.")
+                .setRequired(true)
             ),
+        )
+        .addSubcommand(subcommand =>
+            subcommand
+            .setName("방어권구매")
+            .setDescription("한번 강화 실패를 막을수 있는 방어막을!")
+            .addStringOption(options => options
+                .setName("수량")
+                .setDescription("방어권의 수량을 입력해주세요.")
+                .setRequired(true)
+            ),
+        ),
     async execute(interaction) {
         if (interaction.options.getSubcommand() === "강화") {
             const args = interaction.options.getString("이름")
@@ -96,7 +116,7 @@ module.exports = {
                 {userid: interaction.user.id},
                 {$set:{
                    hashtags : hasitem,
-                cooltime: Date.now()}},
+                cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                 {upsert:true}
             );
     
@@ -111,12 +131,13 @@ module.exports = {
             
             interaction.reply({embeds: [embed]});
         }else{
-            hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value - random_upgrade})
+            if (gambling_find?.defense < 1){
+                hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value - random_upgrade})
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
                 {$set:{
                    hashtags : hasitem,
-                cooltime: Date.now()}},
+                cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                 {upsert:true}
             );
                     
@@ -130,6 +151,18 @@ module.exports = {
                 .setColor("Red");
             
             interaction.reply({embeds: [embed]});
+            }else {
+                const embed = new EmbedBuilder()
+                .setTitle(
+                    `방어`
+                )
+                .setDescription(
+                    `**당신의 방어권으로 아이템이 보존되었습니다. \n남은 방어권: ${gambling_find?.defense}개**`
+                )
+                .setColor("Blue");
+            
+            interaction.reply({embeds: [embed]});
+            }
         }
         }else if (interaction.options.getSubcommand() === "생성") {
         const args = interaction.options.getString("이름")
@@ -198,7 +231,7 @@ module.exports = {
                hashtags : 
                     [{ "name": args, "value": 0 }],
             },
-             cooltime: Date.now()},
+             cooltime: Date.now(), defense: gambling_find?.defense || 0},
             {upsert:true}
         );
 
@@ -256,7 +289,7 @@ module.exports = {
                     hashtags: soondeleteitem//[{"name": null}]
                         //{ "name": args, "value": 0 },
                 },
-                 cooltime: Date.now()},
+                 cooltime: Date.now(), defense: gambling_find?.defense || 0},
                 {upsert:true}
             );
     
@@ -376,6 +409,38 @@ module.exports = {
             }
     
             interaction.reply({embeds : [embed]})
+        }else if (interaction.options.getSubcommand() === "방어권구매") {
+            const args = interaction.options.getInteger("수량")
+            const gambling_find = await gambling_Schema.findOne({
+                userid:interaction.user.id
+            })
+
+            if (!gambling_find){
+                interaction.reply({
+                    content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
+                })
+                return
+            }
+
+            const confirm = new ButtonBuilder()
+			.setCustomId('방어권구매')
+			.setLabel('구매')
+			.setStyle(ButtonStyle.Primary);
+
+            const cancel = new ButtonBuilder()
+                .setCustomId('방어권구매취소')
+                .setLabel('취소')
+                .setStyle(ButtonStyle.Danger);
+
+            const row = new ActionRowBuilder()
+                .addComponents(cancel, confirm);
+
+            await interaction.reply({
+                content: `방어권 ${args} 개를 사시겠습니까? 가격: ${args * 100000}재화`,
+                components: [row],
+            });
+
+            
         }
     }
 }
