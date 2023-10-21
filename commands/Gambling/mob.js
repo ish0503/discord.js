@@ -4,6 +4,7 @@ const {
   } = require("discord.js");
   const gambling_Schema = require("../../models/Money")
   const gambling_Schema2 = require("../../models/upgrade")
+  const level_Sechma = require("../../models/level")
   const comma = require("comma-number");
 const { table } = require("node:console");
   const wait = require('node:timers/promises').setTimeout;
@@ -25,6 +26,10 @@ const { table } = require("node:console");
             userid:interaction.user.id
         })
 
+        const level_find = await level_Sechma.findOne({
+            userid:interaction.user.id
+        })
+
         if (!gambling_find){
             interaction.editReply({
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
@@ -42,27 +47,27 @@ const { table } = require("node:console");
         cooldown.push(interaction.user.id)
 
         const monsters = [
-            { name: '죽음', hp: 100000, reward: 10000000 },
-            { name: '최강의 슬라임', hp: 1300, reward: 130000 },
-            { name: '최강의 새늅봇', hp: 1300, reward: 130000 },
-            { name: 'GPT', hp: 1200, reward: 120000 },
-            { name: '사이보그', hp: 1000, reward: 100000 },
-            { name: '봇', hp: 1000, reward: 100000 },
-            { name: '파이어드래곤', hp: 700, reward: 70000 },
-            { name: '워터드래곤', hp: 600, reward: 60000 },
-            { name: '라이트닝드래곤', hp: 600, reward: 60000 },
-            { name: '드래곤', hp: 500, reward: 50000 },
-            { name: '로즈', hp: 300, reward: 30000 },
-            { name: '애기드래곤', hp: 300, reward: 30000 },
-            { name: '전설의 용사', hp: 200, reward: 10000 },
-            { name: '새늅봇', hp: 100, reward: 5000 },
-            { name: '새뉴비', hp: 100, reward: 5000 },
-            { name: '껌', hp: 50, reward: 2500 },
-            { name: 'lk', hp: 25, reward: 1250 },
-            { name: '슬라임', hp: 10, reward: 500 },
-            { name: 'ks', hp: 1000, reward: 50000 },
-            { name: '풀', hp: 5, reward: 0 },
-            { name: '공기', hp: 1, reward: 0 },
+            { name: '죽음', hp: 100000, reward: 10000000, XPreward:1000000 },
+            { name: '최강의 슬라임', hp: 1300, reward: 130000, XPreward:10000 },
+            { name: '최강의 새늅봇', hp: 1300, reward: 130000, XPreward: 9000 },
+            { name: 'GPT', hp: 1200, reward: 120000, XPreward:8000 },
+            { name: '사이보그', hp: 1000, reward: 100000, XPreward:7000 },
+            { name: '봇', hp: 1000, reward: 100000, XPreward:7000 },
+            { name: 'ks', hp: 1000, reward: 50000, XPreward:7000 },
+            { name: '파이어드래곤', hp: 700, reward: 70000, XPreward:6000 },
+            { name: '워터드래곤', hp: 600, reward: 60000, XPreward:5000 },
+            { name: '라이트닝드래곤', hp: 600, reward: 60000, XPreward:4000 },
+            { name: '드래곤', hp: 500, reward: 50000, XPreward:3000 },
+            { name: '로즈', hp: 300, reward: 30000, XPreward:2000 },
+            { name: '애기드래곤', hp: 300, reward: 30000, XPreward:2000 },
+            { name: '전설의 용사', hp: 200, reward: 10000, XPreward:1000 },
+            { name: '새늅봇', hp: 100, reward: 5000, XPreward:400 },
+            { name: '새뉴비', hp: 100, reward: 5000, XPreward:400 },
+            { name: '껌', hp: 50, reward: 2500, XPreward:200 },
+            { name: 'lk', hp: 25, reward: 1250, XPreward:100 },
+            { name: '슬라임', hp: 10, reward: 500, XPreward:50 },
+            { name: '풀', hp: 5, reward: 0, XPreward:10 },
+            { name: '공기', hp: 1, reward: 0, XPreward:10 },
         ];
 
         const gambling_find2 = await gambling_Schema2
@@ -147,10 +152,24 @@ const { table } = require("node:console");
             {upsert:true}
         );
 
+        if (level_find?.exp || 0 + monster.XPreward >= (level_find?.level || 1) * 100){
+            await level_Sechma.updateOne(
+                {userid: interaction.user.id},
+                {level: level_find?.level || 1 + (level_find?.exp || 0 + monster.XPreward) % (level_find?.level || 1) * 100, exp: (level_find?.exp || 0 + monster.XPreward) - (level_find?.level || 1) * 100 * ((level_find?.exp || 0 + monster.XPreward) % (level_find?.level || 1) * 100)},
+                {upsert:true}
+            );
+        }else{
+            await level_Sechma.updateOne(
+                {userid: interaction.user.id},
+                {level: level_find?.level || 1, exp: level_find?.exp || 0 + monster.XPreward},
+                {upsert:true}
+            );
+        }
+
         const embed = new EmbedBuilder()
             .setTitle("사냥 성공")
             .setDescription(
-                `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()} 돈을 얻었습니다.`
+                `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}XP 을 얻었습니다.`
             )
             .setColor("Green");
         
