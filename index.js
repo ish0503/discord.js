@@ -1,9 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-console.log("A"+"B")
-
-/*const express = require("express")
+const express = require("express")
 const app = express()
 
 const port = 3000;
@@ -14,7 +12,7 @@ app.get("/", (req,res)=>{
 
 app.listen(port, () => {
   console.log("3000 PORT OPEN")
-})*/
+})
 
 const { Client, Collection, REST, Routes } = require("discord.js");
 const client = (module.exports = new Client({ intents: [131071] }));
