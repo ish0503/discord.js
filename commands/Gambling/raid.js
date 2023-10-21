@@ -34,7 +34,7 @@ const { table } = require("node:console");
         //     reason: '레이드를 위한 스레드',
         // });
 
-        await interaction.reply({
+        await interaction.editReply({
             content: `참가하시겠습니까?`,
             components: [row],
         });
