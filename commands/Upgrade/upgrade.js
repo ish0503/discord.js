@@ -128,7 +128,7 @@ module.exports = {
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
                 {$set:{
-                   hashtags : hasitem,
+                   hashtags : gambling_find?.hasitem,
                 cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                 {upsert:true}
             );
@@ -147,7 +147,7 @@ module.exports = {
                 await gambling_Schema.updateOne(
                     {userid: interaction.user.id},
                     {$set:{
-                       hashtags : hasitem,
+                       hashtags : gambling_find?.hasitem,
                     cooltime: Date.now(), defense: gambling_find?.defense - 1}},
                     {upsert:true}
                 );
