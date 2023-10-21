@@ -154,16 +154,17 @@ const { table } = require("node:console");
 
         await level_Sechma.updateOne(
             {userid: interaction.user.id},
-            {level: level_find?.level || 1, exp: (level_find?.exp || 0) + monster.XPreward},
+            {level: level_find?.level || 1, exp: level_find?.exp || 0 + monster.XPreward},
             {upsert:true}
         );
 
         level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
+        
 
-        if (level_find?.level || 1 * 1000 <= level_find?.exp || 0){
-            await level_Sechma.updateOne(
+        if (level_find?.level || 1 * 1000 <= level_find?.exp){
+            level_Sechma.updateOne(
                 {userid: interaction.user.id},
                 {level: (level_find?.level || 1) + 1, exp: 0},
                 {upsert:true}
