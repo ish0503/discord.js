@@ -1,8 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-console.log(process.env.TOKEN)
-
 const express = require("express")
 const app = express()
 
