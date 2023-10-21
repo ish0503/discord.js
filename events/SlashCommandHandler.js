@@ -30,14 +30,14 @@ module.exports = {
   } else if (interaction.isButton()) { // Checks if the interaction is a button
       console.log(interaction);
 
-      if (interaction.customId === '방어권구매') { // Check for the customId of the button
+      if (interaction.customId.substring(0,5) === '방어권구매') { // Check for the customId of the button
         const money_find = await money_Schema.findOne({
           userid:interaction.user.id
         })
         const gambling_find = await gambling_Schema.findOne({
           userid:interaction.user.id
         })
-        const args = interaction.options.getInteger("수량")
+        const args = Number(interaction.customId.substring(5))
         if (!money_find || money_find.money < args * 100000){
           const embed = new EmbedBuilder()
             .setDescription(
