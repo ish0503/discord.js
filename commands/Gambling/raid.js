@@ -65,7 +65,7 @@ const { table } = require("node:console");
 	    if (!webhook){
 	         interaction.channel.send("레이드를 진행하려면 웹후크가 필요합니다.")
 		thread.delete()
-
+                  return
 	    }
 
         await webhook.send({
