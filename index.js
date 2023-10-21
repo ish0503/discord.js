@@ -1,7 +1,9 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const express = require("express")
+console.log("A"+"B")
+
+/*const express = require("express")
 const app = express()
 
 const port = 3000;
@@ -12,7 +14,7 @@ app.get("/", (req,res)=>{
 
 app.listen(port, () => {
   console.log("3000 PORT OPEN")
-})
+})*/
 
 const { Client, Collection, REST, Routes } = require("discord.js");
 const client = (module.exports = new Client({ intents: [131071] }));
@@ -33,6 +35,19 @@ for (const file of eventFiles) {
   } else {
     client.on(event.name, (...args) => event.execute(...args));
   }
+}
+
+client.buttons = new Collection();
+
+const buttonsPath = "./buttons";
+const buttonFiles = fs
+  .readdirSync(buttonsPath)
+  .filter((file) => file.endsWith(".js"));
+
+for (const file of buttonFiles) {
+  const filePath = `./${buttonsPath}/${file}`;
+  const button = require(filePath);
+  client.buttons.set(button.data.name, button)
 }
 
 client.commands = new Collection();
