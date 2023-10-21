@@ -42,11 +42,11 @@ const { table } = require("node:console");
             .addComponents(confirm);
 
         // const thread = await interaction.channel.threads.create({
-        //     name: '레이드',
-        //     autoArchiveDuration: 60,
-        //     type: ChannelType.PrivateThread,
-        //     reason: '레이드를 위한 스레드',
-        // });
+         //   name: '레이드',
+           //  autoArchiveDuration: 60,
+     //        type: ChannelType.PrivateThread,
+  //           reason: '레이드를 위한 스레드',
+    //    });
 
         await interaction.editReply({
             content: `참가하시겠습니까?`,
@@ -59,6 +59,19 @@ const { table } = require("node:console");
 
         interaction.deleteReply()
 
-	await thread.send("레이드가 시작됩니다.")
+	const webhooks = await channel.fetchWebhooks();
+        const webhook = webhooks.first();
+
+	    if (!webhook){
+	         interaction.channel.send("레이드를 진행하려면 웹후크가 필요합니다.")
+		thread.delete()
+
+	    }
+
+        await webhook.send({
+	      content: 'Look ma! I\'m in a thread!',
+	      threadId: thread.id,
+       });
     },
   };
+2
