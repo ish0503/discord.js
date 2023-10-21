@@ -164,16 +164,11 @@ const { table } = require("node:console");
         
 
         if (level_find?.level || 1 * 1000 <= level_find?.exp || 0){
-            while (level_find?.level || 1 * 1000 <= level_find?.exp || 0 + monster.XPreward){
-                await level_Sechma.updateOne(
-                    {userid: interaction.user.id},
-                    {level: level_find?.level || 1 + 1, exp: level_find?.exp || 0 - level_find?.level || 1 * 1000},
-                    {upsert:true}
-                );
-                level_find = await level_Sechma.findOne({
-                    userid:interaction.user.id
-                })
-            }
+            await level_Sechma.updateOne(
+                {userid: interaction.user.id},
+                {level: level_find?.level || 1 + 1, exp: 0},
+                {upsert:true}
+            );
         }
 
         const embed = new EmbedBuilder()
