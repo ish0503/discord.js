@@ -18,7 +18,7 @@ const { table } = require("node:console");
      */
     async execute(interaction) {
         await interaction.deferReply()
-	    if (const thread2 = interaction.channel.threads.cache.find(x => x.name === '레이드')){
+	    if (interaction.channel.threads.cache.find(x => x.name === '레이드')){
 		    await interaction.editReply({
                        content: `이 채널에서 이미 레이드가 진행중입니다.?`,
                    });
@@ -57,6 +57,8 @@ const { table } = require("node:console");
         interaction.channel.send("이제 시작합니다.")
 
         interaction.deleteReply()
+
+	
 
 	
     },
