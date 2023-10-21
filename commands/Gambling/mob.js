@@ -46,7 +46,7 @@ const { table } = require("node:console");
 
         cooldown.push(interaction.user.id)
 
-        const monsters = [
+        var monsters = [
             { name: '죽음', hp: 100000, reward: 10000000, XPreward:10 },
             { name: '최강의 슬라임', hp: 1300, reward: 130000, XPreward:9 },
             { name: '최강의 새늅봇', hp: 1300, reward: 130000, XPreward: 9 },
@@ -69,6 +69,80 @@ const { table } = require("node:console");
             { name: '풀', hp: 5, reward: 0, XPreward:1 },
             { name: '공기', hp: 1, reward: 0, XPreward:1 },
         ];
+
+        if (level_find?.level || 1 > 2000){
+            monsters = [
+                { name: '황천의 죽음', hp: 1000000, reward: 100000000, XPreward:100 },
+                { name: '황천의 최강의 슬라임', hp: 13000, reward: 1300000, XPreward:90 },
+                { name: '황천의 최강의 새늅봇', hp: 13000, reward: 1300000, XPreward: 90 },
+                { name: '황천의 GPT', hp: 12000, reward: 1200000, XPreward:80 },
+                { name: '황천의 사이보그', hp: 10000, reward: 1000000, XPreward:70 },
+                { name: '황천의 봇', hp: 10000, reward: 1000000, XPreward:70 },
+                { name: '황천의 ks', hp: 10000, reward: 500000, XPreward:70 },
+                { name: '황천의 파이어드래곤', hp: 7000, reward: 700000, XPreward:60 },
+                { name: '황천의 워터드래곤', hp: 6000, reward: 600000, XPreward:50 },
+                { name: '황천의 라이트닝드래곤', hp: 6000, reward: 600000, XPreward:50 },
+                { name: '황천의 드래곤', hp: 5000, reward: 500000, XPreward:50 },
+                { name: '황천의 로즈', hp: 3000, reward: 300000, XPreward:40 },
+                { name: '황천의 애기드래곤', hp: 3000, reward: 300000, XPreward:40 },
+                { name: '황천의 전설의 용사', hp: 2000, reward: 100000, XPreward:40 },
+                { name: '황천의 새늅봇', hp: 1000, reward: 50000, XPreward:30 },
+                { name: '황천의 새뉴비', hp: 1000, reward: 50000, XPreward:30 },
+                { name: '황천의 껌', hp: 500, reward: 25000, XPreward:20 },
+                { name: '황천의 lk', hp: 250, reward: 12500, XPreward:20 },
+                { name: '황천의 슬라임', hp: 100, reward: 5000, XPreward:20 },
+                { name: '황천의 풀', hp: 50, reward: 0, XPreward:10 },
+                { name: '황천의 공기', hp: 10, reward: 0, XPreward:10 },
+            ];
+        }else if(level_find?.level || 1 > 300){
+            monsters = [
+                { name: '초월의 죽음', hp: 100000, reward: 10000000, XPreward:20 },
+                { name: '초월의 최강의 슬라임', hp: 2600, reward: 260000, XPreward:18 },
+                { name: '초월의 최강의 새늅봇', hp: 2600, reward: 260000, XPreward: 18 },
+                { name: '초월의 GPT', hp: 2400, reward: 240000, XPreward:16 },
+                { name: '초월의 사이보그', hp: 2000, reward: 200000, XPreward:14 },
+                { name: '초월의 봇', hp: 2000, reward: 200000, XPreward:14 },
+                { name: '초월의 ks', hp: 2000, reward: 100000, XPreward:14 },
+                { name: '초월의 파이어드래곤', hp: 1400, reward: 140000, XPreward:12 },
+                { name: '초월의 워터드래곤', hp: 1200, reward: 120000, XPreward:10 },
+                { name: '초월의 라이트닝드래곤', hp: 1200, reward: 120000, XPreward:10 },
+                { name: '초월의 드래곤', hp: 1000, reward: 100000, XPreward:10 },
+                { name: '초월의 로즈', hp: 600, reward: 60000, XPreward:8 },
+                { name: '초월의 애기드래곤', hp: 600, reward: 60000, XPreward:8 },
+                { name: '초월의 전설의 용사', hp: 400, reward: 20000, XPreward:8 },
+                { name: '초월의 새늅봇', hp: 200, reward: 10000, XPreward:6 },
+                { name: '초월의 새뉴비', hp: 200, reward: 10000, XPreward:6 },
+                { name: '초월의 껌', hp: 100, reward: 500, XPreward:4 },
+                { name: '초월의 lk', hp: 50, reward: 2500, XPreward:4 },
+                { name: '초월의 슬라임', hp: 20, reward: 1000, XPreward:4 },
+                { name: '초월의 풀', hp: 10, reward: 0, XPreward:2 },
+                { name: '초월의 공기', hp: 2, reward: 0, XPreward:2 },
+            ];
+        }else if(level_find?.level || 1 > 150){
+            monsters = [
+                { name: '각성의 죽음', hp: 100000, reward: 10000000, XPreward:11 },
+                { name: '각성의 최강의 슬라임', hp: 1800, reward: 160000, XPreward:10 },
+                { name: '각성의 최강의 새늅봇', hp: 1800, reward: 160000, XPreward: 10 },
+                { name: '각성의 GPT', hp: 1500, reward: 150000, XPreward:9 },
+                { name: '각성의 사이보그', hp: 1300, reward: 130000, XPreward:8 },
+                { name: '각성의 봇', hp: 1300, reward: 130000, XPreward:8 },
+                { name: '각성의 ks', hp: 1300, reward: 80000, XPreward:8 },
+                { name: '각성의 파이어드래곤', hp: 1000, reward: 70000, XPreward:7 },
+                { name: '각성의 워터드래곤', hp: 900, reward: 60000, XPreward:6 },
+                { name: '각성의 라이트닝드래곤', hp: 900, reward: 60000, XPreward:6 },
+                { name: '각성의 드래곤', hp: 800, reward: 50000, XPreward:6 },
+                { name: '각성의 로즈', hp: 600, reward: 30000, XPreward:5 },
+                { name: '각성의 애기드래곤', hp: 600, reward: 30000, XPreward:5 },
+                { name: '각성의 전설의 용사', hp: 400, reward: 10000, XPreward:5 },
+                { name: '각성의 새늅봇', hp: 200, reward: 5000, XPreward:4 },
+                { name: '각성의 새뉴비', hp: 200, reward: 5000, XPreward:4 },
+                { name: '각성의 껌', hp: 100, reward: 2500, XPreward:3 },
+                { name: '각성의 lk', hp: 50, reward: 1250, XPreward:3 },
+                { name: '각성의 슬라임', hp: 20, reward: 500, XPreward:3 },
+                { name: '각성의 풀', hp: 10, reward: 0, XPreward:2 },
+                { name: '각성의 공기', hp: 2, reward: 0, XPreward:2 },
+            ];
+        }
 
         const gambling_find2 = await gambling_Schema2
             .find()
