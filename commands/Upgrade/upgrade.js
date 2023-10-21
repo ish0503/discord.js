@@ -159,7 +159,7 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                 .setTitle(
-                    `방어`
+                    `방어. 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100}%`
                 )
                 .setDescription(
                     `**당신의 방어권으로 아이템이 보존되었습니다. \n남은 방어권: ${gambling_find?.defense - 1}개**`
