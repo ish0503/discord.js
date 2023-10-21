@@ -27,6 +27,13 @@ module.exports = {
             return
         }
 
+        if (!heart_find){
+            interaction.reply({
+                content: `**오류**`
+            })
+            return
+        }
+
         const embed = new EmbedBuilder().setDescription(
             `**${
                 interaction.user
