@@ -22,6 +22,7 @@ module.exports = {
         //     return;
         // }
         // participate.push(interaction.user.id)
-        await thread.members.add(interaction.user.id);
+        const thread2 = channel.threads.cache.find(x => x.name === '레이드');
+        await thread2.members.add(interaction.user.id);
     }
 }
