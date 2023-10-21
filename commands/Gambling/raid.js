@@ -59,7 +59,7 @@ const { table } = require("node:console");
 
         interaction.deleteReply()
 
-	const webhooks = await channel.fetchWebhooks();
+	const webhooks = await interaction.channel.fetchWebhooks();
         const webhook = webhooks.first();
 
 	    if (!webhook){
