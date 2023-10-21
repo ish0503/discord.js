@@ -58,20 +58,8 @@ const { table } = require("node:console");
         interaction.channel.send("이제 시작합니다.")
 
         interaction.deleteReply()
+        
 
-	const webhooks = await interaction.channel.fetchWebhooks();
-        const webhook = webhooks.first();
-
-	    if (!webhook){
-	         interaction.channel.send("레이드를 진행하려면 웹후크가 필요합니다.")
-		thread.delete()
-                  return
-	    }
-
-        await webhook.send({
-	      content: 'Look ma! I\'m in a thread!',
-	      threadId: thread.id,
-       });
     },
   };
 2
