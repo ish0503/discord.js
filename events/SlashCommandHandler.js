@@ -30,14 +30,6 @@ module.exports = {
     if (interaction.isCommand()) { // Checks if the interaction is a command and runs the `
       const command = client.commands.get(interaction.commandName);
       if(!command) return;
-      if (interaction.commandName == "레이드"){
-        const thread = interaction.channel.threads.create({
-      name: '레이드',
-      autoArchiveDuration: 60,
-      type: ChannelType.PrivateThread,
-      reason: '레이드를 위한 스레드',
-    });
-      }
       try{
           await command.execute(interaction);
       }catch(error){
