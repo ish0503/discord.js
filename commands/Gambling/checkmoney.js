@@ -5,7 +5,7 @@ const heart_Sechma = require("../../models/level")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("정보확인")
-    .setDescription("당신의 돈의 총액을 확인할 수 있습니다."),
+    .setDescription("당신의 정보를 확인할 수 있습니다."),
 
     /**
      * 
