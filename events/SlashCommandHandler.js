@@ -9,12 +9,6 @@ module.exports = {
    * @param {import("discord.js").Interaction} interaction
    */
   async execute(interaction) {
-    const thread = interaction.channel.threads.create({
-      name: '레이드',
-      autoArchiveDuration: 60,
-      type: ChannelType.PrivateThread,
-      reason: '레이드를 위한 스레드',
-    });
     if (interaction.isButton()) { // Checks if the interaction is a button
         const button = client.buttons.get(interaction.customId)
         if (!button) return new Error("버튼 코드를 찾을수 없음")
@@ -24,7 +18,7 @@ module.exports = {
             await button.execute(interaction);
           }else{
             await button.execute(interaction);
-            await thread.delete();
+            //await thread.delete();
           }
         }catch(error){
             console.error(error);
@@ -36,13 +30,19 @@ module.exports = {
     if (interaction.isCommand()) { // Checks if the interaction is a command and runs the `
       const command = client.commands.get(interaction.commandName);
       if(!command) return;
-
+      if (interaction.commandName == "레이드"){
+        const thread = interaction.channel.threads.create({
+      name: '레이드',
+      autoArchiveDuration: 60,
+      type: ChannelType.PrivateThread,
+      reason: '레이드를 위한 스레드',
+    });
+      }
       try{
           await command.execute(interaction);
       }catch(error){
           console.error(error);
           await interaction.reply({content : "There was an error while executing action"})
-          await thread.delete();
       }
       return;
 
