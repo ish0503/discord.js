@@ -26,7 +26,7 @@ const { table } = require("node:console");
             userid:interaction.user.id
         })
 
-        const level_find = await level_Sechma.findOne({
+        var level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
 
@@ -152,18 +152,21 @@ const { table } = require("node:console");
             {upsert:true}
         );
 
-        if (level_find?.exp || 0 + monster.XPreward >= (level_find?.level || 1) * 100){
+        await level_Sechma.updateOne(
+            {userid: interaction.user.id},
+            {level: level_find?.level || 1, exp: level_find?.exp || 0 + monster.XPreward},
+            {upsert:true}
+        );
+
+        while (level_find?.level || 1 * 1000 <= level_find?.exp || 0 + monster.XPreward){
             await level_Sechma.updateOne(
                 {userid: interaction.user.id},
-                {level: level_find?.level || 1 + (level_find?.exp || 0 + monster.XPreward) % (level_find?.level || 1) * 100, exp: (level_find?.exp || 0 + monster.XPreward) - (level_find?.level || 1) * 100 * ((level_find?.exp || 0 + monster.XPreward) % (level_find?.level || 1) * 100)},
+                {level: level_find?.level || 1 + 1, exp: level_find?.exp || 0 - level_find?.level || 1 * 1000},
                 {upsert:true}
             );
-        }else{
-            await level_Sechma.updateOne(
-                {userid: interaction.user.id},
-                {level: level_find?.level || 1, exp: level_find?.exp || 0 + monster.XPreward},
-                {upsert:true}
-            );
+            level_find = await level_Sechma.findOne({
+                userid:interaction.user.id
+            })
         }
 
         const embed = new EmbedBuilder()
