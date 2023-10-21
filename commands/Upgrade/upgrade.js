@@ -158,7 +158,7 @@ module.exports = {
                     `방어`
                 )
                 .setDescription(
-                    `**당신의 방어권으로 아이템이 보존되었습니다. \n남은 방어권: ${gambling_find?.defense}개**`
+                    `**당신의 방어권으로 아이템이 보존되었습니다. \n남은 방어권: ${gambling_find?.defense - 1}개**`
                 )
                 .setColor("Blue");
             
