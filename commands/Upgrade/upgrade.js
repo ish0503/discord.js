@@ -435,13 +435,8 @@ module.exports = {
 			.setLabel(`구매`)
 			.setStyle(ButtonStyle.Primary);
 
-            const cancel = new ButtonBuilder()
-                .setCustomId('a')
-                .setLabel('취소')
-                .setStyle(ButtonStyle.Danger);
-
             const row = new ActionRowBuilder()
-                .addComponents(cancel, confirm);
+                .addComponents(confirm);
 
             await interaction.reply({
                 content: `방어권 ${args} 개를 사시겠습니까? 가격: ${args * 100000}재화`,
