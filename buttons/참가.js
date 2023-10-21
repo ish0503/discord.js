@@ -22,8 +22,6 @@ module.exports = {
         //     return;
         // }
         // participate.push(interaction.user.id)
-
-        thread.join()
         await thread.members.add(interaction.user.id);
     }
 }
