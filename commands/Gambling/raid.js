@@ -38,5 +38,11 @@ const { table } = require("node:console");
             content: `참가하시겠습니까?`,
             components: [row],
         });
+
+        await wait(1000)
+
+        interaction.channel.send("이제 시작합니다.")
+
+        interaction.deleteReply()
     },
   };
