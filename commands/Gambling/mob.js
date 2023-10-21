@@ -108,6 +108,14 @@ const { table } = require("node:console");
 
         for (var i = 0; 10; ++i){
             await wait(1000);
+            if (i >= 10){
+                interaction.editReply(`오히려 당신이 사냥당했다..`);
+                clear()
+                return
+            }
+            if (monster.hp <= 0){
+                break
+            }
             if (Math.random() * 100 < 10){
                 interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (${monster.hp - damage * 2}HP)`);
                 monster.hp -= damage * 2;
@@ -117,14 +125,6 @@ const { table } = require("node:console");
             }else{
                 interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. ${damage}대미지! (${monster.hp - damage}HP)`);
                 monster.hp -= damage;
-            }
-            if (i >= 10){
-                interaction.editReply(`오히려 당신이 사냥당했다..`);
-                clear()
-                return
-            }
-            if (monster.hp <= 0){
-                break
             }
         }
 
