@@ -144,6 +144,15 @@ module.exports = {
             
             interaction.reply({embeds: [embed]});
             }else {
+                await gambling_Schema.updateOne(
+                    {userid: interaction.user.id},
+                    {$set:{
+                       hashtags : hasitem,
+                    cooltime: Date.now(), defense: gambling_find?.defense - 1}},
+                    {upsert:true}
+                );
+
+
                 const embed = new EmbedBuilder()
                 .setTitle(
                     `방어`
