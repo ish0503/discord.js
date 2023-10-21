@@ -50,7 +50,7 @@ module.exports = {
             subcommand
             .setName("방어권구매")
             .setDescription("한번 강화 실패를 막을수 있는 방어막을!")
-            .addStringOption(options => options
+            .addIntegerOption(options => options
                 .setName("수량")
                 .setDescription("방어권의 수량을 입력해주세요.")
                 .setRequired(true)
