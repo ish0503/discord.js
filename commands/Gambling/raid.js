@@ -2,6 +2,7 @@ const {
     SlashCommandBuilder,
     ButtonBuilder,
     ActionRowBuilder,
+    ButtonStyle,
   } = require("discord.js");
   const comma = require("comma-number");
 const { table } = require("node:console");
@@ -26,12 +27,12 @@ const { table } = require("node:console");
         const row = new ActionRowBuilder()
             .addComponents(confirm);
 
-        const thread = await interaction.channel.threads.create({
-            name: '레이드',
-            autoArchiveDuration: 60,
-            type: ChannelType.PrivateThread,
-            reason: '레이드를 위한 스레드',
-        });
+        // const thread = await interaction.channel.threads.create({
+        //     name: '레이드',
+        //     autoArchiveDuration: 60,
+        //     type: ChannelType.PrivateThread,
+        //     reason: '레이드를 위한 스레드',
+        // });
 
         await interaction.reply({
             content: `참가하시겠습니까?`,
