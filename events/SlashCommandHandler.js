@@ -12,8 +12,8 @@ module.exports = {
    * @param {import("discord.js").Interaction} interaction
    */
   async execute(interaction) {
-    if (!interaction.isChatInputCommand() && !interaction.isContextMenuCommand()) return;
-    if (interaction.isCommand()) { // Checks if the interaction is a command and runs the `
+    if (!interaction.isContextMenuCommand()) return;
+    if (interaction.isChatInputCommand()) { // Checks if the interaction is a command and runs the `
       const command = client.commands.get(interaction.commandName);
       if(!command) return;
 
