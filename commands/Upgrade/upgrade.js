@@ -53,6 +53,8 @@ module.exports = {
             .addIntegerOption(options => options
                 .setName("수량")
                 .setDescription("방어권의 수량을 입력해주세요.")
+                .setMinValue(1)
+                .setMaxValue(9)
                 .setRequired(true)
             ),
         ),
@@ -121,7 +123,7 @@ module.exports = {
             
             interaction.reply({embeds: [embed]});
         }else{
-            if (gambling_find?.defense < 1){
+            if ((gambling_find?.defense || 0) < 1){
                 hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value - random_upgrade})
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
@@ -334,6 +336,11 @@ module.exports = {
                     value: `강화수 : **${item.value}**`
                 })
             }
+
+            embed.addFields({
+                name: `강화보호권`,
+                value: `${gambling_find?.defense || 0}개**`
+            })
     
             interaction.reply({embeds: [embed]})
         }else if (interaction.options.getSubcommand() === "순위") {
@@ -405,6 +412,8 @@ module.exports = {
                 userid:interaction.user.id
             })
 
+            console.log(interaction)
+
             if (!gambling_find){
                 interaction.reply({
                     content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
@@ -413,12 +422,12 @@ module.exports = {
             }
 
             const confirm = new ButtonBuilder()
-			.setCustomId(`방어권구매${args}`)
+			.setCustomId(`defense`)
 			.setLabel(`구매`)
 			.setStyle(ButtonStyle.Primary);
 
             const cancel = new ButtonBuilder()
-                .setCustomId('방어권구매취소')
+                .setCustomId('a')
                 .setLabel('취소')
                 .setStyle(ButtonStyle.Danger);
 
