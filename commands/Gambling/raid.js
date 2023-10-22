@@ -174,6 +174,7 @@ module.exports = {
         await wait(1000)
 
         if (monster.hp <= 0){
+          interaction.channel.send(`${monster.name}: 내가 졌다 이 **놈들아`);
           for (var i3=0; i3 < raid.userid.length; i3++){
             const gambling_find = await gambling_Schema.findOne({
               userid:raid.userid[i3]
@@ -203,6 +204,7 @@ module.exports = {
         
         interaction.channel.send({embeds: [embed]});
         }else {
+          interaction.channel.send(`${monster.name}: 약해 빠진 것들 강해져서 돌아와라`);
           for (var i3=0; i3 < raid.userid.length; i3++){
             const gambling_find = await gambling_Schema.findOne({
               userid:raid.userid[i3]
