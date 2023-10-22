@@ -3,6 +3,7 @@ const {
   ButtonBuilder,
   ActionRowBuilder,
   ButtonStyle,
+  EmbedBuilder,
 } = require("discord.js");
 const comma = require("comma-number");
 const { table } = require("node:console");
@@ -52,25 +53,26 @@ module.exports = {
           components: [row],
       });
 
-      await wait(60000)
+      await wait(10000)
 
       interaction.channel.send("이제 시작합니다.")
 
       interaction.deleteReply()
 
       var monsters = [
-        { name: '죽음', hp: 100000, reward: 10000000, XPreward:10 },
+        { name: '라스 카르니안 케스', hp: 10000, reward: 100000, XPreward:100 },
       ];
 
       const monster = getRandomMonster();
 
-    var raid = await raid_Sechma.findOne({
-      channelid: interaction.channel.id
-    })
+      var raid = await raid_Sechma.findOne({
+        channelid: interaction.channel.id
+      })
 
-    let save = []
+      let save = []
 
         for (var i=0; i < raid.userid.length; i++){
+          await wait(100)
           const gambling_find2 = await gambling_Schema2.findOne({
             userid:raid.userid[i]
         })
@@ -88,84 +90,149 @@ module.exports = {
         }
 
         console.log(save)
+        console.log(save.length)
 
-        for (i=0;i>save.length;){
+        for (i=0; i < save.length; i++){
+
+          await wait(1000)
+          console.log("무기선택")
           var damage
 
         //for (var i=0;i > save.length;){
-          if (save.length <= 0){
+          if (save.length <= 0 || save[i].value <= 0){
               damage = 1
           }else{
-              damage = save[0].value
+              damage = save[i].value
           }
         //}
+
+        const name = save[i].name 
           
-        if (save.length <= 0){
-            interaction.channel.send(`야생의 ${monster.name}을(를) 만났다! (당신의 무기: 맨주먹`);
+        if (save.length <= 0 || save[i].value <= 0){
+            interaction.channel.send(`야생의 ${monster.name}을(를) 만났다! (우리의 ${i+1}번째 무기: 맨주먹)`);
         }else{
-            interaction.channel.send(`야생의 ${monster.name}을(를) 만났다! (당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
+            interaction.channel.send(`야생의 ${monster.name}을(를) 만났다! (우리의 ${i+1}번째 무기: ${name}, ${save[i].value}강화)`);
         }
 
-        await wait(5000);
+        await wait(3000);
 
-        const random = Math.random() * 5 + 5
+        console.log("공격")
 
-        for (var i = 0; random; ++i){
-            await wait(1000);
-            if (monster.hp <= 0){
-                break
-            }
-            if (i >= random){
-                interaction.channel.send(`오히려 당신이 사냥당했다..`);
-            }
-            if (Math.random() * 100 < 10){
-                interaction.channel.send(`당신은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (${monster.hp - damage * 2}HP)`);
-                monster.hp -= damage * 2;
-            }else if (Math.random() * 100 < 3){
-                interaction.channel.send(`당신의 공격이 빗나갔다! 0대미지. (${monster.hp}HP)`);
-                monster.hp -= 0;
-            }else if (Math.random() * 100 < 1){
-                interaction.channel.send(`{회심의 일격!} 당신은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! (${monster.hp - damage * 10}HP)`);
-                monster.hp -= damage * 10;
-            }else{
-                interaction.channel.send(`당신은 ${monster.name}을(를) 공격합니다. ${damage}대미지! (${monster.hp - damage}HP)`);
-                monster.hp -= damage;
-            }
+        const random = Math.random() * 5+ 5
+
+          for (var i2 = 0; i2 <= random; ++i2){
+            console.log("공격"+i2)
+              await wait(1000);
+              if (monster.hp <= 0){
+                  break
+              }
+              if (Math.random() * 100 < 10){
+                const embed = new EmbedBuilder()
+                  .setTitle("크리티컬")
+                  .setDescription(
+                      `우리는 ${monster.name}을(를) 공격합니다. **{크리티컬!}** ${damage * 2}대미지! (${monster.hp - damage * 2}HP)`
+                  )
+                  .setColor("Yellow");
+                  interaction.channel.send({embeds: [embed]});
+                  monster.hp -= damage * 2;
+              }else if (Math.random() * 100 < 3){
+                const embed = new EmbedBuilder()
+                .setTitle("빗나감")
+                .setDescription(
+                    `우리는 공격이 빗나갔다! 0대미지. (${monster.hp}HP)`
+                )
+                .setColor("Grey");
+                  interaction.channel.send({embeds: [embed]});
+                  monster.hp -= 0;
+              }else if (Math.random() * 100 < 1){
+                const embed = new EmbedBuilder()
+                .setTitle("회심의 일격")
+                .setDescription(
+                    `__**{회심의 일격!}**__ 우리는 ${monster.name}을(를) 공격합니다. ${damage * 10}대미지! (${monster.hp - damage * 10}HP)`
+                )
+                .setColor("Purple");
+                  interaction.channel.send({embeds: [embed]});
+                  monster.hp -= damage * 10;
+              }else{
+                const embed = new EmbedBuilder()
+                .setTitle("공격")
+                .setDescription(
+                    `우리는 ${monster.name}을(를) 공격합니다. ${damage}대미지! (${monster.hp - damage}HP)`
+                )
+                .setColor("Green");
+                interaction.channel.send({embeds: [embed]});
+                  monster.hp -= damage;
+              }
+          }
+          interaction.channel.send(`**${name} 리타이어**`);
         }
-        }
+
+        console.log("싸움 끝")
 
         await wait(1000)
 
         if (monster.hp <= 0){
-          for (var i=0; i < raid.userid.length; i++){
+          for (var i3=0; i3 < raid.userid.length; i3++){
             const gambling_find = await gambling_Schema.findOne({
-              userid:raid.userid[i]
+              userid:raid.userid[i3]
             })
     
             const level_find = await level_Sechma.findOne({
-                userid:raid.userid[i]
+                userid:raid.userid[i3]
             })
             await gambling_Schema.updateOne(
-              {userid: raid.userid[i]},
+              {userid: raid.userid[i3]},
               {money: gambling_find.money + monster.reward, cooltime: gambling_find.cooltime},
               {upsert:true}
             ); 
             await level_Sechma.updateOne(
-              {userid: raid.userid[i]},
+              {userid: raid.userid[i3]},
               {level: (level_find?.level || 1) + monster.XPreward, exp: 0},
               {upsert:true}
           );
           }
 
         const embed = new EmbedBuilder()
-            .setTitle("사냥 성공")
+            .setTitle("레이드 성공")
             .setDescription(
                 `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
             )
             .setColor("Green");
         
         interaction.channel.send({embeds: [embed]});
+        }else {
+          for (var i3=0; i3 < raid.userid.length; i3++){
+            const gambling_find = await gambling_Schema.findOne({
+              userid:raid.userid[i3]
+            })
+    
+            const level_find = await level_Sechma.findOne({
+                userid:raid.userid[i3]
+            })
+            await gambling_Schema.updateOne(
+              {userid: raid.userid[i3]},
+              {money: gambling_find.money + monster.reward / 100, cooltime: gambling_find.cooltime},
+              {upsert:true}
+            ); 
+            await level_Sechma.updateOne(
+              {userid: raid.userid[i3]},
+              {level: (level_find?.level || 1) + monster.XPreward / 100, exp: 0},
+              {upsert:true}
+          );
+          }
+
+          const embed = new EmbedBuilder()
+          .setTitle("레이드 실패")
+          .setDescription(
+              `${monster.name}를 잡는데 실패하였습니다.. 하지만 괜찮아요! 보상으로 ${(monster.reward / 100).toLocaleString()}돈, ${(monster.XPreward / 100).toLocaleString()}레벨 을 얻었습니다.`
+          )
+          .setColor("Green");
+      
+      interaction.channel.send({embeds: [embed]});
         }
+        
+        await raid_Sechma.deleteOne({ channelid: interaction.channel.id });
+        
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
