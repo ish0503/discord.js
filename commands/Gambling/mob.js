@@ -177,13 +177,10 @@ const { table } = require("node:console");
         if (gambling_find2){
             let length = gambling_find2.hashtags.length
             for (let i = 0; i < length; i++){
-                console.log("반복"+i)
-                console.log(gambling_find2.hashtags[i])
                 if (!gambling_find2.hashtags[i]) { 
                     continue
                 }
                 var item = gambling_find2.hashtags[i]
-                console.log(item)
                 save.push(item)
             }
         }
