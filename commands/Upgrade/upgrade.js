@@ -96,12 +96,6 @@ module.exports = {
             }
         }
         let length = gambling_find.hashtags.length
-	if (length >= 5){
-                interaction.reply({
-                    content: `**아이템을 5개 넘게 보유할 수 없습니다.**`
-                });
-                return;
-	}
         let isitem = -1
         let hasitem = []
         
@@ -234,6 +228,14 @@ module.exports = {
                     return;
             }
         }
+
+	let length = gambling_find.hashtags.length
+	if (length >= 5){
+                interaction.reply({
+                    content: `**아이템을 5개 넘게 보유할 수 없습니다.**`
+                });
+                return;
+	}
 
         if (!money_find || money_find.money < 25000){
             const embed = new EmbedBuilder()
