@@ -482,7 +482,7 @@ module.exports = {
              console.log(save)
             // console.log(Object.keys(save).length)
             // console.log(save[1])
-            for (let i = 0; i < Object.keys(save).length; i++){
+            for (let i = 0; i < 11; i++){
                 const user = await interaction.client.users.fetch(
                     save[i].userid
                 )
