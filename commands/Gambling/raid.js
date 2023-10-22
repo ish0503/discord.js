@@ -3,11 +3,12 @@ const {
   ButtonBuilder,
   ActionRowBuilder,
   ButtonStyle,
-  ChannelType,
 } = require("discord.js");
 const comma = require("comma-number");
 const { table } = require("node:console");
 const wait = require('node:timers/promises').setTimeout;
+
+const raid_Sechma = require("../../models/raidparty")
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -19,19 +20,31 @@ module.exports = {
    */
   async execute(interaction) {
       await interaction.deferReply()
-    if (interaction.channel.threads.cache.find(x => x.name === '레이드')){
+      const raid = await raid_Sechma.findOne({
+        "hashtags.channelid": interaction.channel.id
+      })
+    if (raid){
       await interaction.editReply({
                      content: `이 채널에서 이미 레이드가 진행중입니다.`,
                  });
       return;
     }
 
- const thread = interaction.channel.threads.create({
-        name: '레이드',
-        autoArchiveDuration: 60,
-        type: ChannelType.PrivateThread,
-        reason: '레이드를 위한 스레드',
-       });
+    var list = []
+    var isitem = -1
+    for (let i = 0; i < raid.hashtags.length; i++){
+        list.push(raid.hashtags[i])
+     }
+
+     list.push({"channelid": interaction.channel.id, "userid":[]})
+
+     await raid_Sechma.updateOne(
+      {$set: {
+         hashtags : list,
+      },
+      },
+      {upsert:true}
+      );
 
       const confirm = new ButtonBuilder()
     .setCustomId(`참가`)
@@ -40,13 +53,6 @@ module.exports = {
 
       const row = new ActionRowBuilder()
           .addComponents(confirm);
-
-      // const thread = await interaction.channel.threads.create({
-       //   name: '레이드',
-         //  autoArchiveDuration: 60,
-   //        type: ChannelType.PrivateThread,
-//           reason: '레이드를 위한 스레드',
-  //    });
 
       await interaction.editReply({
           content: `참가하시겠습니까?`,
