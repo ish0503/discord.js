@@ -60,7 +60,9 @@ module.exports = {
       interaction.deleteReply()
 
       var monsters = [
-        { name: '라스 카르니안 케스', hp: 10000, reward: 100000, XPreward:100 },
+        { name: '라스 카르니안 케스', hp: 50000, reward: 500000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 300000, XPreward:300 },
+        { name: '검은 새늅봇', hp: 30000, reward: 300000, XPreward:300 },
       ];
 
       const monster = getRandomMonster();
@@ -126,7 +128,7 @@ module.exports = {
               if (monster.hp <= 0){
                   break
               }
-              if (Math.random() * 100 < 10){
+              if (Math.random() * 100 < 20){
                 const embed = new EmbedBuilder()
                   .setTitle("크리티컬")
                   .setDescription(
@@ -135,7 +137,7 @@ module.exports = {
                   .setColor("Yellow");
                   interaction.channel.send({embeds: [embed]});
                   monster.hp -= damage * 2;
-              }else if (Math.random() * 100 < 3){
+              }else if (Math.random() * 100 < 6){
                 const embed = new EmbedBuilder()
                 .setTitle("빗나감")
                 .setDescription(
@@ -144,7 +146,7 @@ module.exports = {
                 .setColor("Grey");
                   interaction.channel.send({embeds: [embed]});
                   monster.hp -= 0;
-              }else if (Math.random() * 100 < 1){
+              }else if (Math.random() * 100 < 2){
                 const embed = new EmbedBuilder()
                 .setTitle("회심의 일격")
                 .setDescription(
