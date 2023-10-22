@@ -85,7 +85,7 @@ module.exports = {
         })
 
         if (gambling_find){
-            const canGiveTime = Number(gambling_find.cooltime) + (1 * 60 * 1000)
+            const canGiveTime = Number(gambling_find.cooltime) + (1 * 30 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
                     content: `**아이템 강화/생성 후에는 쿨타임이 있습니다.\n<t:${Math.round(
@@ -197,7 +197,7 @@ module.exports = {
         console.log(money_find)
 
         if (gambling_find){
-            const canGiveTime = Number(gambling_find.cooltime) + (2 * 60 * 1000)
+            const canGiveTime = Number(gambling_find.cooltime) + (1 * 30 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
                     content: `**아이템 강화/생성 후에는 쿨타임이 있습니다.\n<t:${Math.round(
