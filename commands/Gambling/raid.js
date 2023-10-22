@@ -20,8 +20,8 @@ module.exports = {
    */
   async execute(interaction) {
       await interaction.deferReply()
-      const raid = await raid_Sechma.findOne({
-        "hashtags.channelid": interaction.channel.id
+      var raid = await raid_Sechma.findOne({
+        channelid: interaction.channel.id
       })
     if (raid){
       await interaction.editReply({
@@ -30,19 +30,9 @@ module.exports = {
       return;
     }
 
-    var list = []
-    var isitem = -1
-    for (let i = 0; i < raid.hashtags.length; i++){
-        list.push(raid.hashtags[i])
-     }
-
-     list.push({"channelid": interaction.channel.id, "userid":[]})
-
-     await raid_Sechma.updateOne(
-      {$set: {
-         hashtags : list,
-      },
-      },
+    await raid_Sechma.updateOne(
+      {channelid:interaction.channel.id},
+      {userid: []},
       {upsert:true}
       );
 
