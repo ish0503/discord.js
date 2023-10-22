@@ -23,18 +23,33 @@ module.exports = {
             return;
         }
 
-        var list = raid.userid
+        console.log(raid.userid)
 
-        list.push(interaction.user.id)
+        if (!raid.userid.find((element) => element == interaction.user.id)){
+            var list = raid.userid
+
+            list.push(interaction.user.id)
+
+            await raid_Sechma.updateOne(
+                {channelid: interaction.channel.id},
+                {userid: list},
+                {upsert:true}
+            );
+            interaction.reply({
+                content: '성공적으로 참가되었습니다.',
+                ephemeral: true
+            })
+        }else{
+            interaction.reply({
+                content: '이미 레이드에 참가해있습니다.',
+                ephemeral: true
+            })
+        }
 
         // if (participate.find(interaction.user.id)) {
         //     interaction.reply({content: '이미 레이드에 참가해있거나 쿨타임 시간입니다.', ephemeral: true}) 
         //     return;
         // }
         // participate.push(interaction.user.id)
-        interaction.reply({
-            content: '성공적으로 참가되었습니다.',
-            ephemeral: true
-        })
     }
 }
