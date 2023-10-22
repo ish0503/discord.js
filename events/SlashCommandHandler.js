@@ -1,4 +1,3 @@
-const { ChannelType } = require("discord.js");
 const client = require("../index");
 
 module.exports = {
@@ -14,12 +13,8 @@ module.exports = {
         if (!button) return new Error("버튼 코드를 찾을수 없음")
   
         try{
-          if (interaction.customId == '참가'){
-            await button.execute(interaction);
-          }else{
             await button.execute(interaction);
             //await thread.delete();
-          }
         }catch(error){
             console.error(error);
             await interaction.reply({content : "There was an error while executing action"})
