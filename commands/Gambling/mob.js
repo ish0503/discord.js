@@ -168,25 +168,23 @@ const { table } = require("node:console");
             ];
         }
 
-        const gambling_find2 = await gambling_Schema2
-            .find()
-            .sort([["value"]])
-            .limit(10)
-            .exec();
-
         let save = []
+        
+        const gambling_find2 = await gambling_Schema2.findOne({
+            userid:interaction.user.id
+        })
 
-        for (let i = 0; i < Object.keys(gambling_find2).length; i++){
-            if (gambling_find2[i].userid == interaction.user.id){
-                let json3  = JSON.parse(JSON.stringify(gambling_find2[i].hashtags));
-                for (let v = 0; v < Object.keys(json3).length; v++){
-                        if (json3[v]){
-                            json3[v]["userid"] = gambling_find2[i].userid
-                        }else if(json3){
-                            json3["userid"] = gambling_find2[i].userid
-                        }
+        if (gambling_find2){
+            let length = gambling_find2.hashtags.length
+            for (let i = 0; i < length; i++){
+                console.log("반복"+i)
+                console.log(gambling_find2.hashtags[i])
+                if (!gambling_find2.hashtags[i]) { 
+                    continue
                 }
-                save.push(...json3)
+                var item = gambling_find2.hashtags[i]
+                console.log(item)
+                save.push(item)
             }
         }
 
