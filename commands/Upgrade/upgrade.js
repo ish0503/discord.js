@@ -39,6 +39,21 @@ module.exports = {
             )
         .addSubcommand(subcommand =>
             subcommand
+            .setName("이름변경")
+            .setDescription("자신의 아이템의 이름을 변경할수 있습니다.")
+            .addStringOption(options => options
+                .setName("아이템이름")
+                .setDescription("아이템의 이름 입력해주세요.")
+                .setRequired(true)
+            )
+            .addStringOption(options => options
+                .setName("변경이름")
+                .setDescription("변경할 이름 입력해주세요.")
+                .setRequired(true)
+            ),
+            )
+        .addSubcommand(subcommand =>
+            subcommand
             .setName("확인")
             .setDescription("자기가 직접 만들고 강화한 아이템들을 확인할 수 있습니다."),
             )
@@ -356,6 +371,65 @@ module.exports = {
             })
     
             interaction.reply({embeds: [embed]})
+        }else if (interaction.options.getSubcommand() === "이름변경") {
+            const args = interaction.options.getString("아이템이름")
+            const args2 = interaction.options.getString("변경이름")
+            const gambling_find = await gambling_Schema.findOne({
+                userid:interaction.user.id
+            })
+    
+            console.log(gambling_find)
+    
+            if (!gambling_find){
+                interaction.reply({
+                    content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`
+                })
+                return
+            }
+    
+            let soondeleteitem = []
+    
+            let length = gambling_find.hashtags.length
+            let isitem = -1
+            for (let i = 0; i < length; i++){
+                if (gambling_find.hashtags[i].name == args) {
+                    isitem = i
+                    soondeleteitem.push({"name": args2, "value": gambling_find.hashtags[i].value})
+                }else{
+                    soondeleteitem.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value})
+                }
+            }
+    
+            if (isitem == -1){
+                const embed = new EmbedBuilder()
+                    .setDescription(
+                        `**아이템을 찾을 수 없습니다.. 공기라도 바꾸라는 건가요?**`
+                    )
+                    .setColor("Red");
+                
+                    interaction.reply({embeds: [embed]});
+                    return;
+            }
+    
+            console.log(soondeleteitem)
+    
+            await gambling_Schema.updateOne(
+                {userid: interaction.user.id},
+                {$set: {
+                    hashtags: soondeleteitem//[{"name": null}]
+                        //{ "name": args, "value": 0 },
+                },
+                 cooltime: Date.now(), defense: gambling_find?.defense || 0},
+                {upsert:true}
+            )
+    
+            const embed = new EmbedBuilder()
+                .setDescription(
+                    `**아이템이 성공적으로 변경 되었습니다. ${args2}로요.**`
+                )
+                .setColor("Green");
+            
+            interaction.reply({embeds: [embed]});
         }else if (interaction.options.getSubcommand() === "순위") {
             // const gambling_find = await gambling_Schema.findOne({
             //     userid:interaction.user.id
@@ -446,8 +520,6 @@ module.exports = {
                 content: `방어권 ${args} 개를 사시겠습니까? 가격: ${args * 100000}재화`,
                 components: [row],
             });
-
-            
         }
     }
 }
