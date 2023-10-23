@@ -145,9 +145,9 @@ const { table } = require("node:console");
         const monster = { name: save2[0].name, hp: save2[0].value * 20, reward: Math.round(gambling_find3.money / 100000), XPreward:Math.round(level_find3.level / 1000) };
         const user = { name: save[0].name, hp: save[0].value * 20, reward: Math.round(gambling_find.money / 100000), XPreward:Math.round(level_find.level / 1000) };
         if (save.length <= 0){
-            interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! \n(당신의 무기: 맨주먹)`);
+            interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! 거절은 없다! \n(당신의 무기: 맨주먹)`);
         }else{
-            interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! \n(당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
+            interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! 거절은 없다! \n(당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
         }
 
         await wait(5000);
