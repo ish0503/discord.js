@@ -142,8 +142,8 @@ const { table } = require("node:console");
             damage2 = save2[0].value
         }
           
-        const monster = { name: save2[0].name, hp: save2[0].value * 10, reward: Math.round(gambling_find3.money / 100000), XPreward:Math.round(level_find3.money / 1000) };
-        const user = { name: save[0].name, hp: save[0].value * 10, reward: Math.round(gambling_find.money / 100000), XPreward:Math.round(level_find.money / 1000) };
+        const monster = { name: save2[0].name, hp: save2[0].value * 10, reward: Math.round(gambling_find3.money / 100000), XPreward:Math.round(level_find3.level / 1000) };
+        const user = { name: save[0].name, hp: save[0].value * 10, reward: Math.round(gambling_find.money / 100000), XPreward:Math.round(level_find.level / 1000) };
         if (save.length <= 0){
             interaction.editReply(`${monster.name}을(를) 가지고 있는 ${args.name}을(를) 만났다! \n(당신의 무기: 맨주먹)`);
         }else{
@@ -242,7 +242,7 @@ const { table } = require("node:console");
 
             await level_Sechma.updateOne(
                 {userid: args.id},
-                {level: (level_find3?.level || 1) + user.XPreward, exp: 0},
+                {level: level_find3.level + user.XPreward, exp: 0},
                 {upsert:true}
             );
 
@@ -254,7 +254,7 @@ const { table } = require("node:console");
 
             await level_Sechma.updateOne(
                 {userid: interaction.user.id},
-                {level: (level_find?.level || 1) - user.XPreward, exp: 0},
+                {level: level_find.level - user.XPreward, exp: 0},
                 {upsert:true}
             );
 
