@@ -28,9 +28,8 @@ const { table } = require("node:console");
         await interaction.deferReply()
         const args = interaction.options.getMember("유저")
 
-        console.log(args.id)
-        console.log(args.globalName)
-        console.log(args.user)
+        console.log(args.user.globalName)
+        console.log(args.user.username)
 
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
@@ -50,14 +49,14 @@ const { table } = require("node:console");
 
         if (!gambling_find || !gambling_find3){
             interaction.editReply({
-                content: `**당신이나 상대방의 돈 데이터가 없습니다.. 얻을게 없는데 PVP를 왜 하죠?**`
+                content: `**당신이나 ${args.user.username}의 돈 데이터가 없습니다.. 얻을게 없는데 PVP를 왜 하죠?**`
             })
             return
         }
 
         if (!level_find || !level_find3){
             interaction.editReply({
-                content: `**당신이나 상대방의 레벨 데이터가 없습니다.. 얻을게 없는데 PVP를 왜 하죠?**`
+                content: `**당신이나 ${args.user.username}의 레벨 데이터가 없습니다.. 얻을게 없는데 PVP를 왜 하죠?**`
             })
             return
         }
@@ -146,9 +145,9 @@ const { table } = require("node:console");
         const monster = { name: save2[0].name, hp: save2[0].value * 20, reward: Math.round(gambling_find3.money / 100000), XPreward:Math.round(level_find3.level / 1000) };
         const user = { name: save[0].name, hp: save[0].value * 20, reward: Math.round(gambling_find.money / 100000), XPreward:Math.round(level_find.level / 1000) };
         if (save.length <= 0){
-            interaction.editReply(`${monster.name}을(를) 가지고 있는 ${args.name}을(를) 만났다! \n(당신의 무기: 맨주먹)`);
+            interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! \n(당신의 무기: 맨주먹)`);
         }else{
-            interaction.editReply(`${monster.name}을(를) 가지고 있는 ${args.name}을(를) 만났다! \n(당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
+            interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! \n(당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
         }
 
         await wait(5000);
@@ -156,7 +155,7 @@ const { table } = require("node:console");
         const random = Math.random() * 5 + 5
 
         for (var i = 0; random; ++i){
-            await wait(1000);
+            await wait(2000);
             if (monster.hp <= 0){
                 break
             }
@@ -169,30 +168,30 @@ const { table } = require("node:console");
             //     return
             // }
             if (Math.random() * 100 < 10){
-                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (상대: ${monster.hp - damage * 2}HP)`);
+                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (${args.user.username}: ${monster.hp - damage * 2}HP)`);
                 monster.hp -= damage * 2;
             }else if (Math.random() * 100 < 3){
                 interaction.editReply(`**당신**의 공격이 빗나갔다! 0대미지. (${monster.hp}HP)`);
                 monster.hp -= 0;
             }else if (Math.random() * 100 < 1){
-                interaction.editReply(`__**{회심의 일격!}**__ **당신**은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! (상대: ${monster.hp - damage * 10}HP)`);
+                interaction.editReply(`__**{회심의 일격!}**__ **당신**은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! (${args.user.username}: ${monster.hp - damage * 10}HP)`);
                 monster.hp -= damage * 10;
             }else{
-                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. ${damage}대미지! (상대: ${monster.hp - damage}HP)`);
+                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. ${damage}대미지! (${args.user.username}: ${monster.hp - damage}HP)`);
                 monster.hp -= damage;
             }
-            await wait(1000);
+            await wait(2000);
             if (Math.random() * 100 < 10){
-                interaction.editReply(`*상대*는 ${user.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (당신: ${user.hp - damage * 2}HP)`);
+                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (당신: ${user.hp - damage * 2}HP)`);
                 user.hp -= damage * 2;
             }else if (Math.random() * 100 < 3){
-                interaction.editReply(`*상대*의 공격이 빗나갔다! 0대미지. (${user.hp}HP)`);
+                interaction.editReply(`*${args.user.username}*의 공격이 빗나갔다! 0대미지. (${user.hp}HP)`);
                 user.hp -= 0;
             }else if (Math.random() * 100 < 1){
-                interaction.editReply(`__**{회심의 일격!}**__ *상대*는 ${user.name}을(를) 공격합니다. ${damage * 10}대미지! (당신: ${user.hp - damage * 10}HP)`);
+                interaction.editReply(`__**{회심의 일격!}**__ *${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage * 10}대미지! (당신: ${user.hp - damage * 10}HP)`);
                 user.hp -= damage * 10;
             }else{
-                interaction.editReply(`*상대*는 ${user.name}을(를) 공격합니다. ${damage}대미지! (${user.hp - damage}HP)`);
+                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage}대미지! (${user.hp - damage}HP)`);
                 user.hp -= damage;
             }
         }
@@ -235,7 +234,7 @@ const { table } = require("node:console");
             const embed = new EmbedBuilder()
                 .setTitle("PVP 성공")
                 .setDescription(
-                    `상대의 ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                    `${args.user.username}의 ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
                 )
                 .setColor("Green");
             
