@@ -168,30 +168,30 @@ const { table } = require("node:console");
             //     return
             // }
             if (Math.random() * 100 < 10){
-                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (${args.user.username}: ${monster.hp - damage * 2}HP)`);
+                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! \n(${args.user.username}: ${monster.hp - damage * 2}HP) (당신: ${user.hp}HP)`);
                 monster.hp -= damage * 2;
             }else if (Math.random() * 100 < 3){
-                interaction.editReply(`**당신**의 공격이 빗나갔다! 0대미지. (${monster.hp}HP)`);
+                interaction.editReply(`**당신**의 공격이 빗나갔다! 0대미지. \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp}HP)`);
                 monster.hp -= 0;
             }else if (Math.random() * 100 < 1){
-                interaction.editReply(`__**{회심의 일격!}**__ **당신**은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! (${args.user.username}: ${monster.hp - damage * 10}HP)`);
+                interaction.editReply(`__**{회심의 일격!}**__ **당신**은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! \n(${args.user.username}: ${monster.hp - damage * 10}HP) (당신: ${user.hp}HP)`);
                 monster.hp -= damage * 10;
             }else{
-                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. ${damage}대미지! (${args.user.username}: ${monster.hp - damage}HP)`);
+                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. ${damage}대미지! \n(${args.user.username}: ${monster.hp - damage}HP) (당신: ${user.hp}HP)`);
                 monster.hp -= damage;
             }
             await wait(2000);
             if (Math.random() * 100 < 10){
-                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! (당신: ${user.hp - damage * 2}HP)`);
+                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage * 2}HP)`);
                 user.hp -= damage * 2;
             }else if (Math.random() * 100 < 3){
-                interaction.editReply(`*${args.user.username}*의 공격이 빗나갔다! 0대미지. (${user.hp}HP)`);
+                interaction.editReply(`*${args.user.username}*의 공격이 빗나갔다! 0대미지. \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp}HP)`);
                 user.hp -= 0;
             }else if (Math.random() * 100 < 1){
-                interaction.editReply(`__**{회심의 일격!}**__ *${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage * 10}대미지! (당신: ${user.hp - damage * 10}HP)`);
+                interaction.editReply(`__**{회심의 일격!}**__ *${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage * 10}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage * 10}HP)`);
                 user.hp -= damage * 10;
             }else{
-                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage}대미지! (${user.hp - damage}HP)`);
+                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage}HP)`);
                 user.hp -= damage;
             }
         }
