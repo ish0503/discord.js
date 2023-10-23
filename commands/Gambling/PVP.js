@@ -29,7 +29,8 @@ const { table } = require("node:console");
         const args = interaction.options.getMember("유저")
 
         console.log(args.id)
-        console.log(args.name)
+        console.log(args.username)
+        console.log(args)
 
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
