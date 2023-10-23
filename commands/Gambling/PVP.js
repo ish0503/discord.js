@@ -29,8 +29,8 @@ const { table } = require("node:console");
         const args = interaction.options.getMember("유저")
 
         console.log(args.id)
-        console.log(args.username)
-        console.log(args)
+        console.log(args.globalName)
+        console.log(args.user)
 
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
@@ -211,6 +211,14 @@ const { table } = require("node:console");
                 {level: level_find.level + monster.XPreward, exp: 0},
                 {upsert:true}
             );
+    
+            const gambling_find3 = await gambling_Schema.findOne({
+                userid:args.id
+            })
+    
+            const level_find3 = await level_Sechma.findOne({
+                userid:args.id
+            })
 
             await gambling_Schema.updateOne(
                 {userid: args.id},
@@ -227,7 +235,7 @@ const { table } = require("node:console");
             const embed = new EmbedBuilder()
                 .setTitle("PVP 성공")
                 .setDescription(
-                    `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                    `상대의 ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
                 )
                 .setColor("Green");
             
@@ -246,6 +254,14 @@ const { table } = require("node:console");
                 {level: level_find3.level + user.XPreward, exp: 0},
                 {upsert:true}
             );
+
+            const gambling_find = await gambling_Schema.findOne({
+                userid:interaction.user.id
+            })
+    
+            const level_find = await level_Sechma.findOne({
+                userid:interaction.user.id
+            })
 
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
