@@ -79,7 +79,7 @@ const { table } = require("node:console");
         })
 
         const gambling_find4 = await gambling_Schema2.findOne({
-            userid:interaction.user.id
+            userid:args.id
         })
 
         if (gambling_find2){
