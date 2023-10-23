@@ -31,19 +31,19 @@ const { table } = require("node:console");
         console.log(args.user.globalName)
         console.log(args.user.username)
 
-        const gambling_find = await gambling_Schema.findOne({
+        let gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
 
-        const level_find = await level_Sechma.findOne({
+        let level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
 
-        const gambling_find3 = await gambling_Schema.findOne({
+        let gambling_find3 = await gambling_Schema.findOne({
             userid:args.id
         })
 
-        const level_find3 = await level_Sechma.findOne({
+        let level_find3 = await level_Sechma.findOne({
             userid:args.id
         })
 
@@ -195,6 +195,22 @@ const { table } = require("node:console");
                 user.hp -= damage2;
             }
         }
+
+        let gambling_find = await gambling_Schema.findOne({
+            userid:interaction.user.id
+        })
+
+        let level_find = await level_Sechma.findOne({
+            userid:interaction.user.id
+        })
+
+        let gambling_find3 = await gambling_Schema.findOne({
+            userid:args.id
+        })
+
+        let level_find3 = await level_Sechma.findOne({
+            userid:args.id
+        })
 
         if (monster.hp <= 0){
             await wait(1000);
