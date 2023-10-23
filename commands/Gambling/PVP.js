@@ -29,7 +29,7 @@ const { table } = require("node:console");
         const args = interaction.options.getMember("유저")
 
         console.log(args.id)
-        console.log(args.user.name)
+        console.log(args.name)
 
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
@@ -50,6 +50,13 @@ const { table } = require("node:console");
         if (!gambling_find || !gambling_find3){
             interaction.editReply({
                 content: `**당신이나 상대방의 돈 데이터가 없습니다.. 얻을게 없는데 PVP를 왜 하죠?**`
+            })
+            return
+        }
+
+        if (!level_find || !level_find3){
+            interaction.editReply({
+                content: `**당신이나 상대방의 레벨 데이터가 없습니다.. 얻을게 없는데 PVP를 왜 하죠?**`
             })
             return
         }
@@ -138,9 +145,9 @@ const { table } = require("node:console");
         const monster = { name: save2[0].name, hp: save2[0].value * 10, reward: Math.round(gambling_find3.money / 100000), XPreward:Math.round(level_find3.money / 1000) };
         const user = { name: save[0].name, hp: save[0].value * 10, reward: Math.round(gambling_find.money / 100000), XPreward:Math.round(level_find.money / 1000) };
         if (save.length <= 0){
-            interaction.editReply(`${monster.name}을(를) 가지고 있는 ${args.user.name}을(를) 만났다! \n(당신의 무기: 맨주먹)`);
+            interaction.editReply(`${monster.name}을(를) 가지고 있는 ${args.name}을(를) 만났다! \n(당신의 무기: 맨주먹)`);
         }else{
-            interaction.editReply(`${monster.name}을(를) 가지고 있는 ${args.user.name}을(를) 만났다! \n(당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
+            interaction.editReply(`${monster.name}을(를) 가지고 있는 ${args.name}을(를) 만났다! \n(당신의 무기: ${save[0].name}, ${save[0].value}강화)`);
         }
 
         await wait(5000);
@@ -200,7 +207,7 @@ const { table } = require("node:console");
 
             await level_Sechma.updateOne(
                 {userid: interaction.user.id},
-                {level: (level_find?.level || 1) + monster.XPreward, exp: 0},
+                {level: level_find.level + monster.XPreward, exp: 0},
                 {upsert:true}
             );
 
@@ -212,7 +219,7 @@ const { table } = require("node:console");
 
             await level_Sechma.updateOne(
                 {userid: args.id},
-                {level: (level_find3?.level || 1) - monster.XPreward, exp: 0},
+                {level: level_find3.level - monster.XPreward, exp: 0},
                 {upsert:true}
             );
 
