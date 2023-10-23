@@ -13,7 +13,7 @@ const { table } = require("node:console");
   
   module.exports = {
     data: new SlashCommandBuilder()
-      .setName("PVP")
+      .setName("피빕")
       .setDescription("PVP.")
       .addUserOption(options => options
         .setName("유저")
