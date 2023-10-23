@@ -182,17 +182,17 @@ const { table } = require("node:console");
             }
             await wait(2000);
             if (Math.random() * 100 < 20){
-                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage * 2}HP)`);
-                user.hp -= damage * 2;
+                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. {크리티컬!} ${damage2 * 2}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage * 2}HP)`);
+                user.hp -= damage2 * 2;
             }else if (Math.random() * 100 < 2){
                 interaction.editReply(`*${args.user.username}*의 공격이 빗나갔다! 0대미지. \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp}HP)`);
                 user.hp -= 0;
             }else if (Math.random() * 100 < 2){
-                interaction.editReply(`__**{회심의 일격!}**__ *${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage * 10}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage * 10}HP)`);
-                user.hp -= damage * 10;
+                interaction.editReply(`__**{회심의 일격!}**__ *${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage2 * 10}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2 * 10}HP)`);
+                user.hp -= damage2 * 10;
             }else{
-                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage}HP)`);
-                user.hp -= damage;
+                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage2}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2}HP)`);
+                user.hp -= damage2;
             }
         }
 
