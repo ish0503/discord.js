@@ -196,19 +196,19 @@ const { table } = require("node:console");
             }
         }
 
-        let gambling_find = await gambling_Schema.findOne({
+         gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
 
-        let level_find = await level_Sechma.findOne({
+         level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
 
-        let gambling_find3 = await gambling_Schema.findOne({
+         gambling_find3 = await gambling_Schema.findOne({
             userid:args.id
         })
 
-        let level_find3 = await level_Sechma.findOne({
+         level_find3 = await level_Sechma.findOne({
             userid:args.id
         })
 
