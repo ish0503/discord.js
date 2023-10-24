@@ -62,8 +62,22 @@ module.exports = {
 
       var monsters = [
         { name: '라스 카르니안 케스', hp: 25000, reward: 500000, XPreward:500 },
-        { name: '흑화한 봇', hp: 15000, reward: 300000, XPreward:300 },
+        { name: '흑화한 봇', hp: 30000, reward: 600000, XPreward:600 },
         { name: '검은 새늅봇', hp: 15000, reward: 300000, XPreward:300 },
+        
+        { name: '라스 카르니안 케스', hp: 25000, reward: 500000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 600000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 300000, XPreward:300 },
+        
+        { name: '라스 카르니안 케스', hp: 25000, reward: 500000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 600000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 300000, XPreward:300 },
+        
+        { name: '라스 카르니안 케스', hp: 25000, reward: 500000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 600000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 300000, XPreward:300 },
+        
+        { name: '죽음', hp: 50000, reward: 1000000, XPreward:1000 },
       ];
 
       const monster = getRandomMonster();
