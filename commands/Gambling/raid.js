@@ -23,17 +23,24 @@ module.exports = {
    *
    * @param {import("discord.js").ChatInputCommandInteraction} interaction
    */
-  async execute(interaction) {
+            async execute(interaction) {
       await interaction.deferReply()
+      var raid = await raid_Sechma.findOne({
+        channelid: interaction.channel.id
+      })
+    if (raid){
+      await interaction.editReply({
+                     content: `이 채널에서 이미 레이드가 진행중입니다.`,
+                 });
+      return;
+    }
 
-    if (cooldown.find((element) => element == interaction.channel.id)){
-            interaction.editReply({
-                content: `**현재 이미 레이드를 진행하고 있습니다.**`
-            })
-            return
-        }
+    await raid_Sechma.updateOne(
+      {channelid:interaction.channel.id},
+      {userid: []},
+      {upsert:true}
+      );
 
-        cooldown.push(interaction.channel.id)
       const confirm = new ButtonBuilder()
     .setCustomId(`참가`)
     .setLabel(`참가`)
@@ -228,21 +235,13 @@ module.exports = {
       
       interaction.channel.send({embeds: [embed]});
         }
-
-        clear()
+        
+        await raid_Sechma.deleteOne({ channelid: interaction.channel.id });
+        
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
         }
-
-    function clear(){
-            for(var i = 0; i < cooldown.length; i++){ 
-                if (cooldown[i] === interaction.channel.id) { 
-                    cooldown.splice(i, 1); 
-                    i--; 
-                }
-            } 
-    }
 
   },
 };
