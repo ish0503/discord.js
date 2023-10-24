@@ -241,8 +241,9 @@ const { table } = require("node:console");
                 .setColor("Purple");
                   interaction.editReply({embeds: [embed]});
                 monster.hp -= damage * 10;
-            }else if (Math.random() * 100 < 100-skill.Lv/100){
-                const embed = new EmbedBuilder()
+            }else if (!skills.length <= 0){
+                if (Math.random() * 100 < 100-skill.Lv/100){
+                    const embed = new EmbedBuilder()
                 .setTitle(`${skill.name}`)
                   .setDescription(
                       `**당신**은 ${monster.name}을(를) 공격합니다. **{${skill.name}!}** ${damage + skill.Lv}대미지! \n(${args.user.username}: ${monster.hp - damage + skill.Lv}HP) (당신: ${user.hp}HP)`
@@ -250,6 +251,7 @@ const { table } = require("node:console");
                   .setColor("DarkGreen");
                   interaction.editReply({embeds: [embed]});
                 monster.hp -= damage + skill.Lv;
+                }
             }else{
                 const embed = new EmbedBuilder()
                 .setTitle("공격")
@@ -289,15 +291,17 @@ const { table } = require("node:console");
                 .setColor("Purple");
                   interaction.editReply({embeds: [embed]});
                 user.hp -= damage2 * 10;
-            }else if (Math.random() * 100 < 100-skill.Lv/100){
-                const embed = new EmbedBuilder()
-                .setTitle(`${skill.name}`)
-                  .setDescription(
-                      `${args.user.username}*는 ${user.name}을(를) 공격합니다. **{${skill.name}!}** ${damage2 + skill.Lv}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2 + skill.Lv}HP)`
-                  )
-                  .setColor("DarkGreen");
-                  interaction.editReply({embeds: [embed]});
-                  user.hp -= damage2 + skill.Lv;
+            }else if (!skills.length <= 0){
+                if (Math.random() * 100 < 100-skill.Lv/100){
+                    const embed = new EmbedBuilder()
+                    .setTitle(`${skill.name}`)
+                      .setDescription(
+                          `${args.user.username}*는 ${user.name}을(를) 공격합니다. **{${skill.name}!}** ${damage2 + skill.Lv}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2 + skill.Lv}HP)`
+                      )
+                      .setColor("DarkGreen");
+                      interaction.editReply({embeds: [embed]});
+                      user.hp -= damage2 + skill.Lv;
+                }
             }else{
                 const embed = new EmbedBuilder()
                 .setTitle("공격")
