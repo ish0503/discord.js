@@ -85,7 +85,7 @@ module.exports = {
         })
 
         if (gambling_find){
-            const canGiveTime = Number(gambling_find.cooltime) + (1 * 30 * 1000)
+            const canGiveTime = Number(gambling_find.cooltime) + (1 * 60 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
                     content: `**아이템 강화/생성 후에는 쿨타임이 있습니다.\n<t:${Math.round(
@@ -197,7 +197,7 @@ module.exports = {
         console.log(money_find)
 
         if (gambling_find){
-            const canGiveTime = Number(gambling_find.cooltime) + (1 * 30 * 1000)
+            const canGiveTime = Number(gambling_find.cooltime) + (2 * 60 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
                     content: `**아이템 강화/생성 후에는 쿨타임이 있습니다.\n<t:${Math.round(
@@ -228,14 +228,6 @@ module.exports = {
                     return;
             }
         }
-
-	let length = gambling_find.hashtags.length
-	if (length >= 5){
-                interaction.reply({
-                    content: `**아이템을 5개 넘게 보유할 수 없습니다.**`
-                });
-                return;
-	}
 
         if (!money_find || money_find.money < 25000){
             const embed = new EmbedBuilder()
@@ -317,7 +309,7 @@ module.exports = {
                     hashtags: soondeleteitem//[{"name": null}]
                         //{ "name": args, "value": 0 },
                 },
-                 cooltime: Date.now(), defense: gambling_find?.defense || 0},
+                skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
                 {upsert:true}
             );
     
@@ -427,7 +419,7 @@ module.exports = {
                     hashtags: soondeleteitem//[{"name": null}]
                         //{ "name": args, "value": 0 },
                 },
-                 cooltime: Date.now(), defense: gambling_find?.defense || 0},
+                skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
                 {upsert:true}
             )
     
@@ -490,7 +482,7 @@ module.exports = {
              console.log(save)
             // console.log(Object.keys(save).length)
             // console.log(save[1])
-            for (let i = 0; i < 10; i++){
+            for (let i = 0; i < Object.keys(save).length; i++){
                 const user = await interaction.client.users.fetch(
                     save[i].userid
                 )
