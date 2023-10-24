@@ -121,7 +121,7 @@ module.exports = {
         const random_number = Math.round(Math.random() * 10000)
         const random_upgrade = Math.round(Math.random() * 9) + 1 // 1에서 2사이
 
-        if (random_number + (level_find?.level || 1) * 100 > gambling_find.skills[isitem].Lv ** 2){
+        if (random_number + (level_find?.level || 1) * 100 > gambling_find.skills[isitem].Lv ** 3){
             hasitem.push({ "name": args, "Lv": gambling_find.skills[isitem].Lv + random_upgrade})
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
@@ -133,7 +133,7 @@ module.exports = {
     
             const embed = new EmbedBuilder()
                 .setTitle(
-                    `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.skills[isitem].Lv ** 2)) / 100}%**`
+                    `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.skills[isitem].Lv ** 3)) / 100}%**`
                 )
                 .setDescription(
                     `**강화 성공! 이름: ${args}, 강화 수: ${gambling_find.skills[isitem].Lv} -> ${gambling_find.skills[isitem].Lv + random_upgrade}**`
@@ -154,7 +154,7 @@ module.exports = {
                     
             const embed = new EmbedBuilder()
                 .setTitle(
-                    `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.skills[isitem].Lv ** 2)) / 100}%**`
+                    `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.skills[isitem].Lv ** 3)) / 100}%**`
                 )
                 .setDescription(
                     `**강화 실패.. 이름: ${args}, 강화 수: ${gambling_find.skills[isitem].Lv} -> ${gambling_find.skills[isitem].Lv - random_upgrade}**`
@@ -174,7 +174,7 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                 .setTitle(
-                    `방어. 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.skills[isitem].Lv ** 2)) / 100}%`
+                    `방어. 확률: ${((10000 + (level_find?.level || 1) * 100) - (gambling_find.skills[isitem].Lv ** 3)) / 100}%`
                 )
                 .setDescription(
                     `**당신의 방어권으로 스킬이 보존되었습니다. \n남은 방어권: ${gambling_find?.defense - 1}개**`
@@ -430,96 +430,98 @@ module.exports = {
                 .setColor("Green");
             
             interaction.reply({embeds: [embed]});
-        }else if (interaction.options.getSubcommand() === "순위") {
-            // const gambling_find = await gambling_Schema.findOne({
-            //     userid:interaction.user.id
-            // })
+         }
+        //else if (interaction.options.getSubcommand() === "순위") {
+        //     // const gambling_find = await gambling_Schema.findOne({
+        //     //     userid:interaction.user.id
+        //     // })
 
-            const gambling_find = await gambling_Schema
-            .find()
-            .sort([["Lv"]])
-            .limit(10)
-            .exec();
+        //     const gambling_find = await gambling_Schema
+        //     .find()
+        //     .sort([["Lv"]])
+        //     .limit(10)
+        //     .exec();
     
-            const embed = new EmbedBuilder()
-            .setTitle(`${interaction.client.user.username} 강화 순위`)
-            .setColor("Green")
-            .setThumbnail(interaction.client.user.displayAvatarURL());
+        //     const embed = new EmbedBuilder()
+        //     .setTitle(`${interaction.client.user.username} 강화 순위`)
+        //     .setColor("Green")
+        //     .setThumbnail(interaction.client.user.displayAvatarURL());
     
-            let save = []
+        //     let save = []
 
-            for (let i = 0; i < Object.keys(gambling_find).length; i++){
-                //console.log(gambling_find[i].userid)
-                let json3  = JSON.parse(JSON.stringify(gambling_find[i].skills));
-                for (let v = 0; v < Object.keys(json3).length; v++){
-                    if (json3[v]){
-                        //console.log("ㅡㅡㅡㅡㅡㅡㅡㅡv있음")
-                        //console.log(json3[v])
-                        json3[v]["userid"] = gambling_find[i].userid
-                        //console.log(json3[v])
-                    }else if(json3){
-                        //console.log("ㅡㅡㅡㅡㅡㅡㅡㅡv없음")
-                        //console.log(json3)
-                        json3["userid"] = gambling_find[i].userid
-                        //console.log(json3)
-                    }
-                }
-                save.push(...json3)
-            }
+        //     for (let i = 0; i < Object.keys(gambling_find).length; i++){
+        //         //console.log(gambling_find[i].userid)
+        //         let json3  = JSON.parse(JSON.stringify(gambling_find[i].skills));
+        //         for (let v = 0; v < Object.keys(json3).length; v++){
+        //             if (json3[v]){
+        //                 //console.log("ㅡㅡㅡㅡㅡㅡㅡㅡv있음")
+        //                 //console.log(json3[v])
+        //                 json3[v]["userid"] = gambling_find[i].userid
+        //                 //console.log(json3[v])
+        //             }else if(json3){
+        //                 //console.log("ㅡㅡㅡㅡㅡㅡㅡㅡv없음")
+        //                 //console.log(json3)
+        //                 json3["userid"] = gambling_find[i].userid
+        //                 //console.log(json3)
+        //             }
+        //         }
+        //         save.push(...json3)
+        //     }
 
-            //console.log(save)
+        //     //console.log(save)
 
-            save.sort(function (a, b) {
-                if (a.Lv > b.Lv) {
-                  return -1;
-                }
-                if (a.Lv < b.Lv) {
-                  return 1;
-                }
-                // a must be equal to b
-                return 0;
-              });
-             console.log(save)
-            // console.log(Object.keys(save).length)
-            // console.log(save[1])
-            for (let i = 0; i < Object.keys(save).length; i++){
-                const user = await interaction.client.users.fetch(
-                    save[i].userid
-                )
-                embed.addFields({
-                    name: `${i + 1}. ${user.username}`,
-                    Lv: `${save[i].name} : ${save[i].Lv}강화`
-                })
-            }
+        //     save.sort(function (a, b) {
+        //         if (a.Lv > b.Lv) {
+        //           return -1;
+        //         }
+        //         if (a.Lv < b.Lv) {
+        //           return 1;
+        //         }
+        //         // a must be equal to b
+        //         return 0;
+        //       });
+        //      console.log(save)
+        //     // console.log(Object.keys(save).length)
+        //     // console.log(save[1])
+        //     for (let i = 0; i < Object.keys(save).length; i++){
+        //         const user = await interaction.client.users.fetch(
+        //             save[i].userid
+        //         )
+        //         embed.addFields({
+        //             name: `${i + 1}. ${user.username}`,
+        //             Lv: `${save[i].name} : ${save[i].Lv}강화`
+        //         })
+        //     }
     
-            interaction.reply({embeds : [embed]})
-        }else if (interaction.options.getSubcommand() === "방어권구매") {
-            const args = interaction.options.getInteger("수량")
-            const gambling_find = await gambling_Schema.findOne({
-                userid:interaction.user.id
-            })
+        //     interaction.reply({embeds : [embed]})
+        // }
+        // else if (interaction.options.getSubcommand() === "방어권구매") {
+        //     const args = interaction.options.getInteger("수량")
+        //     const gambling_find = await gambling_Schema.findOne({
+        //         userid:interaction.user.id
+        //     })
 
-            console.log(interaction)
+        //     console.log(interaction)
 
-            if (!gambling_find.skills){
-                interaction.reply({
-                    content: `**스킬이 없으시군요.. \`/스킬\` 명령어로 스킬을 생성하세요.**`
-                })
-                return
-            }
+        //     if (!gambling_find.skills){
+        //         interaction.reply({
+        //             content: `**스킬이 없으시군요.. \`/스킬\` 명령어로 스킬을 생성하세요.**`
+        //         })
+        //         return
+        //     }
 
-            const confirm = new ButtonBuilder()
-			.setCustomId(`defense`)
-			.setLabel(`구매`)
-			.setStyle(ButtonStyle.Primary);
+        //     const confirm = new ButtonBuilder()
+		// 	.setCustomId(`defense`)
+		// 	.setLabel(`구매`)
+		// 	.setStyle(ButtonStyle.Primary);
 
-            const row = new ActionRowBuilder()
-                .addComponents(confirm);
+        //     const row = new ActionRowBuilder()
+        //         .addComponents(confirm);
 
-            await interaction.reply({
-                content: `방어권 ${args} 개를 사시겠습니까? 가격: ${args * 100000}재화`,
-                components: [row],
-            });
-        }
+        //     await interaction.reply({
+        //         content: `방어권 ${args} 개를 사시겠습니까? 가격: ${args * 100000}재화`,
+        //         components: [row],
+        //     });
+        // }
     }
 }
