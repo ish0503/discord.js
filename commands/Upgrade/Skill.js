@@ -84,7 +84,7 @@ module.exports = {
             userid:interaction.user.id
         })
 
-        if (gambling_find){
+        if (gambling_find.skills){
             const canGiveTime = Number(gambling_find.cooltime) + (1 * 30 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
@@ -196,7 +196,7 @@ module.exports = {
         console.log(gambling_find)
         console.log(money_find)
 
-        if (gambling_find){
+        if (gambling_find.skills){
             const canGiveTime = Number(gambling_find.cooltime) + (1 * 30 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
@@ -208,7 +208,7 @@ module.exports = {
             }
         }
 
-        if (gambling_find){
+        if (gambling_find.skills){
             let length = gambling_find.skills.length
             let isitem = -1
             for (let i = 0; i < length; i++){
@@ -337,7 +337,7 @@ module.exports = {
                 userid:interaction.user.id
             })
     
-            if (!gambling_find){
+            if (!gambling_find.skills){
                 interaction.reply({
                     content: `**스킬이 없으시군요.. \`/스킬\` 명령어로 스킬을 생성하세요.**`
                 })
@@ -380,7 +380,7 @@ module.exports = {
     
             console.log(gambling_find)
     
-            if (!gambling_find){
+            if (!gambling_find.skills){
                 interaction.reply({
                     content: `**스킬이 없으시군요.. \`/스킬\` 명령어로 스킬을 생성하세요.**`
                 })
@@ -501,7 +501,7 @@ module.exports = {
 
             console.log(interaction)
 
-            if (!gambling_find){
+            if (!gambling_find.skills){
                 interaction.reply({
                     content: `**스킬이 없으시군요.. \`/스킬\` 명령어로 스킬을 생성하세요.**`
                 })
