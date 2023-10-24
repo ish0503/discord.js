@@ -127,7 +127,7 @@ module.exports = {
                 {userid: interaction.user.id},
                 {$set:{
                    hashtags : hasitem,
-                cooltime: Date.now(), defense: gambling_find?.defense || 0}},
+                   skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                 {upsert:true}
             );
     
@@ -148,7 +148,7 @@ module.exports = {
                 {userid: interaction.user.id},
                 {$set:{
                    hashtags : hasitem,
-                cooltime: Date.now(), defense: gambling_find?.defense || 0}},
+                   skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                 {upsert:true}
             );
                     
@@ -167,7 +167,7 @@ module.exports = {
                     {userid: interaction.user.id},
                     {$set:{
                        hashtags : gambling_find?.hasitem,
-                    cooltime: Date.now(), defense: gambling_find?.defense - 1}},
+                       skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense - 1}},
                     {upsert:true}
                 );
 
@@ -251,7 +251,7 @@ module.exports = {
                hashtags : 
                     [{ "name": args, "value": 0 }],
             },
-             cooltime: Date.now(), defense: gambling_find?.defense || 0},
+            skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
             {upsert:true}
         );
 
