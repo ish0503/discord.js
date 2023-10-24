@@ -156,10 +156,7 @@ const { table } = require("node:console");
 
         for (var i = 0; random; ++i){
             await wait(2000);
-            if (monster.hp <= 0){
-                break
-            }
-            if (user.hp <= 0){
+            if (monster.hp <= 0 || user.hp <= 0){
                 break
             }
             // if (i >= random){
@@ -298,7 +295,7 @@ const { table } = require("node:console");
             const embed = new EmbedBuilder()
                 .setTitle("PVP 성공")
                 .setDescription(
-                    `${args.user.username}의 ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                    `${interaction.user.username}님이 ${args.user.username}의 ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
                 )
                 .setColor("Green");
             
@@ -341,7 +338,7 @@ const { table } = require("node:console");
             const embed = new EmbedBuilder()
                 .setTitle("PVP 실패")
                 .setDescription(
-                    `당신이 졌습니다.. ${user.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨을 잃었습니다...`
+                    `${interaction.user.username}님이 ${args.user.username}의 ${monster.name}에게 졌습니다.. ${user.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨을 잃었습니다...`
                 )
                 .setColor("DarkRed");
             
