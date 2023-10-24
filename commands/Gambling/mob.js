@@ -263,7 +263,7 @@ const { table } = require("node:console");
                 monster.hp -= damage * 10;
             }else if (!skills.length <= 0){
                 if (Math.random() * 100 < 100-skill.Lv/100){
-                    interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. **{${skill.name}!}** ${damage + skill.Lv}대미지! (${monster.hp - damage * 2}HP)`);
+                    interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. **{${skill.name}!}** ${damage + skill.Lv}대미지! (${monster.hp - damage + skill.Lv}HP)`);
                 monster.hp -= damage + skill.Lv;
                 }
             }else{
