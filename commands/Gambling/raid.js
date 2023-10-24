@@ -9,6 +9,7 @@ const comma = require("comma-number");
 const { table } = require("node:console");
 const wait = require('node:timers/promises').setTimeout;
 
+const raid_Sechma = require("../../models/raid")
 const gambling_Schema = require("../../models/Money")
 const gambling_Schema2 = require("../../models/upgrade")
 const level_Sechma = require("../../models/level")
