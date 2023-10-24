@@ -169,13 +169,15 @@ const { table } = require("node:console");
         }
 
         let save = []
+
+        let skills = []
         
         const gambling_find2 = await gambling_Schema2.findOne({
             userid:interaction.user.id
         })
 
         if (gambling_find2){
-            let length = gambling_find2.hashtags.length
+            var length = gambling_find2.hashtags.length
             for (let i = 0; i < length; i++){
                 if (!gambling_find2.hashtags[i]) { 
                     continue
@@ -183,9 +185,29 @@ const { table } = require("node:console");
                 var item = gambling_find2.hashtags[i]
                 save.push(item)
             }
+
+            var length = gambling_find2.skills.length
+            for (let i = 0; i < length; i++){
+                if (!gambling_find2.skills[i]) { 
+                    continue
+                }
+                var item = gambling_find2.skills[i]
+                skills.push(item)
+            }
         }
 
         save.sort(function (a, b) {
+            if (a.value > b.value) {
+              return -1;
+            }
+            if (a.value < b.value) {
+              return 1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
+          skills.sort(function (a, b) {
             if (a.value > b.value) {
               return -1;
             }
@@ -201,7 +223,7 @@ const { table } = require("node:console");
         if (save.length <= 0){
             damage = 1
         }else{
-            damage = save[0].value
+            damage = save[0].value + skills[0].Lv
         }
           
         const monster = getRandomMonster();
@@ -231,6 +253,9 @@ const { table } = require("node:console");
             }else if (Math.random() * 100 < 3){
                 interaction.editReply(`당신의 공격이 빗나갔다! 0대미지. (${monster.hp}HP)`);
                 monster.hp -= 0;
+            }else if (Math.random() * 100 < 30){
+                interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. **{${skills[Math.random(0,skills.length - 1)].Lv}!}** ${damage + skills[Math.random(0,skills.length - 1)].Lv}대미지! (${monster.hp - damage * 2}HP)`);
+                monster.hp -= damage + skills[Math.random(0,skills.length - 1)].Lv;
             }else if (Math.random() * 100 < 1){
                 interaction.editReply(`{회심의 일격!} 당신은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! (${monster.hp - damage * 10}HP)`);
                 monster.hp -= damage * 10;
