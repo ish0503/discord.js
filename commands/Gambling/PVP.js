@@ -142,8 +142,8 @@ const { table } = require("node:console");
             damage2 = save2[0].value
         }
           
-        const monster = { name: save2[0].name, hp: save2[0].value * 20, reward: Math.round(gambling_find3.money / 100), XPreward:Math.round(level_find3.level / 100) };
-        const user = { name: save[0].name, hp: save[0].value * 20, reward: Math.round(gambling_find.money / 100), XPreward:Math.round(level_find.level / 100) };
+        const monster = { name: save2[0].name, hp: save2[0].value * 20, reward: Math.round(gambling_find3.money / 1000), XPreward:Math.round(level_find3.level / 1000) };
+        const user = { name: save[0].name, hp: save[0].value * 20, reward: Math.round(gambling_find.money / 1000), XPreward:Math.round(level_find.level / 1000) };
         if (save.length <= 0){
             interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! 거절은 없다! \n(당신의 무기: 맨주먹)`);
         }else{
@@ -168,47 +168,95 @@ const { table } = require("node:console");
             //     return
             // }
             if (Math.random() * 100 < 10){
-                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! \n(${args.user.username}: ${monster.hp - damage * 2}HP) (당신: ${user.hp}HP)`);
-                monster.hp -= damage * 2;
+                const embed = new EmbedBuilder()
+                .setTitle("크리티컬")
+                  .setDescription(
+                      `**당신**은 ${monster.name}을(를) 공격합니다. {크리티컬!} ${damage * 2}대미지! \n(${args.user.username}: ${monster.hp - damage * 2}HP) (당신: ${user.hp}HP)`
+                  )
+                  .setColor("Yellow");
+                  interaction.editReply({embeds: [embed]});
+                  monster.hp -= damage * 2;
             }else if (Math.random() * 100 < 3){
-                interaction.editReply(`**당신**의 공격이 빗나갔다! 0대미지. \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp}HP)`);
+                const embed = new EmbedBuilder()
+                .setTitle("빗나감")
+                .setDescription(
+                    `**당신**의 공격이 빗나갔다! 0대미지. \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp}HP)`
+                )
+                .setColor("Grey");
+                interaction.editReply({embeds: [embed]});
                 monster.hp -= 0;
             }else if (Math.random() * 100 < 1){
-                interaction.editReply(`__**{회심의 일격!}**__ **당신**은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! \n(${args.user.username}: ${monster.hp - damage * 10}HP) (당신: ${user.hp}HP)`);
+                const embed = new EmbedBuilder()
+                .setTitle("회심의 일격")
+                .setDescription(
+                    `__**{회심의 일격!}**__ **당신**은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! \n(${args.user.username}: ${monster.hp - damage * 10}HP) (당신: ${user.hp}HP)`
+                )
+                .setColor("Purple");
+                  interaction.editReply({embeds: [embed]});
                 monster.hp -= damage * 10;
             }else{
-                interaction.editReply(`**당신**은 ${monster.name}을(를) 공격합니다. ${damage}대미지! \n(${args.user.username}: ${monster.hp - damage}HP) (당신: ${user.hp}HP)`);
+                const embed = new EmbedBuilder()
+                .setTitle("공격")
+                .setDescription(
+                    `**당신**은 ${monster.name}을(를) 공격합니다. ${damage}대미지! \n(${args.user.username}: ${monster.hp - damage}HP) (당신: ${user.hp}HP)`
+                )
+                .setColor("Green");
+                interaction.editReply({embeds: [embed]});
                 monster.hp -= damage;
             }
             await wait(2000);
             if (Math.random() * 100 < 20){
-                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. {크리티컬!} ${damage2 * 2}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage * 2}HP)`);
+                const embed = new EmbedBuilder()
+                .setTitle("크리티컬")
+                  .setDescription(
+                      `*${args.user.username}*는 ${user.name}을(를) 공격합니다. {크리티컬!} ${damage2 * 2}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage * 2}HP)`
+                  )
+                  .setColor("Yellow");
+                  interaction.editReply({embeds: [embed]});
                 user.hp -= damage2 * 2;
             }else if (Math.random() * 100 < 2){
-                interaction.editReply(`*${args.user.username}*의 공격이 빗나갔다! 0대미지. \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp}HP)`);
+                const embed = new EmbedBuilder()
+                .setTitle("빗나감")
+                .setDescription(
+                    `*${args.user.username}*의 공격이 빗나갔다! 0대미지. \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp}HP)`
+                )
+                .setColor("Grey");
+                interaction.editReply({embeds: [embed]});
                 user.hp -= 0;
             }else if (Math.random() * 100 < 2){
-                interaction.editReply(`__**{회심의 일격!}**__ *${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage2 * 10}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2 * 10}HP)`);
+                const embed = new EmbedBuilder()
+                .setTitle("회심의 일격")
+                .setDescription(
+                    `__**{회심의 일격!}**__ *${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage2 * 10}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2 * 10}HP)`
+                )
+                .setColor("Purple");
+                  interaction.editReply({embeds: [embed]});
                 user.hp -= damage2 * 10;
             }else{
-                interaction.editReply(`*${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage2}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2}HP)`);
+                const embed = new EmbedBuilder()
+                .setTitle("공격")
+                .setDescription(
+                    `*${args.user.username}*는 ${user.name}을(를) 공격합니다. ${damage2}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2}HP)`
+                )
+                .setColor("Green");
+                interaction.editReply({embeds: [embed]});
                 user.hp -= damage2;
             }
         }
 
-         gambling_find = await gambling_Schema.findOne({
+        gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
 
-         level_find = await level_Sechma.findOne({
+        level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
 
-         gambling_find3 = await gambling_Schema.findOne({
+        gambling_find3 = await gambling_Schema.findOne({
             userid:args.id
         })
 
-         level_find3 = await level_Sechma.findOne({
+        level_find3 = await level_Sechma.findOne({
             userid:args.id
         })
 
