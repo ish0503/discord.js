@@ -126,8 +126,8 @@ module.exports = {
             await gambling_Schema.updateOne(
                 {userid: interaction.user.id},
                 {$set:{
-                   hashtags : hasitem,
-                   skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
+                    skills : hasitem,
+                   hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                 {upsert:true}
             );
     
