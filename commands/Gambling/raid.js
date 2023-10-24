@@ -9,10 +9,11 @@ const comma = require("comma-number");
 const { table } = require("node:console");
 const wait = require('node:timers/promises').setTimeout;
 
-const raid_Sechma = require("../../models/raidparty")
 const gambling_Schema = require("../../models/Money")
 const gambling_Schema2 = require("../../models/upgrade")
 const level_Sechma = require("../../models/level")
+
+var cooldown = []
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -24,22 +25,15 @@ module.exports = {
    */
   async execute(interaction) {
       await interaction.deferReply()
-      var raid = await raid_Sechma.findOne({
-        channelid: interaction.channel.id
-      })
-    if (raid){
-      await interaction.editReply({
-                     content: `이 채널에서 이미 레이드가 진행중입니다.`,
-                 });
-      return;
-    }
 
-    await raid_Sechma.updateOne(
-      {channelid:interaction.channel.id},
-      {userid: []},
-      {upsert:true}
-      );
+    if (cooldown.find((element) => element == interaction.channel.id)){
+            interaction.editReply({
+                content: `**현재 이미 레이드를 진행하고 있습니다.**`
+            })
+            return
+        }
 
+        cooldown.push(interaction.channel.id)
       const confirm = new ButtonBuilder()
     .setCustomId(`참가`)
     .setLabel(`참가`)
@@ -234,13 +228,21 @@ module.exports = {
       
       interaction.channel.send({embeds: [embed]});
         }
-        
-        await raid_Sechma.deleteOne({ channelid: interaction.channel.id });
-        
+
+        clear()
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
         }
+
+    function clear(){
+            for(var i = 0; i < cooldown.length; i++){ 
+                if (cooldown[i] === interaction.channel.id) { 
+                    cooldown.splice(i, 1); 
+                    i--; 
+                }
+            } 
+    }
 
   },
 };
