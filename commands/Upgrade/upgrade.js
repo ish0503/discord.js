@@ -227,6 +227,17 @@ module.exports = {
                     interaction.reply({embeds: [embed]});
                     return;
             }
+
+            if (length > 5){
+                const embed = new EmbedBuilder()
+                    .setDescription(
+                        `**5개 이상의 아이템을 생성할 수 없습니다.**`
+                    )
+                    .setColor("Red");
+                
+                    interaction.reply({embeds: [embed]});
+                    return;
+            }
         }
 
         if (!money_find || money_find.money < 25000){
