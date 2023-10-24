@@ -71,9 +71,10 @@ const { table } = require("node:console");
         cooldown.push(interaction.user.id)
 
         let save = []
-
+        let skills = []
         let save2 = []
-        
+        let skills2 = []
+
         const gambling_find2 = await gambling_Schema2.findOne({
             userid:interaction.user.id
         })
@@ -83,7 +84,7 @@ const { table } = require("node:console");
         })
 
         if (gambling_find2){
-            let length = gambling_find2.hashtags.length
+            var length = gambling_find2.hashtags.length
             for (let i = 0; i < length; i++){
                 if (!gambling_find2.hashtags[i]) { 
                     continue
@@ -91,10 +92,19 @@ const { table } = require("node:console");
                 var item = gambling_find2.hashtags[i]
                 save.push(item)
             }
+
+            var length = gambling_find2.skills.length
+            for (let i = 0; i < length; i++){
+                if (!gambling_find2.skills[i]) { 
+                    continue
+                }
+                var item = gambling_find2.skills[i]
+                skills.push(item)
+            }
         }
 
         if (gambling_find4){
-            let length = gambling_find4.hashtags.length
+            var length = gambling_find4.hashtags.length
             for (let i = 0; i < length; i++){
                 if (!gambling_find4.hashtags[i]) { 
                     continue
@@ -102,9 +112,29 @@ const { table } = require("node:console");
                 var item = gambling_find4.hashtags[i]
                 save2.push(item)
             }
+
+            var length = gambling_find4.skills.length
+            for (let i = 0; i < length; i++){
+                if (!gambling_find4.skills[i]) { 
+                    continue
+                }
+                var item = gambling_find4.skills[i]
+                skills2.push(item)
+            }
         }
 
         save.sort(function (a, b) {
+            if (a.value > b.value) {
+              return -1;
+            }
+            if (a.value < b.value) {
+              return 1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
+          skills.sort(function (a, b) {
             if (a.value > b.value) {
               return -1;
             }
@@ -126,6 +156,17 @@ const { table } = require("node:console");
             return 0;
           });
 
+          skills2.sort(function (a, b) {
+            if (a.value > b.value) {
+              return -1;
+            }
+            if (a.value < b.value) {
+              return 1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
         var damage
 
         var damage2
@@ -133,13 +174,13 @@ const { table } = require("node:console");
         if (save.length <= 0){
             damage = 1
         }else{
-            damage = save[0].value
+            damage = save[0].value + skills[0].Lv
         }
 
         if (save2.length <= 0){
             damage2 = 1
         }else{
-            damage2 = save2[0].value
+            damage2 = save2[0].value + skills2[0].Lv
         }
           
         const monster = { name: save2[0].name, hp: save2[0].value * 20, reward: Math.round(gambling_find3.money / 100), XPreward:Math.round(level_find3.level / 100) };
@@ -155,6 +196,7 @@ const { table } = require("node:console");
         const random = Math.random() * 5 + 5
 
         for (var i = 0; random; ++i){
+            var skill = skills[Math.round(Math.random() * (skills.length - 1))]
             await wait(2000);
             if (monster.hp <= 0 || user.hp <= 0){
                 break
@@ -191,6 +233,15 @@ const { table } = require("node:console");
                 .setColor("Purple");
                   interaction.editReply({embeds: [embed]});
                 monster.hp -= damage * 10;
+            }else if (Math.random() * 100 < 100-skill.Lv/100){
+                const embed = new EmbedBuilder()
+                .setTitle(`${skill.name}`)
+                  .setDescription(
+                      `**당신**은 ${monster.name}을(를) 공격합니다. **{${skill.name}!}** ${damage + skill.Lv}대미지! \n(${args.user.username}: ${monster.hp - damage + skill.Lv}HP) (당신: ${user.hp}HP)`
+                  )
+                  .setColor("DarkGreen");
+                  interaction.editReply({embeds: [embed]});
+                monster.hp -= damage + skill.Lv;
             }else{
                 const embed = new EmbedBuilder()
                 .setTitle("공격")
@@ -202,6 +253,7 @@ const { table } = require("node:console");
                 monster.hp -= damage;
             }
             await wait(2000);
+            var skill = skills2[Math.round(Math.random() * (skills2.length - 1))]
             if (Math.random() * 100 < 20){
                 const embed = new EmbedBuilder()
                 .setTitle("크리티컬")
@@ -229,6 +281,15 @@ const { table } = require("node:console");
                 .setColor("Purple");
                   interaction.editReply({embeds: [embed]});
                 user.hp -= damage2 * 10;
+            }else if (Math.random() * 100 < 100-skill.Lv/100){
+                const embed = new EmbedBuilder()
+                .setTitle(`${skill.name}`)
+                  .setDescription(
+                      `${args.user.username}*는 ${user.name}을(를) 공격합니다. **{${skill.name}!}** ${damage2 + skill.Lv}대미지! \n(${args.user.username}: ${monster.hp}HP) (당신: ${user.hp - damage2 + skill.Lv}HP)`
+                  )
+                  .setColor("DarkGreen");
+                  interaction.editReply({embeds: [embed]});
+                  user.hp -= damage2 + skill.Lv;
             }else{
                 const embed = new EmbedBuilder()
                 .setTitle("공격")
