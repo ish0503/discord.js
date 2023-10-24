@@ -238,6 +238,7 @@ const { table } = require("node:console");
         const random = Math.random() * 5 + 5
 
         for (var i = 0; random; ++i){
+            var skill = skills[Math.round(Math.random() * (skills.length - 1))]
             await wait(1000);
             if (monster.hp <= 0){
                 break
@@ -253,9 +254,9 @@ const { table } = require("node:console");
             }else if (Math.random() * 100 < 3){
                 interaction.editReply(`당신의 공격이 빗나갔다! 0대미지. (${monster.hp}HP)`);
                 monster.hp -= 0;
-            }else if (Math.random() * 100 < 30){
-                interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. **{${skills[Math.round(Math.random() * (skills.length - 1))].name}!}** ${damage + skills[Math.round(Math.random() * (skills.length - 1))].Lv}대미지! (${monster.hp - damage * 2}HP)`);
-                monster.hp -= damage + skills[Math.round(Math.random() * (skills.length - 1))].Lv;
+            }else if (Math.random() * 100 < 100-skill.Lv/100){
+                interaction.editReply(`당신은 ${monster.name}을(를) 공격합니다. **{${skill.name}!}** ${damage + skill.Lv}대미지! (${monster.hp - damage * 2}HP)`);
+                monster.hp -= damage + skill.Lv;
             }else if (Math.random() * 100 < 1){
                 interaction.editReply(`{회심의 일격!} 당신은 ${monster.name}을(를) 공격합니다. {회심의 일격!} ${damage * 10}대미지! (${monster.hp - damage * 10}HP)`);
                 monster.hp -= damage * 10;
