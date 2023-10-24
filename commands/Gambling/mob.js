@@ -186,13 +186,15 @@ const { table } = require("node:console");
                 save.push(item)
             }
 
-            var length = gambling_find2.skills.length
-            for (let i = 0; i < length; i++){
-                if (!gambling_find2.skills[i]) { 
-                    continue
+            if (gambling_find2.skills){
+                var length = gambling_find2.skills.length
+                for (let i = 0; i < length; i++){
+                    if (!gambling_find2.skills[i]) { 
+                        continue
+                    }
+                    var item = gambling_find2.skills[i]
+                    skills.push(item)
                 }
-                var item = gambling_find2.skills[i]
-                skills.push(item)
             }
         }
 
@@ -222,6 +224,8 @@ const { table } = require("node:console");
 
         if (save.length <= 0){
             damage = 1
+        }else if(skills.length <= 0){
+            damage = save[0].value
         }else{
             damage = save[0].value + skills[0].Lv
         }

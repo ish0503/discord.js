@@ -93,13 +93,15 @@ const { table } = require("node:console");
                 save.push(item)
             }
 
-            var length = gambling_find2.skills.length
-            for (let i = 0; i < length; i++){
-                if (!gambling_find2.skills[i]) { 
-                    continue
+            if (gambling_find2.skills){
+                var length = gambling_find2.skills.length
+                for (let i = 0; i < length; i++){
+                    if (!gambling_find2.skills[i]) { 
+                        continue
+                    }
+                    var item = gambling_find2.skills[i]
+                    skills.push(item)
                 }
-                var item = gambling_find2.skills[i]
-                skills.push(item)
             }
         }
 
@@ -113,13 +115,15 @@ const { table } = require("node:console");
                 save2.push(item)
             }
 
-            var length = gambling_find4.skills.length
+            if (gambling_find4.skills){
+                var length = gambling_find4.skills.length
             for (let i = 0; i < length; i++){
                 if (!gambling_find4.skills[i]) { 
                     continue
                 }
                 var item = gambling_find4.skills[i]
                 skills2.push(item)
+            }
             }
         }
 
@@ -173,12 +177,16 @@ const { table } = require("node:console");
 
         if (save.length <= 0){
             damage = 1
-        }else{
+        }else if(skills.length <= 0){
+            damage = save[0].value
+        }else {
             damage = save[0].value + skills[0].Lv
         }
 
         if (save2.length <= 0){
             damage2 = 1
+        }else if(skills2.length <= 0){
+            damage2 = save2[0].value
         }else{
             damage2 = save2[0].value + skills2[0].Lv
         }
