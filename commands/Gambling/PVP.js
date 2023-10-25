@@ -411,7 +411,7 @@ const { table } = require("node:console");
             const embed = new EmbedBuilder()
                 .setTitle("PVP 실패")
                 .setDescription(
-                    `${interaction.user.username}님이 ${args.user.username}의 ${monster.name}에게 졌습니다.. ${user.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨을 잃었습니다...`
+                    `${interaction.user.username}님이 ${args.user.username}의 ${monster.name}에게 졌습니다.. ${user.reward.toLocaleString()}돈, ${user.XPreward.toLocaleString()}레벨을 잃었습니다...`
                 )
                 .setColor("DarkRed");
             
