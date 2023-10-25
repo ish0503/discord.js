@@ -171,6 +171,18 @@ const { table } = require("node:console");
             return 0;
           });
 
+          if (save2.length <= 0){
+            interaction.editReply({
+                content: `**아이템도 없는 사람을 팰려고 하다니 역시 당신은..**`
+            })
+            return
+        }else if(save.length <= 0){
+            interaction.editReply({
+                content: `**당신 아이템부터 만들고 오세용..(/아이템 생성)**`
+            })
+            return
+        }
+
         var damage
 
         var damage2
