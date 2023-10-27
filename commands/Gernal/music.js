@@ -34,9 +34,10 @@ module.exports = {
                 .setName('대기열')
                 .setDescription('대기열 목록을 보여줍니다.')),
     async execute(interaction) {
+        await interaction.deferReply()
         const subcommand = interaction.options.getSubcommand();
         const voiceChannel = interaction.member.voice.channel;
-        if (!voiceChannel) return interaction.reply('음성 채널에 참가해주세요.');
+        if (!voiceChannel) return interaction.editReply('음성 채널에 참가해주세요.');
 
         const serverQueue = queue.get(interaction.guildId);
 
@@ -61,7 +62,7 @@ module.exports = {
             const song = { title: video.title, url: video.url };
             if (serverQueue) {
                 serverQueue.songs.push(song);
-                return interaction.reply({embeds: [new EmbedBuilder().setTitle('노래 재생').setDescription(`${song.title}을(를) 대기열에 추가했습니다.`).setColor('FF0000')]});
+                return interaction.editReply({embeds: [new EmbedBuilder().setTitle('노래 재생').setDescription(`${song.title}을(를) 대기열에 추가했습니다.`).setColor('FF0000')]});
             } else {
                 const queueContruct = {
                     voiceChannel,
@@ -98,7 +99,7 @@ module.exports = {
                     audioPlayer.play(resource);
                 });
 
-                return interaction.reply({ embeds: [new EmbedBuilder().setTitle('노래 재생').setDescription(`${song.title}을(를) 재생합니다.`).setColor('FF0000')] });
+                return interaction.editReply({ embeds: [new EmbedBuilder().setTitle('노래 재생').setDescription(`${song.title}을(를) 재생합니다.`).setColor('FF0000')] });
             }
         }
 
@@ -106,18 +107,18 @@ module.exports = {
             if (serverQueue && serverQueue.playing) {
                 serverQueue.playing = false;
                 serverQueue.audioPlayer.pause();
-                return interaction.reply('노래를 일시정지했습니다.');
+                return interaction.editReply('노래를 일시정지했습니다.');
             }
-            return interaction.reply('현재 재생 중인 노래가 없습니다.');
+            return interaction.editReply('현재 재생 중인 노래가 없습니다.');
         }
 
         if (subcommand === '재개') {
             if (serverQueue && !serverQueue.playing) {
                 serverQueue.playing = true;
                 serverQueue.audioPlayer.unpause();
-                return interaction.reply('노래를 다시 재생합니다.');
+                return interaction.editReply('노래를 다시 재생합니다.');
             }
-            return interaction.reply('현재 재생 중인 노래가 없습니다.');
+            return interaction.editReply('현재 재생 중인 노래가 없습니다.');
         }
 
         if (subcommand === '정지') {
@@ -126,17 +127,17 @@ module.exports = {
                 serverQueue.playing = false;
                 serverQueue.connection.destroy();
                 queue.delete(interaction.guildId);
-                return interaction.reply('노래를 정지하고 대기열을 초기화했습니다.');
+                return interaction.editReply('노래를 정지하고 대기열을 초기화했습니다.');
             }
-            return interaction.reply('현재 재생 중인 노래가 없습니다.');
+            return interaction.editReply('현재 재생 중인 노래가 없습니다.');
         }
 
         if (subcommand === '대기열') {
             if (serverQueue && serverQueue.songs.length > 0) {
                 const queueList = serverQueue.songs.map((song, index) => `${index + 1}. **${song.title}**`);
-                return interaction.reply({embeds: [new EmbedBuilder().setTitle('대기열').setDescription(queueList.join('\n')).setColor('FF0000')]});
+                return interaction.editReply({embeds: [new EmbedBuilder().setTitle('대기열').setDescription(queueList.join('\n')).setColor('FF0000')]});
             }
-            return interaction.reply('대기열이 비어있습니다.');
+            return interaction.editReply('대기열이 비어있습니다.');
         }
     },
 };
