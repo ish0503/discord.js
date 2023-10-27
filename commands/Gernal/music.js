@@ -85,23 +85,22 @@ module.exports = {
                 // audioPlayer.play(resource);
 
                 audioPlayer.on(AudioPlayerStatus.Idle, () => {
-                    //queueContruct.songs.shift();
+                    queueContruct.songs.shift();
+                    console.log(queueContruct.songs)
                     if (queueContruct.songs.length === 0) {
                         queueContruct.playing = false;
-                        // if (connection){
-                        //     connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
-                        // }
+                        connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
                         return;
                     }
-                    console.log(queueContruct.songs[0])
                     const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
                     const resource = createAudioResource(stream);
                     audioPlayer.play(resource);
                 });
 
                 audioPlayer.on('error', error => {
-                    console.error(`Error: ${error.message} with resource ${error.resource}`);
-                    //queueContruct.songs.shift();
+                    console.error(`Error: ${error.message} with resource ${error.resource.metadata.title}`);
+                    queueContruct.songs.shift();
+                    console.log(queueContruct.songs)
                     if (queueContruct.songs.length === 0) {
                         queueContruct.playing = false;
                         connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
