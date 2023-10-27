@@ -84,9 +84,9 @@ module.exports = {
                     queueContruct.songs.shift();
                     if (queueContruct.songs.length === 0) {
                         queueContruct.playing = false;
-                        if (connection){
-                            connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
-                        }
+                        // if (connection){
+                        //     connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
+                        // }
                         return;
                     }
                     console.log(queueContruct.songs[0])
