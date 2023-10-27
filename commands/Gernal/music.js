@@ -87,7 +87,7 @@ module.exports = {
                 audioPlayer.on(AudioPlayerStatus.Idle, () => {
                     queueContruct.songs.shift();
                     console.log(queueContruct.songs)
-                    if (queueContruct.songs.length === 0) {
+                    if (queueContruct.songs.length <= 0) {
                         queueContruct.playing = false;
                         connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
                         return;
@@ -101,7 +101,7 @@ module.exports = {
                     console.error(`Error: ${error}`);
                     queueContruct.songs.shift();
                     console.log(queueContruct.songs)
-                    if (queueContruct.songs.length === 0) {
+                    if (queueContruct.songs.length <= 0) {
                         queueContruct.playing = false;
                         connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
                     }
