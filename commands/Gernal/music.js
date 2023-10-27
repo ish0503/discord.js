@@ -72,6 +72,9 @@ module.exports = {
                     songs: [song],
                     playing: true,
                 };
+
+                console.log(queueContruct)
+                
                 queue.set(interaction.guildId, queueContruct);
 
                 connection.subscribe(audioPlayer);
