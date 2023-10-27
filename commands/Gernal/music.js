@@ -74,12 +74,12 @@ module.exports = {
                 };
 
                 console.log(queueContruct)
-                
+
                 queue.set(interaction.guildId, queueContruct);
 
                 connection.subscribe(audioPlayer);
 
-                queueContruct.songs.shift();
+                //queueContruct.songs.shift();
                 const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
                 const resource = createAudioResource(stream);
                 audioPlayer.play(resource);
