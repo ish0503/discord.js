@@ -56,8 +56,8 @@ module.exports = {
             console.log(video)
 
             const audioPlayer = createAudioPlayer();
-            //const stream = await ytdl(video.url, { filter: 'audioonly' });
-            //const resource = createAudioResource(stream);
+            const stream = await ytdl(video.url, { filter: 'audioonly' });
+            const resource = createAudioResource(stream);
             //audioPlayer.play(resource);
 
             const song = { title: video.title, url: video.url };
@@ -92,7 +92,8 @@ module.exports = {
                         connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
                         return;
                     }
-                    const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
+                    //const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
+
                     const resource = createAudioResource(stream);
                     audioPlayer.play(resource);
                 });
