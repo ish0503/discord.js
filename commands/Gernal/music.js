@@ -49,12 +49,14 @@ module.exports = {
             });
 
             const searchResult = await yts(query);
+
+            console.log(searchResult)
             const video = searchResult.videos[0];
 
             const audioPlayer = createAudioPlayer();
             const stream = await ytdl(video.url, { filter: 'audioonly' });
             const resource = createAudioResource(stream);
-            audioPlayer.play(resource);
+            //audioPlayer.play(resource);
 
             const song = { title: video.title, url: video.url };
             if (serverQueue) {
