@@ -3,8 +3,6 @@ const { createAudioPlayer, createAudioResource, joinVoiceChannel, AudioPlayerSta
 const yts = require('yt-search');
 const ytdl = require('ytdl-core');
 
-const queue = new Map();
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('음악')
@@ -34,6 +32,8 @@ module.exports = {
                 .setName('대기열')
                 .setDescription('대기열 목록을 보여줍니다.')),
     async execute(interaction) {
+        const queue = new Map();
+        
         await interaction.deferReply()
         const subcommand = interaction.options.getSubcommand();
         const voiceChannel = interaction.member.voice.channel;
