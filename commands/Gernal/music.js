@@ -51,8 +51,9 @@ module.exports = {
 
             const searchResult = await yts(query);
 
-            console.log(searchResult)
             const video = searchResult.videos[0];
+
+            console.log(video)
 
             const audioPlayer = createAudioPlayer();
             const stream = await ytdl(video.url, { filter: 'audioonly' });
@@ -94,10 +95,14 @@ module.exports = {
                         queueContruct.playing = false;
                         connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
                     }
-                    const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
-                    const resource = createAudioResource(stream);
-                    audioPlayer.play(resource);
+                    // const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
+                    // const resource = createAudioResource(stream);
+                    // audioPlayer.play(resource);
                 });
+
+                const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
+                const resource = createAudioResource(stream);
+                audioPlayer.play(resource);
 
                 return interaction.editReply({ embeds: [new EmbedBuilder().setTitle('노래 재생').setDescription(`${song.title}을(를) 재생합니다.`).setColor('FF0000')] });
             }
