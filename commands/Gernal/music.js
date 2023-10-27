@@ -56,8 +56,8 @@ module.exports = {
             console.log(video)
 
             const audioPlayer = createAudioPlayer();
-            const stream = await ytdl(video.url, { filter: 'audioonly' });
-            const resource = createAudioResource(stream);
+            //const stream = await ytdl(video.url, { filter: 'audioonly' });
+            //const resource = createAudioResource(stream);
             //audioPlayer.play(resource);
 
             const song = { title: video.title, url: video.url };
