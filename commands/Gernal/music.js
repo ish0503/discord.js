@@ -110,6 +110,12 @@ module.exports = {
                     audioPlayer.play(resource);
                 });
 
+                console.log(queueContruct.songs)
+                console.log(queueContruct.songs[0])
+                const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
+                const resource = createAudioResource(stream);
+                audioPlayer.play(resource);
+
                 return interaction.editReply({ embeds: [new EmbedBuilder().setTitle('노래 재생').setDescription(`${song.title}을(를) 재생합니다.`).setColor('FF0000')] });
             }
         }
