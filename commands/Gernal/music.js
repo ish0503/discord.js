@@ -33,7 +33,7 @@ module.exports = {
                 .setDescription('대기열 목록을 보여줍니다.')),
     async execute(interaction) {
         const queue = new Map();
-        
+
         await interaction.deferReply()
         const subcommand = interaction.options.getSubcommand();
         const voiceChannel = interaction.member.voice.channel;
@@ -98,7 +98,7 @@ module.exports = {
                 });
 
                 audioPlayer.on('error', error => {
-                    console.error(`Error: ${error.message} with resource ${error.resource.metadata.title}`);
+                    console.error(`Error: ${error}`);
                     queueContruct.songs.shift();
                     console.log(queueContruct.songs)
                     if (queueContruct.songs.length === 0) {
