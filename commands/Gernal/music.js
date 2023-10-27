@@ -106,14 +106,14 @@ module.exports = {
                         queueContruct.playing = false;
                         connection.destroy(); // 대기열에 더 이상 노래가 없으면 연결을 해제합니다
                     }
-                    const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
+                    //const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
                     const resource = createAudioResource(stream);
                     audioPlayer.play(resource);
                 });
 
                 console.log(queueContruct.songs)
                 console.log(queueContruct.songs[0])
-                const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
+                //const stream = ytdl(queueContruct.songs[0].url, { filter: 'audioonly' });
                 const resource = createAudioResource(stream);
                 audioPlayer.play(resource);
 
