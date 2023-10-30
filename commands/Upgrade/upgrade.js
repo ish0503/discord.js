@@ -520,7 +520,7 @@ module.exports = {
             .find()
 	    .sort({"value" : 1})
             //.sort([["value"]])
-            .limit(20)
+            //.limit(20)
             .exec();
 
 	    console.log(gambling_find)
