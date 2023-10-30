@@ -522,6 +522,8 @@ module.exports = {
             //.sort([["value"]])
             .limit(10)
             .exec();
+
+	    console.log(gambling_find)
     
             const embed = new EmbedBuilder()
             .setTitle(`${interaction.client.user.username} 강화 순위`)
