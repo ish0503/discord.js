@@ -523,7 +523,7 @@ module.exports = {
             //.limit(20)
             .exec();
 
-	    console.log(gambling_find)
+	    //console.log(gambling_find)
     
             const embed = new EmbedBuilder()
             .setTitle(`${interaction.client.user.username} 강화 순위`)
@@ -563,7 +563,7 @@ module.exports = {
                 // a must be equal to b
                 return 0;
               });
-             console.log(save)
+             //console.log(save)
             // console.log(Object.keys(save).length)
             // console.log(save[1])
             for (let i = 0; i < 10; i++){
