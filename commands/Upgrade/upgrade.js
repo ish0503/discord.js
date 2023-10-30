@@ -518,7 +518,7 @@ module.exports = {
 
             const gambling_find = await gambling_Schema
             .find()
-	    .sort([{"value": 1}])
+	    .sort([{"hashtags": [{"value" : 1}]}])
             //.sort([["value"]])
             .limit(10)
             .exec();
