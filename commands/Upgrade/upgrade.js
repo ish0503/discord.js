@@ -520,7 +520,7 @@ module.exports = {
             .find()
 	    .sort({"value" : 1})
             //.sort([["value"]])
-            .limit(10)
+            .limit(20)
             .exec();
 
 	    console.log(gambling_find)
@@ -566,7 +566,7 @@ module.exports = {
              console.log(save)
             // console.log(Object.keys(save).length)
             // console.log(save[1])
-            for (let i = 0; i < Object.keys(save).length; i++){
+            for (let i = 0; i < 10; i++){
                 const user = await interaction.client.users.fetch(
                     save[i].userid
                 )
