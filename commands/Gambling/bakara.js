@@ -225,7 +225,7 @@ module.exports = {
                     userid: user.id,
                     date: ehqkrduqn.date
                 })
-                const f = ehqkrduqn.money.add(-money)
+                const f = Number(ehqkrduqn.money)+(-money)
                 const embed = new (require("discord.js")).EmbedBuilder()
                 .setTitle(`바카라 미적중 [ 배팅 : 타이 ]`)
                 .setDescription(`**
