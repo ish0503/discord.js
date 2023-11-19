@@ -13,7 +13,7 @@ module.exports = {
     .addStringOption(option => option
 		.setName('선택')
 		.setDescription('킥 or 밴')
-		.setRequired(false)
+		.setRequired(true)
 		.addChoices(
 			{ name: '킥', value: '킥' },
 			{ name: '밴', value: '밴' },
@@ -35,10 +35,10 @@ module.exports = {
         const member = interaction.options.getString('유저').split(',');
         const reason = interaction.options.getString('사유');
 
-        if (!member.bannable){
-            interaction.reply({content: `**멤버를 추방할수 없습니다.**`})
-            return
-        }
+        // if (!member.bannable){
+        //     interaction.reply({content: `**멤버를 추방할수 없습니다.**`})
+        //     return
+        // }
 
         const embed = new EmbedBuilder({title:"멤버를 추방 하시겠습니까?"})
         .setColor("Blue")
