@@ -74,7 +74,7 @@ module.exports = {
             }
             if (category == "킥"){
                 try{
-                    const namearr = ""
+                    let namearr = ""
                     member.forEach(element => {
                         const member = interaction.guild.members.cache.get(element);
                         if (member){
