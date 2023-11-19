@@ -1,9 +1,10 @@
-const { SlashCommandBuilder, EmbedBuilder, Embed, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
 const { connection } = require("mongoose");
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("추방")
     .setDescription("사람들을 추방시킬수 있습니다.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
     .addStringOption(options => options
         .setName("유저")
         .setDescription("작성 방법: (19129458,48723928) 식으로 유저 id뒤 쉼표 넣기")
@@ -30,7 +31,6 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
-        if(!interaction.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) return interaction.reply("권한이 없습니다!")
         const category = interaction.options.getString('선택');
         const member = interaction.options.getString('유저').split(',');
         const reason = interaction.options.getString('사유');
