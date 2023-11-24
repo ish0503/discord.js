@@ -26,9 +26,9 @@ module.exports = {
    */
             async execute(interaction) {
       await interaction.deferReply()
-              if (!interaction.channel.id){
+              if (!interaction.channel){
                 await interaction.editReply({
-                     content: `채널 id를 불러올수 없음.`,
+                     content: `채널을 불러올수 없음.`,
                  });
                 return;
               }
