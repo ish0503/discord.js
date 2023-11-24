@@ -26,11 +26,17 @@ module.exports = {
    */
             async execute(interaction) {
       await interaction.deferReply()
+              if (!interaction.channel.id){
+                await interaction.editReply({
+                     content: `채널 id를 불러올수 없음.`,
+                 });
+                return;
+              }
       var raid = await raid_Sechma.findOne({
         channelid: interaction.channel.id
       })
       console.log(interaction.channel.id)
-    if (raid && interaction.channel.id){
+    if (raid){
       await interaction.editReply({
                      content: `이 채널에서 이미 레이드가 진행중입니다.`,
                  });
