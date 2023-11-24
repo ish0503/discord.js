@@ -29,7 +29,8 @@ module.exports = {
       var raid = await raid_Sechma.findOne({
         channelid: interaction.channel.id
       })
-    if (raid){
+      console.log(interaction.channel.id)
+    if (raid && interaction.channel.id){
       await interaction.editReply({
                      content: `이 채널에서 이미 레이드가 진행중입니다.`,
                  });
