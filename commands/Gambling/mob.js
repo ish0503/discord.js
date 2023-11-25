@@ -15,7 +15,23 @@ const { table } = require("node:console");
     data: new SlashCommandBuilder()
       .setName("사냥")
       .setDescription("몹을 사냥해 전리품을 얻어보세요."),
-    /**
+      .addSubcommand(subcommand =>
+              subcommand
+              .setName("자동사냥")
+              .setDescription("자동으로 사냥해보세요!")
+              .addStringOption(options => options
+                  .setName("자동사냥")
+                  .setDescription("true를 입력하면 실행됩니다.")
+                  .setRequired(false)
+            ),
+          )
+    .addSubcommand(subcommand =>
+            subcommand
+            .setName("자동사냥중지")
+            .setDescription("자동사냥을 중지합니다."),
+            )
+
+/**
      *
      * @param {import("discord.js").ChatInputCommandInteraction} interaction
      */
@@ -29,7 +45,7 @@ const { table } = require("node:console");
         var level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
-
+    const Isauto = interaction.options.getSubcommand('자동사냥') ;
         if (!gambling_find){
             interaction.editReply({
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
