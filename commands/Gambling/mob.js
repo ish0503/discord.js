@@ -63,24 +63,24 @@ let H = false;
 
         if (interaction.options.getSubcommand('자동사냥')) {
                 if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
-                    interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
+                    interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
                     return;
                 }
-                interaction.reply("자동사냥을 시작합니다. 사냥이 끝날때 마다 사냥을 시도합니다. 정지하려면 '/자동사냥중지' 명령어를 사용하세요.");
+                interaction.editReply("자동사냥을 시작합니다. 사냥이 끝날때 마다 사냥을 시도합니다. 정지하려면 '/자동사냥중지' 명령어를 사용하세요.");
                  H = true;
 
                 }
         else if (interaction.options.getSubcommand() === "자동사냥중지") {
             if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
-                interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
+                interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
                 return;
             
             }
              if (H == true) {
-                interaction.reply("자동강화를 정지합니다.");
+                interaction.editReply("자동강화를 정지합니다.");
                  H = false;
             } else {
-                interaction.reply("현재 자동강화가 진행 중이 아닙니다.");
+                interaction.editReply("현재 자동강화가 진행 중이 아닙니다.");
             }
         }
         while (H = true) 
