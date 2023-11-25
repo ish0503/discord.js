@@ -141,11 +141,7 @@ module.exports = {
                     let hasitem2 = []
             
                     for (let i = 0; i < length; i++){
-                        if (gambling_find.hashtags[i].name == args) {
-                            isitem = i
-                        }else{
-                            hasitem2.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value})
-                        }
+                        hasitem2.push({"name": gambling_find.hashtags[i].name, "value": gambling_find.hashtags[i].value})
                     }
                 const random_number = Math.round(Math.random() * 10000)
                 const random_upgrade = Math.round(Math.random() * 9) + 1 // 1에서 2사이
