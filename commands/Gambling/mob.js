@@ -15,21 +15,16 @@ let H = false;
     data: new SlashCommandBuilder()
       .setName("사냥")
       .setDescription("몹을 사냥해 전리품을 얻어보세요.")
-      .addSubcommand(subcommand =>
-            subcommand
-            .setName("일반사냥")
-            .setDescription("사냥을 시작합니다."),
-            )
-      .addSubcommand(subcommand =>
-              subcommand
-              .setName("자동사냥")
-              .setDescription("자동으로 사냥해보세요!")
+      .addBooleanOption(options => options
+                .setName("자동강화")
+                .setDescription("자동 강화 하시겠습니까?")
+                .setRequired(false)
           )
-    .addSubcommand(subcommand =>
-            subcommand
-            .setName("자동사냥중지")
-            .setDescription("자동사냥을 중지합니다."),
-            ),
+      .addBooleanOption(options => options
+            .setName("자동강화중지")
+            .setDescription("자동 강화 중지 하시겠습니까?")
+            .setRequired(false)
+          ),
 
 /**
      *
