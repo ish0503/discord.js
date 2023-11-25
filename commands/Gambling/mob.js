@@ -80,7 +80,7 @@ let H = false;
                 interaction.editReply("현재 자동강화가 진행 중이 아닙니다.");
             }
         }
-        while (H = true) 
+        while (H == true) 
         {
         Hunting(); 
         }
