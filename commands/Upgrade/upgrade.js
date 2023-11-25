@@ -729,7 +729,7 @@ module.exports = {
             const gambling_find = await gambling_Schema
             .find()
             .sort([["value"]])
-            .limit(10)
+            //.limit(10)
             .exec();
     
             const embed = new EmbedBuilder()
