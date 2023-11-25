@@ -27,7 +27,16 @@ module.exports = {
             return
         }
 
-        const embed = new EmbedBuilder().setDescription(
+        if (!heart_find){
+            const embed = new EmbedBuilder().setDescription(
+            `**${
+                interaction.user
+            }님의 재화는 총 ${Number(gambling_find.money).toLocaleString()}입니다.**`
+        ).setColor("Green")
+
+        interaction.reply({embeds: [embed]})
+        }else{
+            const embed = new EmbedBuilder().setDescription(
             `**${
                 interaction.user
             }님의 재화는 총 ${Number(gambling_find.money).toLocaleString()}입니다.**\n
@@ -35,5 +44,8 @@ module.exports = {
         ).setColor("Green")
 
         interaction.reply({embeds: [embed]})
+        }
+
+        
     }
 }
