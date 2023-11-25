@@ -8,7 +8,7 @@ const {
   const comma = require("comma-number");
 const { table } = require("node:console");
   const wait = require('node:timers/promises').setTimeout;
-
+let H = false;
   var cooldown = []
   
   module.exports = {
@@ -45,7 +45,7 @@ const { table } = require("node:console");
         var level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
-    const Isauto = interaction.options.getSubcommand('자동사냥') ;
+    const Isauto = interaction.options.getSubcommand('자동사냥') ; 
         if (!gambling_find){
             interaction.editReply({
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
@@ -59,9 +59,36 @@ const { table } = require("node:console");
             })
             return
         }
-
+        if
+        {
         cooldown.push(interaction.user.id)
+        }
+        if (Isauto == true){
+                if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
+                    interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
+                    return;
+                }
+                interaction.reply("자동사냥을 시작합니다. 사냥이 끝날때 마다 사냥을 시도합니다. 정지하려면 '/자동사냥중지' 명령어를 사용하세요.");
+             H = true;
 
+                }
+        if (interaction.options.getSubcommand() === "자동사냥중지") {
+            if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
+                interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
+                return;
+            
+            }
+             if (H == true) {
+                interaction.reply("자동강화를 정지합니다.");
+                 H = false;
+            } else {
+                interaction.reply("현재 자동강화가 진행 중이 아닙니다.");
+            }
+        }
+        while (H = true) 
+        {
+        Hunting(); 
+        }
         var monsters = [
             { name: '죽음', hp: 100000, reward: 10000000, XPreward:10 },
             { name: '최강의 슬라임', hp: 1300, reward: 130000, XPreward:9 },
@@ -235,7 +262,8 @@ const { table } = require("node:console");
             // a must be equal to b
             return 0;
           });
-
+        Hunting();
+function Hunting(){
         var damage
 
         if (save.length <= 0){
@@ -325,5 +353,6 @@ const { table } = require("node:console");
                 }
             } 
         }
-    },
+}
+},
   };
