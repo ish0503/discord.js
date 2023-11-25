@@ -372,13 +372,13 @@ module.exports = {
                 console.log(item)
                 embed.addFields({
                     name: `${i+1}. ${item.name}`,
-                    Lv: `강화수 : **${item.Lv}**`
+                    value: `강화수 : **${item.Lv}**`
                 })
             }
 
             embed.addFields({
                 name: `강화보호권`,
-                Lv: `${gambling_find?.defense || 0}개**`
+                value: `${gambling_find?.defense || 0}개**`
             })
     
             interaction.reply({embeds: [embed]})
