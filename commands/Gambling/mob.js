@@ -271,7 +271,7 @@ let H = [];
           });
         while (H.includes(interaction.user.id)) 
         {
-            console.log(H)
+            //console.log(H)
             await wait(1000);
           await Hunting(); 
         }
