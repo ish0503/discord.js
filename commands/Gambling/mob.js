@@ -16,15 +16,16 @@ let H = false;
       .setName("사냥")
       .setDescription("몹을 사냥해 전리품을 얻어보세요.")
       .addBooleanOption(options => options
-                .setName("자동강화")
-                .setDescription("자동 강화 하시겠습니까?")
+                .setName("자동사냥")
+                .setDescription("자동 사냥 하시겠습니까?")
                 .setRequired(false)
-          )
-      .addBooleanOption(options => options
-            .setName("자동강화중지")
-            .setDescription("자동 강화 중지 하시겠습니까?")
-            .setRequired(false)
           ),
+      .addSubcommand(subcommand =>
+            subcommand
+            .setName("자동사냥중지")
+            .setDescription("자동 사냥 중지 하시겠습니까?")
+            .setRequired(false)
+          )
 
 /**
      *
