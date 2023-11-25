@@ -75,7 +75,7 @@ let H = [];
             }
              if (H.includes(interaction.user.id)) {
                 interaction.editReply("자동강화를 정지합니다.");
-                 Isauto = false;
+                 //Isauto = false;
                  for(let i = 0; i < arr.length; i++) {
                    if(H[i] === interaction.user.id)  {
                         arr.splice(i, 1);
