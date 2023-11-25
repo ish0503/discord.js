@@ -25,12 +25,12 @@ module.exports = {
     if (interaction.isCommand()) { // Checks if the interaction is a command and runs the `
       const command = client.commands.get(interaction.commandName);
       if(!command) return;
-      try{
+     // try{
           await command.execute(interaction);
-      }catch(error){
-          console.error(error);
-          await interaction.reply({content : "There was an error while executing action"})
-      }
+     // }catch(error){
+        //  console.error(error);
+       //   await interaction.reply({content : "There was an error while executing action"})
+   //   }
       return;
 
   }
