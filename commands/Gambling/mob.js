@@ -62,7 +62,7 @@ let H = false;
 
         cooldown.push(interaction.user.id)
 
-        if (Isauto == true) {
+        if (Isauto) {
                 if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
                     interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
                     return;
