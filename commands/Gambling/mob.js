@@ -48,14 +48,6 @@ let H = [];
             })
             return
         }
-
-        if (cooldown.find((element) => element == interaction.user.id)){
-            interaction.editReply({
-                content: `**현재 이미 명령어를 실행하고 있습니다.**`
-            })
-            return
-        }
-
         cooldown.push(interaction.user.id)
 
         if (Isauto == true) {
@@ -67,7 +59,14 @@ let H = [];
                  H.push(interaction.user.id);
 
                 }
-        else if (Isautostop == true) {
+            if (cooldown.find((element) => element == interaction.user.id)){
+            interaction.editReply({
+                content: `**현재 이미 명령어를 실행하고 있습니다.**`
+            })
+            return
+        }
+
+        if (Isautostop == true) {
             if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
                 interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
                 return;
@@ -85,6 +84,16 @@ let H = [];
             } else {
                 interaction.editReply("현재 자동강화가 진행 중이 아닙니다.");
             }
+        }
+
+        
+        function clear(){
+            for(var i = 0; i < cooldown.length; i++){ 
+                if (cooldown[i] === interaction.user.id) { 
+                    cooldown.splice(i, 1); 
+                    i--; 
+                }
+            } 
         }
                 var monsters = [
             { name: '죽음', hp: 100000, reward: 10000000, XPreward:10 },
@@ -261,6 +270,7 @@ let H = [];
           });
         while (H.includes(interaction.user.id)) 
         {
+            console.log(H)
             await wait(1000);
           await Hunting(); 
         }
@@ -346,15 +356,6 @@ async function Hunting(){
           
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
-        }
-
-        function clear(){
-            for(var i = 0; i < cooldown.length; i++){ 
-                if (cooldown[i] === interaction.user.id) { 
-                    cooldown.splice(i, 1); 
-                    i--; 
-                }
-            } 
         }
 }
 },
