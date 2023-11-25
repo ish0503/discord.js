@@ -24,11 +24,6 @@ let H = false;
               subcommand
               .setName("자동사냥")
               .setDescription("자동으로 사냥해보세요!")
-              .addStringOption(options => options
-                  .setName("자동사냥")
-                  .setDescription("true를 입력하면 실행됩니다.")
-                  .setRequired(false)
-            ),
           )
     .addSubcommand(subcommand =>
             subcommand
