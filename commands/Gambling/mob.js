@@ -19,13 +19,13 @@ let H = false;
                 .setName("자동사냥")
                 .setDescription("자동 사냥 하시겠습니까?")
                 .setRequired(false)
-          ),
+          )
       .addSubcommand(subcommand =>
             subcommand
             .setName("자동사냥중지")
             .setDescription("자동 사냥 중지 하시겠습니까?")
             .setRequired(false)
-          )
+          ),
 
 /**
      *
