@@ -330,7 +330,7 @@ async function Hunting(){
         const embed = new EmbedBuilder()
             .setTitle("사냥 성공")
             .setDescription(
-                `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                `<@${interaction.user.id}> ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
             )
             .setColor("Green");
         
