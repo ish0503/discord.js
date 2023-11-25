@@ -14,7 +14,7 @@ let H = false;
   module.exports = {
     data: new SlashCommandBuilder()
       .setName("사냥")
-      .setDescription("몹을 사냥해 전리품을 얻어보세요."),
+      .setDescription("몹을 사냥해 전리품을 얻어보세요.")
       .addSubcommand(subcommand =>
             subcommand
             .setName("일반사냥")
