@@ -80,12 +80,7 @@ let H = false;
                 interaction.editReply("현재 자동강화가 진행 중이 아닙니다.");
             }
         }
-        while (H == true) 
-        {
-            await wait(1000);
-          await Hunting(); 
-        }
-        var monsters = [
+                var monsters = [
             { name: '죽음', hp: 100000, reward: 10000000, XPreward:10 },
             { name: '최강의 슬라임', hp: 1300, reward: 130000, XPreward:9 },
             { name: '최강의 새늅봇', hp: 1300, reward: 130000, XPreward: 9 },
@@ -258,6 +253,12 @@ let H = false;
             // a must be equal to b
             return 0;
           });
+        while (H == true) 
+        {
+            await wait(1000);
+          await Hunting(); 
+        }
+
         Hunting();
 async function Hunting(){
         var damage
