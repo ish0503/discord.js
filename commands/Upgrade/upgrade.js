@@ -147,7 +147,12 @@ module.exports = {
     
                 if (((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100 >= 3000){
                     const random_upgrade = 30
-                    hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
+                    hasitem.forEach(element => {
+                        if (element.name == args){
+                            element.value = gambling_find.hashtags[isitem].value + random_upgrade
+                        }
+                    });
+                    //hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
@@ -170,7 +175,12 @@ module.exports = {
                 }
                 else if (((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100 >= 1000){
                     const random_upgrade = 10
-                    hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
+                    hasitem.forEach(element => {
+                        if (element.name == args){
+                            element.value = gambling_find.hashtags[isitem].value + random_upgrade
+                        }
+                    });
+                    //hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
@@ -193,7 +203,12 @@ module.exports = {
                 }
                 else if (((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100 >= 500){
                     const random_upgrade = Math.round(Math.random() * 5) + 5
-                    hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
+                    hasitem.forEach(element => {
+                        if (element.name == args){
+                            element.value = gambling_find.hashtags[isitem].value + random_upgrade
+                        }
+                    });
+                   // hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
@@ -216,7 +231,12 @@ module.exports = {
                 }
     
                 if (random_number + (level_find?.level || 1) * 100 > gambling_find.hashtags[isitem].value ** 2){
-                    hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
+                    hasitem.forEach(element => {
+                        if (element.name == args){
+                            element.value = gambling_find.hashtags[isitem].value + random_upgrade
+                        }
+                    });
+                    //hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
@@ -237,7 +257,12 @@ module.exports = {
                     interaction.channel.send({embeds: [embed]});
                 }else{
                     if ((gambling_find?.defense || 0) < 1){
-                        hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value - random_upgrade})
+                        hasitem.forEach(element => {
+                            if (element.name == args){
+                                element.value = gambling_find.hashtags[isitem].value - random_upgrade
+                            }
+                        });
+                       // hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value - random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
