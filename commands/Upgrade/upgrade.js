@@ -132,7 +132,7 @@ module.exports = {
             }
 
             if (bools == true){
-                if (interaction.user.id != '929974091614670938' || interaction.user.id != '981354358383984680') {
+                if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
                     interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
                     return;
                 }
@@ -420,7 +420,7 @@ module.exports = {
 
 
         }else if (interaction.options.getSubcommand() === "자동강화중지") {
-            if (interaction.user.id != '929974091614670938' || interaction.user.id != '981354358383984680') {
+            if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
                 interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
                 return;
             }
