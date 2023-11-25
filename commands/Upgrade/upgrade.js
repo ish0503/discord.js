@@ -319,11 +319,11 @@ module.exports = {
     
                 if (((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100 >= 3000){
                     const random_upgrade = 30
-                    hasitem2.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
+                    hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
-                        hashtags : hasitem2,
+                        hashtags : hasitem,
                         skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                         {upsert:true}
                     );
@@ -342,11 +342,11 @@ module.exports = {
                 }
                 else if (((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100 >= 1000){
                     const random_upgrade = 10
-                    hasitem2.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
+                    hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
-                        hashtags : hasitem2,
+                        hashtags : hasitem,
                         skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                         {upsert:true}
                     );
@@ -365,11 +365,11 @@ module.exports = {
                 }
                 else if (((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100 >= 500){
                     const random_upgrade = Math.round(Math.random() * 5) + 5
-                    hasitem2.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
+                    hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
-                        hashtags : hasitem2,
+                        hashtags : hasitem,
                         skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                         {upsert:true}
                     );
@@ -388,11 +388,11 @@ module.exports = {
                 }
     
                 if (random_number + (level_find?.level || 1) * 100 > gambling_find.hashtags[isitem].value ** 2){
-                    hasitem2.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
+                    hasitem.push({ "name": args, "value": gambling_find.hashtags[isitem].value + random_upgrade})
                     await gambling_Schema.updateOne(
                         {userid: interaction.user.id},
                         {$set:{
-                        hashtags : hasitem2,
+                        hashtags : hasitem,
                         skills: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                         {upsert:true}
                     );
