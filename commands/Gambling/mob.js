@@ -267,7 +267,7 @@ let H = false;
             return 0;
           });
         Hunting();
-function Hunting(){
+async function Hunting(){
         var damage
 
         if (save.length <= 0){
