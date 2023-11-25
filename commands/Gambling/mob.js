@@ -48,7 +48,7 @@ let H = [];
             })
             return
         }
-        cooldown.push(interaction.user.id)
+        
 
         if (Isauto == true) {
                 if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
@@ -65,6 +65,7 @@ let H = [];
             })
             return
         }
+        cooldown.push(interaction.user.id)
 
         if (Isautostop == true) {
             if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
