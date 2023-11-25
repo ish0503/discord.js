@@ -82,7 +82,8 @@ let H = false;
         }
         while (H == true) 
         {
-        Hunting(); 
+            console.log("aa")
+           Hunting(); 
         }
         var monsters = [
             { name: '죽음', hp: 100000, reward: 10000000, XPreward:10 },
