@@ -8,7 +8,7 @@ const {
   const comma = require("comma-number");
 const { table } = require("node:console");
   const wait = require('node:timers/promises').setTimeout;
-let H = false;
+let H = [];
   var cooldown = []
   
   module.exports = {
@@ -64,7 +64,7 @@ let H = false;
                     return;
                 }
                 interaction.editReply("자동사냥을 시작합니다. 사냥이 끝날때 마다 사냥을 시도합니다. 정지하려면 '/자동사냥중지' 명령어를 사용하세요.");
-                 H = true;
+                 H.push(interaction.user.id);
 
                 }
         else if (Isautostop == true) {
@@ -76,7 +76,12 @@ let H = false;
              if (H == true) {
                 interaction.editReply("자동강화를 정지합니다.");
                  Isauto = false;
-                 H = false;
+                 for(let i = 0; i < arr.length; i++) {
+                   if(H[i] === interaction.user.id)  {
+                        arr.splice(i, 1);
+                        i--;
+                   }
+                 }
             } else {
                 interaction.editReply("현재 자동강화가 진행 중이 아닙니다.");
             }
@@ -254,7 +259,7 @@ let H = false;
             // a must be equal to b
             return 0;
           });
-        while (H == true) 
+        while (H.includes(interaction.user.id)) 
         {
             await wait(1000);
           await Hunting(); 
