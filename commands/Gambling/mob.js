@@ -78,7 +78,7 @@ let H = [];
                  //Isauto = false;
                  for(let i = 0; i < H.length; i++) {
                    if(H[i] === interaction.user.id)  {
-                        arr.splice(i, 1);
+                        H.splice(i, 1);
                         i--;
                    }
                  }
