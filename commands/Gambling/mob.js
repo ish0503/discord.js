@@ -20,10 +20,10 @@ let H = false;
                 .setDescription("자동 사냥 하시겠습니까?")
                 .setRequired(false)
           )
-      .addSubcommand(subcommand =>
-            subcommand
-            .setName("자동사냥중지")
-            .setDescription("자동 사냥 중지 하시겠습니까?")
+      .addBooleanOption(options => options
+                .setName("자동사냥중지")
+                .setDescription("자동 사냥 중지 하시겠습니까?")
+                .setRequired(false)
           ),
 
 /**
@@ -40,7 +40,8 @@ let H = false;
         var level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
-        const Isauto = interaction.options.getSubcommand('자동사냥') ;
+        const Isauto = interaction.options.getBoolean('자동사냥') ;
+        const Isautostop = interaction.options.getBoolean('자동사냥중지') ;
         if (!gambling_find){
             interaction.editReply({
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
@@ -66,7 +67,7 @@ let H = false;
                  H = true;
 
                 }
-        else if (interaction.options.getSubcommand() === "자동사냥중지") {
+        else if (Isautostop == true) {
             if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
                 interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
                 return;
