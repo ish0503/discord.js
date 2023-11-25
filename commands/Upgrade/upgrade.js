@@ -132,7 +132,7 @@ module.exports = {
             }
 
             if (bools == true){
-                if (interaction.user.id != '929974091614670938') {
+                if (interaction.user.id != '929974091614670938' || interaction.user.id != '981354358383984680') {
                     interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
                     return;
                 }
@@ -140,6 +140,10 @@ module.exports = {
                 autoUpgradeInterval = setInterval(async () => {
                 const random_number = Math.round(Math.random() * 10000)
                 const random_upgrade = Math.round(Math.random() * 9) + 1 // 1에서 2사이
+                if (((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100 <= 0){
+                    clearInterval(autoUpgradeInterval);
+                    interaction.channel.send("강화 확률이 0%가 되어 자동강화를 강제 정지합니다.");
+                }
     
                 if (((10000 + (level_find?.level || 1) * 100) - (gambling_find.hashtags[isitem].value ** 2)) / 100 >= 3000){
                     const random_upgrade = 30
@@ -416,7 +420,7 @@ module.exports = {
 
 
         }else if (interaction.options.getSubcommand() === "자동강화중지") {
-            if (interaction.user.id != '929974091614670938') {
+            if (interaction.user.id != '929974091614670938' || interaction.user.id != '981354358383984680') {
                 interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
                 return;
             }
