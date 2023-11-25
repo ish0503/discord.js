@@ -75,8 +75,8 @@ let H = false;
             }
              if (H == true) {
                 interaction.editReply("자동강화를 정지합니다.");
-                 H = false;
                  Isauto = false;
+                 H = false;
             } else {
                 interaction.editReply("현재 자동강화가 진행 중이 아닙니다.");
             }
