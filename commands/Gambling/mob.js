@@ -73,7 +73,7 @@ let H = [];
                 return;
             
             }
-             if (H == true) {
+             if (H.includes(interaction.user.id)) {
                 interaction.editReply("자동강화를 정지합니다.");
                  Isauto = false;
                  for(let i = 0; i < arr.length; i++) {
