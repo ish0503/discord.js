@@ -71,6 +71,15 @@ const { table } = require("node:console");
 
         cooldown.push(interaction.user.id)
 
+        function clear(){
+            for(var i = 0; i < cooldown.length; i++){ 
+                if (cooldown[i] === interaction.user.id) { 
+                    cooldown.splice(i, 1); 
+                    i--; 
+                }
+            } 
+        }
+
         let save = []
         let skills = []
         let save2 = []
@@ -177,11 +186,13 @@ const { table } = require("node:console");
                 content: `**아이템도 없는 사람을 팰려고 하다니 역시 당신은..**`
             })
             return
+            clear()
         }else if(save.length <= 0){
             interaction.editReply({
                 content: `**당신 아이템부터 만들고 오세용..(/아이템 생성)**`
             })
             return
+            clear()
         }
 
         var damage
@@ -433,13 +444,6 @@ const { table } = require("node:console");
 
         clear()
 
-        function clear(){
-            for(var i = 0; i < cooldown.length; i++){ 
-                if (cooldown[i] === interaction.user.id) { 
-                    cooldown.splice(i, 1); 
-                    i--; 
-                }
-            } 
-        }
     },
   };
+
