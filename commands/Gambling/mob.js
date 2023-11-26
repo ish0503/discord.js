@@ -30,8 +30,7 @@ let H = [];
         var level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
-        const Isauto = interaction.options.getBoolean('자동사냥') ;
-        const Isautostop = interaction.options.getBoolean('자동사냥중지') ;
+      
         if (!gambling_find){
             interaction.editReply({
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
