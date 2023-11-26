@@ -1,5 +1,6 @@
 const { Client, Collection, EmbedBuilder } = require("discord.js");
 const stock_Schema = require("../models/stock");
+const raid_Sechma = require("../../models/raidparty")
 
 module.exports = {
   name: "ready",
@@ -15,6 +16,11 @@ module.exports = {
         number++
     }, 10000)
     console.log(`${client.user.tag} 봇 이 준비되었습니다.`)
+
+    await raid_Sechma.updateOne(
+      {$set:{}},
+      {upsert:true}
+    );
 
     function getRandomArbitrary(min, max) {
       return Math.random() * (max - min) + min;
