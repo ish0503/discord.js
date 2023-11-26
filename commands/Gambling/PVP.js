@@ -315,7 +315,7 @@ const { table } = require("node:console");
                 .setColor("Purple");
                   interaction.editReply({embeds: [embed]});
                 user.hp -= damage2 * 10;
-            }else if (!skills.length <= 0){
+            }else if (!skills2.length <= 0){
                 if (Math.random() * 100 < 100-skill.Lv/100){
                     const embed = new EmbedBuilder()
                     .setTitle(`${skill.name}`)
