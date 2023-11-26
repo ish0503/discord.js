@@ -1,6 +1,6 @@
 const { Client, Collection, EmbedBuilder } = require("discord.js");
 const stock_Schema = require("../models/stock");
-const raid_Sechma = require("../../models/raidparty")
+const raid_Sechma = require("../models/raidparty")
 
 module.exports = {
   name: "ready",
