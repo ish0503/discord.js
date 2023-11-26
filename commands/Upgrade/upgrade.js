@@ -38,11 +38,6 @@ module.exports = {
                 .setDescription("아이템의 이름 입력해주세요.")
                 .setRequired(true)
             )
-            .addBooleanOption(options => options
-                .setName("자동강화")
-                .setDescription("자동 강화 하시겠습니까?")
-                .setRequired(false)
-            ),
             )
         .addSubcommand(subcommand =>
             subcommand
