@@ -13,15 +13,15 @@ let H = [];
   
   module.exports = {
     data: new SlashCommandBuilder()
-      .setName("사냥")
+      .setName("사냥") //메인커맨드
       .setDescription("몹을 사냥해 전리품을 얻어보세요.")
-      .addBooleanOption(options => options
-                .setName("자동사냥")
+      .addBooleanOption(options => options //자동사냥 옵션
+                .setName("자동사냥") 
                 .setDescription("자동 사냥 하시겠습니까?")
                 .setRequired(false)
           )
       .addBooleanOption(options => options
-                .setName("자동사냥중지")
+                .setName("자동사냥중지") //자동사냥 중지 옵션
                 .setDescription("자동 사냥 중지 하시겠습니까?")
                 .setRequired(false)
           ),
@@ -75,7 +75,7 @@ let H = [];
             }
              if (H.includes(interaction.user.id)) {
                 interaction.editReply("자동강화를 정지합니다.");
-                 //Isauto = false;
+                 Isauto = false;
                  for(let i = 0; i < H.length; i++) {
                    if(H[i] === interaction.user.id)  {
                         H.splice(i, 1);
