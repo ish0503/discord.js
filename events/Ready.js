@@ -17,10 +17,7 @@ module.exports = {
     }, 10000)
     console.log(`${client.user.tag} 봇 이 준비되었습니다.`)
 
-    await raid_Sechma.updateOne(
-      {$set:{}},
-      {upsert:true}
-    );
+    await raid_Sechma.deleteMany({ __v: 0 });
 
     function getRandomArbitrary(min, max) {
       return Math.random() * (max - min) + min;
