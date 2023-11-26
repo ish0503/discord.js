@@ -25,10 +25,7 @@ const { table } = require("node:console");
      * @param {import("discord.js").ChatInputCommandInteraction} interaction
      */
     async execute(interaction) {
-        if (interaction.user.id == '929974091614670938' || interaction.user.id == '981354358383984680') {
-            interaction.reply("개발자는 이 명령어를 사용 못한다.");
-            return;
-        }
+       
         await interaction.deferReply()
         const args = interaction.options.getMember("유저")
 
