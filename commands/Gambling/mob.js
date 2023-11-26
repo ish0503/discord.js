@@ -8,14 +8,24 @@ const {
   const comma = require("comma-number");
 const { table } = require("node:console");
   const wait = require('node:timers/promises').setTimeout;
-
+let H = [];
   var cooldown = []
   
   module.exports = {
     data: new SlashCommandBuilder()
       .setName("사냥")
       .setDescription("몹을 사냥해 전리품을 얻어보세요."),
-    /**
+    .addBooleanOption(options => options //자동사냥 옵션
+                .setName("자동사냥") 
+                .setDescription("자동 사냥 하시겠습니까?")
+                .setRequired(false)
+          )
+      .addBooleanOption(options => options
+                .setName("자동사냥중지") //자동사냥 중지 옵션
+                .setDescription("자동 사냥 중지 하시겠습니까?")
+                .setRequired(false)
+          ),
+      /**
      *
      * @param {import("discord.js").ChatInputCommandInteraction} interaction
      */
@@ -29,7 +39,8 @@ const { table } = require("node:console");
         var level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
-
+  const Isauto = interaction.options.getBoolean('자동사냥') ;
+        const Isautostop = interaction.options.getBoolean('자동사냥중지') ;
         if (!gambling_find){
             interaction.editReply({
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
@@ -219,9 +230,17 @@ const { table } = require("node:console");
             // a must be equal to b
             return 0;
           });
-
-        var damage
-
+ while (H.includes(interaction.user.id)) 
+        {
+            //console.log(H)
+            await wait(1000);
+          await Hunting(); 
+        }
+        
+      
+      var damage
+   Hunting();
+async function Hunting(){
         if (save.length <= 0){
             damage = 1
         }else if(skills.length <= 0){
