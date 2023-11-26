@@ -74,7 +74,7 @@ let H = [];
             
             }
              if (H.includes(interaction.user.id)) {
-                interaction.editReply("자동강화를 정지합니다.");
+                interaction.editReply("자동사냥를 정지합니다.");
                  Isauto = false;
                  for(let i = 0; i < H.length; i++) {
                    if(H[i] === interaction.user.id)  {
@@ -83,7 +83,7 @@ let H = [];
                    }
                  }
             } else {
-                interaction.editReply("현재 자동강화가 진행 중이 아닙니다.");
+                interaction.editReply("현재 자동사냥이 진행 중이 아닙니다.");
             }
         }
 
