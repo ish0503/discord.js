@@ -51,7 +51,7 @@ let H = [];
         
 
         if (Isauto == true) {
-                if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680'&& interaction.user.id != '717687620301357086') {
+                if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
                     interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
                     return;
                 }
