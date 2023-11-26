@@ -15,17 +15,7 @@ let H = [];
     data: new SlashCommandBuilder()
       .setName("사냥") //메인커맨드
       .setDescription("몹을 사냥해 전리품을 얻어보세요.")
-      .addBooleanOption(options => options //자동사냥 옵션
-                .setName("자동사냥") 
-                .setDescription("자동 사냥 하시겠습니까?")
-                .setRequired(false)
-          )
-      .addBooleanOption(options => options
-                .setName("자동사냥중지") //자동사냥 중지 옵션
-                .setDescription("자동 사냥 중지 하시겠습니까?")
-                .setRequired(false)
-          ),
-
+     
 /**
      *
      * @param {import("discord.js").ChatInputCommandInteraction} interaction
@@ -50,44 +40,7 @@ let H = [];
         }
         
 
-        if (Isauto == true) {
-                if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
-                    interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
-                    return;
-                }
-                interaction.editReply("자동사냥을 시작합니다. 사냥이 끝날때 마다 사냥을 시도합니다. 정지하려면 '/자동사냥중지' 명령어를 사용하세요.");
-                 H.push(interaction.user.id);
 
-                }
-            if (cooldown.find((element) => element == interaction.user.id)){
-            interaction.editReply({
-                content: `**현재 이미 명령어를 실행하고 있습니다.**`
-            })
-            return
-        }
-        cooldown.push(interaction.user.id)
-
-        if (Isautostop == true) {
-            if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
-                interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
-                return;
-            
-            }
-             if (H.includes(interaction.user.id)) {
-                interaction.editReply("자동사냥를 정지합니다.");
-                 Isauto = false;
-                 for(let i = 0; i < H.length; i++) {
-                   if(H[i] === interaction.user.id)  {
-                        H.splice(i, 1);
-                        i--;
-                   }
-                 }
-            } else {
-                interaction.editReply("현재 자동사냥이 진행 중이 아닙니다.");
-            }
-        }
-
-        
         function clear(){
             for(var i = 0; i < cooldown.length; i++){ 
                 if (cooldown[i] === interaction.user.id) { 
