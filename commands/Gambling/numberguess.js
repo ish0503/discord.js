@@ -67,7 +67,7 @@ module.exports = {
         }else{
             const embed = new EmbedBuilder()
             .setTitle('오류')
-            .setDescription('해당 명령어는 새늅봇 서버의 봇 서버에서만 가능합니다.\n새늅봇 서버에서 써주세요.')
+            .setDescription('해당 명령어는 새늅봇 서버의 봇 서버에서만 가능합니다.\n새늅봇 서버에서 써주세요.(https://discord.com/invite/rEcg8NajwX)')
             .setColor('964242')
             interaction.reply({embeds: [embed], ephemeral: true});
         }
