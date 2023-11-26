@@ -38,6 +38,16 @@ module.exports = {
                 .setDescription("아이템의 이름 입력해주세요.")
                 .setRequired(true)
             )
+            .addBooleanOption(options => options
+                .setName("자동강화")
+                .setDescription("자동 강화 하시겠습니까?")
+                .setRequired(false)
+            ),
+            )
+        .addSubcommand(subcommand =>
+            subcommand
+            .setName("자동강화중지")
+            .setDescription("자동강화를 중지합니다."),
             )
         .addSubcommand(subcommand =>
             subcommand
@@ -85,6 +95,7 @@ module.exports = {
             const level_find = await level_Sechma.findOne({
                 userid:interaction.user.id
             })
+            const bools = interaction.options.getBoolean('자동강화');
 
             if (gambling_find){
                 const canGiveTime = Number(gambling_find.cooltime) + (1 * 30 * 1000)
@@ -119,7 +130,190 @@ module.exports = {
                     interaction.reply({embeds: [embed]});
                     return;
             }
-		
+
+            if (bools == true){
+                if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
+                    interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
+                    return;
+                }
+                interaction.reply("자동강화를 시작합니다. 30초마다 강화를 시도합니다. 정지하려면 '/아이템 자동강화정지' 명령어를 사용하세요.");
+                autoUpgradeInterval = setInterval(async () => {
+                    const _find = await gambling_Schema.findOne({
+                        userid:interaction.user.id
+                    })
+
+                    let hasitem2 = []
+            
+                    for (let i = 0; i < length; i++){
+                        hasitem2.push({"name": _find.hashtags[i].name, "value": _find.hashtags[i].value})
+                    }
+                const random_number = Math.round(Math.random() * 10000)
+                const random_upgrade = Math.round(Math.random() * 9) + 1 // 1에서 2사이
+                if (((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100 <= 0){
+                    clearInterval(autoUpgradeInterval);
+                    interaction.channel.send("강화 확률이 0%가 되어 자동강화를 강제 정지합니다.");
+                }
+    
+                if (((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100 >= 3000){
+                    const random_upgrade = 30
+                    hasitem2.forEach(element => {
+                        if (element.name == args){
+                            element.value = _find.hashtags[isitem].value + random_upgrade
+                        }
+                    });
+                    //hasitem.push({ "name": args, "value": _find.hashtags[isitem].value + random_upgrade})
+                    await gambling_Schema.updateOne(
+                        {userid: interaction.user.id},
+                        {$set:{
+                        hashtags : hasitem2,
+                        skills: _find?.skills || null, cooltime: Date.now(), defense: _find?.defense || 0}},
+                        {upsert:true}
+                    );
+            
+                    const embed = new EmbedBuilder()
+                        .setTitle(
+                            `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100}%**`
+                        )
+                        .setDescription(
+                            `**강화 성공! 이름: ${args}, 강화 수: ${_find.hashtags[isitem].value} -> ${_find.hashtags[isitem].value + random_upgrade}**`
+                        )
+                        .setColor("Green");
+                    
+                    interaction.channel.send({embeds: [embed]});
+                    return
+                }
+                else if (((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100 >= 1000){
+                    const random_upgrade = 10
+                    hasitem2.forEach(element => {
+                        if (element.name == args){
+                            element.value = _find.hashtags[isitem].value + random_upgrade
+                        }
+                    });
+                    //hasitem.push({ "name": args, "value": _find.hashtags[isitem].value + random_upgrade})
+                    await gambling_Schema.updateOne(
+                        {userid: interaction.user.id},
+                        {$set:{
+                        hashtags : hasitem2,
+                        skills: _find?.skills || null, cooltime: Date.now(), defense: _find?.defense || 0}},
+                        {upsert:true}
+                    );
+            
+                    const embed = new EmbedBuilder()
+                        .setTitle(
+                            `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100}%**`
+                        )
+                        .setDescription(
+                            `**강화 성공! 이름: ${args}, 강화 수: ${_find.hashtags[isitem].value} -> ${_find.hashtags[isitem].value + random_upgrade}**`
+                        )
+                        .setColor("Green");
+                    
+                    interaction.channel.send({embeds: [embed]});
+                    return
+                }
+                else if (((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100 >= 500){
+                    const random_upgrade = Math.round(Math.random() * 5) + 5
+                    hasitem2.forEach(element => {
+                        if (element.name == args){
+                            element.value = _find.hashtags[isitem].value + random_upgrade
+                        }
+                    });
+                   // hasitem.push({ "name": args, "value": _find.hashtags[isitem].value + random_upgrade})
+                    await gambling_Schema.updateOne(
+                        {userid: interaction.user.id},
+                        {$set:{
+                        hashtags : hasitem2,
+                        skills: _find?.skills || null, cooltime: Date.now(), defense: _find?.defense || 0}},
+                        {upsert:true}
+                    );
+            
+                    const embed = new EmbedBuilder()
+                        .setTitle(
+                            `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100}%**`
+                        )
+                        .setDescription(
+                            `**강화 성공! 이름: ${args}, 강화 수: ${_find.hashtags[isitem].value} -> ${_find.hashtags[isitem].value + random_upgrade}**`
+                        )
+                        .setColor("Green");
+                    
+                    interaction.channel.send({embeds: [embed]});
+                    return
+                }
+    
+                if (random_number + (level_find?.level || 1) * 100 > _find.hashtags[isitem].value ** 2){
+                    hasitem2.forEach(element => {
+                        if (element.name == args){
+                            element.value = _find.hashtags[isitem].value + random_upgrade
+                        }
+                    });
+                    //hasitem.push({ "name": args, "value": _find.hashtags[isitem].value + random_upgrade})
+                    await gambling_Schema.updateOne(
+                        {userid: interaction.user.id},
+                        {$set:{
+                        hashtags : hasitem2,
+                        skills: _find?.skills || null, cooltime: Date.now(), defense: _find?.defense || 0}},
+                        {upsert:true}
+                    );
+            
+                    const embed = new EmbedBuilder()
+                        .setTitle(
+                            `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100}%**`
+                        )
+                        .setDescription(
+                            `**강화 성공! 이름: ${args}, 강화 수: ${_find.hashtags[isitem].value} -> ${_find.hashtags[isitem].value + random_upgrade}**`
+                        )
+                        .setColor("Green");
+                    
+                    interaction.channel.send({embeds: [embed]});
+                }else{
+                    if ((_find?.defense || 0) < 1){
+                        hasitem2.forEach(element => {
+                            if (element.name == args){
+                                element.value = _find.hashtags[isitem].value - random_upgrade
+                            }
+                        });
+                       // hasitem.push({ "name": args, "value": _find.hashtags[isitem].value - random_upgrade})
+                    await gambling_Schema.updateOne(
+                        {userid: interaction.user.id},
+                        {$set:{
+                        hashtags : hasitem2,
+                        skills: _find?.skills || null, cooltime: Date.now(), defense: _find?.defense || 0}},
+                        {upsert:true}
+                    );
+                            
+                    const embed = new EmbedBuilder()
+                        .setTitle(
+                            `**강화 확률: ${((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100}%**`
+                        )
+                        .setDescription(
+                            `**강화 실패.. 이름: ${args}, 강화 수: ${_find.hashtags[isitem].value} -> ${_find.hashtags[isitem].value - random_upgrade}**`
+                        )
+                        .setColor("Red");
+                    
+                    interaction.channel.send({embeds: [embed]});
+                    }else {
+                        await gambling_Schema.updateOne(
+                            {userid: interaction.user.id},
+                            {$set:{
+                            hashtags : _find?.hasitem2,
+                            skills: _find?.skills || null, cooltime: Date.now(), defense: _find?.defense - 1}},
+                            {upsert:true}
+                        );
+    
+    
+                        const embed = new EmbedBuilder()
+                        .setTitle(
+                            `방어. 확률: ${((10000 + (level_find?.level || 1) * 100) - (_find.hashtags[isitem].value ** 2)) / 100}%`
+                        )
+                        .setDescription(
+                            `**당신의 방어권으로 아이템이 보존되었습니다. \n남은 방어권: ${_find?.defense - 1}개**`
+                        )
+                        .setColor("Blue");
+                    
+                    interaction.channel.send({embeds: [embed]});
+                    }
+                }
+                }, 30000);
+            }else{
                 const random_number = Math.round(Math.random() * 10000)
                 const random_upgrade = Math.round(Math.random() * 9) + 1 // 1에서 2사이
     
@@ -256,6 +450,20 @@ module.exports = {
                     interaction.reply({embeds: [embed]});
                     }
                 }
+            }
+
+
+        }else if (interaction.options.getSubcommand() === "자동강화중지") {
+            if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
+                interaction.reply("이 명령어는 특정 사용자만 사용 가능합니다.");
+                return;
+            }
+            if (autoUpgradeInterval) {
+                clearInterval(autoUpgradeInterval);
+                interaction.reply("자동강화를 정지합니다.");
+            } else {
+                interaction.reply("현재 자동강화가 진행 중이 아닙니다.");
+            }
         }else if (interaction.options.getSubcommand() === "생성") {
         const args = interaction.options.getString("이름")
         const gambling_find = await gambling_Schema.findOne({
