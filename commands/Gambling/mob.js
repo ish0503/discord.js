@@ -8,15 +8,14 @@ const {
   const comma = require("comma-number");
 const { table } = require("node:console");
   const wait = require('node:timers/promises').setTimeout;
-let H = [];
+
   var cooldown = []
   
   module.exports = {
     data: new SlashCommandBuilder()
-      .setName("사냥") //메인커맨드
-      .setDescription("몹을 사냥해 전리품을 얻어보세요.")
-     
-/**
+      .setName("사냥")
+      .setDescription("몹을 사냥해 전리품을 얻어보세요."),
+    /**
      *
      * @param {import("discord.js").ChatInputCommandInteraction} interaction
      */
@@ -30,25 +29,24 @@ let H = [];
         var level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
-      
+
         if (!gambling_find){
             interaction.editReply({
                 content: `**돈이 없으시군요.. \`/돈\` 명령어로 새냥신의 은총을 받으세요.**`
             })
             return
         }
-        
 
-
-        function clear(){
-            for(var i = 0; i < cooldown.length; i++){ 
-                if (cooldown[i] === interaction.user.id) { 
-                    cooldown.splice(i, 1); 
-                    i--; 
-                }
-            } 
+        if (cooldown.find((element) => element == interaction.user.id)){
+            interaction.editReply({
+                content: `**현재 이미 명령어를 실행하고 있습니다.**`
+            })
+            return
         }
-                var monsters = [
+
+        cooldown.push(interaction.user.id)
+
+        var monsters = [
             { name: '죽음', hp: 100000, reward: 10000000, XPreward:10 },
             { name: '최강의 슬라임', hp: 1300, reward: 130000, XPreward:9 },
             { name: '최강의 새늅봇', hp: 1300, reward: 130000, XPreward: 9 },
@@ -221,15 +219,7 @@ let H = [];
             // a must be equal to b
             return 0;
           });
-        while (H.includes(interaction.user.id)) 
-        {
-            //console.log(H)
-            await wait(1000);
-          await Hunting(); 
-        }
 
-        Hunting();
-async function Hunting(){
         var damage
 
         if (save.length <= 0){
@@ -299,7 +289,7 @@ async function Hunting(){
         const embed = new EmbedBuilder()
             .setTitle("사냥 성공")
             .setDescription(
-                `<@${interaction.user.id}> ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
             )
             .setColor("Green");
         
@@ -310,6 +300,15 @@ async function Hunting(){
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
         }
-}
-},
+
+        function clear(){
+            for(var i = 0; i < cooldown.length; i++){ 
+                if (cooldown[i] === interaction.user.id) { 
+                    cooldown.splice(i, 1); 
+                    i--; 
+                }
+            } 
+        }
+    },
   };
+
