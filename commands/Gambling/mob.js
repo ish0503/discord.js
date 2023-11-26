@@ -13,9 +13,9 @@ let H = [];
   
   module.exports = {
     data: new SlashCommandBuilder()
-      .setName("사냥")
-      .setDescription("몹을 사냥해 전리품을 얻어보세요."),
-    .addBooleanOption(options => options //자동사냥 옵션
+      .setName("사냥") //메인커맨드
+      .setDescription("몹을 사냥해 전리품을 얻어보세요.")
+      .addBooleanOption(options => options //자동사냥 옵션
                 .setName("자동사냥") 
                 .setDescription("자동 사냥 하시겠습니까?")
                 .setRequired(false)
@@ -25,7 +25,8 @@ let H = [];
                 .setDescription("자동 사냥 중지 하시겠습니까?")
                 .setRequired(false)
           ),
-      /**
+
+/**
      *
      * @param {import("discord.js").ChatInputCommandInteraction} interaction
      */
@@ -39,7 +40,7 @@ let H = [];
         var level_find = await level_Sechma.findOne({
             userid:interaction.user.id
         })
-  const Isauto = interaction.options.getBoolean('자동사냥') ;
+        const Isauto = interaction.options.getBoolean('자동사냥') ;
         const Isautostop = interaction.options.getBoolean('자동사냥중지') ;
         if (!gambling_find){
             interaction.editReply({
@@ -47,17 +48,55 @@ let H = [];
             })
             return
         }
+        
 
-        if (cooldown.find((element) => element == interaction.user.id)){
+        if (Isauto == true) {
+                if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
+                    interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
+                    return;
+                }
+                interaction.editReply("자동사냥을 시작합니다. 사냥이 끝날때 마다 사냥을 시도합니다. 정지하려면 '/자동사냥중지' 명령어를 사용하세요.");
+                 H.push(interaction.user.id);
+
+                }
+            if (cooldown.find((element) => element == interaction.user.id)){
             interaction.editReply({
                 content: `**현재 이미 명령어를 실행하고 있습니다.**`
             })
             return
         }
-
         cooldown.push(interaction.user.id)
 
-        var monsters = [
+        if (Isautostop == true) {
+            if (interaction.user.id != '929974091614670938' && interaction.user.id != '981354358383984680') {
+                interaction.editReply("이 명령어는 특정 사용자만 사용 가능합니다.");
+                return;
+            
+            }
+             if (H.includes(interaction.user.id)) {
+                interaction.editReply("자동사냥를 정지합니다.");
+                 Isauto = false;
+                 for(let i = 0; i < H.length; i++) {
+                   if(H[i] === interaction.user.id)  {
+                        H.splice(i, 1);
+                        i--;
+                   }
+                 }
+            } else {
+                interaction.editReply("현재 자동사냥이 진행 중이 아닙니다.");
+            }
+        }
+
+        
+        function clear(){
+            for(var i = 0; i < cooldown.length; i++){ 
+                if (cooldown[i] === interaction.user.id) { 
+                    cooldown.splice(i, 1); 
+                    i--; 
+                }
+            } 
+        }
+                var monsters = [
             { name: '죽음', hp: 100000, reward: 10000000, XPreward:10 },
             { name: '최강의 슬라임', hp: 1300, reward: 130000, XPreward:9 },
             { name: '최강의 새늅봇', hp: 1300, reward: 130000, XPreward: 9 },
@@ -230,17 +269,17 @@ let H = [];
             // a must be equal to b
             return 0;
           });
- while (H.includes(interaction.user.id)) 
+        while (H.includes(interaction.user.id)) 
         {
             //console.log(H)
             await wait(1000);
           await Hunting(); 
         }
-        
-      
-      var damage
-   Hunting();
+
+        Hunting();
 async function Hunting(){
+        var damage
+
         if (save.length <= 0){
             damage = 1
         }else if(skills.length <= 0){
@@ -308,7 +347,7 @@ async function Hunting(){
         const embed = new EmbedBuilder()
             .setTitle("사냥 성공")
             .setDescription(
-                `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                `<@${interaction.user.id}> ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
             )
             .setColor("Green");
         
@@ -319,15 +358,6 @@ async function Hunting(){
         function getRandomMonster() {
             return monsters[Math.floor(Math.random() * monsters.length)];
         }
-
-        function clear(){
-            for(var i = 0; i < cooldown.length; i++){ 
-                if (cooldown[i] === interaction.user.id) { 
-                    cooldown.splice(i, 1); 
-                    i--; 
-                }
-            } 
-        }
-    },
+}
+},
   };
-
