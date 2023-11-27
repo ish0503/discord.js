@@ -5,7 +5,7 @@ const imgs = [
     "https://i3.ruliweb.com/img/23/06/05/18886efdca2573866.jpg",
     "https://i3.ruliweb.com/img/23/06/05/18886efae9e573866.jpg",
     "https://i2.ruliweb.com/img/23/06/05/18886ef8039573866.jpg",
-    "https://i1.ruliweb.com/img/23/06/05/18886ef4e64573866.jpg".
+    "https://i1.ruliweb.com/img/23/06/05/18886ef4e64573866.jpg",
     "https://i1.ruliweb.com/img/23/06/05/18886eed4d9573866.jpg",
     "https://i2.ruliweb.com/img/23/06/05/18886ee40de573866.jpg",
     "https://i2.ruliweb.com/img/23/06/05/18886ee7855573866.jpg",
