@@ -14,11 +14,11 @@ module.exports = {
     }
     let msg = interaction.content.toLowerCase();
     //for (x = 0; x < profanities.length; x++) {
-        if ( interaction.author.id === TARGET_USER_ID) {
+     //  if ( interaction.author.id === TARGET_USER_ID) {
     // 메시지 삭제
-    interaction.delete()
-      .then(() => console.log(`Deleted message from ${message.author.tag}: ${message.content}`))
-      .catch(console.error);
+  //  interaction.delete()
+   //   .then(() => console.log(`Deleted message from ${message.author.tag}: ${message.content}`))
+     // .catch(console.error);
   }
 //}
  //if ((msg.includes("ㅄ")) || (msg.includes("좃")) || (msg.includes("ㅗ")) || (msg.includes("새") && msg.includes("끼")) || (msg.includes("시") && msg.includes("발")) || (msg.includes("씨") && msg.includes("발")) || (msg.includes("병") && msg.includes("신")) || (msg.includes("ㅈ")) || (msg.includes("섹") && msg.includes("스")) || (msg.includes("ㅅ")) || (msg.includes("ㅆ")) || (msg.includes("좆")) || (msg.includes("조") && msg.includes("까")) || (msg.includes("븅") && msg.includes("신")) ){
