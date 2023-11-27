@@ -26,13 +26,13 @@ module.exports = {
     function getRandomArbitrary2() {
       const random = Math.random() * 100 // 0 ~ 100
       if (random <= 69){
-        return getRandomArbitrary(99, 101)
+        return getRandomArbitrary(-100, 100)
       }else if (random <= 84){
-        return getRandomArbitrary(98, 102)
+        return getRandomArbitrary(1000, -1000)
       }else if (random <= 94){
-        return getRandomArbitrary(97, 103)
+        return getRandomArbitrary(10000, -10000)
       }else if (random <= 100){
-        return getRandomArbitrary(96, 104)
+        return getRandomArbitrary(100000, -100000)
       }
     }
 
@@ -80,12 +80,12 @@ module.exports = {
       })
       
       lastupdate = Date.now()
-      num = getRandomArbitrary2() / 100;
+      num = getRandomArbitrary2() /// 100;
       await stock_Schema.updateOne(
         {name: "껌딱지 주식회사"},
-        {money: Math.round((stockone?.money || 10000) * num),
+        {money: Math.round((stockone?.money || 10000) + num),
         desc: `껌을 만드는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
-        percent: ((num * 100) - 100).toFixed(2),
+        percent: (((stockone?.money || 10000) + num) / (stockone?.money || 10000) * 100 - 100).toFixed(2),
         owner: "717687620301357086",
          maxbuy: stockone?.maxbuy || 0,
         },
@@ -95,9 +95,9 @@ module.exports = {
       num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "새늅 주식회사"},
-        {money: Math.round((stocktwo?.money || 20000) * num),
+        {money: Math.round((stocktwo?.money || 20000) + num),
         desc: `멸종위기의 새를 보존하는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
-        percent: ((num * 100) - 100).toFixed(2),
+        percent: (((stocktwo?.money || 10000) + num) / (stocktwo?.money || 10000) * 100 - 100).toFixed(2),
         owner: "929974091614670938",
          maxbuy: stocktwo?.maxbuy || 0,
         },
@@ -107,9 +107,9 @@ module.exports = {
       num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "로즈 주식회사"},
-        {money: Math.round((stockthree?.money || 7000) * num),
+        {money: Math.round((stockthree?.money || 7000) + num),
         desc: `장미를 유전자 조작하는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
-        percent: ((num * 100) - 100).toFixed(2),
+        percent: (((stockthree?.money || 10000) + num) / (stockthree?.money || 10000) * 100 - 100).toFixed(2),
         owner: "1038712896328314950",
          maxbuy: stockthree?.maxbuy || 0,
         },
@@ -119,9 +119,9 @@ module.exports = {
       num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "봇 코퍼레이션"},
-        {money: Math.round((stockfour?.money || 15000) * num),
+        {money: Math.round((stockfour?.money || 15000) + num),
         desc: `도토리 따는 회사 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
-        percent: ((num * 100) - 100).toFixed(2),
+        percent: (((stockfour?.money || 10000) + num) / (stockfour?.money || 10000) * 100 - 100).toFixed(2),
         owner: "981354358383984680",
          maxbuy: stockfour?.maxbuy || 0,
         },
@@ -131,9 +131,9 @@ module.exports = {
       num = getRandomArbitrary2() / 100;
       await stock_Schema.updateOne(
         {name: "삼성 주식회사"},
-        {money: Math.round((stockfive?.money || 200000) * num),
+        {money: Math.round((stockfive?.money || 200000) + num),
         desc: `삼성이지만 주식회사입니다 직원 모집함 (마지막 업데이트: <t:${Math.round(lastupdate / 1000)}:R>)`,
-        percent: ((num * 100) - 100).toFixed(2),
+        percent: (((stockfive?.money || 10000) + num) / (stockfive?.money || 10000) * 100 - 100).toFixed(2),
         owner: "717687620301357086",
          maxbuy: stockfive?.maxbuy || 0,
         },
