@@ -57,11 +57,11 @@ module.exports = {
             .setName("확인")
             .setDescription("자기가 직접 만들고 강화한 스킬들을 확인할 수 있습니다."),
             )
-        .addSubcommand(subcommand =>
-            subcommand
-            .setName("순위")
-            .setDescription("스킬 강화 횟수로 순위를 봅니다."),
-            )
+      //  .addSubcommand(subcommand =>
+      //      subcommand
+        //    .setName("순위")
+          //  .setDescription("스킬 강화 횟수로 순위를 봅니다."),
+           // )
         .addSubcommand(subcommand =>
             subcommand
             .setName("방어권구매")
