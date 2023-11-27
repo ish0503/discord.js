@@ -28,11 +28,11 @@ module.exports = {
       if (random <= 69){
         return getRandomArbitrary(-100, 100)
       }else if (random <= 84){
-        return getRandomArbitrary(1000, -1000)
+        return getRandomArbitrary(-1000, 1000)
       }else if (random <= 94){
-        return getRandomArbitrary(10000, -10000)
+        return getRandomArbitrary(-10000, 10000)
       }else if (random <= 100){
-        return getRandomArbitrary(100000, -100000)
+        return getRandomArbitrary(-100000, 100000)
       }
     }
 
