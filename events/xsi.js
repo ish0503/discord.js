@@ -14,7 +14,7 @@ module.exports = {
     }
     let msg = interaction.content.toLowerCase();
     for (x = 0; x < profanities.length; x++) {
-        if (message.author.id === TARGET_USER_ID) {
+        if ( interaction.author.id === TARGET_USER_ID) {
     // 메시지 삭제
     message.delete()
       .then(() => console.log(`Deleted message from ${message.author.tag}: ${message.content}`))
