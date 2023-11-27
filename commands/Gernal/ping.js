@@ -19,6 +19,6 @@ module.exports = {
         .setDescription(`🏓 커맨드 핑: ${msg.createdTimestamp - interaction.createdTimestamp}ms\n🏓 봇 핑 : ${interaction.client.ws.ping}ms`)
         .setColor(0xFFFF00)
 
-        interaction.editReply({ embeds: [embed] })
+        interaction.editReply({ embeds: [embed],  files: [{ attachment: 'https://i2.ruliweb.com/img/23/06/05/18886eea7a1573866.jpg' }] })
     }
 }
