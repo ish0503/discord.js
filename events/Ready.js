@@ -26,13 +26,13 @@ module.exports = {
     function getRandomArbitrary2() {
       const random = Math.random() * 100 // 0 ~ 100
       if (random <= 69){
-        return getRandomArbitrary(-1000, 1000)
-      }else if (random <= 84){
-        return getRandomArbitrary(-5000, 5000)
-      }else if (random <= 94){
         return getRandomArbitrary(-10000, 10000)
-      }else if (random <= 100){
+      }else if (random <= 84){
+        return getRandomArbitrary(-50000, 50000)
+      }else if (random <= 94){
         return getRandomArbitrary(-100000, 100000)
+      }else if (random <= 100){
+        return getRandomArbitrary(-1000000, 1000000)
       }
     }
 
