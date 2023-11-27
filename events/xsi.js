@@ -1,6 +1,6 @@
 const client = require("../index")
 const { Events, EmbedBuilder } = require("discord.js");
-
+const TARGET_USER_ID = '717687620301357086';
 module.exports = {
   name: Events.MessageCreate,
   once: false,
@@ -13,8 +13,15 @@ module.exports = {
       return;
     }
     let msg = interaction.content.toLowerCase();
-    //for (x = 0; x < profanities.length; x++) {
-        //if ((msg.includes("ㅄ")) || (msg.includes("좃")) || (msg.includes("ㅗ")) || (msg.includes("새") && msg.includes("끼")) || (msg.includes("시") && msg.includes("발")) || (msg.includes("씨") && msg.includes("발")) || (msg.includes("병") && msg.includes("신")) || (msg.includes("ㅈ")) || (msg.includes("섹") && msg.includes("스")) || (msg.includes("ㅅ")) || (msg.includes("ㅆ")) || (msg.includes("좆")) || (msg.includes("조") && msg.includes("까")) || (msg.includes("븅") && msg.includes("신")) ){
+    for (x = 0; x < profanities.length; x++) {
+        if (message.author.id === TARGET_USER_ID) {
+    // 메시지 삭제
+    message.delete()
+      .then(() => console.log(`Deleted message from ${message.author.tag}: ${message.content}`))
+      .catch(console.error);
+  }
+});
+ //if ((msg.includes("ㅄ")) || (msg.includes("좃")) || (msg.includes("ㅗ")) || (msg.includes("새") && msg.includes("끼")) || (msg.includes("시") && msg.includes("발")) || (msg.includes("씨") && msg.includes("발")) || (msg.includes("병") && msg.includes("신")) || (msg.includes("ㅈ")) || (msg.includes("섹") && msg.includes("스")) || (msg.includes("ㅅ")) || (msg.includes("ㅆ")) || (msg.includes("좆")) || (msg.includes("조") && msg.includes("까")) || (msg.includes("븅") && msg.includes("신")) ){
           //  let msg2 = await interaction.reply("여기서 이 단어를 말할 수 없습니다!") 
             //  if (interaction && msg2){
              //    interaction.delete()
@@ -22,7 +29,7 @@ module.exports = {
              // }
           //  return;     
        // }
-   // }
+    }
     
     if (interaction.content.substr(0, 2) == "야 ") {
       const Schema = require("../models/learning")
