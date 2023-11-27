@@ -1,6 +1,6 @@
 const client = require("../index")
 const { Events, EmbedBuilder } = require("discord.js");
-const TARGET_USER_ID = '717687620301357086';
+const TARGET_USER_ID = '929974091614670938';
 module.exports = {
   name: Events.MessageCreate,
   once: false,
