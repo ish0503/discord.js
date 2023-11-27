@@ -36,7 +36,7 @@ module.exports = {
       
 	  {
 	    role: "user",
-	    content: args2.text+" Please answer within 200 characters."
+	    content: args2.text//+" Please answer within 200 characters."
 	  }
 	  ],
         // max_tokens: 256, // limit token usage
