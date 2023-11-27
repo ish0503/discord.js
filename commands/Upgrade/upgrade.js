@@ -108,6 +108,12 @@ module.exports = {
                     return;
                 }
             }
+	    if (!gambling_find){
+		    interaction.reply({
+                        content: `/아이템 생성을 먼저 해주세요.`,
+                    });
+                    return;
+	    }
             let length = gambling_find.hashtags.length
             let isitem = -1
             let hasitem = []
