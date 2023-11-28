@@ -494,7 +494,7 @@ module.exports = {
             }
         }
 
-        if (gambling_find){
+        if (gambling_find && gambling_find.hastags){
             let length = gambling_find.hashtags.length
             let isitem = -1
             for (let i = 0; i < length; i++){
