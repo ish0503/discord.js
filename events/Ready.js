@@ -172,9 +172,9 @@ module.exports = {
         { name: '\u200B', value: '\u200B' },
         { name: stocktwo?.name+ `(새늅)\n` + `설명: ${stocktwo?.desc}`, value: start + `\n${(stocktwo?.percent > 0 ? "+" : "-")}주가: ${stocktwo?.money.toLocaleString()} (${(stocktwo?.percent > 0 ? "+" : "-")}${Math.abs(stocktwo?.percent)}%)\n 남은 주식: ${stocktwo?.maxbuy}` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
-        { name: stockthree?.name+ `(로즈)\n` + `설명: ${stockthree?.desc}`, value: start + `\n${(stockthree?.percent > 0 ? "+" : "-")}주가: ${stockthree?.money.toLocaleString()} (${(stockthree?.percent > 0 ? "+" : "-")}${Math.abs(stockthree?.percent)}%)\n 남은 주식: ${stockthree?.maxbuy}` + end , inline: true },
+        { name: stockthree?.name+ `(검딱지)\n` + `설명: ${stockthree?.desc}`, value: start + `\n${(stockthree?.percent > 0 ? "+" : "-")}주가: ${stockthree?.money.toLocaleString()} (${(stockthree?.percent > 0 ? "+" : "-")}${Math.abs(stockthree?.percent)}%)\n 남은 주식: ${stockthree?.maxbuy}` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
-        { name: stockfour?.name+ `(봇)\n` + `설명: ${stockfour?.desc}`, value: start + `\n${(stockfour?.percent > 0 ? "+" : "-")}주가: ${stockfour?.money.toLocaleString()} (${(stockfour?.percent > 0 ? "+" : "-")}${Math.abs(stockfour?.percent)}%)\n 남은 주식: ${stockfour?.maxbuy}` + end , inline: true },
+        { name: stockfour?.name+ `(검딱지)\n` + `설명: ${stockfour?.desc}`, value: start + `\n${(stockfour?.percent > 0 ? "+" : "-")}주가: ${stockfour?.money.toLocaleString()} (${(stockfour?.percent > 0 ? "+" : "-")}${Math.abs(stockfour?.percent)}%)\n 남은 주식: ${stockfour?.maxbuy}` + end , inline: true },
         { name: '\u200B', value: '\u200B' },
         { name: stockfive?.name+ `(검딱지)\n` + `설명: ${stockfive?.desc}`, value: start + `\n${(stockfive?.percent > 0 ? "+" : "-")}주가: ${stockfive?.money.toLocaleString()} (${(stockfive?.percent > 0 ? "+" : "-")}${Math.abs(stockfive?.percent)}%)\n 남은 주식: ${stockfive?.maxbuy}` + end , inline: true },
     )
