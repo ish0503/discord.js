@@ -103,7 +103,7 @@ module.exports = {
             ephemeral: true
           })
 
-        if (stock_find.value <= 0){
+        if (stock_find.money <= 0){
             interaction.reply({
                 content: `이 회사의 주식은 살 수 없습니다..`,
             });
