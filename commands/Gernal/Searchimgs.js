@@ -97,10 +97,10 @@ module.exports = {
         return itemList;
       }
       
-      
         let items = await search(args); 
-        interaction.editReply(items[0])
         console.log(items.length); 
         console.log(items[0]);
+        interaction.editReply(items[0])
+        
     }
 }
