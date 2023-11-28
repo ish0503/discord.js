@@ -196,7 +196,7 @@ module.exports = {
         console.log(gambling_find)
         console.log(money_find)
 
-        if (gambling_find.skills){
+        if (gambling_find && gambling_find.skills){
             const canGiveTime = Number(gambling_find.cooltime) + (1 * 30 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
@@ -208,7 +208,7 @@ module.exports = {
             }
         }
 
-        if (gambling_find.skills){
+        if (gambling_find && gambling_find.skills){
             let length = gambling_find.skills.length
             let isitem = -1
             for (let i = 0; i < length; i++){
