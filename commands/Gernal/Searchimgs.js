@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
+const request = require('request');
+const cheerio = require('cheerio');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,8 +12,6 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
-        const request = require('request');
-      const cheerio = require('cheerio');
       function req(url) {  
         return new Promise(function(resolve, reject) { 
           request.get({    
