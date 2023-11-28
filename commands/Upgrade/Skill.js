@@ -127,7 +127,7 @@ module.exports = {
                 {userid: interaction.user.id},
                 {$set:{
                     skills : hasitem,
-                   hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
+                   hashtags: gambling_find?.hashtags || [], cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                 {upsert:true}
             );
     
@@ -148,7 +148,7 @@ module.exports = {
                 {userid: interaction.user.id},
                 {$set:{
                     skills : hasitem,
-                    hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense || 0}},
+                    hashtags: gambling_find?.hashtags || [], cooltime: Date.now(), defense: gambling_find?.defense || 0}},
                 {upsert:true}
             );
                     
@@ -167,7 +167,7 @@ module.exports = {
                     {userid: interaction.user.id},
                     {$set:{
                        skills : gambling_find?.hasitem,
-                       hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense - 1}},
+                       hashtags: gambling_find?.hashtags || [], cooltime: Date.now(), defense: gambling_find?.defense - 1}},
                     {upsert:true}
                 );
 
@@ -261,7 +261,7 @@ module.exports = {
             {$push: {
                 skills : [{ "name": args, "Lv": 0 }],
             },
-            hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
+            hashtags: gambling_find?.hashtags || [], cooltime: Date.now(), defense: gambling_find?.defense || 0},
             {upsert:true}
         );
 
@@ -319,7 +319,7 @@ module.exports = {
                     skills: soondeleteitem//[{"name": null}]
                         //{ "name": args, "Lv": 0 },
                 },
-                hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
+                hashtags: gambling_find?.hashtags || [], cooltime: Date.now(), defense: gambling_find?.defense || 0},
                 {upsert:true}
             );
     
@@ -429,7 +429,7 @@ module.exports = {
                     skills: soondeleteitem//[{"name": null}]
                         //{ "name": args, "Lv": 0 },
                 },
-                hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
+                hashtags: gambling_find?.hashtags || [], cooltime: Date.now(), defense: gambling_find?.defense || 0},
                 {upsert:true}
             )
     
