@@ -262,7 +262,7 @@ module.exports = {
                 skills : 
                     [{ "name": args, "Lv": 0 }],
             },
-            hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
+            hashtags: gambling_find?.skills || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
             {upsert:true}
         );
 
