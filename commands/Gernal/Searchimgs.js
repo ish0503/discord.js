@@ -5,13 +5,20 @@ const cheerio = require('cheerio');
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("이미지검색")
-    .setDescription("이미지 검색을 할수 있어요"),
-
+    .setDescription("이미지 검색을 할수 있어요")
+    .addStringOption(options => options
+        .setName("검색할것")
+        .setDescription("검색 단어 입력해주세요.")
+        .setRequired(true)
+    ),
+    
     /**
      * 
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
+        await interaction.deferReply();
+        const args = interaction.options.getString("검색할것")
       function req(url) {  
         return new Promise(function(resolve, reject) { 
           request.get({    
@@ -91,7 +98,8 @@ module.exports = {
       }
       
       
-        let items = await search('바다'); 
+        let items = await search(args); 
+        interaction.editReply(items[0])
         console.log(items.length); 
         console.log(items[0]);
     }
