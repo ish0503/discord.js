@@ -259,8 +259,7 @@ module.exports = {
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
             {$push: {
-                skills : 
-                    [{ "name": args, "Lv": 0 }],
+                skills : [{ "name": args, "Lv": 0 }],
             },
             hashtags: gambling_find?.hashtags || null, cooltime: Date.now(), defense: gambling_find?.defense || 0},
             {upsert:true}
