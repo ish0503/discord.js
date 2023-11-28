@@ -103,6 +103,13 @@ module.exports = {
             ephemeral: true
           })
 
+        if (stock_find.value <= 0){
+            interaction.reply({
+                content: `이 회사의 주식은 살 수 없습니다..`,
+            });
+            return;
+        }
+
         if (stock_find.value + args2 > 100000){
             interaction.reply({
                 content: `한 주식을 100000주 초과하여 매수할수 없습니다`,
