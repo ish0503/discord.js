@@ -42,14 +42,14 @@ module.exports = {
         // max_tokens: 256, // limit token usage
       })
 	console.log(result.data.usage.total_tokens + "토큰 사용")
-    const result2 = await translatte(result.data.choices[0].message.content, {to: "ko"})
+    const result2 = result.data.choices[0].message.content
 
     console.log(result2)
 
 	//translate(result.data.choices[0].message.content, {from:'en', to:'ko'}).then(res => {
     const embed = new EmbedBuilder()
     .setTitle(`${args}에 대한 답변`)
-    .setDescription(`**${result2.text}**`)
+    .setDescription(`**${result2}**`)
     .setFooter({ text: `유저 이름 : ${interaction.user.username}(${interaction.user.globalName}), ID: ${interaction.user.id}` })
     .setColor(0xFFFF00)
     .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
