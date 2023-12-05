@@ -29,6 +29,10 @@ const { table } = require("node:console");
         await interaction.deferReply()
         const args = interaction.options.getMember("유저")
 
+        if (!args.user){
+            return
+        }
+
         console.log(args.user.globalName)
         console.log(args.user.username)
 
