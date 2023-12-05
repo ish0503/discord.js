@@ -11,7 +11,7 @@ const { table } = require("node:console");
 
   var cooldown = []
   
-  module.exports = {
+  module.exports = 
     data: new SlashCommandBuilder()
       .setName("피빕")
       .setDescription("PVP.")
