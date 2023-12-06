@@ -32,24 +32,18 @@ module.exports = {
     interaction.deferReply({ ephemeral: true })
     const category = interaction.options.getString("종류");
 
-    let get_meme = [];
+    let get_meme
 
     try {
-        for (let i = 1; i < 10; i++){
-            get_meme.push((await axios.get(`https://api.waifu.pics/sfw/${category}`)).data)
-        }
+        get_meme=(await axios.get(`https://api.waifu.pics/sfw/${category}`)).data
     } catch (error) {}
 
-    interaction.editReply({ content: "BOOM!", ephemeral: true });
+    const embed = new EmbedBuilder()
+    .setTitle("랜덤 짤")
+    .setColor("Random")
+    .setImage(get_meme.url)
+    .setFooter({ text: "powered by waifu.pics" });
 
-    for (let i = 1; i < 10; i++){
-        const embed = new EmbedBuilder()
-        .setTitle("랜덤 짤")
-        .setColor("Random")
-        .setImage(get_meme.url)
-        .setFooter({ text: "powered by waifu.pics" });
-
-        interaction.channel.send({ embeds: [embed], ephemeral: true });
-    }
+    interaction.editReply({ content: "BOOM!", embeds: [embed], ephemeral: true });
   },
 };
