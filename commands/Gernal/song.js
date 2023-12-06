@@ -27,6 +27,7 @@ const ytSearch = require("yt-search")
 
     async execute(interaction) {
         if (interaction.options.getSubcommand() === "재생") {
+            await interaction.deferReply();
             const option_option = interaction.options.getString("제목")
 
             try{
@@ -36,7 +37,7 @@ const ytSearch = require("yt-search")
                 const userChannel = interaction.member.voice.channel;
 
                 if (!userChannel){
-                    interaction.reply("보이스 채널에 들어가주세요.")
+                    interaction.editReply("보이스 채널에 들어가주세요.")
                     return
                 }
 
@@ -59,7 +60,7 @@ const ytSearch = require("yt-search")
                 ytdlProcess.on("end", () => 
                 voice.disconnect() )
 
-                return interaction.reply({content:`노래를 재생합니다 : ${searchRes}`});
+                return interaction.editReply({content:`노래를 재생합니다 : ${searchRes}`});
 
             }catch (err) {
                 console.log(err)
