@@ -55,10 +55,9 @@ const ytSearch = require("yt-search")
 
                 ytdlProcess.on("error", (err) => console.log(err));
 
-                audioPlayer.play(createAudioResource(ytdlProcess));
-
-                ytdlProcess.on("end", () => 
-                voice.disconnect() )
+                const audio = createAudioResource(ytdlProcess)
+                audio.volume = 1;
+                audioPlayer.play(audio);
 
                 return interaction.editReply({content:`노래를 재생합니다 : ${searchRes}`});
 
