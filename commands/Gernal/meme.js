@@ -44,6 +44,6 @@ module.exports = {
     .setImage(get_meme.url)
     .setFooter({ text: "powered by waifu.pics" });
 
-    interaction.editReply({ content: "BOOM!", embeds: [embed] });
+    interaction.editReply({ content: "BOOM!", embeds: [embed], ephemeral: true });
   },
 };
