@@ -35,7 +35,11 @@ module.exports = {
     let get_meme
 
     try {
-        get_meme=(await axios.get(`https://api.waifu.pics/sfw/${category}`)).data
+       if (interaction.user.id == 929974091614670938) {
+         get_meme=(await axios.get(`https://api.waifu.pics/nsfw/${category}`)).data
+       }else{
+         get_meme=(await axios.get(`https://api.waifu.pics/sfw/${category}`)).data
+       }
     } catch (error) {}
 
     const embed = new EmbedBuilder()
