@@ -29,7 +29,7 @@ module.exports = {
    * @param {import("discord.js").ChatInputCommandInteraction} interaction
    */
   async execute(interaction) {
-    interaction.deferReply({ ephemeral: true })
+    interaction.deferReply()
     const category = interaction.options.getString("종류");
 
     let get_meme
@@ -44,6 +44,6 @@ module.exports = {
     .setImage(get_meme.url)
     .setFooter({ text: "powered by waifu.pics" });
 
-    interaction.editReply({ content: "BOOM!", embeds: [embed], ephemeral: true });
+    interaction.editReply({ content: "BOOM!", embeds: [embed] });
   },
 };
