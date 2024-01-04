@@ -1,6 +1,8 @@
 const client = require("../index")
-const { Events, EmbedBuilder } = require("discord.js");
-const TARGET_USER_ID = '717687620301357086';
+const { Events, EmbedBuilder } = require("discord.js")
+const cenkor = require('cenkor')
+const filtering_Schema = require("../models/filter")
+
 module.exports = {
   name: Events.MessageCreate,
   once: false,
@@ -12,23 +14,50 @@ module.exports = {
     if (interaction.author.bot){
       return;
     }
+
     let msg = interaction.content.toLowerCase();
-    //for (x = 0; x < profanities.length; x++) {
-     //  if ( interaction.author.id === TARGET_USER_ID) {
-    // 메시지 삭제
-  //  interaction.delete()
-   //   .then(() => console.log(`Deleted message from ${message.author.tag}: ${message.content}`))
-     // .catch(console.error);
-  //}
-//}
- //if ((msg.includes("ㅄ")) || (msg.includes("좃")) || (msg.includes("ㅗ")) || (msg.includes("새") && msg.includes("끼")) || (msg.includes("시") && msg.includes("발")) || (msg.includes("씨") && msg.includes("발")) || (msg.includes("병") && msg.includes("신")) || (msg.includes("ㅈ")) || (msg.includes("섹") && msg.includes("스")) || (msg.includes("ㅅ")) || (msg.includes("ㅆ")) || (msg.includes("좆")) || (msg.includes("조") && msg.includes("까")) || (msg.includes("븅") && msg.includes("신")) ){
-          //  let msg2 = await interaction.reply("여기서 이 단어를 말할 수 없습니다!") 
-            //  if (interaction && msg2){
-             //    interaction.delete()
-             //   msg2.delete()
-             // }
-          //  return;     
-       // }
+
+    const filtering_find = await filtering_Schema.findOne({
+      filterserver: interaction.guild.id,
+    });
+
+    async function filter(){
+      if (interaction) {
+        interaction.delete()
+      }
+      return;
+    }
+
+    if (filtering_find){
+      console.log("검열 확인")
+      if (filtering_find.filtermsg[0] == "Auto"){
+        console.log("오토 확인")
+        if (filtering_find.filterchannel.includes(String(interaction.channel.id)) || filtering_find.filterallchannel == true){
+          console.log("필터 채널 확인")
+          for(i=0;i<filtering_find.adminroleid.length;i++){
+            if (interaction.member.roles.cache.some(role => role.id == filtering_find.adminroleid[i])){
+              console.log("역할 확인")
+              return
+            }
+          }
+          const result = cenkor(msg)
+    
+          if(result.filtered){
+            console.log("삭제 시도중")
+            filter()
+          }
+        }
+      }
+    }
+
+    // if ((msg.includes("ㅄ")) || (msg.includes("좃")) || (msg.includes("ㅗ")) || (msg.includes("새") && msg.includes("끼")) || (msg.includes("시") && msg.includes("발")) || (msg.includes("씨") && msg.includes("발")) || (msg.includes("병") && msg.includes("신")) || (msg.includes("ㅈ")) || (msg.includes("섹") && msg.includes("스")) || (msg.includes("ㅅ")) || (msg.includes("ㅆ")) || (msg.includes("좆")) || (msg.includes("조") && msg.includes("까")) || (msg.includes("븅") && msg.includes("신"))) {
+    //   let msg2 = await interaction.reply("여기서 이 단어를 말할 수 없습니다!")
+    //   if (interaction && msg2) {
+    //     interaction.delete()
+    //     msg2.delete()
+    //   }
+    //   return;
+    // }
     
     
     if (interaction.content.substr(0, 2) == "야 ") {

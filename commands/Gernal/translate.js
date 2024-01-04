@@ -32,12 +32,13 @@ module.exports = {
      */
     async execute(interaction){
         if (interaction.options.getSubcommand() === "시작") {
+          interaction.deferReply() 
             const args = interaction.options.getString("말")
             const args2 = interaction.options.getString("언어")
 
             translatte(args, {to: args2}).then(res => {
                 console.log(res.text);
-                interaction.reply({
+                interaction.editReply({
                     embeds: [
                       new EmbedBuilder()
                         .setTitle(`${args}를 ${args2}로 번역됨`)
@@ -47,7 +48,7 @@ module.exports = {
                 })
             }).catch(err => {
                 console.error(err);
-                interaction.reply({
+                interaction.editReply({
                     content: err.message,
                 });
             });

@@ -38,8 +38,8 @@ module.exports = {
       console.log(interaction.channel.id)
     if (raid){
       await interaction.editReply({
-                     content: `이 채널에서 이미 레이드가 진행중입니다.`,
-                 });
+          content: `이 채널에서 이미 레이드가 진행중입니다.`,
+      });
       return;
     }
 
@@ -57,10 +57,60 @@ module.exports = {
       const row = new ActionRowBuilder()
           .addComponents(confirm);
 
-      await interaction.editReply({
+      const msg = await interaction.editReply({
           content: `참가하시겠습니까?`,
           components: [row],
       });
+
+      const collector = msg.createMessageComponentCollector({
+        time: 10000,
+        max: 1000
+      })
+
+      collector.on("collect", async (inter) => {
+        console.log(inter.user)
+        try{
+          const raid = await raid_Sechma.findOne({
+            channelid: interaction.channel.id
+          })
+          if (!raid){
+            inter.reply({
+                content: `레이드를 찾지 못함.`,
+                ephemeral: true
+            });
+            return;
+          }
+
+          if (!raid.userid.find((element) => element == interaction.user.id)){
+              var list = raid.userid
+
+              list.push(interaction.user.id)
+
+              await raid_Sechma.updateOne(
+                  {channelid: interaction.channel.id},
+                  {userid: list},
+                  {upsert:true}
+              );
+              inter.reply({
+                content: `성공적으로 참가되었습니다.`,
+                ephemeral: true
+              })
+              interaction.channel.send({
+                  content: `${inter.user.username}님이 레이드에 참가하였습니다.`
+              })
+          }else{
+            inter.reply({
+              content: `이미 레이드에 참가해있습니다.`,
+              ephemeral: true
+            })
+          }
+        }catch (error){
+            console.log(error);
+            interaction.editReply({
+                content: "error: "+error
+            })
+        }
+      })
 
       await wait(10000)
 
