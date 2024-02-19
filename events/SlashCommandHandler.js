@@ -11,13 +11,18 @@ module.exports = {
     if (!interaction.isChatInputCommand() && !interaction.isContextMenuCommand()) return;
     if (interaction.isCommand()) { // Checks if the interaction is a command and runs the `
       const command = client.commands.get(interaction.commandName);
+      
       if(!command) return;
-     // try{
-          await command.execute(interaction);
-     // }catch(error){
-        //  console.error(error);
-       //   await interaction.reply({content : "There was an error while executing action"})
-   //   }
+
+      const list = client.guilds.cache.get("1150691194146394143");
+      var members
+      try{
+        members = await list.members.fetch(interaction.user.id)
+      }catch (err){
+        await interaction.reply("명령어를 사용하려면 새늅봇 서버에 가입해주세요. https://discord.gg/tcea2Rezus")
+        return;
+      }
+      await command.execute(interaction);
       return;
 
   }

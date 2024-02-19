@@ -57,14 +57,14 @@ for (const category of commandsCategoryFiles) {
 const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
 rest
-  .put(Routes.applicationCommands(process.env.ID), { body: commands_json })
+  .put(Routes.applicationCommands("989433815539777546"), { body: commands_json })
   .then((command) => console.log(`${command.length}개의 커맨드를 푸쉬했습니다`))
   .catch(console.error);
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 mongoose
-  .connect(process.env.MONGOURL, {
+  .connect(process.env.MONGO, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })

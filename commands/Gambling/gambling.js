@@ -24,7 +24,7 @@ module.exports = {
 
         if (!gambling_find){
             interaction.reply({
-                content: `**돈이 없으시군요.. \`/돈\` 명령어로 돈을 받으세요.**`
+                content: `**돈이 없으시군요.. 돈을 어떻게든 얻어보세요.**`
             })
             return
         }

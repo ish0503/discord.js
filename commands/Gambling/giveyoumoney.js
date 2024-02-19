@@ -39,12 +39,12 @@ module.exports = {
 
         if (!(gambling_find && gambling_find2)){
             interaction.reply({
-                content: `**두 사람 모두 돈 데이터가 있어야 합니다. /돈 또는 /출석으로 돈 데이터를 만드세요**`,
+                content: `**두 사람 모두 돈 데이터가 있어야 합니다.**`,
             });
             return;
         }
 
-        if (gambling_find2.money <= number){
+        if (gambling_find2.money < number){
             interaction.reply({
                 content: `**당신에게 없는 돈을 이 사람에게 줄 수 없습니다.**`,
             });

@@ -219,8 +219,8 @@ const { table } = require("node:console");
             damage2 = save2[0].value + skills2[0].Lv
         }
           
-        const monster = { name: save2[0].name, hp: save2[0].value * 20, reward: Math.round(gambling_find3.money / 100), XPreward:Math.round(level_find3.level / 100) };
-        const user = { name: save[0].name, hp: save[0].value * 20, reward: Math.round(gambling_find.money / 100), XPreward:Math.round(level_find.level / 100) };
+        const monster = { name: save2[0].name, hp: save2[0].value * 20, reward: Math.round(gambling_find3.money / 10000), XPreward:Math.round(level_find3.level / 10000) };
+        const user = { name: save[0].name, hp: save[0].value * 20, reward: Math.round(gambling_find.money / 10000), XPreward:Math.round(level_find.level / 10000) };
         if (save.length <= 0){
             interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! 거절은 없다! \n(당신의 무기: 맨주먹)`);
         }else{
@@ -396,7 +396,7 @@ const { table } = require("node:console");
             const embed = new EmbedBuilder()
                 .setTitle("PVP 성공")
                 .setDescription(
-                    `${interaction.user.username}님이 ${args.user.username}의 ${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                    `${interaction.user.username}님이 ${args.user.username}의 ${monster.name}을(를) 쓰러뜨려서 돈과 레벨을 강탈했습니다.\n${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
                 )
                 .setColor("Green");
             

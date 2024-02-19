@@ -29,21 +29,17 @@ module.exports = {
     }
 
     if (filtering_find){
-      console.log("검열 확인")
       if (filtering_find.filtermsg[0] == "Auto"){
-        console.log("오토 확인")
         if (filtering_find.filterchannel.includes(String(interaction.channel.id)) || filtering_find.filterallchannel == true){
-          console.log("필터 채널 확인")
           for(i=0;i<filtering_find.adminroleid.length;i++){
             if (interaction.member.roles.cache.some(role => role.id == filtering_find.adminroleid[i])){
-              console.log("역할 확인")
               return
             }
           }
           const result = cenkor(msg)
     
           if(result.filtered){
-            console.log("삭제 시도중")
+            console.log("필터로 인한 메시지 삭제 시도중")
             filter()
           }
         }

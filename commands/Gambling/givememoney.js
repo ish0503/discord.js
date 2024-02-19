@@ -4,7 +4,7 @@ const comma = require("comma-number")
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("돈")
+    .setName("지원금")
     .setDescription("이 봇은 공짜로! 당신께 돈을 줄 수 있습니다."),
 
     /**
@@ -12,17 +12,18 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
+        const 지원금 = 30000
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
 
         if (gambling_find){
-            const canGiveTime = Number(gambling_find.cooltime) + (5 * 60 * 1000)
+            const canGiveTime = Number(gambling_find.cooltime) + (100 * 365 * 24 * 60 * 60 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
-                    content: `**자비로운 봇도 이렇게 빨리 돈을 줄 수는 없답니다.\n<t:${Math.round(
+                    content: `**지원금을 받을수 없습니다.\n<t:${Math.round(
                         canGiveTime / 1000
-                    )}> (<t:${Math.round(canGiveTime / 1000)}:R>)**`,
+                    )}> (<t:${Math.round(canGiveTime / 1000)}:R>)에 받으세요^^**`,
                 });
                 return;
             }
@@ -30,17 +31,17 @@ module.exports = {
 
         await gambling_Schema.updateOne(
             {userid: interaction.user.id},
-            {money: Number(gambling_find?.money || 0) + 5000, cooltime: Date.now()},
+            { money: Number(gambling_find?.money || 0) + 지원금, cooltime: Date.now()},
             {upsert:true}
         );
 
-        const moneyvalue = Number(gambling_find?.money || 0) + 5000
+        const moneyvalue = Number(gambling_find?.money || 0) + 지원금
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**💰 봇이 당신께 드리는 선물입니다. ${
+                `**💰 지원금이 도착했습니다. ${
                     moneyvalue.toLocaleString()
-                }재화가 당신에게 있습니다.**`
+                }재화가 당신에게 있습니다. +${지원금}$**`
             )
             .setColor("Green");
         

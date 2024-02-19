@@ -191,8 +191,8 @@ module.exports = {
           .setTitle(`아이템 파괴 방어`)
           .setDescription(
             `**당신의 방어권으로 아이템이 파괴 될 뻔했는데!! 보존되었습니다. \n남은 방어권: ${
-              gambling_find?.defense - 5
-            }개 (5개 사용함)**`,
+              gambling_find?.defense - 10
+            }개 (10개 사용함)**`,
           )
           .setColor("Blue");
 
@@ -211,7 +211,7 @@ module.exports = {
           )
           .setDescription(
             `**당신의 방어권으로 아이템이 보존되었습니다. \n남은 방어권: ${
-              gambling_find?.defense - 5
+              gambling_find?.defense - 1
             }개**`,
           )
           .setColor("Blue");
@@ -267,7 +267,7 @@ module.exports = {
         const embed = new EmbedBuilder()
           .setTitle(`**아이템 파괴..**`)
           .setDescription(
-            `**${percent}% 확률로 아이템이 파괴되었습니다.. 이름: ${args}**\n(아이템 파괴를 막을려면 방어권 5개가 필요합니다.)`,
+            `**${percent}% 확률로 아이템이 파괴되었습니다.. 이름: ${args}**\n(아이템 파괴를 막을려면 방어권 10개가 필요합니다.)`,
           )
           .setColor("Red");
 
@@ -472,9 +472,9 @@ module.exports = {
           $push: {
             hashtags: [{ name: args, value: 0 }],
           },
-          skills: gambling_find.skills || [],
+          skills: (gambling_find?.skills || []),
           cooltime: Date.now(),
-          defense: gambling_find.defense || 0,
+          defense: (gambling_find?.defense || 0),
         },
         { upsert: true },
       );
@@ -684,6 +684,7 @@ module.exports = {
         return 0;
       });
       for (let i = 0; i < 10; i++) {
+        if (!save[i]) continue;
         const user = await interaction.client.users.fetch(save[i].userid);
         embed.addFields({
           name: `${i + 1}. ${user.username}`,
@@ -718,7 +719,7 @@ module.exports = {
 
       const msg = await interaction.reply({
         content: `방어권 ${args} 개를 사시겠습니까? 가격: ${(
-          args * 100000
+          args * 50000
         ).toLocaleString()}재화`,
         components: [row],
       });
@@ -731,7 +732,7 @@ module.exports = {
 
       collector.on("collect", async (inter) => {
         try {
-          if (!money_find || money_find.money < args * 100000) {
+          if (!money_find || money_find.money < args * 50000) {
             const embed = new EmbedBuilder()
               .setDescription(`**돈이 부족합니다**`)
               .setColor("Red");
@@ -742,7 +743,7 @@ module.exports = {
 
           await money_Schema.updateOne(
             { userid: interaction.user.id },
-            { money: Number(money_find.money) - args * 100000 },
+            { money: Number(money_find.money) - args * 50000 },
           );
 
           await gambling_Schema.updateOne(

@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
+        
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("타임아웃")
@@ -29,7 +30,7 @@ module.exports = {
     const member = interaction.options.getMember("유저");
     const reason = interaction.options.getString("사유");
     const time = interaction.options.getInteger("시간");
-
+    
     try {
       await member.timeout(time * 1000, reason); // * 0 제거
       await interaction.editReply({
